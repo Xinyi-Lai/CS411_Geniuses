@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
--- Host: database
--- Generation Time: Jul 14, 2020 at 04:46 PM
--- Server version: 8.0.20
--- PHP Version: 7.4.6
+-- Host: 127.0.0.1
+-- Generation Time: Jul 15, 2020 at 02:23 PM
+-- Server version: 5.7.11
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -24,13 +25,34 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `Accounts`
+--
+
+CREATE TABLE `Accounts` (
+  `NetId` varchar(15) NOT NULL,
+  `Name` varchar(50) DEFAULT NULL,
+  `Email` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Accounts`
+--
+
+INSERT INTO `Accounts` (`NetId`, `Name`, `Email`) VALUES
+('hanyins2', 'Hanyin Shao', 'hanyins2@illinois.edu'),
+('jiaqil6', 'Jiaqi Lou', 'jiaqil6@illinois.edu'),
+('keruiz2', 'Kerui Zhu', 'keruiz2@illinois.edu');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `Group_Mem`
 --
 
 CREATE TABLE `Group_Mem` (
-  `Name` varchar(20) NOT NULL,
-  `NetId` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `Name` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `NetId` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `Group_Mem`
@@ -49,13 +71,13 @@ INSERT INTO `Group_Mem` (`Name`, `NetId`) VALUES
 --
 
 CREATE TABLE `Requests` (
-  `RequestId` int NOT NULL,
-  `BuyerId` varchar(50) DEFAULT NULL,
-  `ProductName` varchar(50) DEFAULT NULL,
-  `Tag` varchar(50) DEFAULT NULL,
-  `Description` varchar(500) DEFAULT NULL,
+  `RequestId` int(11) NOT NULL,
+  `BuyerId` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ProductName` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Tag` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Description` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `IntendedPrice` double DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `Requests`
@@ -71,15 +93,15 @@ INSERT INTO `Requests` (`RequestId`, `BuyerId`, `ProductName`, `Tag`, `Descripti
 --
 
 CREATE TABLE `Sales` (
-  `SaleId` int NOT NULL,
-  `SellerId` varchar(50) DEFAULT NULL,
-  `ProductName` varchar(50) DEFAULT NULL,
-  `Tag` varchar(50) DEFAULT NULL,
-  `Description` varchar(500) DEFAULT NULL,
+  `SaleId` int(11) NOT NULL,
+  `SellerId` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ProductName` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Tag` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Description` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `IntendedPrice` double DEFAULT NULL,
   `OriginalPrice` double DEFAULT NULL,
-  `Depreciation` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `Depreciation` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `Sales`
@@ -95,21 +117,14 @@ INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, 
 --
 
 CREATE TABLE `Transactions` (
-  `TransactionId` int NOT NULL,
-  `SellerId` varchar(50) DEFAULT NULL,
-  `BuyerId` varchar(50) DEFAULT NULL,
-  `ProductName` varchar(50) DEFAULT NULL,
-  `Tag` varchar(50) DEFAULT NULL,
-  `Description` varchar(500) DEFAULT NULL,
+  `TransactionId` int(11) NOT NULL,
+  `SellerId` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `BuyerId` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ProductName` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Tag` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Description` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Price` double DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `Transactions`
---
-
-INSERT INTO `Transactions` (`TransactionId`, `SellerId`, `BuyerId`, `ProductName`, `Tag`, `Description`, `Price`) VALUES
-(2, 'laix7', 'keruiz2', 'Xinyi\'s course notes', 'tag_3', 'Help you get A+ in all courses', 666);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -118,14 +133,14 @@ INSERT INTO `Transactions` (`TransactionId`, `SellerId`, `BuyerId`, `ProductName
 --
 
 CREATE TABLE `Users` (
-  `NetId` varchar(50) NOT NULL,
-  `Password` varchar(50) DEFAULT NULL,
-  `School` int DEFAULT NULL,
-  `Name` varchar(50) DEFAULT NULL,
-  `Email` varchar(50) DEFAULT NULL,
-  `Major` int DEFAULT NULL,
-  `Year` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `NetId` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Password` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `School` int(11) DEFAULT NULL,
+  `Name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Email` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Major` int(11) DEFAULT NULL,
+  `Year` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `Users`
@@ -135,11 +150,17 @@ INSERT INTO `Users` (`NetId`, `Password`, `School`, `Name`, `Email`, `Major`, `Y
 ('hanyins2', 'hanyins2', 1, 'Hanyin Shao', 'hanyins2@illinois.edu', 391, 2017),
 ('jiaqil6', 'jiaqil6', 0, 'Jiaqi Lou', 'jiaqil6@illinois.edu', 411, 2017),
 ('keruiz2', 'keruiz2', 0, 'Kerui Zhu', 'keruiz2@illinois.edu', 498, 2017),
-('laix7', 'laix7', 1, 'Xinyi Lai', 'laix7@illinois.edu', 418, 2017);
+('xlai7', 'xlai7', 1, 'Xinyi Lai', 'xlai7@illinois.edu', 418, 2017);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `Accounts`
+--
+ALTER TABLE `Accounts`
+  ADD PRIMARY KEY (`NetId`);
 
 --
 -- Indexes for table `Group_Mem`
