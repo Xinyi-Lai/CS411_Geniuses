@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 15, 2020 at 02:23 PM
+-- Generation Time: Jul 15, 2020 at 03:12 PM
 -- Server version: 5.7.11
 -- PHP Version: 7.3.11
 
@@ -147,10 +147,11 @@ CREATE TABLE `Users` (
 --
 
 INSERT INTO `Users` (`NetId`, `Password`, `School`, `Name`, `Email`, `Major`, `Year`) VALUES
-('hanyins2', 'hanyins2', 1, 'Hanyin Shao', 'hanyins2@illinois.edu', 391, 2017),
-('jiaqil6', 'jiaqil6', 0, 'Jiaqi Lou', 'jiaqil6@illinois.edu', 411, 2017),
-('keruiz2', 'keruiz2', 0, 'Kerui Zhu', 'keruiz2@illinois.edu', 498, 2017),
-('xlai7', 'xlai7', 1, 'Xinyi Lai', 'xlai7@illinois.edu', 418, 2017);
+('cs411', 'cs411', 1, 'Little Genius', 'cs411@geniuses.com', 2, 1),
+('hanyins2', 'hanyins2', 1, 'Hanyin Shao', 'hanyins2@illinois.edu', 4, 1),
+('jiaqil6', 'jiaqil6', 3, 'Jiaqi Lou', 'jiaqil6@illinois.edu', 3, 3),
+('keruiz2', 'keruiz2', 3, 'Kerui Zhu', 'keruiz2@illinois.edu', 2, 3),
+('xlai7', 'xlai7', 2, 'Xinyi Lai', 'xlai7@illinois.edu', 3, 4);
 
 --
 -- Indexes for dumped tables

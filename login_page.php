@@ -1,4 +1,6 @@
 <?php 
+    session_start();
+    
     include_once "db_functions.php";
     
     $username = $_POST["username"];
@@ -16,6 +18,7 @@
         // if match
         if ($result && $result->num_rows > 0) {
             $errmsg = "Logged in successfully!";
+            $_SESSION['curr_user'] = $username; 
             header("location:user_page.php");
             exit;
         } else {
@@ -32,7 +35,7 @@
 
         <h1>Login Page</h1>
         
-        <form action="" method="POST">
+        <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
             Username: <input type="text" name="username" value="<?php echo $username;?>"> <br>
             Password: <input type="text" name="password" value="<?php echo $password;?>"> <br>
             <input type="submit" name="submit" value="Log in">

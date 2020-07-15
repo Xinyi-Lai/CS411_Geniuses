@@ -5,21 +5,21 @@
     $password = ppc($_POST["password"]);
     $name = ppc($_POST["name"]);
     $email = ppc($_POST["email"]);
-    switch($_GET['school']) {
+    switch($_POST['school']) {
         case "UIUC": $school = 1; break;
         case "ZJU":  $school = 2; break;
         case "ZJUI": $school = 3; break;
         case "ZJE":  $school = 4; break;
         default:     $school = 0; break;
     }
-    switch($_GET['major']) {
+    switch($_POST['major']) {
         case "CEE":  $major = 1; break;
         case "CompE":$major = 2; break;
         case "EE":   $major = 3; break;
         case "ME":   $major = 4; break;
         default:     $major = 0; break;
     }
-    switch($_GET['year']) {
+    switch($_POST['year']) {
         case "Freshman": $year = 1; break;
         case "Sophomore":$year = 2; break;
         case "Junior":   $year = 3; break;
@@ -44,7 +44,7 @@
                     VALUES ('$username', '$password', '$name', '$school', '$email', '$major', '$year')";
             if ($conn->query($sql)) {
                 $errmsg = "Successfully registered!";
-                header("location:user_page.php");
+                header("location:login_page.php");
                 exit;
             } else {
                 $errmsg = "Error: " . $sql . "<br>" . $conn->error;
@@ -60,7 +60,7 @@
 
         <h1>Register Page</h1>
 
-        <form action="" method="POST">
+        <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
             Username: <input type="text" name="username" value="<?php echo $username;?>">   <br>
             Password: <input type="text" name="password" value="<?php echo $password;?>">   <br>
             Name:   <input type="text" name="name"  value="<?php echo $name;?>">    <br>

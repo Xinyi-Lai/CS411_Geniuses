@@ -7,7 +7,7 @@
 </head>
 
 <body>
-
+    <h1>Welcome to Beacon!</h1> <br>
     <input type="button" onclick="window.location.href='buyer_page.php'" value="I wanna buy ...">
     <input type="button" onclick="window.location.href='seller_page.php'" value="I wanna sell ...">
     <input type="button" onclick="window.location.href='login_page.php'" value="Login">
@@ -16,24 +16,22 @@
 </body>
 
 <?php
+    // include_once "db_functions.php";
 
-    include_once "db_functions.php";
-
-    $conn = connectDB();
+    // $conn = connectDB();
     
-    $sql = "SELECT * FROM Users";
-    $result = $conn->query($sql);
+    // $sql = "SELECT * FROM Users";
+    // $result = $conn->query($sql);
     
-    if ($result->num_rows > 0) {
-        // output
-        while($row = $result->fetch_assoc()) {
-            echo "NetID: " . $row["NetId"]. " - Name: " . $row["Name"]. " - Major: " . $row["Major"]. "<br>";
-        }
-    } else {
-        echo "0 结果";
-    }
-    $conn->close();
-
+    // if ($result->num_rows > 0) {
+    //     // output
+    //     while($row = $result->fetch_assoc()) {
+    //         echo "NetID: " . $row["NetId"]. " - Name: " . $row["Name"]. " - Major: " . $row["Major"]. "<br>";
+    //     }
+    // } else {
+    //     echo "0 结果";
+    // }
+    // $conn->close();
 ?>
 
 </html>
