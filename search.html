@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 
 <html lang="en-US">
-
+<script src="load_related.js"></script>
 <head>
 
 	<meta charset="UTF-8">
@@ -84,11 +84,11 @@
 
                             <div class="form-group">
 
-                              <input type="text" class="form-control" placeholder="What do you need...">
+                              <input type="text" id="search_box" class="form-control" placeholder="What do you need...">
 
                             </div>
 
-                            <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                            <button type="button" class="btn" onclick="load_related()"><i class="fa fa-search"></i></button>
 
                         </form>
 
@@ -204,7 +204,7 @@
 
                     <div class="tab-pane active" id="related">
 
-                        <div class="col-md-3 col-sm-4">
+                        <!-- <div class="col-md-3 col-sm-4">
 
                             <div class="single-product">
 
@@ -330,7 +330,7 @@
 
                             </div>
 
-                        </div>
+                        </div> -->
 
                     </div>
 
