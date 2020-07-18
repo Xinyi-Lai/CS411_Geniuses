@@ -1632,6 +1632,7 @@ input[type="button"].btn-block {
 	background-image: none;
 	filter: none;
 	text-shadow: none;
+	text-align: center;
 }
 
 .btn:hover,
@@ -1655,8 +1656,10 @@ fieldset[disabled] .btn:active {
 }
 
 .btn-primary {
+  margin-left: 150px;
   background-color: #578EBE;
   border-color: #578EBE;
+  margin-bottom: 80px;
 }
 
 .btn-primary:hover,
@@ -1678,6 +1681,33 @@ fieldset[disabled] .btn-primary:active {
   background-color: #578EBE;
   border-color: #578EBE;
 }
+
+.btn-register {
+	margin-left: 150px;
+	background-color: #13294b;
+	border-color: #13294b;
+	margin-bottom: 80px;
+  }
+  
+  .btn-register:hover,
+  .btn-register:focus,
+  .btn-register:active {
+	background-color: #13294b;
+	border-color: #13294b;
+  }
+  
+  .btn-register.disabled:hover,
+  .btn-register[disabled]:hover,
+  fieldset[disabled] .btn-register:hover,
+  .btn-register.disabled:focus,
+  .btn-register[disabled]:focus,
+  fieldset[disabled] .btn-register:focus,
+  .btn-register.disabled:active,
+  .btn-register[disabled]:active,
+  fieldset[disabled] .btn-register:active {
+	background-color: #13294b;
+	border-color: #13294b;
+  }
 
 .btn-warning {
   background-color: #DEB948;
@@ -2487,11 +2517,15 @@ div.uploader{
   color: #e3cf7a;
 }
 
+.blank{
+	min-height: 30px;
+}
+
 /* Footer
 =================================================================== */
 
 footer {
-	min-height: 24px;
+	min-height: 360px;
 	background: #1C2B36;;
 	color: #fff !important;
 	-webkit-border-radius: 0px;
