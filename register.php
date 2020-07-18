@@ -15,36 +15,36 @@
 	
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		if (empty($username)) {
-			$usernameErr = "Username is required.";
+			$usernameErr = "* Username is required.";
 		}
 		if (empty($password)) {
-			$passwordErr = "Password is required.";
+			$passwordErr = "* Password is required.";
 		}
 		if (empty($confirm_password)) {
-			$confirmpasswordErr = "Please confirm your password.";
+			$confirmpasswordErr = "* Please confirm your password.";
 		} else if ($confirm_password != $password) {
-			$confirmpasswordErr = "Your passwords do not agree.";
+			$confirmpasswordErr = "* Your passwords do not agree.";
 		}
 		if (empty($name)) {
-			$nameErr = "Name cannot be empty.";
+			$nameErr = "* Name cannot be empty.";
 		}
 		if (empty($email)) {
-			$emailErr = "Email cannot be empty.";
+			$emailErr = "* Email cannot be empty.";
 		} else if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$email)) {
-            $emailErr = "Invalid email format."; 
+            $emailErr = "* Invalid email format."; 
         }
 		if (empty($campus)) {
-			$campusErr = "Please select your campus.";
+			$campusErr = "* Please select your campus.";
 		}
 		if (empty($major)) {
-			$majorErr = "Please select your major.";
+			$majorErr = "* Please select your major.";
 		}
 		if (empty($year)) {
-			$yearErr = "Please select your school year.";
+			$yearErr = "* Please select your school year.";
 		}
 
 		if ($usernameErr || $passwordErr || $confirmpasswordErr || $nameErr || $emailErr || $campusErr || $majorErr || $yearErr) {
-			$msg = "Please check your input again";
+			$msg = "* Please check your input again";
 		} else {
 			$conn = connectDB();
 
@@ -69,246 +69,204 @@
 
 ?>
 
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-	
-	<!-- start: Meta -->
-	<meta charset="utf-8">
-	<title>Beacon - Register</title>
-	<meta name="description" content="Bootstrap Metro Dashboard">
-	<meta name="author" content="">
-	<meta name="keyword" content="">
-	<!-- end: Meta -->
-	
-	<!-- start: Mobile Specific -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- end: Mobile Specific -->
-	
-	<!-- start: CSS -->
-	<link id="bootstrap-style" href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
-	<link id="base-style" href="css/style.css" rel="stylesheet">
-	<link id="base-style-responsive" href="css/style-responsive.css" rel="stylesheet">
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
-	<!-- end: CSS -->
-	
-
-	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
-	<!--[if lt IE 9]>
-	  	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<link id="ie-style" href="css/ie.css" rel="stylesheet">
-	<![endif]-->
-	
-	<!--[if IE 9]>
-		<link id="ie9style" href="css/ie9.css" rel="stylesheet">
-	<![endif]-->
-		
-	<!-- start: Favicon -->
-	<!-- <link rel="shortcut icon" href="img/favicon.ico"> -->
-	<!-- end: Favicon -->
-	
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>BEACON - Register</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="assets/css/smoothproducts.css">
 </head>
 
 <body>
-	
-	<!-- start: Header -->
-		<div class="navbar">
-			<div class="navbar-inner">
-				<!-- <img src="images/beaconlogo.png" style="height:100px; width:80px;"> -->
-				<div class="container-fluid">
+    <nav class="navbar navbar-dark navbar-expand-lg bg-primary clean-navbar" style="height: 60px; padding-top: 30px;">
+        <div class="container"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button><a class="navbar-brand text-white logo" href="#"><p style="font-size: larger;">BEACON</p></a>
+            <div class="collapse navbar-collapse"
+                id="navcol-1">
+                <ul class="nav navbar-nav ml-auto"></ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page registration-page">
+        <section class="clean-block clean-form dark">
+            <div class="container">
+                <div class="block-heading">
+                    <h2 class="text-info">Welcome to Beacon - Registration</h2>
+				</div>
+				<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
+					<!-- Username input begin -->
+                    <div class="form-group">
+						<label for="focusedInput">Username</label> <span class="warning"> <?php echo $usernameErr;?></span>
+						<input class="form-control item" id="focusedInput" type="text" name="username" value="<?php echo $username;?>">
+						
+					</div>
+					<!-- Username input end -->
 					
-					<a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</a>
+
+					<!-- Password input begin -->
+					<div class="form-group">
+						<label for="focusedInput">Password</label> <span class="warning"> <?php echo $passwordErr;?></span>
+						<input class="form-control item" id="focusedInput" type="password" name="password" value="<?php echo $password;?>">
+					</div>
+					<!-- Password input end -->
+
 					
-					<a class="brand" href="index.html"><span>BEACON</span></a>
+					<!-- Confirm begin -->
+                    <div class="form-group">
+						<label for="focusedInput">Confirm Password</label> <span class="warning"> <?php echo $confirmpasswordErr;?></span>
+						<input class="form-control item" id="focusedInput" type="password" name="confirm_password" value="<?php echo $confirm_password;?>">
+					</div>
+					<!-- Confirm end -->
 
-				</div>
-			</div>
-		</div>
-	<!-- start: Header -->
-	
-    <div class="span6 offset4">
-		<style>
-			body {
-			  background-image: url('images/background.png');
-			}
-		</style>
-	
-    <form class="form-register" action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
-		<fieldset>
-			<div>
-				<img src="images/beaconlogo.png" style="height:100px; width:80px;">
-					<span class="header" style="font-size:50px">Welcome to Beacon</span>
-			</div>
-			<div class='blank'></div>
+					<!-- Name begin -->
+                    <div class="form-group">
+						<label for="focusedInput">Name</label> <span class="warning"> <?php echo $nameErr;?></span>
+						<input class="form-control item" id="focusedInput" type="text" name="name" value="<?php echo $name;?>">
+					</div>
+					<!-- Name end -->
 
-			<div class="control-group">
-				<label class="control-label" for="focusedInput">Username</label>
-				<div class="controls">
-				<input class="input-xlarge focused" id="focusedInput" type="text" name="username" value="<?php echo $username;?>">
-				<span>* <?php echo $usernameErr;?></span>
-				</div>
-			</div>
+					<!-- Email begin -->
+                    <div class="form-group">
+						<label for="focusedInput">Email</label> <span class="warning"> <?php echo $emailErr;?></span>
+						<input class="form-control item" id="focusedInput" type="text" name="email" value="<?php echo $email;?>">
+					</div>
+					<!-- Email end -->
 
-			<div class="control-group">
-				<label class="control-label" for="focusedInput">Password</label>
-				<div class="controls">
-				<input class="input-xlarge focused" id="focusedInput" type="text" name="password" value="<?php echo $password;?>">
-				<span>* <?php echo $passwordErr;?></span>
-				</div>
-			</div>
+					<!-- Campus begin -->
+                    <div class="form-group">
+						<label for="selectError3">Campus</label> <span class="warning"> <?php echo $campusErr;?></span>
+						<select class="form-control" id="selectError3" name="campus" value="<?php echo $campus;?>">
+							<optgroup label="Campus">
+								<option value="" selected disabled hidden>--</option>
+								<option value="UIUC" <?php echo $campus=='UIUC' ? 'selected':'' ?> > UIUC </option>
+								<option value="ZJUIntl" <?php echo $campus=='ZJUIntl' ? 'selected':'' ?> > ZJUIntl </option>
+								<option value="ZJU" <?php echo $campus=='ZJUIntl' ? 'selected':'' ?> > ZJU </option>
+							</optgroup>
+						</select>
+					</div>
+					<!-- Campus end -->
 
-			<div class="control-group">
-				<label class="control-label" for="focusedInput">Confirm Password</label>
-				<div class="controls">
-				<input class="input-xlarge focused" id="focusedInput" type="text" name="confirm_password" value="<?php echo $confirm_password;?>">
-				<span>* <?php echo $confirmpasswordErr;?></span>
-				</div>
-			</div>
 
-			<div class="control-group">
-				<label class="control-label" for="focusedInput">Name</label>
-				<div class="controls">
-				<input class="input-xlarge focused" id="focusedInput" type="text" name="name" value="<?php echo $name;?>">
-				<span>* <?php echo $nameErr;?></span>
-				</div>
-			</div>
+					<!-- Major begin -->
+					
+                    <div class="form-group">
+						<label for="selectError3">Major</label> <span class="warning"> <?php echo $majorErr;?></span>
+						<select class="form-control" id="selectError3" name="major">
+							<optgroup label="Major">
+								<option value="" selected disabled hidden>--</option>
+								<option value="BMI" <?php echo $major=='BMI' ? 'selected':'' ?> >BMI</option>
+								<option value="BMS" <?php echo $major=='BMS' ? 'selected':'' ?> >BMS</option>
+								<option value="CS" <?php echo $major=='CS' ? 'selected':'' ?> >Computer Science</option>
+								<option value="CompE" <?php echo $major=='CompE' ? 'selected':'' ?> >Computer Engineering</option>
+								<option value="CEE" <?php echo $major=='CEE' ? 'selected':'' ?> >Civil and Environment Engineering</option>
+								<option value="EE" <?php echo $major=='EE' ? 'selected':'' ?> >Electrical Engineering</option>
+								<option value="ME" <?php echo $major=='ME' ? 'selected':'' ?> >Mechanical Engineering</option>
+								<option value="other" <?php echo $major=='other' ? 'selected':'' ?> >Other</option>
+							</optgroup>
+						</select>
+					</div>
+					<!-- Major end -->
+					
+					<!-- Year begin -->
+                    <div class="form-group">
+						<label for="selectError3">School Year</label> <span class="warning"> <?php echo $yearErr;?></span>
+						<select class="form-control">
+							<optgroup label="School Year" id="selectError3" name="year">
+								<option value="" selected disabled hidden>--</option>
+								<option value="freshman" <?php echo $year=='freshman' ? 'selected':'' ?> >Freshman</option>
+								<option value="sophomore" <?php echo $year=='sophomore' ? 'selected':'' ?> >Sophomore</option>
+								<option value="junior" <?php echo $year=='junior' ? 'selected':'' ?> >Junior</option>
+								<option value="senior" <?php echo $year=='senior' ? 'selected':'' ?> >Senior</option>
+								<option value="graduate" <?php echo $year=='graduate' ? 'selected':'' ?> >Graduate</option>
+							</optgroup>
+						</select>
+					</div>
+					<!-- Year end -->
 
-			<div class="control-group">
-				<label class="control-label" for="focusedInput">Email</label>
-				<div class="controls">
-				<input class="input-xlarge focused" id="focusedInput" type="text" name="email" value="<?php echo $email;?>">
-				<span>* <?php echo $emailErr;?></span>
-				</div>
-			</div>
-
-			<div class="control-group">
-				<label class="control-label" for="selectError3">Campus</label>
-				<div class="controls">
-				<select id="selectError3" name="campus" value="<?php echo $campus;?>">
-					<option value="" selected disabled hidden>--</option>
-					<option value="UIUC" <?php echo $campus=='UIUC' ? 'selected':'' ?> > UIUC </option>
-					<option value="ZJUIntl" <?php echo $campus=='ZJUIntl' ? 'selected':'' ?> > ZJUIntl </option>
-				</select>
-				<span>* <?php echo $campusErr;?></span>
-				</div>
-			</div>
-
-			<div class="control-group">
-				<label class="control-label" for="selectError3">Major</label>
-				<div class="controls">
-				<select id="selectError3" name="major">
-					<option value="" selected disabled hidden>--</option>
-					<option value="BMI" <?php echo $major=='BMI' ? 'selected':'' ?> >BMI</option>
-					<option value="BMS" <?php echo $major=='BMS' ? 'selected':'' ?> >BMS</option>
-					<option value="CS" <?php echo $major=='CS' ? 'selected':'' ?> >Computer Science</option>
-					<option value="CompE" <?php echo $major=='CompE' ? 'selected':'' ?> >Computer Engineering</option>
-					<option value="CEE" <?php echo $major=='CEE' ? 'selected':'' ?> >Civil and Environment Engineering</option>
-					<option value="EE" <?php echo $major=='EE' ? 'selected':'' ?> >Electrical Engineering</option>
-					<option value="ME" <?php echo $major=='ME' ? 'selected':'' ?> >Mechanical Engineering</option>
-					<option value="other" <?php echo $major=='other' ? 'selected':'' ?> >Other</option>
-				</select>
-				<span>* <?php echo $majorErr;?></span>
-				</div>
-			</div>
-
-			<div class="control-group">
-				<label class="control-label" for="selectError3">School Year</label>
-				<div class="controls">
-				<select id="selectError3" name="year">
-					<option value="" selected disabled hidden>--</option>
-					<option value="freshman" <?php echo $year=='freshman' ? 'selected':'' ?> >Freshman</option>
-					<option value="sophomore" <?php echo $year=='sophomore' ? 'selected':'' ?> >Sophomore</option>
-					<option value="junior" <?php echo $year=='junior' ? 'selected':'' ?> >Junior</option>
-					<option value="senior" <?php echo $year=='senior' ? 'selected':'' ?> >Senior</option>
-					<option value="graduate" <?php echo $year=='graduate' ? 'selected':'' ?> >Graduate</option>
-				</select>
-				<span>* <?php echo $yearErr;?></span>
-				</div>
-			</div>
 			
-			<div class="span6">
-				<button type="submit" class="btn btn-register">Register</button>
-				<?php echo($msg); ?> <br>
-				Already have an account? 
-				<input type="button" onclick="window.location.href='login.php'" value="Log in"> 
-			</div>
+				<div class="form-group">
+					<fieldset>
+						<legend></legend>
+					</fieldset>
+				</div>
+				<button class="btn btn-primary btn-block" type="submit">Sign Up</button>
+				<span style="font-size:16px;"><a href="login.php">Already have an account?</a></span>
+			</form>
+			
+            </div>
+        </section>
+    </main>
+    <footer class="page-footer dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="single-widget">
+                        <h5>ABOUT US</h5>
+                        <ul>
+                            <span class="white-font">CS411 2020 Summer Course Project</br></span>
+                            <span class="white-font">Team Geniuses</br></span>
+                            <span class="white-font">Xinyi Lai: xlai7@illinois.edu</br></span>
+                            <span class="white-font">Jiaqi Lou: jiaqil6@illinois.edu</br></span>
+                            <span class="white-font">Hanyin Shao: hanyins2@illinois.edu</br></span>
+                            <span class="white-font"> Kerui Zhu: keruiz2@illinois.edu</span>
+                        </ul>
+                    </div>
+                </div>
 
-		</fieldset>
-	  </form>
-	</div>
+                <div class="col-sm-3">
+                    <div class="single-widget">
+                    <h5>INFORMATION</h5>
+                    
+                        <ul>
+                            
+                            <span class="white-font"><a href="#">Frequently Asked Question</a></br></span>
+                            <span class="white-font"><a href="#">Terms and Condition</a></br></span>
+                            <span class="white-font"><a href="#">Privacy Policy</a></br></span>
+                            <span class="white-font"><a href="#">Customer Service</a></br></span>
+                            <span class="white-font"><a href="#">Delivery Information</a></br></span>
+                            <span class="white-font"><a href="#">Manufacturers</a></br></span>
+
+                        </ul>
+                    </div>
+                </div>
                 
+                <div class="col-sm-3">
+                    <div class="single-widget">
+                    <h5>CUSTOMER CARE</h5>
+                        <ul>
+                            
+                            <span class="white-font"><a href="#">Contact Us</a></br></span>
+                            <span class="white-font"><a href="#">Sitemap</a></br></span>
+                            <span class="white-font"><a href="#">Live Chat 24x7</a></br></span>
 
-	<div class="clearfix"></div>
-	
-	<footer>
-		<p>
-			<span style="text-align:left;float:left">Copyright &copy; 2020. Company name All rights reserved.</span>
-		</p>
-	</footer>
-	
-	<!-- start: JavaScript-->
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-sm-3">
+                    <div class="single-widget-1">
+                    <h5>OUR SERVICES</h5>
+                        <ul>
+                            
+                            <span class="white-font"><a href="#">Secure Shopping</a></br></span>
 
-		<script src="js/jquery-1.9.1.min.js"></script>
-		<script src="js/jquery-migrate-1.0.0.min.js"></script>
-	
-		<script src="js/jquery-ui-1.10.0.custom.min.js"></script>
-	
-		<script src="js/jquery.ui.touch-punch.js"></script>
-	
-		<script src="js/modernizr.js"></script>
-	
-		<script src="js/bootstrap.min.js"></script>
-	
-		<script src="js/jquery.cookie.js"></script>
-	
-		<script src='js/fullcalendar.min.js'></script>
-	
-		<script src='js/jquery.dataTables.min.js'></script>
+                        </ul>
+                    </div>  
+                </div>
+            </div>
+        </div>
 
-		<script src="js/excanvas.js"></script>
-		<script src="js/jquery.flot.js"></script>
-		<script src="js/jquery.flot.pie.js"></script>
-		<script src="js/jquery.flot.stack.js"></script>
-		<script src="js/jquery.flot.resize.min.js"></script>
-	
-		<script src="js/jquery.chosen.min.js"></script>
-	
-		<script src="js/jquery.uniform.min.js"></script>
-		
-		<script src="js/jquery.cleditor.min.js"></script>
-	
-		<script src="js/jquery.noty.js"></script>
-	
-		<script src="js/jquery.elfinder.min.js"></script>
-	
-		<script src="js/jquery.raty.min.js"></script>
-	
-		<script src="js/jquery.iphone.toggle.js"></script>
-	
-		<script src="js/jquery.uploadify-3.1.min.js"></script>
-	
-		<script src="js/jquery.gritter.min.js"></script>
-	
-		<script src="js/jquery.imagesloaded.js"></script>
-	
-		<script src="js/jquery.masonry.min.js"></script>
-	
-		<script src="js/jquery.knob.modified.js"></script>
-	
-		<script src="js/jquery.sparkline.min.js"></script>
-	
-		<script src="js/counter.js"></script>
-	
-		<script src="js/retina.js"></script>
-
-		<script src="js/custom.js"></script>
-	<!-- end: JavaScript-->
-	
+    </footer>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="assets/js/smoothproducts.min.js"></script>
+    <script src="assets/js/theme.js"></script>
 </body>
+
 </html>
