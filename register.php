@@ -175,8 +175,8 @@
 					<!-- Year begin -->
                     <div class="form-group">
 						<label for="selectError3">School Year</label> <span class="warning"> <?php echo $yearErr;?></span>
-						<select class="form-control">
-							<optgroup label="School Year" id="selectError3" name="year">
+						<select class="form-control" id="selectError3" name="year">
+							<optgroup label="School Year">
 								<option value="" selected disabled hidden>--</option>
 								<option value="freshman" <?php echo $year=='freshman' ? 'selected':'' ?> >Freshman</option>
 								<option value="sophomore" <?php echo $year=='sophomore' ? 'selected':'' ?> >Sophomore</option>
