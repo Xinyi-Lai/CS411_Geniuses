@@ -2,10 +2,10 @@
 -- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 15, 2020 at 03:12 PM
--- Server version: 5.7.11
--- PHP Version: 7.3.11
+-- 主机： 127.0.0.1
+-- 生成日期： 2020-07-18 14:47:51
+-- 服务器版本： 5.7.11
+-- PHP 版本： 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `Beacon`
+-- 数据库： `Beacon`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Accounts`
+-- 表的结构 `Accounts`
 --
 
 CREATE TABLE `Accounts` (
@@ -35,7 +35,7 @@ CREATE TABLE `Accounts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Accounts`
+-- 转存表中的数据 `Accounts`
 --
 
 INSERT INTO `Accounts` (`NetId`, `Name`, `Email`) VALUES
@@ -46,7 +46,7 @@ INSERT INTO `Accounts` (`NetId`, `Name`, `Email`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Group_Mem`
+-- 表的结构 `Group_Mem`
 --
 
 CREATE TABLE `Group_Mem` (
@@ -55,7 +55,7 @@ CREATE TABLE `Group_Mem` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `Group_Mem`
+-- 转存表中的数据 `Group_Mem`
 --
 
 INSERT INTO `Group_Mem` (`Name`, `NetId`) VALUES
@@ -67,7 +67,7 @@ INSERT INTO `Group_Mem` (`Name`, `NetId`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Requests`
+-- 表的结构 `Requests`
 --
 
 CREATE TABLE `Requests` (
@@ -80,7 +80,7 @@ CREATE TABLE `Requests` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `Requests`
+-- 转存表中的数据 `Requests`
 --
 
 INSERT INTO `Requests` (`RequestId`, `BuyerId`, `ProductName`, `Tag`, `Description`, `IntendedPrice`) VALUES
@@ -89,7 +89,7 @@ INSERT INTO `Requests` (`RequestId`, `BuyerId`, `ProductName`, `Tag`, `Descripti
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Sales`
+-- 表的结构 `Sales`
 --
 
 CREATE TABLE `Sales` (
@@ -104,7 +104,7 @@ CREATE TABLE `Sales` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `Sales`
+-- 转存表中的数据 `Sales`
 --
 
 INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, `IntendedPrice`, `OriginalPrice`, `Depreciation`) VALUES
@@ -113,7 +113,7 @@ INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Transactions`
+-- 表的结构 `Transactions`
 --
 
 CREATE TABLE `Transactions` (
@@ -129,62 +129,63 @@ CREATE TABLE `Transactions` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Users`
+-- 表的结构 `Users`
 --
 
 CREATE TABLE `Users` (
   `NetId` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Password` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `School` int(11) DEFAULT NULL,
+  `Campus` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Email` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Major` int(11) DEFAULT NULL,
-  `Year` int(11) DEFAULT NULL
+  `Major` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Year` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `Users`
+-- 转存表中的数据 `Users`
 --
 
-INSERT INTO `Users` (`NetId`, `Password`, `School`, `Name`, `Email`, `Major`, `Year`) VALUES
-('cs411', 'cs411', 1, 'Little Genius', 'cs411@geniuses.com', 2, 1),
-('hanyins2', 'hanyins2', 1, 'Hanyin Shao', 'hanyins2@illinois.edu', 4, 1),
-('jiaqil6', 'jiaqil6', 3, 'Jiaqi Lou', 'jiaqil6@illinois.edu', 3, 3),
-('keruiz2', 'keruiz2', 3, 'Kerui Zhu', 'keruiz2@illinois.edu', 2, 3),
-('xlai7', 'xlai7', 2, 'Xinyi Lai', 'xlai7@illinois.edu', 3, 4);
+INSERT INTO `Users` (`NetId`, `Password`, `Campus`, `Name`, `Email`, `Major`, `Year`) VALUES
+('123', '123', 'ZJUIntl', '123', '123@123.123', 'other', 'graduate'),
+('cs411', 'cs411', 'UIUC', 'Little Genius', 'cs411@geniuses.com', 'CS', 'Freshman'),
+('hanyins2', 'hanyins2', 'UIUC', 'Hanyin Shao', 'hanyins2@illinois.edu', 'ME', 'Freshman'),
+('jiaqil6', 'jiaqil6', 'ZJUIntl', 'Jiaqi Lou', 'jiaqil6@illinois.edu', 'ECE', 'Junior'),
+('keruiz2', 'keruiz2', 'ZJUIntl', 'Kerui Zhu', 'keruiz2@illinois.edu', 'ECE', 'Junior'),
+('xlai7', 'xlai7', 'ZJUIntl', 'Xinyi Lai', 'xlai7@illinois.edu', 'EE', 'Senior');
 
 --
--- Indexes for dumped tables
+-- 转储表的索引
 --
 
 --
--- Indexes for table `Accounts`
+-- 表的索引 `Accounts`
 --
 ALTER TABLE `Accounts`
   ADD PRIMARY KEY (`NetId`);
 
 --
--- Indexes for table `Group_Mem`
+-- 表的索引 `Group_Mem`
 --
 ALTER TABLE `Group_Mem`
   ADD PRIMARY KEY (`NetId`);
 
 --
--- Indexes for table `Requests`
+-- 表的索引 `Requests`
 --
 ALTER TABLE `Requests`
   ADD PRIMARY KEY (`RequestId`),
   ADD KEY `BuyerId` (`BuyerId`);
 
 --
--- Indexes for table `Sales`
+-- 表的索引 `Sales`
 --
 ALTER TABLE `Sales`
   ADD PRIMARY KEY (`SaleId`),
   ADD KEY `SellerId` (`SellerId`);
 
 --
--- Indexes for table `Transactions`
+-- 表的索引 `Transactions`
 --
 ALTER TABLE `Transactions`
   ADD PRIMARY KEY (`TransactionId`),
@@ -192,29 +193,29 @@ ALTER TABLE `Transactions`
   ADD KEY `BuyerId` (`BuyerId`);
 
 --
--- Indexes for table `Users`
+-- 表的索引 `Users`
 --
 ALTER TABLE `Users`
   ADD PRIMARY KEY (`NetId`);
 
 --
--- Constraints for dumped tables
+-- 限制导出的表
 --
 
 --
--- Constraints for table `Requests`
+-- 限制表 `Requests`
 --
 ALTER TABLE `Requests`
   ADD CONSTRAINT `Requests_ibfk_1` FOREIGN KEY (`BuyerId`) REFERENCES `Users` (`NetId`) ON DELETE CASCADE;
 
 --
--- Constraints for table `Sales`
+-- 限制表 `Sales`
 --
 ALTER TABLE `Sales`
   ADD CONSTRAINT `Sales_ibfk_1` FOREIGN KEY (`SellerId`) REFERENCES `Users` (`NetId`) ON DELETE CASCADE;
 
 --
--- Constraints for table `Transactions`
+-- 限制表 `Transactions`
 --
 ALTER TABLE `Transactions`
   ADD CONSTRAINT `Transactions_ibfk_1` FOREIGN KEY (`SellerId`) REFERENCES `Users` (`NetId`) ON DELETE CASCADE,
