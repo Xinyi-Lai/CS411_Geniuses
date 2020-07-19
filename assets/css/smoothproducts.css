@@ -207,4 +207,8 @@ html, body {
   color: crimson;
 }
 
+.navbar-brand{
+  margin-left: -30px;
+}
+
 

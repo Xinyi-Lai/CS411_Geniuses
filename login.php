@@ -44,7 +44,14 @@
 
 <body>
     <nav class="navbar navbar-dark navbar-expand-lg bg-primary clean-navbar" style="height: 60px; padding-top: 30px;">
-        <div class="container"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button><a class="navbar-brand text-white logo" href="#"><p style="font-size: larger;">BEACON</p></a>
+        <div class="container">
+            <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand text-white logo" href="index.html">
+                <p style="font-size: larger;">BEACON</p>
+            </a>
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto"></ul>
@@ -58,9 +65,9 @@
                     <h2 class="text-info">Welcome to Beacon - Login</h2>
                 </div>
                 <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
-                    <div class="form-group"><label for="Username">Username &nbsp; <span class='warning'><?php echo($msg); ?></span></label><input class="form-control item" id="focusedInput" type="text" name="username" value="<?php echo $username;?>"></div>
+                    <div class="form-group"><label>Username &nbsp; <span class='warning'><?php echo($msg); ?></span></label><input class="form-control item" type="text" name="username" value="<?php echo $username;?>"></div>
 					
-                    <div class="form-group"><label for="password">Password</label><input class="form-control" id="focusedInput" type="password" name="password" value="<?php echo $password;?>"></div>
+                    <div class="form-group"><label>Password</label><input class="form-control" type="password" name="password" value="<?php echo $password;?>"></div>
                     <div class="form-group">
                         <div class="form-check"><input class="form-check-input" type="checkbox" id="checkbox"><label class="form-check-label" for="checkbox">Remember me</label></div>
                     </div>
