@@ -1,24 +1,66 @@
 <?php
-	include_once "db_functions.php";
-	$conn = connectDB();
-	
+	include_once "db_functions.php";	
 	session_start(); 
-    $curr_user = $_SESSION['curr_user'];
-	$sql = "SELECT * FROM Users WHERE NetId='$curr_user' ";
-	$result = $conn->query($sql);
-
-	if ($result && $result->num_rows == 1) {
-		$row = $result->fetch_assoc();
-		$username = $row["NetId"];
-		$name = $row["Name"];
-		$email = $row["Email"];
-		$campus = $row["Campus"];
-		$year = $row["Year"];
-		$major = $row["Major"];
-	} else {
-		$msg = "Error!";
+	$curr_user = $_SESSION['curr_user'];
+	$msg = "";
+	if (empty($curr_user)) {
+		$msg = "curr_user is empty";
 	}
-	$conn->close();
+	else {
+		$conn = connectDB();
+
+		if ($_SERVER["REQUEST_METHOD"] == "POST") {
+			$name = ppc($_POST["name"]);
+			$email = ppc($_POST["email"]);
+			$campus = $_POST['campus'];
+			$major = $_POST['major'];
+			$year = $_POST['year'];
+			$msg = $nameErr = $emailErr = "";
+			
+			if (empty($name)) {
+				$nameErr = "* Name cannot be empty.";
+			}
+			if (empty($email)) {
+				$emailErr = "* Email cannot be empty.";
+			} else if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$email)) {
+				$emailErr = "* Invalid email format."; 
+			}
+			if ($nameErr || $emailErr) {
+				$msg = "* Please check your input again";
+			} 
+			else {
+				$sql = "UPDATE Users 
+						SET name = '$name', campus = '$campus', email = '$email', major = '$major', year = '$year'
+						WHERE NetId = '$curr_user'";
+				if ($conn->query($sql)) {
+					$msg = "Successfully changed!";
+					// header("location:profile.php");
+					// exit;
+				} else {
+					$msg = "Error: " . $sql . "<br>" . $conn->error;
+				}
+			}
+		}
+		else {
+			$sql = "SELECT * FROM Users WHERE NetId='$curr_user' ";
+			$result = $conn->query($sql);
+			if ($result && $result->num_rows == 1) {
+				$row = $result->fetch_assoc();
+				$username = $row["NetId"];
+				$name = $row["Name"];
+				$email = $row["Email"];
+				$campus = $row["Campus"];
+				$year = $row["Year"];
+				$major = $row["Major"];
+			} else {
+				$msg = "curr_user is not in database!";
+			}
+		}
+
+		$conn->close();
+	}
+	echo "<script>console.log('$msg');</script>";
+
 ?>
 
 <!DOCTYPE html>
@@ -228,34 +270,34 @@
 				</div>
 
 				<div class="box-content">
-					<form class="form-horizontal">
+					<form class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
 						<fieldset>
 
 							<div class="control-group">
 								<label class="control-label">Username</label>
 								<div class="controls">
-									<span class="input-xlarge uneditable-input">* <?php echo $username; ?> *</span>
+									<span class="input-xlarge uneditable-input">* <?php echo $curr_user; ?> *</span>
 								</div>
 							</div>
 
 							<div class="control-group">
 								<label class="control-label" for="focusedInput">Name</label>
 								<div class="controls">
-									<input class="input-xlarge focused" id="focusedInput" type="text" value="<?php echo $name; ?>">
+									<input class="input-xlarge focused" id="focusedInput" type="text" name="name" value="<?php echo $name; ?>">
 								</div>
 							</div>
 
 							<div class="control-group">
 								<label class="control-label" for="focusedInput">Email</label>
 								<div class="controls">
-									<input class="input-xlarge focused" id="focusedInput" type="text" value="<?php echo $email; ?>">
+									<input class="input-xlarge focused" id="focusedInput" type="text" name="email" value="<?php echo $email; ?>">
 								</div>
 							</div>
 
 							<div class="control-group">
 								<label class="control-label" for="selectError3">Campus</label>
 								<div class="controls">
-								<select id="selectError3">
+								<select id="selectError3" name="campus">
 									<option <?php echo $campus=='UIUC' ? 'selected':'' ?>>UIUC</option>
 									<option <?php echo $campus=='ZJUIntl' ? 'selected':'' ?>>ZJUIntl</option>
 								</select>
@@ -265,7 +307,7 @@
 							<div class="control-group">
 								<label class="control-label" for="selectError3">School Year</label>
 								<div class="controls">
-								<select id="selectError3">
+								<select id="selectError3" name="year">
 									<option <?php echo $year=='Freshman' ? 'selected':'' ?>>Freshman</option>
 									<option <?php echo $year=='Sophomore' ? 'selected':'' ?>>Sophomore</option>
 									<option <?php echo $year=='Junior' ? 'selected':'' ?>>Junior</option>
@@ -278,15 +320,15 @@
 							<div class="control-group">
 								<label class="control-label" for="selectError3">Major</label>
 								<div class="controls">
-								<select id="selectError3">
-									<option <?php echo $major=='BME' ? 'selected':'' ?>>BME</option>
-									<option <?php echo $major=='BMS' ? 'selected':'' ?>>BMS</option>
-									<option <?php echo $major=='ECE' ? 'selected':'' ?>>Computer Engineering</option>
-									<option <?php echo $major=='CS' ? 'selected':'' ?>>Computer Science</option>
-									<option <?php echo $major=='CEE' ? 'selected':'' ?>>Civil and Environment Engineering</option>
-									<option <?php echo $major=='EE' ? 'selected':'' ?>>Electrical Engineering</option>
-									<option <?php echo $major=='ME' ? 'selected':'' ?>>Mechanical Engineering</option>
-									<option <?php echo $major=='Other' ? 'selected':'' ?>>Other</option>
+								<select id="selectError3" name="major">
+									<option value='BMI' <?php echo $major=='BME' ? 'selected':'' ?>>BMI</option>
+									<option value='BMS' <?php echo $major=='BMS' ? 'selected':'' ?>>BMS</option>
+									<option value='CS' <?php echo $major=='CS' ? 'selected':'' ?>>Computer Science</option>
+									<option value='CompE' <?php echo $major=='ECE' ? 'selected':'' ?>>Computer Engineering</option>
+									<option value='CEE' <?php echo $major=='CEE' ? 'selected':'' ?>>Civil and Environment Engineering</option>
+									<option value='EE' <?php echo $major=='EE' ? 'selected':'' ?>>Electrical Engineering</option>
+									<option value='ME' <?php echo $major=='ME' ? 'selected':'' ?>>Mechanical Engineering</option>
+									<option value='Other' <?php echo $major=='Other' ? 'selected':'' ?>>Other</option>
 									
 								</select>
 								</div>
