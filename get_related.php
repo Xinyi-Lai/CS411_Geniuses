@@ -1,37 +1,18 @@
-<?php
+<?php 
+    session_start();
+    
+    include_once "db_functions.php";
+    
+    //get the q parameter from URL
+    $q=$_GET["q"];
 
+    //connect db
+    $conn = connectDB();
+    $sql = "SELECT ProductName FROM Sales WHERE ProductName LIKE '%$q%'";
+    $result = mysqli_fetch_assoc($conn->query($sql));
+    $response = $result['ProductName'];
+ 
+    //output the response
+    echo $response;
 
-echo '
-<div class="col-md-3 col-sm-4">
-
-<div class="single-product">
-
-    <div class="product-block">
-
-        <img src="images/post-1.jpg" alt="" class="thumbnail">
-
-        <div class="related-product text-center">
-
-            <p class="title">iPad</p>
-
-            <p class="price">$ 55.00</p>
-
-        </div>
-
-        <div class="product-hover">
-
-            <ul>
-
-                <li><a href="single-product.html?SaleId="><i class="fa fa-cart-arrow-down"></i></a></li>
-
-            </ul>
-
-        </div>
-
-    </div>
-
-</div>
-
-</div>
-';
 ?>
