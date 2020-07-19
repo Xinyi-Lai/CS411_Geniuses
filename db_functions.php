@@ -1,7 +1,7 @@
 <?php
 
 function connectDB() {
-    $servername = "database"; // 'database' for docker server
+    $servername = "database"; // 'database' for docker server, 127.0.0.1 for MAMP
     $username = "Geniuses";
     $password = "cs411";
     $dbname = "Beacon";
