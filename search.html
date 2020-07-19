@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 
 <html lang="en-US">
-<script src="load_related.js"></script>
+<script src="search.js"></script>
 <head>
 
 	<meta charset="UTF-8">
@@ -30,7 +30,7 @@
 
 </head>
 
-<body>
+<body onload="load_page()">
 
     <div class="top-bar">
 
@@ -88,7 +88,7 @@
 
                             </div>
 
-                            <button type="button" class="btn" onclick="load_related()"><i class="fa fa-search"></i></button>
+                            <button type="button" class="btn" onclick="load_related(document.getElementById('search_box').value)"><i class="fa fa-search"></i></button>
 
                         </form>
 
@@ -204,133 +204,7 @@
 
                     <div class="tab-pane active" id="related">
 
-                        <!-- <div class="col-md-3 col-sm-4">
-
-                            <div class="single-product">
-
-                                <div class="product-block">
-
-                                    <img src="images/post-1.jpg" alt="" class="thumbnail">
-
-                                    <div class="related-product text-center">
-
-                                        <p class="title">iPad</p>
-
-                                        <p class="price">$ 55.00</p>
-
-                                    </div>
-
-                                    <div class="product-hover">
-
-                                        <ul>
-
-                                            <li><a href="single-product.html"><i class="fa fa-cart-arrow-down"></i></a></li>
-
-                                        </ul>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-3 col-sm-4">
-
-                            <div class="single-product">
-
-                                <div class="product-block">
-
-                                    <img src="images/post-2.jpg" alt="" class="thumbnail">
-
-                                    <div class="related-product text-center">
-
-                                        <p class="title">Flowers</p>
-
-                                        <p class="price">$ 55.00</p>
-
-                                    </div>
-
-                                    <div class="product-hover">
-
-                                        <ul>
-
-                                            <li><a href=""><i class="fa fa-cart-arrow-down"></i></a></li>
-
-                                        </ul>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-3 col-sm-4">
-
-                            <div class="single-product">
-
-                                <div class="product-block">
-
-                                    <img src="images/post-3.jpg" alt="" class="thumbnail">
-
-                                    <div class="related-product text-center">
-
-                                        <p class="title">Shoes</p>
-
-                                        <p class="price">$ 55.00</p>
-
-                                    </div>
-
-                                    <div class="product-hover">
-
-                                        <ul>
-
-                                            <li><a href=""><i class="fa fa-cart-arrow-down"></i></a></li>
-
-                                        </ul>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-3 col-sm-4">
-
-                            <div class="single-product">
-
-                                <div class="product-block">
-
-                                    <img src="images/post-3.jpg" alt="" class="thumbnail">
-
-                                    <div class="related-product text-center">
-
-                                        <p class="title">Shoes</p>
-
-                                        <p class="price">$ 55.00</p>
-
-                                    </div>
-
-                                    <div class="product-hover">
-
-                                        <ul>
-
-                                            <li><a href=""><i class="fa fa-cart-arrow-down"></i></a></li>
-
-                                        </ul>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div> -->
+                        <!-- Related search result will be inserted here -->
 
                     </div>
 

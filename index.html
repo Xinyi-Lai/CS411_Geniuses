@@ -28,6 +28,14 @@
 
     <link rel="stylesheet" href="css/responsive.css">
 
+    <script type="text/javascript">
+    
+        function jump_to_search() {
+            window.location.href = "search.html?search_item="+document.getElementById("search_box").value;
+        }
+
+    </script>
+
 </head>
 
 <body>
@@ -90,11 +98,11 @@
 
                             <div class="form-group">
 
-                              <input type="text" class="form-control" placeholder="What do you need...">
+                              <input id="search_box" type="text" class="form-control" placeholder="What do you need...">
 
                             </div>
 
-                            <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                            <button type="button" class="btn" onclick="jump_to_search()"><i class="fa fa-search"></i></button>
 
                         </form>
 
@@ -342,7 +350,7 @@
 
                 <div class="clearfix"></div>
 
-                <div class="col-md-4 col-sm-4">
+                <!-- <div class="col-md-4 col-sm-4">
 
                     <div class="single-post">
 
@@ -354,7 +362,7 @@
 
                                 <div class="date">10<br> July</div>
 
-                                <a href="single-product.html" class="read-more raleway">Read More <i class="fa fa-long-arrow-right"></i>
+                                <a href="single-product.html?SaleId=" class="read-more raleway">Read More <i class="fa fa-long-arrow-right"></i>
 
                                 </a>
 
@@ -418,7 +426,7 @@
 
                     </div>
 
-                </div>
+                </div> -->
 
             </div>
 

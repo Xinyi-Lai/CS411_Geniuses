@@ -1,9 +1,14 @@
 var xmlHttp
+
+document.write("<script type='text/javascript' src='getQueryString.js'></script>")
+
+function load_page() {
+    var param = getQueryString("search_item")
+    load_related(param)
+}
  
-function load_related()
+function load_related(search_str)
 {
-    console.log("load_related called");
-    search_str = document.getElementById("search_box").value
     if (search_str.length==0)
     { 
         // document.getElementById("txtHint").innerHTML=""
@@ -37,7 +42,6 @@ function stateChanged()
         return false
     } 
 }
- 
  
 // Get xmlHttp object
 function GetXmlHttpObject()
