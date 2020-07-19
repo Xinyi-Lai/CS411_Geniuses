@@ -11,20 +11,30 @@
     if (strlen($q) > 0) {
         $conn = connectDB();
         $sql = "SELECT ProductName, IntendedPrice FROM Sales WHERE ProductName LIKE '%$q%'";
-        $result = mysqli_fetch_assoc($conn->query($sql));
-        $response = $result['ProductName'];
+        $result = $conn->query($sql);
+        $count = "1";
     }
     else {
-        $response = "";
+        $count = "0";
     }
 
-    if ($result['ProductName'] == "") {
+    if ($count == "0") {
         $response="No Result";
     }
     else {
-        $response="";
+        $response=" ";
+    }
+
+    $array=array();
+ 
+    while($row = mysqli_fetch_assoc($result)){
+     
+        $array[]=$row;
+     
     }
  
+    $conn->close();
+    
     //output the response
     echo $response;
 
@@ -62,6 +72,9 @@
 </head>
 
 <body>
+
+<?php foreach($array as $val):  ?>
+
     <div class="tab-content">
 
         <div class="tab-pane active" id="related">
@@ -76,9 +89,9 @@
 
                         <div class="related-product text-center">
 
-                            <p class="title"><?php echo $result['ProductName']; ?></p>
+                            <p class="title"><?php echo $val['ProductName']; ?></p>
 
-                            <p class="price">$ <?php echo $result['IntendedPrice']; ?></p>
+                            <p class="price">$ <?php echo $val['IntendedPrice']; ?></p>
 
                         </div>
 
@@ -101,6 +114,8 @@
         </div>
 
     </div>
+
+    <?php endforeach; ?>
 
     </body>
 
