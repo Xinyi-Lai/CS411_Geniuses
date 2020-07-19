@@ -18,7 +18,7 @@
 			if ($result && $result->num_rows > 0) {
 				$msg = "Logged in successfully!";
 				$_SESSION['curr_user'] = $username; 
-				header("location:profile.html");
+				header("location:profile.php");
 				exit;
 			} else {
 				$msg = "Username and Password does not match!";

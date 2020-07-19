@@ -115,7 +115,6 @@
 					</div>
 					<!-- Password input end -->
 
-					
 					<!-- Confirm begin -->
                     <div class="form-group">
 						<label for="focusedInput">Confirm Password</label> <span class="warning"> <?php echo $confirmpasswordErr;?></span>
