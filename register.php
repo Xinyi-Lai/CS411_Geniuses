@@ -99,44 +99,38 @@
                     <h2 class="text-info">Welcome to Beacon - Registration</h2>
 				</div>
 				<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
-					<!-- Username input begin -->
+					
+					<!-- Username input -->
                     <div class="form-group">
 						<label for="focusedInput">Username</label> <span class="warning"> <?php echo $usernameErr;?></span>
 						<input class="form-control item" id="focusedInput" type="text" name="username" value="<?php echo $username;?>">
-						
 					</div>
-					<!-- Username input end -->
 					
-
-					<!-- Password input begin -->
+					<!-- Password input -->
 					<div class="form-group">
 						<label for="focusedInput">Password</label> <span class="warning"> <?php echo $passwordErr;?></span>
 						<input class="form-control item" id="focusedInput" type="password" name="password" value="<?php echo $password;?>">
 					</div>
-					<!-- Password input end -->
 
-					<!-- Confirm begin -->
+					<!-- Password confirm -->
                     <div class="form-group">
 						<label for="focusedInput">Confirm Password</label> <span class="warning"> <?php echo $confirmpasswordErr;?></span>
 						<input class="form-control item" id="focusedInput" type="password" name="confirm_password" value="<?php echo $confirm_password;?>">
 					</div>
-					<!-- Confirm end -->
 
-					<!-- Name begin -->
+					<!-- Name input -->
                     <div class="form-group">
 						<label for="focusedInput">Name</label> <span class="warning"> <?php echo $nameErr;?></span>
 						<input class="form-control item" id="focusedInput" type="text" name="name" value="<?php echo $name;?>">
 					</div>
-					<!-- Name end -->
 
-					<!-- Email begin -->
+					<!-- Email input -->
                     <div class="form-group">
 						<label for="focusedInput">Email</label> <span class="warning"> <?php echo $emailErr;?></span>
 						<input class="form-control item" id="focusedInput" type="text" name="email" value="<?php echo $email;?>">
 					</div>
-					<!-- Email end -->
 
-					<!-- Campus begin -->
+					<!-- Campus choose -->
                     <div class="form-group">
 						<label for="selectError3">Campus</label> <span class="warning"> <?php echo $campusErr;?></span>
 						<select class="form-control" id="selectError3" name="campus" value="<?php echo $campus;?>">
@@ -148,11 +142,8 @@
 							</optgroup>
 						</select>
 					</div>
-					<!-- Campus end -->
 
-
-					<!-- Major begin -->
-					
+					<!-- Major choose -->
                     <div class="form-group">
 						<label for="selectError3">Major</label> <span class="warning"> <?php echo $majorErr;?></span>
 						<select class="form-control" id="selectError3" name="major">
@@ -169,9 +160,8 @@
 							</optgroup>
 						</select>
 					</div>
-					<!-- Major end -->
 					
-					<!-- Year begin -->
+					<!-- Year choose -->
                     <div class="form-group">
 						<label for="selectError3">School Year</label> <span class="warning"> <?php echo $yearErr;?></span>
 						<select class="form-control" id="selectError3" name="year">
@@ -185,14 +175,13 @@
 							</optgroup>
 						</select>
 					</div>
-					<!-- Year end -->
 
-			
 				<div class="form-group">
 					<fieldset>
 						<legend></legend>
 					</fieldset>
 				</div>
+
 				<button class="btn btn-primary btn-block" type="submit">Sign Up</button>
 				<span style="font-size:16px;"><a href="login.php">Already have an account?</a></span>
 			</form>
@@ -200,9 +189,11 @@
             </div>
         </section>
     </main>
-    <footer class="page-footer dark">
+	
+	<footer class="page-footer dark">
         <div class="container">
             <div class="row">
+
                 <div class="col-sm-3">
                     <div class="single-widget">
                         <h5>ABOUT US</h5>
@@ -219,30 +210,25 @@
 
                 <div class="col-sm-3">
                     <div class="single-widget">
-                    <h5>INFORMATION</h5>
-                    
+                    	<h5>INFORMATION</h5>
                         <ul>
-                            
                             <span class="white-font"><a href="#">Frequently Asked Question</a></br></span>
                             <span class="white-font"><a href="#">Terms and Condition</a></br></span>
                             <span class="white-font"><a href="#">Privacy Policy</a></br></span>
                             <span class="white-font"><a href="#">Customer Service</a></br></span>
                             <span class="white-font"><a href="#">Delivery Information</a></br></span>
                             <span class="white-font"><a href="#">Manufacturers</a></br></span>
-
                         </ul>
                     </div>
                 </div>
                 
                 <div class="col-sm-3">
                     <div class="single-widget">
-                    <h5>CUSTOMER CARE</h5>
+                    	<h5>CUSTOMER CARE</h5>
                         <ul>
-                            
                             <span class="white-font"><a href="#">Contact Us</a></br></span>
                             <span class="white-font"><a href="#">Sitemap</a></br></span>
                             <span class="white-font"><a href="#">Live Chat 24x7</a></br></span>
-
                         </ul>
                     </div>
                 </div>
@@ -251,21 +237,21 @@
                     <div class="single-widget-1">
                     <h5>OUR SERVICES</h5>
                         <ul>
-                            
                             <span class="white-font"><a href="#">Secure Shopping</a></br></span>
-
                         </ul>
                     </div>  
-                </div>
+				</div>
+				
             </div>
         </div>
-
-    </footer>
+	</footer>
+	
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/baguetteBox.min.js"></script>
     <script src="assets/js/smoothproducts.min.js"></script>
-    <script src="assets/js/theme.js"></script>
+	<script src="assets/js/theme.js"></script>
+	
 </body>
 
 </html>
