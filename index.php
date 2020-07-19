@@ -11,6 +11,7 @@
     <input type="button" onclick="window.location.href='buyer_page.php'" value="I wanna buy ...">
     <input type="button" onclick="window.location.href='seller_page.php'" value="I wanna sell ...">
     <input type="button" onclick="window.location.href='login_page.php'" value="Login">
+    <input type="button" onclick="window.location.href='search.html'" value="Search">
     <br><br><br>
 
 </body>
