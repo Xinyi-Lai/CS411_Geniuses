@@ -2,7 +2,6 @@
     session_start();
     
     include_once "db_functions.php";
-    include_once "upload.php";
     
     //get the q parameter from URL
     $q=$_GET["q"];
@@ -12,17 +11,6 @@
         $conn = connectDB();
         $sql = "SELECT ProductName, IntendedPrice FROM Sales WHERE ProductName LIKE '%$q%'";
         $result = $conn->query($sql);
-        $count = "1";
-    }
-    else {
-        $count = "0";
-    }
-
-    if ($count == "0") {
-        $response="No Result";
-    }
-    else {
-        $response=" ";
     }
 
     $array=array();
@@ -34,9 +22,6 @@
     }
  
     $conn->close();
-    
-    //output the response
-    echo $response;
 
 ?>
 
@@ -74,6 +59,8 @@
 <body>
 
 <?php foreach($array as $val):  ?>
+
+    <p><?php echo $response; ?></p>
 
     <div class="tab-content">
 
