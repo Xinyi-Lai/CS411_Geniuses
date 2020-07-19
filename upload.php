@@ -46,11 +46,4 @@
         echo 'Wrong information';
     }
 
-    // function get_image($conn, $id){
-    //     $result=$conn->query("SELECT * FROM Images WHERE PicNum=1") or die("Cant Perform Query"); 
-    //     $row = $result->fetch_object();
-    //     header("Content-Type:image/jpeg");
-    //     echo $row->Image;
-    // }
-
 ?>
