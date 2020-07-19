@@ -371,7 +371,7 @@
 
                                 <div class="date">10<br> July</div>
 
-                                <a href="single-product.html?SaleId=" class="read-more raleway">Read More <i class="fa fa-long-arrow-right"></i>
+                                <a href="single-product.php?SaleId=" class="read-more raleway">Read More <i class="fa fa-long-arrow-right"></i>
 
                                 </a>
 

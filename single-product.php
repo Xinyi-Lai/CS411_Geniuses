@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    $curr_user = $_SESSION['curr_user'];
+?>
+
 <!DOCTYPE HTML>
 
 <html lang="en-US">
@@ -28,6 +33,14 @@
 
     <link rel="stylesheet" href="css/responsive.css">
 
+    <script type="text/javascript">
+    
+        function jump_to_search() {
+            window.location.href = "search.php?search_item="+document.getElementById("search_box").value;
+        }
+
+    </script>
+
 </head>
 
 <body>
@@ -50,9 +63,13 @@
 
                         <ul>
 
-                            <li><a href="login.html"><i class="fa fa-user"></i> Login</a></li>
-
-                            <li><a href="login.html"><i class="fa fa-lock"></i> Register</a></li>
+                            <?php
+                                if ($curr_user) {
+                                    echo '<li><a href="profile.php"><i class="fa fa-user"></i> '.$curr_user.'</a></li>';
+                                }else{
+                                    echo '<li><a href="login.php"><i class="fa fa-user"></i> Login</a></li>';
+                                }
+                            ?>
 
                         </ul>
 
@@ -85,11 +102,11 @@
 
                             <div class="form-group">
 
-                              <input type="text" class="form-control" placeholder="What do you need...">
+                              <input id="search_box" type="text" class="form-control" placeholder="What do you need...">
 
                             </div>
 
-                            <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                            <button type="button" class="btn" onclick="jump_to_search()"><i class="fa fa-search"></i></button>
 
                         </form>
 
