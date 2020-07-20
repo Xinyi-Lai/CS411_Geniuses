@@ -1,5 +1,29 @@
+<?php
+	include_once "db_functions.php";	
+	session_start(); 
+	$curr_user = $_SESSION['curr_user'];
+	$msg = "";
+	if (empty($curr_user)) {
+		$msg = "curr_user is empty";
+	}
+	else {
+		$conn = connectDB();
+		
+		$sql = "SELECT * FROM Requests WHERE BuyerId = '$curr_user'";
+		$result = $conn->query($sql);
+		$array = array();
+		while($row = mysqli_fetch_assoc($result)){
+			$array[]=$row;
+		}
+		
+		$conn->close();
+	}
+	echo "<script>console.log('$msg');</script>";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	
 	<!-- start: Meta -->
@@ -36,15 +60,13 @@
 	<!-- start: Favicon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
 	<!-- end: Favicon -->
-	
-		
-		
 		
 </head>
 
 <body>
-<!-- start: Header -->
-<div class="navbar">
+
+	<!-- start: Header -->
+	<div class="navbar">
 		<div class="navbar-inner">
 			<div class="container-fluid">
 				<a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
@@ -180,89 +202,54 @@
 				<li><a href="mytransactions.php"><i class="icon-money"></i><span class="hidden-tablet"> Transactions</span></a></li>
 				<li><a href="messages.html"><i class="icon-envelope"></i><span class="hidden-tablet"> Messages</span></a></li>
 				<li><a href="dashboard.html"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Dashboard</span></a></li>
-				
 			</ul>
 		</div>
 	</div>
 	<!-- end: Main Menu -->
 			
-			<noscript>
-				<div class="alert alert-block span10">
-					<h4 class="alert-heading">Warning!</h4>
-					<p>You need to have <a href="" target="_blank">JavaScript</a> enabled to use this site.</p>
-				</div>
-			</noscript>
+	<noscript>
+		<div class="alert alert-block span10">
+			<h4 class="alert-heading">Warning!</h4>
+			<p>You need to have <a href="" target="_blank">JavaScript</a> enabled to use this site.</p>
+		</div>
+	</noscript>
 			
-			<!-- start: Content -->
-			<div id="content" class="span10">
+	<!-- start: Content -->
+	<div id="content" class="span10">
+		<div class="row-fluid">
 			
-	
-				<div class="row-fluid">
-					
-					<div class="span12">
-                        <h1>My Requests</h1>
+			<div class="span12">
+				<h1>My Requests</h1> </br>
+				<a href= "#"> <button type="btn" class="btn btn-primary">Post a Request</button> </a>
+				</br>
 
-	
-						</br>
-						
-						<div class="task none">
-							<div class="desc">
-								<div class="title">Product Name</div>
-								<div>I am product description. I am product description. I am product description</div>
-							</div>
-							<div class="time">
-								<div class="date">Date</div>
-								<div> finished/proceeding</div>
-							</div>
+				<?php foreach($array as $val): ?>
+
+				<div class="task none">
+					<div class="desc">
+						<div class="title"> <?php echo $val['ProductName']; ?> </div>
+						<div> 	Intended Price: $ <?php echo $val['IntendedPrice']; ?> ; 
+								Tag: <?php echo $val['Tag']; ?> .
+								<a href= "#"> <button type="btn" >Edit</button> </a>
+								<a href= "#"> <button type="btn" >Delete</button> </a>
 						</div>
-						<div class="task none">
-							<div class="desc">
-								<div class="title">Product Name</div>
-								<div>I am product description. I am product description. I am product description</div>
-							</div>
-							<div class="time">
-								<div class="date">Date</div>
-								<div> finished/proceeding</div>
-							</div>
-                        </div>
-                        <div class="task none">
-							<div class="desc">
-								<div class="title">Product Name</div>
-								<div>I am product description. I am product description. I am product description</div>
-							</div>
-							<div class="time">
-								<div class="date">Date</div>
-								<div> finished/proceeding</div>
-							</div>
-                        </div>
-                        <div class="task none">
-							<div class="desc">
-								<div class="title">Product Name</div>
-								<div>I am product description. I am product description. I am product description</div>
-							</div>
-							<div class="time">
-								<div class="date">Date</div>
-								<div> finished/proceeding</div>
-							</div>
-						</div>
-						
-						
-								
-						
 					</div>
-					
-					
-					</div>	
-							
+					<div class="time">
+					<div class="date"> <?php echo $val['SaleId']==null ? "Requesting": $val['SaleId']; ?> </div>
+						<div> <?php echo $val['SaleId'] ?> </div>
+					</div>
 				</div>
-				
-		   
-	
-		</div><!--/.fluid-container-->
-		
-			<!-- end: Content -->
-		</div><!--/#content.span10-->
-		</div><!--/fluid-row-->
+
+				<?php endforeach; ?>
+
+			</div>
+			
+		</div>			
+	</div>
+	<!-- end: Content -->
+
+
+
 		
 	<div class="modal hide fade" id="myModal">
 		<div class="modal-header">

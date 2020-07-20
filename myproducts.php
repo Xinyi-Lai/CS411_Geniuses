@@ -255,14 +255,10 @@
 		</div>	
 				
 	</div>
-				
-		   
+	<!-- end: Content -->
+
+
 	
-		</div><!--/.fluid-container-->
-		
-			<!-- end: Content -->
-		</div><!--/#content.span10-->
-		</div><!--/fluid-row-->
 		
 	<div class="modal hide fade" id="myModal">
 		<div class="modal-header">
