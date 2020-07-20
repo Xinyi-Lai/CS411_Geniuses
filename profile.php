@@ -207,12 +207,12 @@
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<span>Username</span>
+								<span><?php echo $curr_user; ?></span>
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
 								<li class="dropdown-menu-title">
- 									<span>Username</span>
+ 									<span><?php echo $curr_user; ?></span>
 								</li>
 								<li><a href="#"><i class="halflings-icon user"></i> Profile</a></li>
 								<li><a href="login.html"><i class="halflings-icon off"></i> Logout</a></li>
