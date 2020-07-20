@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
--- 主机： database
--- 生成日期： 2020-07-20 07:58:28
--- 服务器版本： 8.0.20
--- PHP 版本： 7.4.6
+-- 主机： 127.0.0.1
+-- 生成日期： 2020-07-20 15:26:18
+-- 服务器版本： 8.0.21
+-- PHP 版本： 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -28,9 +29,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `Accounts` (
-  `NetId` varchar(15) CHARACTER SET latin1 NOT NULL,
-  `Name` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
-  `Email` varchar(50) CHARACTER SET latin1 DEFAULT NULL
+  `NetId` varchar(15) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `Name` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `Email` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -110,7 +111,11 @@ CREATE TABLE `Sales` (
 --
 
 INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, `Image`, `IntendedPrice`, `OriginalPrice`, `Depreciation`, `IntendedBuyerId`) VALUES
-(1, 'cs411', 'Bacon', 'Food', 'Delicious', NULL, 8, 10, 9, NULL);
+(1, 'cs411', 'Bacon', 'Food', 'Delicious', NULL, 8, 10, 9, NULL),
+(2, 'cs411', 'House', 'Necessity', NULL, NULL, 1000, 1200, 9, NULL),
+(3, 'cs411', 'o1', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'cs411', 'o2', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 'cs411', 'o3', NULL, NULL, NULL, NULL, NULL, NULL, 'xlai7');
 
 -- --------------------------------------------------------
 
@@ -216,7 +221,7 @@ ALTER TABLE `Requests`
 -- 使用表AUTO_INCREMENT `Sales`
 --
 ALTER TABLE `Sales`
-  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- 使用表AUTO_INCREMENT `Transactions`
