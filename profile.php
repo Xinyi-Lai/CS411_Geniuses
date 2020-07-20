@@ -284,7 +284,7 @@
 								<label class="control-label" for="focusedInput">Name</label>
 								<div class="controls">
 									<input class="input-xlarge focused" id="focusedInput" type="text" name="name" value="<?php echo $name; ?>">
-									<span class="warning"> <?php echo $nameErr;?></span>
+									<span class="warning" style="color:crimson;"> <?php echo $nameErr;?></span>
 								</div>
 							</div>
 
@@ -292,7 +292,7 @@
 								<label class="control-label" for="focusedInput">Email</label>
 								<div class="controls">
 									<input class="input-xlarge focused" id="focusedInput" type="text" name="email" value="<?php echo $email; ?>">
-									<span class="warning"> <?php echo $emailErr;?></span>
+									<span class="warning" style="color:crimson;"> <?php echo $emailErr;?></span>
 								</div>
 							</div>
 
