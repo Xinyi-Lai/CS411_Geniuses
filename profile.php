@@ -276,7 +276,7 @@
 							<div class="control-group">
 								<label class="control-label">Username</label>
 								<div class="controls">
-									<span class="input-xlarge uneditable-input">* <?php echo $curr_user; ?> *</span>
+									<span class="input-xlarge uneditable-input"><?php echo $curr_user; ?></span>
 								</div>
 							</div>
 
