@@ -27,8 +27,42 @@ img {
 }
 
 .btn-theme:hover {
-    background: #13294b;
+    background: #1d58a7;
 }
+
+.btn-post1 {
+    position: relative;
+    height: 180px;
+    width: 360px;
+    background: #ff552e;
+    border-radius: 0px;
+    color: #fff !important;
+    font-size: 25pt;
+    padding: 60px 40px;
+    margin-bottom: 20px;
+}
+
+.btn-post1:hover {
+    background: #f5821e;
+}
+
+.btn-post2 {
+    position: relative;
+    margin-top: 10px;
+    height: 180px;
+    width: 360px;
+    background: #ff552e;
+    border-radius: 0px;
+    color: #fff !important;
+    font-size: 25pt;
+    padding: 60px 40px;
+    margin-bottom: 20px;
+}
+
+.btn-post2:hover {
+    background: #f5821e;
+}
+
 .top-bar {
     background-color: #13294b;
     min-height: 58px;
@@ -186,7 +220,7 @@ ul.dropdown-menu li a {
 .slider .item {
     height: 390px;
     background-size: contain;
-    background-color: #f5f5f5;
+    background-color: #fff;
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -236,7 +270,7 @@ ol.carousel-indicators li.active {
 .single-banner {
     height: 236px;
     background-size: contain;
-    background-color: #f5f5f5;
+    background-color: #fff;
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -259,7 +293,7 @@ ol.carousel-indicators li.active {
     position: absolute;
 }
 .shopping-process {
-    background: #f6f6f6;
+    background: #fff;
     padding: 65px 0px;
 }
 .single-process h3 {

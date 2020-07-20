@@ -18,7 +18,7 @@
 			if ($result && $result->num_rows > 0) {
 				$msg = "Logged in successfully!";
 				$_SESSION['curr_user'] = $username; 
-				header("location:profile.php");
+				header("location:index.php");
 				exit;
 			} else {
 				$msg = "Username and Password does not match!";
@@ -49,7 +49,7 @@
                 <span class="sr-only">Toggle navigation</span>
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand text-white logo" href="index.html">
+            <a class="navbar-brand text-white logo" href="index.php">
                 <p style="font-size: larger;">BEACON</p>
             </a>
             <div class="collapse navbar-collapse"

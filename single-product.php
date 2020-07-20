@@ -1,3 +1,38 @@
+<?php
+    session_start();
+
+    include_once "db_functions.php";
+
+    $curr_user = $_SESSION['curr_user'];
+    
+    //get the q parameter from URL
+    $saleId=$_GET["SaleId"];
+
+    //connect db
+    if (strlen($saleId) > 0) {
+        $conn = connectDB();
+        $sql = "SELECT * FROM Sales WHERE SaleId = $saleId";
+        $result = $conn->query($sql);
+
+        if ($result && $result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            $sellerId = $row["SellerId"];
+            $product_name = $row["ProductName"];
+            $tag = $row["Tag"];
+            $description = $row["Description"];
+            $image = $row["Image"];
+            $intendedPrice = $row["IntendedPrice"];
+            $originalPrice = $row["OriginalPrice"];
+            $depreciation = $row["Depreciation"];
+        } 
+    
+        $conn->close();
+    }else{
+        echo "Wrong Url Parameter";
+        exit;
+    }
+?>
+
 <!DOCTYPE HTML>
 
 <html lang="en-US">
@@ -28,6 +63,14 @@
 
     <link rel="stylesheet" href="css/responsive.css">
 
+    <script type="text/javascript">
+    
+        function jump_to_search() {
+            window.location.href = "search.php?search_item="+document.getElementById("search_box").value;
+        }
+
+    </script>
+
 </head>
 
 <body>
@@ -50,9 +93,13 @@
 
                         <ul>
 
-                            <li><a href=""><i class="fa fa-user"></i> Login</a></li>
-
-                            <li><a href=""><i class="fa fa-lock"></i> Register</a></li>
+                            <?php
+                                if ($curr_user) {
+                                    echo '<li><a href="profile.php"><i class="fa fa-user"></i> '.$curr_user.'</a></li>';
+                                }else{
+                                    echo '<li><a href="login.php"><i class="fa fa-user"></i> Login</a></li>';
+                                }
+                            ?>
 
                         </ul>
 
@@ -85,11 +132,11 @@
 
                             <div class="form-group">
 
-                              <input type="text" class="form-control" placeholder="What do you need...">
+                              <input id="search_box" type="text" class="form-control" placeholder="What do you need...">
 
                             </div>
 
-                            <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                            <button type="button" class="btn" onclick="jump_to_search()"><i class="fa fa-search"></i></button>
 
                         </form>
 
@@ -167,7 +214,7 @@
 
               <ul class="nav navbar-nav navbar-right">
 
-                <li><a href="#">Home</a></li>
+                <li><a href="index.php">Home</a></li>
 
                 <li><a href="#">Popular</a></li>
 
@@ -197,11 +244,11 @@
 
                 <span>Home > </span>
 
-                <span>Men > </span>
+                <span><?php echo $tag; ?> > </span>
 
-                <span>Eyewear > </span>
+                <!-- <span>Eyewear > </span>
 
-                <span>Blue Jacket</span>
+                <span>Blue Jacket</span> -->
 
             </div>
 
@@ -223,7 +270,7 @@
 
                             <ul class="thumb-image">
 
-                                <li class="active"><a href="images/single-product-1.jpg"><img src="images/single-product-1.jpg" alt=""></a></li>
+                                <li class="active"><a href="<?php echo $image; ?>"><img src="<?php echo $image; ?>" alt=""></a></li>
 
                                 <li><a href="images/single-product-2.jpg"><img src="images/single-product-2.jpg" alt=""></a></li>
 
@@ -251,23 +298,23 @@
 
                 <div class="col-md-6">
 
-                    <h1 class="product-title">Blue Jacket</h1>
+                    <h1 class="product-title"><?php echo $product_name; ?></h1>
 
                     <div class="product-info">
 
-                        <span class="product-identity"><span class="strong-text">Product ID:</span> RST 4562</span>
+                        <span class="product-identity"><span class="strong-text">Product ID:</span> <?php echo $saleId; ?></span>
 
                         <span class="product-identity"><span class="strong-text">Availability:</span> In Stock</span>
 
-                        <span class="product-identity"><span class="strong-text">Seller:</span> Lum</span>
+                        <span class="product-identity"><span class="strong-text">Seller:</span> <?php echo $sellerId; ?></span>
 
                     </div>
 
-                    <p class="product-description">Lorem ipsum dolor sit amet, feugiat delicata liberavisse id cum, no quo maiorum intellegebat, liber regione eu sit. Mea cu case ludus integre, vide viderer eleifend ex mea. His at soluta regione diceret, cum et atqui placerat petentium. Lorem ipsum dolor sit amet, feugiat delicata liberavisse id cum, no quo maiorum intellegebat, lie diceret, cum et atqui placerat petentium.</p>
+                    <p class="product-description"><?php echo $description; ?></p>
 
                     <div class="price">
 
-                        <span>Intended Price: $522.00</span>
+                        <span>Intended Price: $<?php echo $intendedPrice; ?></span>
 
                     </div>
 
@@ -275,9 +322,9 @@
 
                     <div class="product-info">
 
-                        <span class="product-identity"><span class="strong-text">Categories:</span> Pants, T-Shirt, Jama</span></p>
+                        <!-- <span class="product-identity"><span class="strong-text">Categories:</span> Pants, T-Shirt, Jama</span></p> -->
 
-                        <span class="product-identity"><span class="strong-text">Tags:</span> GonShop, theme-sky, woocommerce, wordpress</span>
+                        <span class="product-identity"><span class="strong-text">Tags:</span> <?php echo $tag; ?></span>
 
                     </div>
 
