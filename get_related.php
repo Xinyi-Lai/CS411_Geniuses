@@ -86,7 +86,7 @@
 
                             <ul>
 
-                                <li><a href="single-product.html?SaleId=<?php echo $val['SaleId']; ?>"><i class="fa fa-cart-arrow-down"></i></a></li>
+                                <li><a href="single-product.php?SaleId=<?php echo $val['SaleId']; ?>"><i class="fa fa-cart-arrow-down"></i></a></li>
 
                             </ul>
 
