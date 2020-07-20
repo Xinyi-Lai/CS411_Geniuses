@@ -57,7 +57,7 @@
 
                             <?php
                                 if ($curr_user) {
-                                    echo '<li><a href="profile.php"><i class="fa fa-user"></i> '.$curr_user.'</a></li>';
+                                    echo '<li><a href="myprofile.php"><i class="fa fa-user"></i> '.$curr_user.'</a></li>';
                                 }else{
                                     echo '<li><a href="login.php"><i class="fa fa-user"></i> Login</a></li>';
                                 }

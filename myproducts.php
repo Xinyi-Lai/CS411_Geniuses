@@ -8,59 +8,17 @@
 	}
 	else {
 		$conn = connectDB();
-
-		if ($_SERVER["REQUEST_METHOD"] == "POST") {
-			$name = ppc($_POST["name"]);
-			$email = ppc($_POST["email"]);
-			$campus = $_POST['campus'];
-			$major = $_POST['major'];
-			$year = $_POST['year'];
-			$msg = $nameErr = $emailErr = "";
-			
-			if (empty($name)) {
-				$nameErr = "* Name cannot be empty.";
-			}
-			if (empty($email)) {
-				$emailErr = "* Email cannot be empty.";
-			} else if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$email)) {
-				$emailErr = "* Invalid email format."; 
-			}
-			if ($nameErr || $emailErr) {
-				$msg = "* Please check your input again";
-			} 
-			else {
-				$sql = "UPDATE Users 
-						SET name = '$name', campus = '$campus', email = '$email', major = '$major', year = '$year'
-						WHERE NetId = '$curr_user'";
-				if ($conn->query($sql)) {
-					$msg = "Successfully changed!";
-					// header("location:profile.php");
-					// exit;
-				} else {
-					$msg = "Error: " . $sql . "<br>" . $conn->error;
-				}
-			}
+		
+		$sql = "SELECT * FROM Sales WHERE SellerId = '$curr_user'";
+		$result = $conn->query($sql);
+		$array = array();
+		while($row = mysqli_fetch_assoc($result)){
+			$array[]=$row;
 		}
-		else {
-			$sql = "SELECT * FROM Users WHERE NetId='$curr_user' ";
-			$result = $conn->query($sql);
-			if ($result && $result->num_rows == 1) {
-				$row = $result->fetch_assoc();
-				$username = $row["NetId"];
-				$name = $row["Name"];
-				$email = $row["Email"];
-				$campus = $row["Campus"];
-				$year = $row["Year"];
-				$major = $row["Major"];
-			} else {
-				$msg = "curr_user is not in database!";
-			}
-		}
-
+		
 		$conn->close();
 	}
 	echo "<script>console.log('$msg');</script>";
-
 ?>
 
 <!DOCTYPE html>
@@ -264,63 +222,39 @@
 		<div class="row-fluid">
 			
 			<div class="span12">
+
 				<h1>My Products</h1> </br>
 				<a href= "post_product.html"> <button type="btn" class="btn btn-primary">Add a Product</button> </a>
 				<button type="btn" class="btn btn-primary">Generate Your Product List</button></br>
 				</br>
 				
-//TODO: 
+				<?php foreach($array as $val): ?>
 
 				<div class="task none">
 					<div class="desc">
-						<div class="title">Product Name</div>
-						<div>I am product description. I am product description. I am product description</div>
+						<div class="title"> <?php echo $val['ProductName']; ?> </div>
+						<div> 	Intended Price: $ <?php echo $val['IntendedPrice']; ?> ; 
+								Original Price: $ <?php echo $val['OriginalPrice']; ?> ;
+								Tag: <?php echo $val['Tag']; ?> ; 
+								<a href= "post_product.html"> <button type="btn" >Edit</button> </a>
+								<a href= "post_product.html"> <button type="btn" >Delete</button> </a>
+						</div>
 					</div>
 					<div class="time">
-						<div class="date">Date</div>
-						<div> finished/proceeding</div>
-					</div>
-				</div>
-				<div class="task none">
-					<div class="desc">
-						<div class="title">Product Name</div>
-						<div>I am product description. I am product description. I am product description</div>
-					</div>
-					<div class="time">
-						<div class="date">Date</div>
-						<div> finished/proceeding</div>
-					</div>
-				</div>
-				<div class="task none">
-					<div class="desc">
-						<div class="title">Product Name</div>
-						<div>I am product description. I am product description. I am product description</div>
-					</div>
-					<div class="time">
-						<div class="date">Date</div>
-						<div> finished/proceeding</div>
-					</div>
-				</div>
-				<div class="task none">
-					<div class="desc">
-						<div class="title">Product Name</div>
-						<div>I am product description. I am product description. I am product description</div>
-					</div>
-					<div class="time">
-						<div class="date">Date</div>
-						<div> finished/proceeding</div>
+						<div class="date"> <?php echo $val['IntendedBuyerId']==null ? "On Sale": $val['IntendedBuyerId']." wants"; ?> </div>
+						<div>
+							<a href= "#"> <button type="btn" <?php echo $val['IntendedBuyerId']==null ? 'disabled':'' ?> >Deal</button> </a>
+						</div>
 					</div>
 				</div>
 				
-				
-						
+				<?php endforeach; ?>
 				
 			</div>
 			
-			
-			</div>	
-					
-		</div>
+		</div>	
+				
+	</div>
 				
 		   
 	
