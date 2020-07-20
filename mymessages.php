@@ -43,8 +43,8 @@
 </head>
 
 <body>
-		<!-- start: Header -->
-	<div class="navbar">
+<!-- start: Header -->
+<div class="navbar">
 		<div class="navbar-inner">
 			<div class="container-fluid">
 				<a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
@@ -62,8 +62,7 @@
 						<li class="dropdown hidden-phone">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 								<i class="icon-envelope"></i>
-								<span class="badge red">
-								4 </span>
+								<span class="badge red"> 4 </span>
 							</a>
 							<ul class="dropdown-menu messages">
 								<li class="dropdown-menu-title">
@@ -139,22 +138,24 @@
 								</li>	
 							</ul>
 						</li>
+						<!-- end: Message Dropdown -->
 						
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<span>Username</span>
+								<span><?php echo $curr_user; ?></span>
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
 								<li class="dropdown-menu-title">
- 									<span>Username</span>
+ 									<span><?php echo $curr_user; ?></span>
 								</li>
-								<li><a href="#"><i class="halflings-icon user"></i> Profile</a></li>
-								<li><a href="login.html"><i class="halflings-icon off"></i> Logout</a></li>
+								<li><a href="myprofile.php"><i class="halflings-icon user"></i> Profile</a></li>
+								<li><a href="login.php"><i class="halflings-icon off"></i> Logout</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
+
 					</ul>
 				</div>
 				<!-- end: Header Menu -->
@@ -162,28 +163,28 @@
 			</div>
 		</div>
 	</div>
-	<!-- start: Header -->
+	<!-- end: Header -->
 	
-		<div class="container-fluid-full">
-		<div class="row-fluid">
+	<div class="container-fluid-full">
+	<div class="row-fluid">
+			
+	<!-- start: Main Menu -->
+	<div id="sidebar-left" class="span2">
+		<div class="nav-collapse sidebar-nav">
+			<ul class="nav nav-tabs nav-stacked main-menu">
+				<!-- <i class="icon-user"></i> icon-user -->
+				<li><a href="myprofile.php"><i class="icon-user"></i><span class="hidden-tablet"> Personal Information</span></a></li>
+				<li><a href="myproducts.php"><i class="icon-inbox"></i><span class="hidden-tablet"> My Products</span></a></li>
+				<li><a href="myrequests.php"><i class="icon-flag"></i><span class="hidden-tablet"> My Requests</span></a></li>
+				<li><a href="myorders.php"><i class="icon-list"></i><span class="hidden-tablet"> Orders</span></a></li>	
+				<li><a href="mytransactions.php"><i class="icon-money"></i><span class="hidden-tablet"> Transactions</span></a></li>
+				<li><a href="mymessages.php"><i class="icon-envelope"></i><span class="hidden-tablet"> Messages</span></a></li>
+				<li><a href="dashboard.php"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Dashboard</span></a></li>
 				
-			<!-- start: Main Menu -->
-			<div id="sidebar-left" class="span2">
-				<div class="nav-collapse sidebar-nav">
-					<ul class="nav nav-tabs nav-stacked main-menu">
-						<!-- <i class="icon-user"></i> icon-user -->
-						<li><a href="profile.php"><i class="icon-user"></i><span class="hidden-tablet"> Personal Information</span></a></li>
-						<li><a href="myproducts.html"><i class="icon-inbox"></i><span class="hidden-tablet"> My Products</span></a></li>
-						<li><a href="myrequests.html"><i class="icon-flag"></i><span class="hidden-tablet"> My Requests</span></a></li>
-						<li><a href="orders.html"><i class="icon-list"></i><span class="hidden-tablet"> Orders</span></a></li>
-						<li><a href="transactions.html"><i class="icon-money"></i><span class="hidden-tablet"> Transactions</span></a></li>	
-						<li><a href="messages.html"><i class="icon-envelope"></i><span class="hidden-tablet"> Messages</span></a></li>
-						<li><a href="dashboard.html"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Dashboard</span></a></li>
-						
-					</ul>
-				</div>
-			</div>
-			<!-- end: Main Menu -->
+			</ul>
+		</div>
+	</div>
+	<!-- end: Main Menu -->
 			
 			<noscript>
 				<div class="alert alert-block span10">

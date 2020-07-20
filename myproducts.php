@@ -1,5 +1,71 @@
+<?php
+	include_once "db_functions.php";	
+	session_start(); 
+	$curr_user = $_SESSION['curr_user'];
+	$msg = "";
+	if (empty($curr_user)) {
+		$msg = "curr_user is empty";
+	}
+	else {
+		$conn = connectDB();
+
+		if ($_SERVER["REQUEST_METHOD"] == "POST") {
+			$name = ppc($_POST["name"]);
+			$email = ppc($_POST["email"]);
+			$campus = $_POST['campus'];
+			$major = $_POST['major'];
+			$year = $_POST['year'];
+			$msg = $nameErr = $emailErr = "";
+			
+			if (empty($name)) {
+				$nameErr = "* Name cannot be empty.";
+			}
+			if (empty($email)) {
+				$emailErr = "* Email cannot be empty.";
+			} else if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$email)) {
+				$emailErr = "* Invalid email format."; 
+			}
+			if ($nameErr || $emailErr) {
+				$msg = "* Please check your input again";
+			} 
+			else {
+				$sql = "UPDATE Users 
+						SET name = '$name', campus = '$campus', email = '$email', major = '$major', year = '$year'
+						WHERE NetId = '$curr_user'";
+				if ($conn->query($sql)) {
+					$msg = "Successfully changed!";
+					// header("location:profile.php");
+					// exit;
+				} else {
+					$msg = "Error: " . $sql . "<br>" . $conn->error;
+				}
+			}
+		}
+		else {
+			$sql = "SELECT * FROM Users WHERE NetId='$curr_user' ";
+			$result = $conn->query($sql);
+			if ($result && $result->num_rows == 1) {
+				$row = $result->fetch_assoc();
+				$username = $row["NetId"];
+				$name = $row["Name"];
+				$email = $row["Email"];
+				$campus = $row["Campus"];
+				$year = $row["Year"];
+				$major = $row["Major"];
+			} else {
+				$msg = "curr_user is not in database!";
+			}
+		}
+
+		$conn->close();
+	}
+	echo "<script>console.log('$msg');</script>";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	
 	<!-- start: Meta -->
@@ -36,14 +102,12 @@
 	<!-- start: Favicon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
 	<!-- end: Favicon -->
-	
-		
-		
 		
 </head>
 
 <body>
-		<!-- start: Header -->
+
+	<!-- start: Header -->
 	<div class="navbar">
 		<div class="navbar-inner">
 			<div class="container-fluid">
@@ -62,8 +126,7 @@
 						<li class="dropdown hidden-phone">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 								<i class="icon-envelope"></i>
-								<span class="badge red">
-								4 </span>
+								<span class="badge red"> 4 </span>
 							</a>
 							<ul class="dropdown-menu messages">
 								<li class="dropdown-menu-title">
@@ -139,22 +202,24 @@
 								</li>	
 							</ul>
 						</li>
+						<!-- end: Message Dropdown -->
 						
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<span>Username</span>
+								<span><?php echo $curr_user; ?></span>
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
 								<li class="dropdown-menu-title">
- 									<span>Username</span>
+ 									<span><?php echo $curr_user; ?></span>
 								</li>
-								<li><a href="#"><i class="halflings-icon user"></i> Profile</a></li>
-								<li><a href="login.html"><i class="halflings-icon off"></i> Logout</a></li>
+								<li><a href="myprofile.php"><i class="halflings-icon user"></i> Profile</a></li>
+								<li><a href="login.php"><i class="halflings-icon off"></i> Logout</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
+
 					</ul>
 				</div>
 				<!-- end: Header Menu -->
@@ -162,103 +227,100 @@
 			</div>
 		</div>
 	</div>
-	<!-- start: Header -->
+	<!-- end: Header -->
 	
-		<div class="container-fluid-full">
-		<div class="row-fluid">
+	<div class="container-fluid-full">
+	<div class="row-fluid">
+			
+	<!-- start: Main Menu -->
+	<div id="sidebar-left" class="span2">
+		<div class="nav-collapse sidebar-nav">
+			<ul class="nav nav-tabs nav-stacked main-menu">
+				<!-- <i class="icon-user"></i> icon-user -->
+				<li><a href="myprofile.php"><i class="icon-user"></i><span class="hidden-tablet"> Personal Information</span></a></li>
+				<li><a href="myproducts.php"><i class="icon-inbox"></i><span class="hidden-tablet"> My Products</span></a></li>
+				<li><a href="myrequests.php"><i class="icon-flag"></i><span class="hidden-tablet"> My Requests</span></a></li>
+				<li><a href="myorders.php"><i class="icon-list"></i><span class="hidden-tablet"> Orders</span></a></li>	
+				<li><a href="mytransactions.php"><i class="icon-money"></i><span class="hidden-tablet"> Transactions</span></a></li>
+				<li><a href="mymessages.php"><i class="icon-envelope"></i><span class="hidden-tablet"> Messages</span></a></li>
+				<li><a href="dashboard.php"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Dashboard</span></a></li>
 				
-			<!-- start: Main Menu -->
-			<div id="sidebar-left" class="span2">
-				<div class="nav-collapse sidebar-nav">
-					<ul class="nav nav-tabs nav-stacked main-menu">
-						<!-- <i class="icon-user"></i> icon-user -->
-						<li><a href="profile.php"><i class="icon-user"></i><span class="hidden-tablet"> Personal Information</span></a></li>
-						<li><a href="myproducts.html"><i class="icon-inbox"></i><span class="hidden-tablet"> My Products</span></a></li>
-						<li><a href="myrequests.html"><i class="icon-flag"></i><span class="hidden-tablet"> My Requests</span></a></li>
-						<li><a href="orders.html"><i class="icon-list"></i><span class="hidden-tablet"> Orders</span></a></li>
-						<li><a href="transactions.html"><i class="icon-money"></i><span class="hidden-tablet"> Transactions</span></a></li>
-						<li><a href="messages.html"><i class="icon-envelope"></i><span class="hidden-tablet"> Messages</span></a></li>
-						<li><a href="dashboard.html"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Dashboard</span></a></li>
-						
-					</ul>
-				</div>
-			</div>
-			<!-- end: Main Menu -->
+			</ul>
+		</div>
+	</div>
+	<!-- end: Main Menu -->
 			
-			<noscript>
-				<div class="alert alert-block span10">
-					<h4 class="alert-heading">Warning!</h4>
-					<p>You need to have <a href="" target="_blank">JavaScript</a> enabled to use this site.</p>
-				</div>
-			</noscript>
+	<noscript>
+		<div class="alert alert-block span10">
+			<h4 class="alert-heading">Warning!</h4>
+			<p>You need to have <a href="" target="_blank">JavaScript</a> enabled to use this site.</p>
+		</div>
+	</noscript>
 			
-			<!-- start: Content -->
-			<div id="content" class="span10">
-			
+
+	<!-- start: Content -->
+	<div id="content" class="span10">
 	
-				<div class="row-fluid">
-					
-					<div class="span12">
-                        <h1>My Products</h1>
-                        
-                        
-					</br><button type="btn" class="btn btn-primary">Add a Product</button>
-					<button type="btn" class="btn btn-primary">Generate Your Product List</button></br>
-                        
-                       
-						
-						</br>
-						
-						<div class="task none">
-							<div class="desc">
-								<div class="title">Product Name</div>
-								<div>I am product description. I am product description. I am product description</div>
-							</div>
-							<div class="time">
-								<div class="date">Date</div>
-								<div> finished/proceeding</div>
-							</div>
-						</div>
-						<div class="task none">
-							<div class="desc">
-								<div class="title">Product Name</div>
-								<div>I am product description. I am product description. I am product description</div>
-							</div>
-							<div class="time">
-								<div class="date">Date</div>
-								<div> finished/proceeding</div>
-							</div>
-                        </div>
-                        <div class="task none">
-							<div class="desc">
-								<div class="title">Product Name</div>
-								<div>I am product description. I am product description. I am product description</div>
-							</div>
-							<div class="time">
-								<div class="date">Date</div>
-								<div> finished/proceeding</div>
-							</div>
-                        </div>
-                        <div class="task none">
-							<div class="desc">
-								<div class="title">Product Name</div>
-								<div>I am product description. I am product description. I am product description</div>
-							</div>
-							<div class="time">
-								<div class="date">Date</div>
-								<div> finished/proceeding</div>
-							</div>
-						</div>
-						
-						
-								
-						
+		<div class="row-fluid">
+			
+			<div class="span12">
+				<h1>My Products</h1> </br>
+				<a href= "post_product.html"> <button type="btn" class="btn btn-primary">Add a Product</button> </a>
+				<button type="btn" class="btn btn-primary">Generate Your Product List</button></br>
+				</br>
+				
+//TODO: 
+
+				<div class="task none">
+					<div class="desc">
+						<div class="title">Product Name</div>
+						<div>I am product description. I am product description. I am product description</div>
 					</div>
-					
-					
-					</div>	
-							
+					<div class="time">
+						<div class="date">Date</div>
+						<div> finished/proceeding</div>
+					</div>
 				</div>
+				<div class="task none">
+					<div class="desc">
+						<div class="title">Product Name</div>
+						<div>I am product description. I am product description. I am product description</div>
+					</div>
+					<div class="time">
+						<div class="date">Date</div>
+						<div> finished/proceeding</div>
+					</div>
+				</div>
+				<div class="task none">
+					<div class="desc">
+						<div class="title">Product Name</div>
+						<div>I am product description. I am product description. I am product description</div>
+					</div>
+					<div class="time">
+						<div class="date">Date</div>
+						<div> finished/proceeding</div>
+					</div>
+				</div>
+				<div class="task none">
+					<div class="desc">
+						<div class="title">Product Name</div>
+						<div>I am product description. I am product description. I am product description</div>
+					</div>
+					<div class="time">
+						<div class="date">Date</div>
+						<div> finished/proceeding</div>
+					</div>
+				</div>
+				
+				
+						
+				
+			</div>
+			
+			
+			</div>	
+					
+		</div>
 				
 		   
 	
