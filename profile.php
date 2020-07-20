@@ -207,12 +207,12 @@
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<span>Username</span>
+								<span><?php echo $curr_user; ?></span>
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
 								<li class="dropdown-menu-title">
- 									<span>Username</span>
+ 									<span><?php echo $curr_user; ?></span>
 								</li>
 								<li><a href="#"><i class="halflings-icon user"></i> Profile</a></li>
 								<li><a href="login.html"><i class="halflings-icon off"></i> Logout</a></li>
@@ -276,7 +276,7 @@
 							<div class="control-group">
 								<label class="control-label">Username</label>
 								<div class="controls">
-									<span class="input-xlarge uneditable-input">* <?php echo $curr_user; ?> *</span>
+									<span class="input-xlarge uneditable-input"><?php echo $curr_user; ?></span>
 								</div>
 							</div>
 
@@ -284,6 +284,7 @@
 								<label class="control-label" for="focusedInput">Name</label>
 								<div class="controls">
 									<input class="input-xlarge focused" id="focusedInput" type="text" name="name" value="<?php echo $name; ?>">
+									<span class="warning" style="color:crimson;"> <?php echo $nameErr;?></span>
 								</div>
 							</div>
 
@@ -291,6 +292,7 @@
 								<label class="control-label" for="focusedInput">Email</label>
 								<div class="controls">
 									<input class="input-xlarge focused" id="focusedInput" type="text" name="email" value="<?php echo $email; ?>">
+									<span class="warning" style="color:crimson;"> <?php echo $emailErr;?></span>
 								</div>
 							</div>
 
@@ -329,14 +331,13 @@
 									<option value='EE' <?php echo $major=='EE' ? 'selected':'' ?>>Electrical Engineering</option>
 									<option value='ME' <?php echo $major=='ME' ? 'selected':'' ?>>Mechanical Engineering</option>
 									<option value='Other' <?php echo $major=='Other' ? 'selected':'' ?>>Other</option>
-									
 								</select>
 								</div>
 							</div>
 							
 
 
-							</div>
+							
 							<div class="form-actions">
 								<button type="submit" class="btn btn-primary">Save changes</button>
 								<button class="btn">Cancel</button>

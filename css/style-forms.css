@@ -921,3 +921,8 @@ legend + .control-group {
 .form-horizontal .form-actions {
   padding-left: 180px;
 }
+
+.form-horizontal .control-group .warning{
+	font-size: 14px;
+	color: crimson;
+  }
