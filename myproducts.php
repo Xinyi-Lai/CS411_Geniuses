@@ -8,59 +8,17 @@
 	}
 	else {
 		$conn = connectDB();
-
-		if ($_SERVER["REQUEST_METHOD"] == "POST") {
-			$name = ppc($_POST["name"]);
-			$email = ppc($_POST["email"]);
-			$campus = $_POST['campus'];
-			$major = $_POST['major'];
-			$year = $_POST['year'];
-			$msg = $nameErr = $emailErr = "";
-			
-			if (empty($name)) {
-				$nameErr = "* Name cannot be empty.";
-			}
-			if (empty($email)) {
-				$emailErr = "* Email cannot be empty.";
-			} else if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$email)) {
-				$emailErr = "* Invalid email format."; 
-			}
-			if ($nameErr || $emailErr) {
-				$msg = "* Please check your input again";
-			} 
-			else {
-				$sql = "UPDATE Users 
-						SET name = '$name', campus = '$campus', email = '$email', major = '$major', year = '$year'
-						WHERE NetId = '$curr_user'";
-				if ($conn->query($sql)) {
-					$msg = "Successfully changed!";
-					// header("location:profile.php");
-					// exit;
-				} else {
-					$msg = "Error: " . $sql . "<br>" . $conn->error;
-				}
-			}
+		
+		$sql = "SELECT * FROM Sales WHERE SellerId = '$curr_user'";
+		$result = $conn->query($sql);
+		$array = array();
+		while($row = mysqli_fetch_assoc($result)){
+			$array[]=$row;
 		}
-		else {
-			$sql = "SELECT * FROM Users WHERE NetId='$curr_user' ";
-			$result = $conn->query($sql);
-			if ($result && $result->num_rows == 1) {
-				$row = $result->fetch_assoc();
-				$username = $row["NetId"];
-				$name = $row["Name"];
-				$email = $row["Email"];
-				$campus = $row["Campus"];
-				$year = $row["Year"];
-				$major = $row["Major"];
-			} else {
-				$msg = "curr_user is not in database!";
-			}
-		}
-
+		
 		$conn->close();
 	}
 	echo "<script>console.log('$msg');</script>";
-
 ?>
 
 <!DOCTYPE html>
@@ -106,6 +64,7 @@
 </head>
 
 <body>
+
 	<!-- start: Header -->
 	<div class="navbar">
 		<div class="navbar-inner">
@@ -125,8 +84,7 @@
 						<li class="dropdown hidden-phone">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 								<i class="icon-envelope"></i>
-								<span class="badge red">
-								4 </span>
+								<span class="badge red"> 4 </span>
 							</a>
 							<ul class="dropdown-menu messages">
 								<li class="dropdown-menu-title">
@@ -214,8 +172,8 @@
 								<li class="dropdown-menu-title">
  									<span><?php echo $curr_user; ?></span>
 								</li>
-								<li><a href="#"><i class="halflings-icon user"></i> Profile</a></li>
-								<li><a href="login.html"><i class="halflings-icon off"></i> Logout</a></li>
+								<li><a href="myprofile.php"><i class="halflings-icon user"></i> Profile</a></li>
+								<li><a href="login.php"><i class="halflings-icon off"></i> Logout</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
@@ -237,11 +195,13 @@
 		<div class="nav-collapse sidebar-nav">
 			<ul class="nav nav-tabs nav-stacked main-menu">
 				<!-- <i class="icon-user"></i> icon-user -->
-				<li><a href="profile.html"><i class="icon-user"></i><span class="hidden-tablet"> Personal Information</span></a></li>
-				<li><a href="orders.html"><i class="icon-list"></i><span class="hidden-tablet"> Orders</span></a></li>	
-				<li><a href="myproducts.html"><i class="icon-inbox"></i><span class="hidden-tablet"> My Products</span></a></li>	
-				<li><a href="messages.html"><i class="icon-envelope"></i><span class="hidden-tablet"> Messages</span></a></li>
-				<li><a href="dashboard.html"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Dashboard</span></a></li>
+				<li><a href="myprofile.php"><i class="icon-user"></i><span class="hidden-tablet"> Personal Information</span></a></li>
+				<li><a href="myproducts.php"><i class="icon-inbox"></i><span class="hidden-tablet"> My Products</span></a></li>
+				<li><a href="myrequests.php"><i class="icon-flag"></i><span class="hidden-tablet"> My Requests</span></a></li>
+				<li><a href="myorders.php"><i class="icon-list"></i><span class="hidden-tablet"> Orders</span></a></li>	
+				<li><a href="mytransactions.php"><i class="icon-money"></i><span class="hidden-tablet"> Transactions</span></a></li>
+				<li><a href="mymessages.php"><i class="icon-envelope"></i><span class="hidden-tablet"> Messages</span></a></li>
+				<li><a href="dashboard.php"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Dashboard</span></a></li>
 				
 			</ul>
 		</div>
@@ -255,109 +215,50 @@
 		</div>
 	</noscript>
 			
+
 	<!-- start: Content -->
 	<div id="content" class="span10">
+	
+		<div class="row-fluid">
+			
+			<div class="span12">
 
-		<div class="row-fluid sortable">
-			<div class="box span12">
-				<div class="box-header" data-original-title>
-					<h2><i class="halflings-icon white edit"></i><span class="break"></span>Personal Information</h2>
-					<div class="box-icon">
-						<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
-						<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
-						<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+				<h1>My Products</h1> </br>
+				<a href= "post_product.html"> <button type="btn" class="btn btn-primary">Add a Product</button> </a>
+				<button type="btn" class="btn btn-primary">Generate Your Product List</button></br>
+				</br>
+				
+				<?php foreach($array as $val): ?>
+
+				<div class="task none">
+					<div class="desc">
+						<div class="title"> <?php echo $val['ProductName']; ?> </div>
+						<div> 	Intended Price: $ <?php echo $val['IntendedPrice']; ?> ; 
+								Original Price: $ <?php echo $val['OriginalPrice']; ?> ;
+								Tag: <?php echo $val['Tag']; ?> ; 
+								<a href= "post_product.html"> <button type="btn" >Edit</button> </a>
+								<a href= "post_product.html"> <button type="btn" >Delete</button> </a>
+						</div>
+					</div>
+					<div class="time">
+						<div class="date"> <?php echo $val['IntendedBuyerId']==null ? "On Sale": $val['IntendedBuyerId']." wants"; ?> </div>
+						<div>
+							<a href= "#"> <button type="btn" <?php echo $val['IntendedBuyerId']==null ? 'disabled':'' ?> >Deal</button> </a>
+						</div>
 					</div>
 				</div>
-
-				<div class="box-content">
-					<form class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
-						<fieldset>
-
-							<div class="control-group">
-								<label class="control-label">Username</label>
-								<div class="controls">
-									<span class="input-xlarge uneditable-input"><?php echo $curr_user; ?></span>
-								</div>
-							</div>
-
-							<div class="control-group">
-								<label class="control-label" for="focusedInput">Name</label>
-								<div class="controls">
-									<input class="input-xlarge focused" id="focusedInput" type="text" name="name" value="<?php echo $name; ?>">
-									<span class="warning" style="color:crimson;"> <?php echo $nameErr;?></span>
-								</div>
-							</div>
-
-							<div class="control-group">
-								<label class="control-label" for="focusedInput">Email</label>
-								<div class="controls">
-									<input class="input-xlarge focused" id="focusedInput" type="text" name="email" value="<?php echo $email; ?>">
-									<span class="warning" style="color:crimson;"> <?php echo $emailErr;?></span>
-								</div>
-							</div>
-
-							<div class="control-group">
-								<label class="control-label" for="selectError3">Campus</label>
-								<div class="controls">
-								<select id="selectError3" name="campus">
-									<option <?php echo $campus=='UIUC' ? 'selected':'' ?>>UIUC</option>
-									<option <?php echo $campus=='ZJUIntl' ? 'selected':'' ?>>ZJUIntl</option>
-								</select>
-								</div>
-							</div>
-
-							<div class="control-group">
-								<label class="control-label" for="selectError3">School Year</label>
-								<div class="controls">
-								<select id="selectError3" name="year">
-									<option <?php echo $year=='Freshman' ? 'selected':'' ?>>Freshman</option>
-									<option <?php echo $year=='Sophomore' ? 'selected':'' ?>>Sophomore</option>
-									<option <?php echo $year=='Junior' ? 'selected':'' ?>>Junior</option>
-									<option <?php echo $year=='Senior' ? 'selected':'' ?>>Senior</option>
-									<option <?php echo $year=='Graduate' ? 'selected':'' ?>>Graduate</option>
-								</select>
-								</div>
-							</div>
-
-							<div class="control-group">
-								<label class="control-label" for="selectError3">Major</label>
-								<div class="controls">
-								<select id="selectError3" name="major">
-									<option value='BMI' <?php echo $major=='BME' ? 'selected':'' ?>>BMI</option>
-									<option value='BMS' <?php echo $major=='BMS' ? 'selected':'' ?>>BMS</option>
-									<option value='CS' <?php echo $major=='CS' ? 'selected':'' ?>>Computer Science</option>
-									<option value='CompE' <?php echo $major=='ECE' ? 'selected':'' ?>>Computer Engineering</option>
-									<option value='CEE' <?php echo $major=='CEE' ? 'selected':'' ?>>Civil and Environment Engineering</option>
-									<option value='EE' <?php echo $major=='EE' ? 'selected':'' ?>>Electrical Engineering</option>
-									<option value='ME' <?php echo $major=='ME' ? 'selected':'' ?>>Mechanical Engineering</option>
-									<option value='Other' <?php echo $major=='Other' ? 'selected':'' ?>>Other</option>
-								</select>
-								</div>
-							</div>
-							
-
-
-							
-							<div class="form-actions">
-								<button type="submit" class="btn btn-primary">Save changes</button>
-								<button class="btn">Cancel</button>
-							</div>
-						</fieldset>
-						</form>
 				
-				</div>
-			</div><!--/span-->
-		
-		</div><!--/row-->	
-
-
-
-
-</div><!--/.fluid-container-->
-
+				<?php endforeach; ?>
+				
+			</div>
+			
+		</div>	
+				
+	</div>
 	<!-- end: Content -->
-		</div><!--/#content.span10-->
-		</div><!--/fluid-row-->
+
+
+	
 		
 	<div class="modal hide fade" id="myModal">
 		<div class="modal-header">
