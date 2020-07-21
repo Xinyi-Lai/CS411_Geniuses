@@ -23,7 +23,7 @@ function load_related(search_str)
     } 
     // Get url
     var url="get_related.php"
-    url=url+"?q="+search_str
+    url=url+"?q="+search_str+"&choosedb="+document.getElementById("choosedb").value
     url=url+"&sid="+Math.random()
     // Set the callback function
     xmlHttp.onreadystatechange=stateChanged 

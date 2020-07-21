@@ -93,9 +93,9 @@
 
                     <div class="search-form">
 
-                        <form class="navbar-form" role="search" method="post" action="get_related.php">
+                        <form class="navbar-form" role="search">
 
-                            <select id="choosedb">
+                            <select id="choosedb" class="form-control">
 
                                 <option selected="selected" value="Sales">Product</option>
 
