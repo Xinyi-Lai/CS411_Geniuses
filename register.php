@@ -51,7 +51,7 @@
 			$sql = "SELECT * FROM Users WHERE NetId='$username'";
 			$result = $conn->query($sql);
 			if ($result && $result->num_rows > 0) {
-				$msg = "User already exists!";
+				$usernameErr = "User already exists!";
 			} else {
 				$sql = "INSERT INTO Users (NetId, Password, Name, Campus, Email, Major, Year)
 						VALUES ('$username', '$password', '$name', '$campus', '$email', '$major', '$year')";
@@ -99,7 +99,7 @@
                     <h2 class="text-info">Welcome to Beacon - Registration</h2>
 				</div>
 				<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
-					
+
 					<!-- Username input -->
                     <div class="form-group">
 						<label for="focusedInput">Username</label> <span class="warning"> <?php echo $usernameErr;?></span>

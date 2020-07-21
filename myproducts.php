@@ -222,7 +222,7 @@
 							<span style="font-size:x-large;"><?php echo $val['ProductName']; ?></span>
 						</span>&nbsp;
 						
-						<a href= "post_product.html" style="font-size:12px;">Edit </a>&nbsp;
+						<a href="edit_product.php?id=$<?php echo $val['SaleId'];?>" style="font-size:12px;">Edit </a>&nbsp;
 						<a href="javascript:void(0);" onclick="delete_post(<?php echo $val['SaleId']; ?>, 'Sales')" style="font-size:12px;">Delete</a>
 
 						<div style="font-size:13px; margin-top:8px;"> 	

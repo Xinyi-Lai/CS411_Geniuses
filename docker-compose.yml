@@ -10,7 +10,7 @@ services:
     volumes: 
       - ./:/var/www/html/
     ports: 
-      - '80:80'
+      - '8084:80' # '80:80' for original docker environment, '8084:80': xinyi's broken mac
     networks:
       - webnet
 
