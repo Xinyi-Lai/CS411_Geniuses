@@ -206,7 +206,7 @@
 			
 			<div class="span12">
 				<h1>My Requests</h1> </br>
-				<a href= "#"> <button type="btn" class="btn btn-primary">Post a Request</button> </a>
+				<a href= "post_product.php" class="btn btn-primary" style="font-weight:600;"> Add a Request </a>
 				</br>
 
 				<?php foreach($array as $val): ?>
