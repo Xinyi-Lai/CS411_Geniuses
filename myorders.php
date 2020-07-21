@@ -311,6 +311,66 @@
 								<div> finished/proceeding</div>
 							</div>
 						</div>
+						<div class="task low">
+							<div class="desc">
+								<div class="title">Product Name</div>
+								<div>I am product description. I am product description. I am product description</div>
+							</div>
+							<div class="time">
+								<div class="date">Date</div>
+								<div> finished/proceeding</div>
+							</div>
+						</div>
+						<div class="task low">
+							<div class="desc">
+								<div class="title">Product Name</div>
+								<div>I am product description. I am product description. I am product description</div>
+							</div>
+							<div class="time">
+								<div class="date">Date</div>
+								<div> finished/proceeding</div>
+							</div>
+						</div>
+						<div class="task low">
+							<div class="desc">
+								<div class="title">Product Name</div>
+								<div>I am product description. I am product description. I am product description</div>
+							</div>
+							<div class="time">
+								<div class="date">Date</div>
+								<div> finished/proceeding</div>
+							</div>
+						</div>
+						<div class="task low">
+							<div class="desc">
+								<div class="title">Product Name</div>
+								<div>I am product description. I am product description. I am product description</div>
+							</div>
+							<div class="time">
+								<div class="date">Date</div>
+								<div> finished/proceeding</div>
+							</div>
+						</div>
+						<div class="task low">
+							<div class="desc">
+								<div class="title">Product Name</div>
+								<div>I am product description. I am product description. I am product description</div>
+							</div>
+							<div class="time">
+								<div class="date">Date</div>
+								<div> finished/proceeding</div>
+							</div>
+						</div>
+						<div class="task low">
+							<div class="desc">
+								<div class="title">Product Name</div>
+								<div>I am product description. I am product description. I am product description</div>
+							</div>
+							<div class="time">
+								<div class="date">Date</div>
+								<div> finished/proceeding</div>
+							</div>
+						</div>
 						<div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
 							<div class="modal-content">
 								<ul class="list-inline item-details">
