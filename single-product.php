@@ -66,7 +66,8 @@
     <script type="text/javascript">
     
         function jump_to_search() {
-            window.location.href = "search.php?search_item="+document.getElementById("search_box").value;
+            window.location.href = "search.php?search_item="+document.getElementById("search_box").value+
+                                              "&choosedb="+document.getElementById("choosedb").value;
         }
 
     </script>
@@ -314,7 +315,7 @@
 
                         <button class="btn btn-theme" type="submit">I wanna buy</button>
 
-                        <button class="btn btn-theme" type="submit">See more from <?php echo $sellerId; ?></button>
+                        <button class="btn btn-theme" type="submit" onclick="window.location.href='search.php?search_item=&choosedb=Sales&user_id=<?php echo $sellerId;?>'">See more from <?php echo $sellerId; ?></button>
 
                     </p>
 

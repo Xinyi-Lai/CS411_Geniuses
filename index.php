@@ -36,7 +36,8 @@
     <script type="text/javascript">
     
         function jump_to_search() {
-            window.location.href = "search.php?search_item="+document.getElementById("search_box").value;
+            window.location.href = "search.php?search_item="+document.getElementById("search_box").value+
+                                              "&choosedb="+document.getElementById("choosedb").value;
         }
 
     </script>

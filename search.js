@@ -3,17 +3,14 @@ var xmlHttp
 document.write("<script type='text/javascript' src='getQueryString.js'></script>")
 
 function load_page() {
-    var param = getQueryString("search_item")
-    load_related(param)
+    var search_item = getQueryString("search_item")
+    var choosedb = getQueryString("choosedb")
+    var user_id = getQueryString("user_id")
+    load_related(search_item, choosedb, user_id)
 }
  
-function load_related(search_str)
+function load_related(search_item, choosedb, user_id)
 {
-    if (search_str.length==0)
-    { 
-        // document.getElementById("txtHint").innerHTML=""
-        return false
-    }
     // Get xmlHttpObject object，if null，then the browser doesn't suppport ajax
     xmlHttp=GetXmlHttpObject()
     if (xmlHttp==null)
@@ -23,7 +20,7 @@ function load_related(search_str)
     } 
     // Get url
     var url="get_related.php"
-    url=url+"?q="+search_str+"&choosedb="+document.getElementById("choosedb").value
+    url=url+"?search_item="+search_item+"&choosedb="+choosedb+"&user_id="+user_id
     url=url+"&sid="+Math.random()
     // Set the callback function
     xmlHttp.onreadystatechange=stateChanged 

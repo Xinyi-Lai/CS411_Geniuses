@@ -109,7 +109,7 @@
 
                             </div>
 
-                            <button type="button" class="btn" onclick="load_related(document.getElementById('search_box').value)"><i class="fa fa-search"></i></button>
+                            <button type="button" class="btn" onclick="load_related(document.getElementById('search_box').value, document.getElementById('choosedb').value,'')"><i class="fa fa-search"></i></button>
 
                         </form>
 
