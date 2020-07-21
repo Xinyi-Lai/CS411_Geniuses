@@ -79,14 +79,7 @@
 
     <link rel="stylesheet" href="css/responsive.css">
 
-    <script type="text/javascript">
-    
-        function jump_to_search() {
-            window.location.href = "search.php?search_item="+document.getElementById("search_box").value+
-                                              "&choosedb="+document.getElementById("choosedb").value;
-        }
-
-    </script>
+    <script src="search.js"></script>
 
 </head>
 
@@ -100,7 +93,7 @@
 
                 <div class="col-md-6">
 
-                    <span class="webname">BEACON</span>
+                    <a class="brand" href="index.php"><span class="webname" href="index.php">BEACON</span></a>
 
                 </div>
 
@@ -112,7 +105,7 @@
 
                             <?php
                                 if ($curr_user) {
-                                    echo '<li><a href="profile.php"><i class="fa fa-user"></i> '.$curr_user.'</a></li>';
+                                    echo '<li><a href="myprofile.php"><i class="fa fa-user"></i> '.$curr_user.'</a></li>';
                                 }else{
                                     echo '<li><a href="login.php"><i class="fa fa-user"></i> Login</a></li>';
                                 }
@@ -157,7 +150,9 @@
 
                             <div class="form-group">
 
-                              <input id="search_box" type="text" class="form-control" placeholder="What do you need...">
+                                <input id="hiddenText" type="text" style="display:none" />
+
+                                <input type="text"  onkeydown="entersearch()" id="search_box" class="form-control" placeholder="What do you need..."/>
 
                             </div>
 

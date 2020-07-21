@@ -2,6 +2,19 @@ var xmlHttp
 
 document.write("<script type='text/javascript' src='getQueryString.js'></script>")
 
+function entersearch(){  
+    var event = window.event || arguments.callee.caller.arguments[0];  
+　　if (event.keyCode == 13)  
+    {  
+        jump_to_search();
+    }  
+}
+
+function jump_to_search() {
+    window.location.href = "search.php?search_item="+document.getElementById("search_box").value+
+                                      "&choosedb="+document.getElementById("choosedb").value;
+}
+
 function load_page() {
     var search_item = getQueryString("search_item")
     var choosedb = getQueryString("choosedb")
