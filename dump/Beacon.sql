@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: database
--- Generation Time: Jul 21, 2020 at 03:08 PM
+-- Generation Time: Jul 21, 2020 at 06:52 PM
 -- Server version: 8.0.20
 -- PHP Version: 7.4.6
 
@@ -80,13 +80,6 @@ CREATE TABLE `Requests` (
   `SaleId` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Dumping data for table `Requests`
---
-
-INSERT INTO `Requests` (`RequestId`, `BuyerId`, `ProductName`, `Tag`, `Description`, `Image`, `IntendedPrice`, `SaleId`) VALUES
-(1, 'keruiz2', 'house', 'house', 'best house', 'images/keruiz2/20200721140927.jpg', 2017, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -95,24 +88,16 @@ INSERT INTO `Requests` (`RequestId`, `BuyerId`, `ProductName`, `Tag`, `Descripti
 
 CREATE TABLE `Sales` (
   `SaleId` int NOT NULL,
-  `SellerId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `ProductName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Tag` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Description` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Image` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `SellerId` varchar(50) DEFAULT NULL,
+  `ProductName` varchar(50) DEFAULT NULL,
+  `Tag` varchar(50) DEFAULT NULL,
+  `Description` varchar(500) DEFAULT NULL,
+  `Image` varchar(100) DEFAULT NULL,
   `IntendedPrice` double DEFAULT NULL,
   `OriginalPrice` double DEFAULT NULL,
   `Depreciation` int DEFAULT NULL,
-  `BuyerId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `Sales`
---
-
-INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, `Image`, `IntendedPrice`, `OriginalPrice`, `Depreciation`, `BuyerId`) VALUES
-(2, 'keruiz2', 'house', 'house', 'best house', 'images/keruiz2/20200721133647.jpg', 2020, 2100, 9, NULL),
-(3, 'keruiz2', 'mouse', 'mouse', 'logi mouse', 'images/keruiz2/20200721141501.jpg', 40, 60, 9, NULL);
+  `IntendedBuyerId` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -172,7 +157,7 @@ ALTER TABLE `Requests`
 ALTER TABLE `Sales`
   ADD PRIMARY KEY (`SaleId`),
   ADD KEY `SellerId` (`SellerId`),
-  ADD KEY `BuyerId` (`BuyerId`);
+  ADD KEY `IntendedBuyerId` (`IntendedBuyerId`);
 
 --
 -- Indexes for table `Users`
@@ -188,13 +173,13 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT for table `Requests`
 --
 ALTER TABLE `Requests`
-  MODIFY `RequestId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `RequestId` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `Sales`
 --
 ALTER TABLE `Sales`
-  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -212,7 +197,7 @@ ALTER TABLE `Requests`
 --
 ALTER TABLE `Sales`
   ADD CONSTRAINT `Sales_ibfk_1` FOREIGN KEY (`SellerId`) REFERENCES `Users` (`NetId`) ON DELETE CASCADE,
-  ADD CONSTRAINT `Sales_ibfk_2` FOREIGN KEY (`BuyerId`) REFERENCES `Users` (`NetId`) ON DELETE SET NULL;
+  ADD CONSTRAINT `Sales_ibfk_2` FOREIGN KEY (`IntendedBuyerId`) REFERENCES `Users` (`NetId`) ON DELETE SET NULL;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
