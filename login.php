@@ -21,7 +21,7 @@
 				header("location:index.php");
 				exit;
 			} else {
-				$msg = "Username and Password does not match!";
+				$msg = "Username and Password do not match!";
 			}
 			$conn->close();
 		}
@@ -38,11 +38,12 @@
     <title>BEACON - Login</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
-    <link rel="stylesheet" href="baguetteBox.min.css">
+    <link rel="stylesheet" href="assets/css/baguetteBox.min.css">
     <link rel="stylesheet" href="assets/css/smoothproducts.css">
 </head>
 
 <body>
+    
     <nav class="navbar navbar-dark navbar-expand-lg bg-primary clean-navbar" style="height: 60px; padding-top: 30px;">
         <div class="container">
             <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1">
@@ -58,33 +59,45 @@
             </div>
         </div>
     </nav>
+
     <main class="page login-page">
         <section class="clean-block clean-form dark">
             <div class="container">
                 <div class="block-heading">
                     <h2 class="text-info">Welcome to Beacon - Login</h2>
                 </div>
+                
                 <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
-                    <div class="form-group"><label>Username &nbsp; <span class='warning'><?php echo($msg); ?></span></label><input class="form-control item" type="text" name="username" value="<?php echo $username;?>"></div>
-					
-                    <div class="form-group"><label>Password</label><input class="form-control" type="password" name="password" value="<?php echo $password;?>"></div>
                     <div class="form-group">
-                        <div class="form-check"><input class="form-check-input" type="checkbox" id="checkbox"><label class="form-check-label" for="checkbox">Remember me</label></div>
+                        <label>Username &nbsp; <span class='warning'><?php echo($msg); ?></span> </label>
+                        <input class="form-control item" type="text" name="username" value="<?php echo $username;?>">
                     </div>
-					<!-- <button class="btn btn-primary btn-block" type="submit">Log In</button> -->
-					<input type="submit" class="btn btn-primary btn-block" name="submit" value="Log In">
-
-					<!-- <label class="span6" for="focusedInput">  -->
 					
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input class="form-control" type="password" name="password" value="<?php echo $password;?>">
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="checkbox">
+                            <label class="form-check-label" for="checkbox">Remember me</label>
+                        </div>
+                    </div>
+
+					<input type="submit" class="btn btn-primary btn-block" name="submit" value="Log In">
 					<span style="font-size:16px;"><a href="register.php">Don't have an account?</a></span>
-					<!-- </label>  -->
-				</form>
+
+                </form>
+                
             </div>
         </section>
     </main>
+
     <footer class="page-footer dark">
         <div class="container">
             <div class="row">
+                
                 <div class="col-sm-3">
                     <div class="single-widget">
                         <h5>ABOUT US</h5>
@@ -102,16 +115,13 @@
                 <div class="col-sm-3">
                     <div class="single-widget">
                     <h5>INFORMATION</h5>
-                    
                         <ul>
-                            
                             <span class="white-font"><a href="#">Frequently Asked Question</a></br></span>
                             <span class="white-font"><a href="#">Terms and Condition</a></br></span>
                             <span class="white-font"><a href="#">Privacy Policy</a></br></span>
                             <span class="white-font"><a href="#">Customer Service</a></br></span>
                             <span class="white-font"><a href="#">Delivery Information</a></br></span>
                             <span class="white-font"><a href="#">Manufacturers</a></br></span>
-
                         </ul>
                     </div>
                 </div>
@@ -120,11 +130,9 @@
                     <div class="single-widget">
                     <h5>CUSTOMER CARE</h5>
                         <ul>
-                            
                             <span class="white-font"><a href="#">Contact Us</a></br></span>
                             <span class="white-font"><a href="#">Sitemap</a></br></span>
                             <span class="white-font"><a href="#">Live Chat 24x7</a></br></span>
-
                         </ul>
                     </div>
                 </div>
@@ -132,17 +140,16 @@
                 <div class="col-sm-3">
                     <div class="single-widget-1">
                     <h5>OUR SERVICES</h5>
-                        <ul>
-                            
+                        <ul>                            
                             <span class="white-font"><a href="#">Secure Shopping</a></br></span>
-
                         </ul>
                     </div>  
                 </div>
+
             </div>
         </div>
-
     </footer>
+
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/baguetteBox.min.js"></script>
