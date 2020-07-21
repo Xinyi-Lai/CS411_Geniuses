@@ -7,8 +7,6 @@
     $search_item=$_GET["search_item"];
     $choosedb=$_GET["choosedb"];
     $user_id=$_GET["user_id"];
-
-    // echo $search_item.$choosedb.$user_id;
     
     //connect db
     if ((strlen($search_item) > 0 || strlen($user_id) > 0) && strlen($choosedb) > 0) {
@@ -20,14 +18,14 @@
                 $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE ProductName LIKE '%$search_item%' AND BuyerId IS NULL";
             }
             else {
-                $sql = "SELECT RequestId, ProductName, IntendedPrice FROM Requests WHERE ProductName LIKE '%$search_item%' AND SaleId IS NULL";
+                $sql = "SELECT RequestId, Image, ProductName, IntendedPrice FROM Requests WHERE ProductName LIKE '%$search_item%' AND SaleId IS NULL";
             }
         }else {
             if ($choosedb == "Sales") {
                 $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE SellerId = '$user_id' AND BuyerId IS NULL";
             }
             else {
-                $sql = "SELECT RequestId, ProductName, IntendedPrice FROM Requests WHERE BuyerId = '$user_id' AND SaleId IS NULL";
+                $sql = "SELECT RequestId, Image, ProductName, IntendedPrice FROM Requests WHERE BuyerId = '$user_id' AND SaleId IS NULL";
             }
         }
 
@@ -44,11 +42,12 @@
         $conn->close();
         
         foreach($array as $val):
+            $image = ($val['Image']) ? $val['Image'] : 'images/beaconlogo.png';
             echo '
                 <div class="col-md-3 col-sm-4">
                     <div class="single-product">
                         <div class="product-block">
-                            <img src="'.$val['Image'].'" alt="" class="thumbnail">
+                            <img src="'.$image.'" alt="" class="thumbnail">
                             <div class="related-product text-center">
                                 <p class="title">'.$val['ProductName'].'</p>
                                 <p class="price">$ '.$val['IntendedPrice'].'</p>
