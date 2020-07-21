@@ -236,7 +236,7 @@
 			<div class="span12">
 
 				<h1>My Products</h1> </br>
-				<a href= "post_product.html" type="btn" class="btn btn-primary" style="font-weight:600;">Add a Product</a>
+				<a href= "post_product.php" type="btn" class="btn btn-primary" style="font-weight:600;">Add a Product</a>
 				<button type="btn" class="btn btn-primary">Generate Your Product List</button></br>
 				
 				
@@ -247,7 +247,7 @@
 						<span class="title"> 
 							<span style="font-size:x-large;"><?php echo $val['ProductName']; ?></span>
 						</span>&nbsp;
-							<a href= "post_product.html" style="font-size:12px;">Edit </a>&nbsp;
+							<a href= "post_product.php" style="font-size:12px;">Edit </a>&nbsp;
 							<a href="javascript:void(0);" οnclick="delete_product()" style="font-size:12px;">Delete</a>
 						
 

@@ -231,7 +231,7 @@
 						<span class="title"> 
 							<span style="font-size:x-large;"><?php echo $val['ProductName']; ?></span>
 						</span>&nbsp;
-						<a href= "post_product.html" style="font-size:12px;">Edit </a>&nbsp;
+						<a href= "post_product.php" style="font-size:12px;">Edit </a>&nbsp;
 							<a href="javascript:void(0);" οnclick="js_method()" style="font-size:12px;">Delete</a>
 
 						<div style="font-size:13px; margin-top:8px;"> 	
