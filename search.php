@@ -49,7 +49,7 @@
 
                 <div class="col-md-6">
 
-                    <span class="webname">BEACON</span>
+                <a class="brand" href="index.php"><span class="webname" href="index.php">BEACON</span></a>
 
                 </div>
 
@@ -105,11 +105,13 @@
 
                             <div class="form-group">
 
-                              <input type="text" id="search_box" class="form-control" placeholder="What do you need...">
+                                <input id="hiddenText" type="text" style="display:none" />
+
+                                <input type="text"  onkeydown="entersearch()" id="search_box" class="form-control" placeholder="What do you need..."/>
 
                             </div>
 
-                            <button type="button" class="btn" onclick="load_related(document.getElementById('search_box').value, document.getElementById('choosedb').value,'')"><i class="fa fa-search"></i></button>
+                            <button id="search_btn" type="button" class="btn" onclick="load_related(document.getElementById('search_box').value, document.getElementById('choosedb').value,'')"><i class="fa fa-search"></i></button>
 
                         </form>
 
