@@ -225,14 +225,22 @@
 
 				<?php foreach($array as $val): ?>
 
-				<div class="task none">
+				<div class="task none" style="margin-top:10px;">
 					<div class="desc">
-						<div class="title"> <?php echo $val['ProductName']; ?> </div>
-						<div> 	Intended Price: $ <?php echo $val['IntendedPrice']; ?> ; 
-								Tag: <?php echo $val['Tag']; ?> .
-								<a href= "#"> <button type="btn" >Edit</button> </a>
-								<a href= "#"> <button type="btn" >Delete</button> </a>
+						
+						<span class="title"> 
+							<span style="font-size:x-large;"><?php echo $val['ProductName']; ?></span>
+						</span>&nbsp;
+						<a href= "post_product.html" style="font-size:12px;">Edit </a>&nbsp;
+							<a href="javascript:void(0);" οnclick="js_method()" style="font-size:12px;">Delete</a>
+
+						<div style="font-size:13px; margin-top:8px;"> 	
+							Tag: <?php echo $val['Tag']; ?> ;
+							Intended Price: $ <?php echo $val['IntendedPrice']; ?> ; 
+								
 						</div>
+
+						
 					</div>
 					<div class="time">
 					<div class="date"> <?php echo $val['SaleId']==null ? "Requesting": $val['SaleId']; ?> </div>

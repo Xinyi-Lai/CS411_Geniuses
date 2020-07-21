@@ -62,6 +62,18 @@
 	<!-- end: Favicon -->
 		
 </head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>
+	function delete_product () {
+          $.ajax({
+            url:"test.php", //the page containing php script
+            type: "post", //request type,
+            dataType: 'json',
+           	data: {SaleId: 123}
+            
+         });
+     }
+</script>
 
 <body>
 
@@ -224,26 +236,32 @@
 			<div class="span12">
 
 				<h1>My Products</h1> </br>
-				<a href= "post_product.html"> <button type="btn" class="btn btn-primary">Add a Product</button> </a>
+				<a href= "post_product.html" type="btn" class="btn btn-primary" style="font-weight:600;">Add a Product</a>
 				<button type="btn" class="btn btn-primary">Generate Your Product List</button></br>
-				</br>
+				
 				
 				<?php foreach($array as $val): ?>
 
-				<div class="task none">
+				<div class="task none" style="margin-top:10px;">
 					<div class="desc">
-						<div class="title"> <?php echo $val['ProductName']; ?> </div>
-						<div> 	Intended Price: $ <?php echo $val['IntendedPrice']; ?> ; 
-								Original Price: $ <?php echo $val['OriginalPrice']; ?> ;
-								Tag: <?php echo $val['Tag']; ?> ; 
-								<a href= "post_product.html"> <button type="btn" >Edit</button> </a>
-								<a href= "post_product.html"> <button type="btn" >Delete</button> </a>
+						<span class="title"> 
+							<span style="font-size:x-large;"><?php echo $val['ProductName']; ?></span>
+						</span>&nbsp;
+							<a href= "post_product.html" style="font-size:12px;">Edit </a>&nbsp;
+							<a href="javascript:void(0);" οnclick="delete_product()" style="font-size:12px;">Delete</a>
+						
+
+						<div style="font-size:13px; margin-top:8px;"> 	
+							Tag: <?php echo $val['Tag']; ?> ;
+							Intended Price: $ <?php echo $val['IntendedPrice']; ?> ; 
+								
 						</div>
 					</div>
 					<div class="time">
 						<div class="date"> <?php echo $val['IntendedBuyerId']==null ? "On Sale": $val['IntendedBuyerId']." wants"; ?> </div>
 						<div>
-							<a href= "#"> <button type="btn" <?php echo $val['IntendedBuyerId']==null ? 'disabled':'' ?> >Deal</button> </a>
+							<button type="querybtn" style="border:none; background:none;"<?php echo $val['IntendedBuyerId']==null ? 'disabled':'' ?> >Approve</button>
+							<button type="querybtn" style="margin-right:-6px;"<?php echo $val['IntendedBuyerId']==null ? 'disabled':'' ?> >Reject</button>
 						</div>
 					</div>
 				</div>
