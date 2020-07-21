@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: database
--- Generation Time: Jul 21, 2020 at 03:48 AM
+-- Generation Time: Jul 21, 2020 at 04:18 AM
 -- Server version: 8.0.20
 -- PHP Version: 7.4.6
 
@@ -97,13 +97,6 @@ CREATE TABLE `Sales` (
   `Depreciation` int DEFAULT NULL,
   `BuyerId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `Sales`
---
-
-INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, `Image`, `IntendedPrice`, `OriginalPrice`, `Depreciation`, `BuyerId`) VALUES
-(1, 'keruiz2', 'house', 'house', 'best house', 'images/keruiz2/20200721033722.jpg', 2020, 2100, 9, NULL);
 
 -- --------------------------------------------------------
 

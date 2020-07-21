@@ -105,6 +105,14 @@
 
                         <form class="navbar-form" role="search">
 
+                            <select id="choosedb" class="form-control">
+
+                                <option selected="selected" value="Sales">Product</option>
+
+                                <option value="Requests">Request</option>
+
+                            </select>
+
                             <div class="form-group">
 
                               <input id="search_box" type="text" class="form-control" placeholder="What do you need...">
@@ -263,7 +271,7 @@
 
                     <a href="<?php echo $curr_user?'post_product.html':'login.php';?>" class="btn btn-post1">Post Your Product</a>
 
-                    <a href="" class="btn btn-post2">Post Your Request</a>
+                    <a href="<?php echo $curr_user?'post_request.html':'login.php';?>" class="btn btn-post2">Post Your Request</a>
 
                 </div>
 

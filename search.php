@@ -31,6 +31,10 @@
 
     <link rel="stylesheet" href="css/style-main.css">
 
+    <link rel="stylesheet" href="css/style-search.css">
+
+    <link rel="stylesheet" href="css/reset.css">
+
     <link rel="stylesheet" href="css/responsive.css">
 
 </head>
@@ -90,6 +94,14 @@
                     <div class="search-form">
 
                         <form class="navbar-form" role="search">
+
+                            <select id="choosedb" class="form-control">
+
+                                <option selected="selected" value="Sales">Product</option>
+
+                                <option value="Requests">Request</option>
+
+                            </select>
 
                             <div class="form-group">
 

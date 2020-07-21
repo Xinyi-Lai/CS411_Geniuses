@@ -2,14 +2,25 @@
     session_start();
     
     include_once "db_functions.php";
-    
+    //include_once "choosedb.php";
+
     //get the q parameter from URL
     $q=$_GET["q"];
-
+    $choosedb=$_GET["choosedb"];
+    
     //connect db
     if (strlen($q) > 0) {
         $conn = connectDB();
-        $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE ProductName LIKE '%$q%'";
+
+        if ($choosedb == "Sales") {
+            $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE ProductName LIKE '%$q%'";
+        }
+        else {
+            $sql = "SELECT RequestId, ProductName, IntendedPrice FROM Requests WHERE ProductName LIKE '%$q%'";
+        }
+        
+        
+        //$sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE ProductName LIKE '%$q%'";
         $result = $conn->query($sql);
     }
 
