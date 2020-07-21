@@ -1,3 +1,79 @@
+<?php
+
+session_start();
+include_once "db_functions.php";
+
+$seller_id = $_SESSION['curr_user'];
+$product_name = ppc($_POST["product_name"]);
+$tag = ppc($_POST["tag"]);
+$description = ppc($_POST["description"]);
+$intended_price = (double)ppc($_POST["intendedPrice"]);
+$original_price = (double)ppc($_POST["originalPrice"]);
+$depreciation = (int)$_POST["depreciation"];
+
+$msg = "";
+$product_name_err = $tag_err = $description_err = $intended_price_err = $original_price_err = $depreciation_err = $image_err = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    if (empty($product_name)){
+        $product_name_err = "* Product name is required.";
+    }
+    if (empty($tag)){
+        $tag_err = "* Tag is required.";
+    }
+    if (empty($description)){
+        $description_err = "* Description of the product is required.";
+    }
+    if (empty($intended_price)){
+        $intended_price_err = "* Intended price is required.";
+    }
+    if (empty($original_price)){
+        $original_price_err = "* Original price is required.";
+    }
+    if (empty($depreciation)){
+        $depreciation_err = "* Depreciation is required.";
+    }
+    if (!file_exists($_FILES['image']['tmp_name'])){
+        $image_err = "* Product image is required.";
+    }
+
+    if ($product_name_err || $tag_err || $description_err || $intended_price_err || $original_price_err || $depreciation_err || $image_err){
+        $msg = "* Please check your input again";
+    }else {
+        $upload_dir="images/".$seller_id."/";
+        if(!is_dir($upload_dir)) {
+            mkdir($upload_dir);
+        }
+        /* Get the postfix of the image */
+        $postfix = substr($_FILES['image']['name'],strrpos($_FILES['image']['name'],'.'));
+        /* Set the file name */
+        $filename = $upload_dir.date("YmdHis").$postfix;
+        /* Store the image to the server */
+        if(move_uploaded_file($_FILES['image']['tmp_name'], $filename)){
+            /* Get the database */
+            $conn = connectDB();
+            /* Set the decode */
+            $sql = "INSERT INTO Sales(SellerId, ProductName, Tag, Description, Image, IntendedPrice, OriginalPrice, Depreciation) 
+                    VALUES ('$seller_id', '$product_name', '$tag', '$description', '$filename', $intended_price, $original_price, $depreciation)";
+            $success = $conn->query($sql);
+            if ($success){
+                header("location:myproducts.php");
+                exit;
+            }else{
+                echo 'Insert fail'.$conn->error;
+            }
+
+            $conn->close();
+        }else{
+            echo 'Store fail';
+        }
+    }
+}
+
+?>
+
+
+
 <!DOCTYPE html>
 <html>
 
@@ -26,7 +102,7 @@
                 <div class="block-heading">
                     <h2 class="text-info">Post Your Product</h2>
 				</div>
-				<form action="upload_product.php" method="post" enctype="multipart/form-data">
+				<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" enctype="multipart/form-data">
 
 					<!-- productName input -->
                     <div class="form-group">
