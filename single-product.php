@@ -328,13 +328,32 @@
 
                     </div>
 
-                    <p><button class="btn btn-theme" type="submit">Live chat with <?php echo ($choosedb=="Sales") ? "seller":"buyer"; ?></button>
-
-                        <button class="btn btn-theme" type="submit">I wanna buy</button>
-
+                    <p>
+                        <button class="btn btn-theme" type="submit">Live chat with <?php echo ($choosedb=="Sales") ? "seller":"buyer"; ?></button>
+                    <?php
+                        if ($choosedb=="Sales"){
+                            $url = "window.location.href='mark_to_buy.php?Id=$item_id'";
+                            echo '<button class="btn btn-theme" type="submit" onclick="'.$url.'">I wanna buy</button>';
+                        }
+                    ?>
                         <button class="btn btn-theme" type="submit" onclick="window.location.href='search.php?search_item=&choosedb=<?php echo $choosedb; ?>&user_id=<?php echo $host_id;?>'">See more <?php echo ($choosedb=="Sales") ? "products":"requests"; ?> from <?php echo $host_id; ?></button>
-
                     </p>
+
+                    <?php
+                        if($choosedb=="Requests"){
+                            $url = "window.location.href='mark_to_sell.php?RequestId=".$item_id."&SaleId='+document.getElementById('saleid_box').value";
+                            echo '
+                            <div class="form-group">
+
+                                <input type="text" style="display:none" />
+
+                                <input type="text" id="saleid_box" class="form-control" placeholder="The id of your product"/>
+
+                            </div>
+
+                            <button class="btn btn-theme" type="submit" onclick="'.$url.'">I wanna sell</button>';
+                        }
+                    ?>
 
                     <div class="product-info">
 

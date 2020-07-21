@@ -15,14 +15,14 @@
 
         if (strlen($search_item) > 0) {
             if ($choosedb == "Sales") {
-                $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE ProductName LIKE '%$search_item%' AND BuyerId IS NULL";
+                $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE ProductName LIKE '%$search_item%' AND IntendedBuyerId IS NULL";
             }
             else {
                 $sql = "SELECT RequestId, Image, ProductName, IntendedPrice FROM Requests WHERE ProductName LIKE '%$search_item%' AND SaleId IS NULL";
             }
         }else {
             if ($choosedb == "Sales") {
-                $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE SellerId = '$user_id' AND BuyerId IS NULL";
+                $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE SellerId = '$user_id' AND IntendedBuyerId IS NULL";
             }
             else {
                 $sql = "SELECT RequestId, Image, ProductName, IntendedPrice FROM Requests WHERE BuyerId = '$user_id' AND SaleId IS NULL";
@@ -31,13 +31,14 @@
 
         $result = $conn->query($sql);
 
+        // echo $result->num_rows==null;
         $array=array();
      
-        while($row = mysqli_fetch_assoc($result)){
-         
-            $array[]=$row;
-         
-        }
+        // if ($result->num_rows > 0){
+            while($row = mysqli_fetch_assoc($result)){
+                $array[]=$row;
+            }
+        // }
      
         $conn->close();
         
