@@ -33,13 +33,7 @@
 
     <link rel="stylesheet" href="css/responsive.css">
 
-    <script type="text/javascript">
-    
-        function jump_to_search() {
-            window.location.href = "search.php?search_item="+document.getElementById("search_box").value;
-        }
-
-    </script>
+    <script src="search.js"></script>
 
 </head>
 
@@ -53,7 +47,7 @@
 
                 <div class="col-md-6">
 
-                    <span class="webname">BEACON</span>
+                    <a class="brand" href="index.php"><span class="webname" href="index.php">BEACON</span></a>
 
                 </div>
 
@@ -115,7 +109,9 @@
 
                             <div class="form-group">
 
-                              <input id="search_box" type="text" class="form-control" placeholder="What do you need...">
+                                <input id="hiddenText" type="text" style="display:none" />
+
+                                <input type="text"  onkeydown="entersearch()" id="search_box" class="form-control" placeholder="What do you need..."/>
 
                             </div>
 
@@ -269,9 +265,9 @@
 
                 <div class="col-md-4 col-sm-4">
 
-                    <a href="<?php echo $curr_user?'post_product.html':'login.php';?>" class="btn btn-post1">Post Your Product</a>
+                    <a href="<?php echo $curr_user?'post_product.php':'login.php';?>" class="btn btn-post1">Post Your Product</a>
 
-                    <a href="<?php echo $curr_user?'post_request.html':'login.php';?>" class="btn btn-post2">Post Your Request</a>
+                    <a href="<?php echo $curr_user?'post_request.php':'login.php';?>" class="btn btn-post2">Post Your Request</a>
 
                 </div>
 

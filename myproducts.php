@@ -208,7 +208,7 @@
 			<div class="span12">
 
 				<h1>My Products</h1> </br>
-				<a href= "post_product.html" type="btn" class="btn btn-primary" style="font-weight:600;">Add a Product</a>
+				<a href= "post_product.php" type="btn" class="btn btn-primary" style="font-weight:600;">Add a Product</a>
 				<button type="btn" class="btn btn-primary">Generate Your Product List</button></br>
 				
 				

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: database
--- Generation Time: Jul 21, 2020 at 04:18 AM
+-- Generation Time: Jul 21, 2020 at 06:52 PM
 -- Server version: 8.0.20
 -- PHP Version: 7.4.6
 
@@ -71,13 +71,14 @@ INSERT INTO `Group_Mem` (`Name`, `NetId`) VALUES
 
 CREATE TABLE `Requests` (
   `RequestId` int NOT NULL,
-  `BuyerId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `ProductName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Tag` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Description` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `BuyerId` varchar(50) DEFAULT NULL,
+  `ProductName` varchar(50) DEFAULT NULL,
+  `Tag` varchar(50) DEFAULT NULL,
+  `Description` varchar(500) DEFAULT NULL,
+  `Image` varchar(100) DEFAULT NULL,
   `IntendedPrice` double DEFAULT NULL,
   `SaleId` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -87,16 +88,16 @@ CREATE TABLE `Requests` (
 
 CREATE TABLE `Sales` (
   `SaleId` int NOT NULL,
-  `SellerId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `ProductName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Tag` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Description` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Image` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `SellerId` varchar(50) DEFAULT NULL,
+  `ProductName` varchar(50) DEFAULT NULL,
+  `Tag` varchar(50) DEFAULT NULL,
+  `Description` varchar(500) DEFAULT NULL,
+  `Image` varchar(100) DEFAULT NULL,
   `IntendedPrice` double DEFAULT NULL,
   `OriginalPrice` double DEFAULT NULL,
   `Depreciation` int DEFAULT NULL,
-  `BuyerId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `IntendedBuyerId` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -156,7 +157,7 @@ ALTER TABLE `Requests`
 ALTER TABLE `Sales`
   ADD PRIMARY KEY (`SaleId`),
   ADD KEY `SellerId` (`SellerId`),
-  ADD KEY `BuyerId` (`BuyerId`);
+  ADD KEY `IntendedBuyerId` (`IntendedBuyerId`);
 
 --
 -- Indexes for table `Users`
@@ -178,7 +179,7 @@ ALTER TABLE `Requests`
 -- AUTO_INCREMENT for table `Sales`
 --
 ALTER TABLE `Sales`
-  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -196,7 +197,7 @@ ALTER TABLE `Requests`
 --
 ALTER TABLE `Sales`
   ADD CONSTRAINT `Sales_ibfk_1` FOREIGN KEY (`SellerId`) REFERENCES `Users` (`NetId`) ON DELETE CASCADE,
-  ADD CONSTRAINT `Sales_ibfk_2` FOREIGN KEY (`BuyerId`) REFERENCES `Users` (`NetId`) ON DELETE SET NULL;
+  ADD CONSTRAINT `Sales_ibfk_2` FOREIGN KEY (`IntendedBuyerId`) REFERENCES `Users` (`NetId`) ON DELETE SET NULL;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

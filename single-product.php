@@ -6,25 +6,41 @@
     $curr_user = $_SESSION['curr_user'];
     
     //get the q parameter from URL
-    $saleId=$_GET["SaleId"];
+    $item_id=$_GET["Id"];
+    $choosedb = $_GET["choosedb"];
 
     //connect db
-    if (strlen($saleId) > 0) {
+    if (strlen($item_id) > 0) {
         $conn = connectDB();
-        $sql = "SELECT * FROM Sales WHERE SaleId = $saleId";
-        $result = $conn->query($sql);
-
-        if ($result && $result->num_rows == 1) {
-            $row = $result->fetch_assoc();
-            $sellerId = $row["SellerId"];
-            $product_name = $row["ProductName"];
-            $tag = $row["Tag"];
-            $description = $row["Description"];
-            $image = $row["Image"];
-            $intendedPrice = $row["IntendedPrice"];
-            $originalPrice = $row["OriginalPrice"];
-            $depreciation = $row["Depreciation"];
-        } 
+        if ($choosedb == "Sales"){
+            $sql = "SELECT * FROM Sales WHERE SaleId = $item_id";
+            $result = $conn->query($sql);
+    
+            if ($result && $result->num_rows == 1) {
+                $row = $result->fetch_assoc();
+                $host_id = $row["SellerId"];
+                $product_name = $row["ProductName"];
+                $tag = $row["Tag"];
+                $description = $row["Description"];
+                $image = $row["Image"];
+                $intendedPrice = $row["IntendedPrice"];
+                $originalPrice = $row["OriginalPrice"];
+                $depreciation = $row["Depreciation"];
+            } 
+        }else{
+            $sql = "SELECT * FROM Requests WHERE RequestId = $item_id";
+            $result = $conn->query($sql);
+    
+            if ($result && $result->num_rows == 1) {
+                $row = $result->fetch_assoc();
+                $host_id = $row["BuyerId"];
+                $product_name = $row["ProductName"];
+                $tag = $row["Tag"];
+                $description = $row["Description"];
+                $image = $row["Image"];
+                $intendedPrice = $row["IntendedPrice"];
+            } 
+        }
     
         $conn->close();
     }else{
@@ -63,13 +79,7 @@
 
     <link rel="stylesheet" href="css/responsive.css">
 
-    <script type="text/javascript">
-    
-        function jump_to_search() {
-            window.location.href = "search.php?search_item="+document.getElementById("search_box").value;
-        }
-
-    </script>
+    <script src="search.js"></script>
 
 </head>
 
@@ -83,7 +93,7 @@
 
                 <div class="col-md-6">
 
-                    <span class="webname">BEACON</span>
+                    <a class="brand" href="index.php"><span class="webname" href="index.php">BEACON</span></a>
 
                 </div>
 
@@ -95,7 +105,7 @@
 
                             <?php
                                 if ($curr_user) {
-                                    echo '<li><a href="profile.php"><i class="fa fa-user"></i> '.$curr_user.'</a></li>';
+                                    echo '<li><a href="myprofile.php"><i class="fa fa-user"></i> '.$curr_user.'</a></li>';
                                 }else{
                                     echo '<li><a href="login.php"><i class="fa fa-user"></i> Login</a></li>';
                                 }
@@ -140,7 +150,9 @@
 
                             <div class="form-group">
 
-                              <input id="search_box" type="text" class="form-control" placeholder="What do you need...">
+                                <input id="hiddenText" type="text" style="display:none" />
+
+                                <input type="text"  onkeydown="entersearch()" id="search_box" class="form-control" placeholder="What do you need..."/>
 
                             </div>
 
@@ -293,12 +305,18 @@
                     <h1 class="product-title"><?php echo $product_name; ?></h1>
 
                     <div class="product-info">
+                    
+                    <?php
+                        if ($choosedb == "Sales"){
+                            echo '<span class="product-identity"><span class="strong-text">Product ID:</span> '.$item_id.'</span>';
+                            echo '<span class="product-identity"><span class="strong-text">Seller:</span> '.$host_id.'</span></br></br>';
+                        }else{
+                            echo '<span class="product-identity"><span class="strong-text">Request ID:</span> '.$item_id.'</span>';
+                            echo '<span class="product-identity"><span class="strong-text">Buyer:</span> '.$host_id.'</span></br></br>';
+                        }
+                    ?>
 
-                        <span class="product-identity"><span class="strong-text">Product ID:</span> <?php echo $saleId; ?></span>
-
-                        <span class="product-identity"><span class="strong-text">Availability:</span> In Stock</span>
-
-                        <span class="product-identity"><span class="strong-text">Seller:</span> <?php echo $sellerId; ?></span></br></br>
+                        
 
                         <span class="product-identity"><span class="strong-text">Description:</span> <?php echo $description; ?></span>
 
@@ -310,13 +328,32 @@
 
                     </div>
 
-                    <p><button class="btn btn-theme" type="submit">Live chat with seller</button>
-
-                        <button class="btn btn-theme" type="submit">I wanna buy</button>
-
-                        <button class="btn btn-theme" type="submit">See more from <?php echo $sellerId; ?></button>
-
+                    <p>
+                        <button class="btn btn-theme" type="submit">Live chat with <?php echo ($choosedb=="Sales") ? "seller":"buyer"; ?></button>
+                    <?php
+                        if ($choosedb=="Sales"){
+                            $url = "window.location.href='mark_to_buy.php?Id=$item_id'";
+                            echo '<button class="btn btn-theme" type="submit" onclick="'.$url.'">I wanna buy</button>';
+                        }
+                    ?>
+                        <button class="btn btn-theme" type="submit" onclick="window.location.href='search.php?search_item=&choosedb=<?php echo $choosedb; ?>&user_id=<?php echo $host_id;?>'">See more <?php echo ($choosedb=="Sales") ? "products":"requests"; ?> from <?php echo $host_id; ?></button>
                     </p>
+
+                    <?php
+                        if($choosedb=="Requests"){
+                            $url = "window.location.href='mark_to_sell.php?RequestId=".$item_id."&SaleId='+document.getElementById('saleid_box').value";
+                            echo '
+                            <div class="form-group">
+
+                                <input type="text" style="display:none" />
+
+                                <input type="text" id="saleid_box" class="form-control" placeholder="The id of your product"/>
+
+                            </div>
+
+                            <button class="btn btn-theme" type="submit" onclick="'.$url.'">I wanna sell</button>';
+                        }
+                    ?>
 
                     <div class="product-info">
 
