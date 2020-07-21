@@ -32,7 +32,8 @@
                         VALUES ('$seller_id', '$product_name', '$tag', '$description', '$filename', $intended_price, $original_price, $depreciation)";
                 $success = $conn->query($sql);
                 if ($success){
-                    echo 'Insert success!';
+                    header("location:myrequests.php");
+                    exit;
                 }else{
                     echo 'Insert fail'.$conn->error;
                 }
