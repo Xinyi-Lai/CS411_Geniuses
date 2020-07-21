@@ -130,6 +130,14 @@
 
                         <form class="navbar-form" role="search">
 
+                            <select id="choosedb" class="form-control">
+
+                                <option selected="selected" value="Sales">Product</option>
+
+                                <option value="Requests">Request</option>
+
+                            </select>
+
                             <div class="form-group">
 
                               <input id="search_box" type="text" class="form-control" placeholder="What do you need...">
@@ -244,7 +252,7 @@
 
                 <span>Home > </span>
 
-                <span><?php echo $tag; ?> > </span>
+                <span herf=""><?php echo $tag; ?> > </span>
 
                 <!-- <span>Eyewear > </span>
 
@@ -266,33 +274,17 @@
 
                     <div class="product-thumbnail">
 
-                        <div class="col-md-2 col-sm-2 col-xs-2">
-
-                            <ul class="thumb-image">
-
-                                <li class="active"><a href="<?php echo $image; ?>"><img src="<?php echo $image; ?>" alt=""></a></li>
-
-                                <li><a href="images/single-product-2.jpg"><img src="images/single-product-2.jpg" alt=""></a></li>
-
-                                <li><a href="images/single-product-3.jpg"><img src="images/single-product-3.jpg" alt=""></a></li>
-
-                                <li><a href=""><img src="images/single-product-4.jpg" alt=""></a></li>
-
-                                <li><a href=""><img src="images/single-product-5.jpg" alt=""></a></li>
-
-                            </ul>
+                        <div class="col-md-1 col-sm-1 col-xs-1">
 
                         </div>
 
                         <div class="col-md-10 col-sm-10 col-xs-10">
 
-                            <div class="thumb-main-image"><a href=""><img src="images/single-product-1.jpg" alt=""></a></div>
+                        <li class="active"><a href="<?php echo $image; ?>"><img src="<?php echo $image; ?>" alt=""></a></li>
 
                         </div>
 
                     </div>
-
-                    <div class="clearfix"></div>
 
                 </div>
 
@@ -306,11 +298,11 @@
 
                         <span class="product-identity"><span class="strong-text">Availability:</span> In Stock</span>
 
-                        <span class="product-identity"><span class="strong-text">Seller:</span> <?php echo $sellerId; ?></span>
+                        <span class="product-identity"><span class="strong-text">Seller:</span> <?php echo $sellerId; ?></span></br></br>
 
-                    </div>
+                        <span class="product-identity"><span class="strong-text">Description:</span> <?php echo $description; ?></span>
 
-                    <p class="product-description"><?php echo $description; ?></p>
+                    </div></br>
 
                     <div class="price">
 
@@ -318,13 +310,19 @@
 
                     </div>
 
-                    <p><button class="btn btn-theme" type="submit">Live chat with seller</button></p>
+                    <p><button class="btn btn-theme" type="submit">Live chat with seller</button>
+
+                        <button class="btn btn-theme" type="submit">I wanna buy</button>
+
+                        <button class="btn btn-theme" type="submit">See more from <?php echo $sellerId; ?></button>
+
+                    </p>
 
                     <div class="product-info">
 
                         <!-- <span class="product-identity"><span class="strong-text">Categories:</span> Pants, T-Shirt, Jama</span></p> -->
 
-                        <span class="product-identity"><span class="strong-text">Tags:</span> <?php echo $tag; ?></span>
+                        <span class="product-identity" herf=""><span class="strong-text">Tags:</span> <?php echo $tag; ?></span>
 
                     </div>
 
