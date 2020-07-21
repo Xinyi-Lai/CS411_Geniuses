@@ -18,7 +18,7 @@
 		
 		$conn->close();
 	}
-	echo "<script>console.log('$msg');</script>";
+	// echo "<script>console.log('$msg');</script>";
 ?>
 
 <!DOCTYPE html>
@@ -245,6 +245,9 @@
 		</div>	
 	</div>
 	<!-- end: Content -->
+	</div><!--/#content.span10-->
+	</div><!--/fluid-row-->
+
 
 	
 	<footer>

@@ -351,7 +351,8 @@
 
 	</div><!--/.fluid-container-->
 	<!-- end: Content -->
-
+	</div><!--/#content.span10-->
+	</div><!--/fluid-row-->
 
 	<footer>
 		<p>
