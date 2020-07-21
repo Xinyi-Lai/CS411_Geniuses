@@ -1679,6 +1679,46 @@ fieldset[disabled] .btn-primary:active {
   border-color: #578EBE;
 }
 
+.btn-primary .btn-primary-small {
+	background-color: #f8f8f8;
+	border-color: #578EBE;
+	width: 10px;
+	font-size: ;
+  }
+  
+  .btn-primary-small:hover,
+  .btn-primary-small:focus,
+  .btn-primary-small:active {
+	background-color: #357ebd;
+	border-color: #3071a9;
+  }
+  
+  .btn-primary-small.disabled:hover,
+  .btn-primary-small[disabled]:hover,
+  fieldset[disabled] .btn-primary-small:hover,
+  .btn-primary-small.disabled:focus,
+  .btn-primary-small[disabled]:focus,
+  fieldset[disabled] .btn-primary-small:focus,
+  .btn-primary-small.disabled:active,
+  .btn-primary-small[disabled]:active,
+  fieldset[disabled] .btn-primary:active {
+	background-color: #578EBE;
+	border-color: #578EBE;
+  }
+
+
+.querybtn{
+	border: none;
+	outline: none;
+}
+
+button:disabled,
+button[disabled]{
+	border: none;
+	background: none;
+	cursor: not-allowed;
+}
+
 .btn-warning {
   background-color: #DEB948;
   border-color: #DEB948;
