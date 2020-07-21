@@ -24,6 +24,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<script src="delete.js"></script>
+
 <head>
 	
 	<!-- start: Meta -->
@@ -62,18 +64,6 @@
 	<!-- end: Favicon -->
 		
 </head>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script>
-	function delete_product () {
-          $.ajax({
-            url:"test.php", //the page containing php script
-            type: "post", //request type,
-            dataType: 'json',
-           	data: {SaleId: 123}
-            
-         });
-     }
-</script>
 
 <body>
 
@@ -107,12 +97,8 @@
                                     <a href="#">
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
-											<span class="from">
-										    	
-										     </span>
-											<span class="time">
-										    	6 min
-										    </span>
+											<span class="from"> </span>
+											<span class="time"> 6 min </span>
 										</span>
                                         <span class="message">
                                             Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
@@ -123,12 +109,8 @@
                                     <a href="#">
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
-											<span class="from">
-										    	
-										     </span>
-											<span class="time">
-										    	56 min
-										    </span>
+											<span class="from"> </span>
+											<span class="time"> 56 min </span>
 										</span>
                                         <span class="message">
                                             Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
@@ -139,12 +121,8 @@
                                     <a href="#">
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
-											<span class="from">
-										    	
-										     </span>
-											<span class="time">
-										    	3 hours
-										    </span>
+											<span class="from"> </span>
+											<span class="time"> 3 hours </span>
 										</span>
                                         <span class="message">
                                             Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
@@ -155,12 +133,8 @@
                                     <a href="#">
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
-											<span class="from">
-										    	
-										     </span>
-											<span class="time">
-										    	yesterday
-										    </span>
+											<span class="from"> </span>
+											<span class="time"> yesterday </span>
 										</span>
                                         <span class="message">
                                             Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
@@ -230,9 +204,7 @@
 
 	<!-- start: Content -->
 	<div id="content" class="span10">
-	
 		<div class="row-fluid">
-			
 			<div class="span12">
 
 				<h1>My Products</h1> </br>
@@ -247,16 +219,16 @@
 						<span class="title"> 
 							<span style="font-size:x-large;"><?php echo $val['ProductName']; ?></span>
 						</span>&nbsp;
-							<a href= "post_product.php" style="font-size:12px;">Edit </a>&nbsp;
-							<a href="javascript:void(0);" οnclick="delete_product()" style="font-size:12px;">Delete</a>
 						
+						<a href="edit_product.php?id=<?php echo $val['SaleId'];?>" style="font-size:12px;">Edit </a>&nbsp;
+						<a href="javascript:void(0);" onclick="delete_post(<?php echo $val['SaleId']; ?>, 'Sales')" style="font-size:12px;">Delete</a>
 
 						<div style="font-size:13px; margin-top:8px;"> 	
 							Tag: <?php echo $val['Tag']; ?> ;
-							Intended Price: $ <?php echo $val['IntendedPrice']; ?> ; 
-								
+							Intended Price: $ <?php echo $val['IntendedPrice']; ?> . 
 						</div>
 					</div>
+
 					<div class="time">
 						<div class="date"> <?php echo $val['IntendedBuyerId']==null ? "On Sale": $val['IntendedBuyerId']." wants"; ?> </div>
 						<div>
@@ -269,53 +241,21 @@
 				<?php endforeach; ?>
 				
 			</div>
-			
 		</div>	
-				
 	</div>
 	<!-- end: Content -->
 
-
-	
-		
-	<div class="modal hide fade" id="myModal">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>Settings</h3>
-		</div>
-		<div class="modal-body">
-			<p>Here settings can be configured...</p>
-		</div>
-		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">Close</a>
-			<a href="#" class="btn btn-primary">Save changes</a>
-		</div>
-	</div>
-	
-	<div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-content">
-			<ul class="list-inline item-details">
-				<li><a href="http://www.freemoban.com">Admin templates</a></li>
-				<li><a href="http://www.freemoban.com">Bootstrap themes</a></li>
-			</ul>
-		</div>
-	</div>
-	
-	<div class="clearfix"></div>
 	
 	<footer>
-
 		<p>
 			<span style="text-align:left;float:left">Copyright &copy; 2016.Company name All rights reserved.</span>
-			
 		</p>
-
 	</footer>
 	
 	<!-- start: JavaScript-->
 
 		<script src="js/jquery-1.9.1.min.js"></script>
-	<script src="js/jquery-migrate-1.0.0.min.js"></script>
+		<script src="js/jquery-migrate-1.0.0.min.js"></script>
 	
 		<script src="js/jquery-ui-1.10.0.custom.min.js"></script>
 	
@@ -332,10 +272,10 @@
 		<script src='js/jquery.dataTables.min.js'></script>
 
 		<script src="js/excanvas.js"></script>
-	<script src="js/jquery.flot.js"></script>
-	<script src="js/jquery.flot.pie.js"></script>
-	<script src="js/jquery.flot.stack.js"></script>
-	<script src="js/jquery.flot.resize.min.js"></script>
+		<script src="js/jquery.flot.js"></script>
+		<script src="js/jquery.flot.pie.js"></script>
+		<script src="js/jquery.flot.stack.js"></script>
+		<script src="js/jquery.flot.resize.min.js"></script>
 	
 		<script src="js/jquery.chosen.min.js"></script>
 	

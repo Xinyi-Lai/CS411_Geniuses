@@ -24,6 +24,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<script src="delete.js"></script>
+
 <head>
 	
 	<!-- start: Meta -->
@@ -95,12 +97,8 @@
                                     <a href="#">
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
-											<span class="from">
-										    	
-										     </span>
-											<span class="time">
-										    	6 min
-										    </span>
+											<span class="from"> </span>
+											<span class="time"> 6 min </span>
 										</span>
                                         <span class="message">
                                             Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
@@ -111,12 +109,8 @@
                                     <a href="#">
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
-											<span class="from">
-										    	
-										     </span>
-											<span class="time">
-										    	56 min
-										    </span>
+											<span class="from"> </span>
+											<span class="time"> 56 min </span>
 										</span>
                                         <span class="message">
                                             Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
@@ -127,12 +121,8 @@
                                     <a href="#">
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
-											<span class="from">
-										    	
-										     </span>
-											<span class="time">
-										    	3 hours
-										    </span>
+											<span class="from"> </span>
+											<span class="time"> 3 hours </span>
 										</span>
                                         <span class="message">
                                             Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
@@ -143,12 +133,8 @@
                                     <a href="#">
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
-											<span class="from">
-										    	
-										     </span>
-											<span class="time">
-										    	yesterday
-										    </span>
+											<span class="from"> </span>
+											<span class="time"> yesterday </span>
 										</span>
                                         <span class="message">
                                             Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
@@ -231,8 +217,9 @@
 						<span class="title"> 
 							<span style="font-size:x-large;"><?php echo $val['ProductName']; ?></span>
 						</span>&nbsp;
-						<a href= "post_product.php" style="font-size:12px;">Edit </a>&nbsp;
-							<a href="javascript:void(0);" οnclick="js_method()" style="font-size:12px;">Delete</a>
+							
+						<a href= "post_product.html" style="font-size:12px;">Edit </a>&nbsp;
+						<a href="javascript:void(0);" onclick="delete_post(<?php echo $val['RequestId']; ?>, 'Requests')" style="font-size:12px;">Delete</a>
 
 						<div style="font-size:13px; margin-top:8px;"> 	
 							Tag: <?php echo $val['Tag']; ?> ;
@@ -240,7 +227,6 @@
 								
 						</div>
 
-						
 					</div>
 					<div class="time">
 					<div class="date"> <?php echo $val['SaleId']==null ? "Requesting": $val['SaleId']; ?> </div>
