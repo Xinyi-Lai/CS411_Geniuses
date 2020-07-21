@@ -6,25 +6,41 @@
     $curr_user = $_SESSION['curr_user'];
     
     //get the q parameter from URL
-    $saleId=$_GET["SaleId"];
+    $item_id=$_GET["Id"];
+    $choosedb = $_GET["choosedb"];
 
     //connect db
-    if (strlen($saleId) > 0) {
+    if (strlen($item_id) > 0) {
         $conn = connectDB();
-        $sql = "SELECT * FROM Sales WHERE SaleId = $saleId";
-        $result = $conn->query($sql);
-
-        if ($result && $result->num_rows == 1) {
-            $row = $result->fetch_assoc();
-            $sellerId = $row["SellerId"];
-            $product_name = $row["ProductName"];
-            $tag = $row["Tag"];
-            $description = $row["Description"];
-            $image = $row["Image"];
-            $intendedPrice = $row["IntendedPrice"];
-            $originalPrice = $row["OriginalPrice"];
-            $depreciation = $row["Depreciation"];
-        } 
+        if ($choosedb == "Sales"){
+            $sql = "SELECT * FROM Sales WHERE SaleId = $item_id";
+            $result = $conn->query($sql);
+    
+            if ($result && $result->num_rows == 1) {
+                $row = $result->fetch_assoc();
+                $netId = $row["SellerId"];
+                $product_name = $row["ProductName"];
+                $tag = $row["Tag"];
+                $description = $row["Description"];
+                $image = $row["Image"];
+                $intendedPrice = $row["IntendedPrice"];
+                $originalPrice = $row["OriginalPrice"];
+                $depreciation = $row["Depreciation"];
+            } 
+        }else{
+            $sql = "SELECT * FROM Requests WHERE RequestId = $item_id";
+            $result = $conn->query($sql);
+    
+            if ($result && $result->num_rows == 1) {
+                $row = $result->fetch_assoc();
+                $netId = $row["BuyerId"];
+                $product_name = $row["ProductName"];
+                $tag = $row["Tag"];
+                $description = $row["Description"];
+                $image = $row["Image"];
+                $intendedPrice = $row["IntendedPrice"];
+            } 
+        }
     
         $conn->close();
     }else{
@@ -294,12 +310,18 @@
                     <h1 class="product-title"><?php echo $product_name; ?></h1>
 
                     <div class="product-info">
+                    
+                    <?php
+                        if ($choosedb == "Sales"){
+                            echo '<span class="product-identity"><span class="strong-text">Product ID:</span> '.$item_id.'</span>';
+                            echo '<span class="product-identity"><span class="strong-text">Seller:</span> '.$netId.'</span></br></br>';
+                        }else{
+                            echo '<span class="product-identity"><span class="strong-text">Request ID:</span> '.$item_id.'</span>';
+                            echo '<span class="product-identity"><span class="strong-text">Buyer:</span> '.$netId.'</span></br></br>';
+                        }
+                    ?>
 
-                        <span class="product-identity"><span class="strong-text">Product ID:</span> <?php echo $saleId; ?></span>
-
-                        <span class="product-identity"><span class="strong-text">Availability:</span> In Stock</span>
-
-                        <span class="product-identity"><span class="strong-text">Seller:</span> <?php echo $sellerId; ?></span></br></br>
+                        
 
                         <span class="product-identity"><span class="strong-text">Description:</span> <?php echo $description; ?></span>
 
@@ -315,7 +337,7 @@
 
                         <button class="btn btn-theme" type="submit">I wanna buy</button>
 
-                        <button class="btn btn-theme" type="submit" onclick="window.location.href='search.php?search_item=&choosedb=Sales&user_id=<?php echo $sellerId;?>'">See more from <?php echo $sellerId; ?></button>
+                        <button class="btn btn-theme" type="submit" onclick="window.location.href='search.php?search_item=&choosedb=<?php $choosedb ?>&user_id=<?php echo $netId;?>'">See more from <?php echo $netId; ?></button>
 
                     </p>
 

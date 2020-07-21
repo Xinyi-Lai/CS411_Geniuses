@@ -1,3 +1,63 @@
+<?php
+
+    session_start();
+    include_once "db_functions.php";
+
+    $msg = "";
+    $product_name_err = $tag_err = "";
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST"){
+
+        $buyer_id = $_SESSION['curr_user'];
+        $product_name = ppc($_POST["product_name"]);
+        $tag = ppc($_POST["tag"]);
+        $description = ppc($_POST["description"]);
+        $intended_price = (double)ppc($_POST["intendedPrice"]);
+    
+        if (empty($product_name)){
+            $product_name_err = "* Product name is required.";
+        }
+        if (empty($tag)){
+            $tag_err = "* Tag is required.";
+        }
+    
+        if ($product_name_err || $tag_err){
+            $msg = "* Please check your input again";
+        }else {
+            $filename = "";
+            if (file_exists($_FILES['image']['tmp_name'])){
+                $upload_dir="images/".$buyer_id."/";
+                if(!is_dir($upload_dir)) {
+                    mkdir($upload_dir);
+                }
+                /* Get the postfix of the image */
+                $postfix = substr($_FILES['image']['name'],strrpos($_FILES['image']['name'],'.'));
+                /* Set the file name */
+                $filename = $upload_dir.date("YmdHis").$postfix;
+                /* Store the image to the server */
+                if(!move_uploaded_file($_FILES['image']['tmp_name'], $filename)){
+                    echo 'Store fail';
+                    die;
+                }
+            }
+            /* Get the database */
+            $conn = connectDB();
+            /* Set the decode */
+            $sql = "INSERT INTO Requests(BuyerID, ProductName, Tag, Description, Image, IntendedPrice) 
+                VALUES ('$buyer_id', '$product_name', '$tag', '$description', '$filename', $intended_price)";
+            $success = $conn->query($sql);
+            if ($success){
+                header("location:myrequests.php");
+                exit;
+            }else{
+                echo 'Insert fail'.$conn->error;
+            }
+        }
+    }
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -26,17 +86,17 @@
                 <div class="block-heading">
                     <h2 class="text-info">Post Your Request</h2>
 				</div>
-				<form action="upload_request.php" method="post" enctype="multipart/form-data">
+				<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" enctype="multipart/form-data">
 
 					<!-- productName input -->
                     <div class="form-group">
-						<label for="focusedInput">Product Name</label>
+						<label for="focusedInput">Product Name</label><span class="warning"> <?php echo $product_name_err;?></span>
 						<input class="form-control item" type="text" name="product_name" placeholder="product name"/>
 					</div>
 					
 					<!-- tag input -->
 					<div class="form-group">
-						<label for="focusedInput">Tag</label>
+						<label for="focusedInput">Tag</label><span class="warning"> <?php echo $tag_err;?></span>
 						<input class="form-control item" type="text" name="tag" placeholder="tag"/>
 					</div>
 

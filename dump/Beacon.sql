@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: database
--- Generation Time: Jul 21, 2020 at 04:18 AM
+-- Generation Time: Jul 21, 2020 at 03:08 PM
 -- Server version: 8.0.20
 -- PHP Version: 7.4.6
 
@@ -71,13 +71,21 @@ INSERT INTO `Group_Mem` (`Name`, `NetId`) VALUES
 
 CREATE TABLE `Requests` (
   `RequestId` int NOT NULL,
-  `BuyerId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `ProductName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Tag` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Description` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `BuyerId` varchar(50) DEFAULT NULL,
+  `ProductName` varchar(50) DEFAULT NULL,
+  `Tag` varchar(50) DEFAULT NULL,
+  `Description` varchar(500) DEFAULT NULL,
+  `Image` varchar(100) DEFAULT NULL,
   `IntendedPrice` double DEFAULT NULL,
   `SaleId` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `Requests`
+--
+
+INSERT INTO `Requests` (`RequestId`, `BuyerId`, `ProductName`, `Tag`, `Description`, `Image`, `IntendedPrice`, `SaleId`) VALUES
+(1, 'keruiz2', 'house', 'house', 'best house', 'images/keruiz2/20200721140927.jpg', 2017, NULL);
 
 -- --------------------------------------------------------
 
@@ -97,6 +105,14 @@ CREATE TABLE `Sales` (
   `Depreciation` int DEFAULT NULL,
   `BuyerId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `Sales`
+--
+
+INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, `Image`, `IntendedPrice`, `OriginalPrice`, `Depreciation`, `BuyerId`) VALUES
+(2, 'keruiz2', 'house', 'house', 'best house', 'images/keruiz2/20200721133647.jpg', 2020, 2100, 9, NULL),
+(3, 'keruiz2', 'mouse', 'mouse', 'logi mouse', 'images/keruiz2/20200721141501.jpg', 40, 60, 9, NULL);
 
 -- --------------------------------------------------------
 
@@ -172,13 +188,13 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT for table `Requests`
 --
 ALTER TABLE `Requests`
-  MODIFY `RequestId` int NOT NULL AUTO_INCREMENT;
+  MODIFY `RequestId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `Sales`
 --
 ALTER TABLE `Sales`
-  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

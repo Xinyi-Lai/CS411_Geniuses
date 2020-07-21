@@ -43,6 +43,12 @@
         
         foreach($array as $val):
             $image = ($val['Image']) ? $val['Image'] : 'images/beaconlogo.png';
+            $id = "";
+            if ($choosedb == "Sales"){
+                $id = $val['SaleId'];
+            }else{
+                $id = $val['RequestId'];
+            }
             echo '
                 <div class="col-md-3 col-sm-4">
                     <div class="single-product">
@@ -54,7 +60,7 @@
                             </div>
                             <div class="product-hover">
                                 <ul>
-                                    <li><a href="single-product.php?SaleId='.$val['SaleId'].'"><i class="fa fa-cart-arrow-down"></i></a></li>
+                                    <li><a href="single-product.php?Id='.$id.'&choosedb='.$choosedb.'"><i class="fa fa-cart-arrow-down"></i></a></li>
                                 </ul>
                             </div>
                         </div>
