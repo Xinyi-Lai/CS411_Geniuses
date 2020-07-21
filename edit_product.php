@@ -1,9 +1,9 @@
 <?php 
     include_once "db_functions.php";
     session_start();
-    $saleid = $_GET['id'];
+    $saleid = (int)$_GET['id'];
 
-    if ($id) {
+    if ($saleid) {
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $seller_id = $_SESSION['curr_user'];
@@ -16,40 +16,67 @@
 
             if ($product_name != "" && $intended_price > 0 && $original_price > 0 
                     && file_exists($_FILES['image']['tmp_name'])) {
-                /* Get the directory to store the image */
+                
+                // make directory if not exists
                 $upload_dir="images/".$seller_id."/";
-                if(!is_dir($upload_dir))
-                    mkdir($upload_dir);
-                /* Get the postfix of the image */
+                if(!is_dir($upload_dir)) { mkdir($upload_dir); }
+                // filename
                 $postfix = substr($_FILES['image']['name'],strrpos($_FILES['image']['name'],'.'));
-                /* Set the file name */
                 $filename = $upload_dir.date("YmdHis").$postfix;
-                /* Store the image to the server */
+                
+                // upload file to the server
                 if(move_uploaded_file($_FILES['image']['tmp_name'], $filename)){
-                    /* Get the database */
                     $conn = connectDB();
-                    /* Set the decode */
+                    
+                    // delete the old image
+                    $sql = "SELECT * FROM Sales WHERE SaleId=$saleid";
+                    $result = $conn->query($sql);
+                    if ($result) {
+                        $row = mysqli_fetch_assoc($result);
+                        $original_filepath = $row['Image'];
+                        if(is_file($original_filepath)) { 
+                            unlink($original_filepath);
+                        }
+                    }
+                    else {
+                        $msg = "Error: " . $sql . "<br>" . $conn->error;
+                        header("location:index.php");
+                        exit;
+                    }
+
+                    // delete original sale record
+                    $sql = "DELETE FROM Sales WHERE SaleId=$saleid";
+                    if ($conn->query($sql)) {
+                        $msg = "Old product successfully deleted.";
+                    }
+                    else {
+                        $msg = "Error delete product: " . $sql . "<br>" . $conn->error;
+                        header("location:index.php");
+                        exit;
+                    }
+
+                    // insert new sale record
                     $sql = "INSERT INTO Sales(SellerId, ProductName, Tag, Description, Image, IntendedPrice, OriginalPrice, Depreciation) 
-                            VALUES ('$seller_id', '$product_name', '$tag', '$description', '$filename', $intended_price, $original_price, $depreciation)";
-                    $success = $conn->query($sql);
-                    if ($success){
+                            VALUES ('$seller_id', '$product_name', '$tag', '$description', '$filename', $intended_price, $original_price, $depreciation)";         
+                    $result = $conn->query($sql);
+                    if ($result){
                         header("location:myproducts.php");
                         exit;
-                    }else{
-                        echo 'Insert fail'.$conn->error;
+                    } else {
+                        $msg = "Edit product Error: " . $sql . "<br>" . $conn->error;
                     }
                     $conn->close();
-                }else{
-                    echo 'Store fail';
+                } else {
+                    $msg = 'Store fail';
                 }
-            }else{
-                echo 'Wrong information';
+            } else {
+                $msg+= 'Wrong information';
             }
         }
 
         else {
             $conn = connectDB();
-            $sql = "SELECT * FROM Sales WHERE SaleId='$saleid'";
+            $sql = "SELECT * FROM Sales WHERE SaleId=$saleid";
             $result = $conn->query($sql);
             if ($result) {
                 $row = mysqli_fetch_assoc($result);
@@ -68,6 +95,9 @@
         }
 
     }
+
+    echo "<script>console.log('$saleid')</script>";
+
 ?>
 
 
