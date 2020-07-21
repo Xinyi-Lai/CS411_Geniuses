@@ -18,7 +18,7 @@
     
             if ($result && $result->num_rows == 1) {
                 $row = $result->fetch_assoc();
-                $netId = $row["SellerId"];
+                $host_id = $row["SellerId"];
                 $product_name = $row["ProductName"];
                 $tag = $row["Tag"];
                 $description = $row["Description"];
@@ -33,7 +33,7 @@
     
             if ($result && $result->num_rows == 1) {
                 $row = $result->fetch_assoc();
-                $netId = $row["BuyerId"];
+                $host_id = $row["BuyerId"];
                 $product_name = $row["ProductName"];
                 $tag = $row["Tag"];
                 $description = $row["Description"];
@@ -314,10 +314,10 @@
                     <?php
                         if ($choosedb == "Sales"){
                             echo '<span class="product-identity"><span class="strong-text">Product ID:</span> '.$item_id.'</span>';
-                            echo '<span class="product-identity"><span class="strong-text">Seller:</span> '.$netId.'</span></br></br>';
+                            echo '<span class="product-identity"><span class="strong-text">Seller:</span> '.$host_id.'</span></br></br>';
                         }else{
                             echo '<span class="product-identity"><span class="strong-text">Request ID:</span> '.$item_id.'</span>';
-                            echo '<span class="product-identity"><span class="strong-text">Buyer:</span> '.$netId.'</span></br></br>';
+                            echo '<span class="product-identity"><span class="strong-text">Buyer:</span> '.$host_id.'</span></br></br>';
                         }
                     ?>
 
@@ -333,11 +333,11 @@
 
                     </div>
 
-                    <p><button class="btn btn-theme" type="submit">Live chat with seller</button>
+                    <p><button class="btn btn-theme" type="submit">Live chat with <?php echo ($choosedb=="Sales") ? "seller":"buyer"; ?></button>
 
                         <button class="btn btn-theme" type="submit">I wanna buy</button>
 
-                        <button class="btn btn-theme" type="submit" onclick="window.location.href='search.php?search_item=&choosedb=<?php $choosedb ?>&user_id=<?php echo $netId;?>'">See more from <?php echo $netId; ?></button>
+                        <button class="btn btn-theme" type="submit" onclick="window.location.href='search.php?search_item=&choosedb=<?php echo $choosedb; ?>&user_id=<?php echo $host_id;?>'">See more <?php echo ($choosedb=="Sales") ? "products":"requests"; ?> from <?php echo $host_id; ?></button>
 
                     </p>
 
