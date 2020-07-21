@@ -6,21 +6,21 @@
 
     //get the q parameter from URL
     $q=$_GET["q"];
-    $choosedb=$_POST["choosedb"];
+    $choosedb=$_GET["choosedb"];
     
     //connect db
     if (strlen($q) > 0) {
         $conn = connectDB();
 
-        /*if ($choosedb == "Sales") {
+        if ($choosedb == "Sales") {
             $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE ProductName LIKE '%$q%'";
         }
         else {
             $sql = "SELECT RequestId, ProductName, IntendedPrice FROM Requests WHERE ProductName LIKE '%$q%'";
         }
-        */
         
-        $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE ProductName LIKE '%$q%'";
+        
+        //$sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE ProductName LIKE '%$q%'";
         $result = $conn->query($sql);
     }
 
