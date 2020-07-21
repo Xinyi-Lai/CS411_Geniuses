@@ -272,7 +272,7 @@
 
                     <a href="<?php echo $curr_user?'post_product.html':'login.php';?>" class="btn btn-post1">Post Your Product</a>
 
-                    <a href="" class="btn btn-post2">Post Your Request</a>
+                    <a href="<?php echo $curr_user?'post_request.html':'login.php';?>" class="btn btn-post2">Post Your Request</a>
 
                 </div>
 
