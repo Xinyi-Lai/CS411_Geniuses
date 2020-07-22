@@ -547,7 +547,7 @@ border-bottom: 1px solid transparent;
 
 .dropdown-menu.pull-right {
   	right: 0;
-  	left: auto;
+	  left: auto;
 }
 
 .dropdown-menu .divider {
