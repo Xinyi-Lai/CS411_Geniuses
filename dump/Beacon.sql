@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: database
--- Generation Time: Jul 22, 2020 at 01:37 PM
+-- Generation Time: Jul 22, 2020 at 02:33 PM
 -- Server version: 8.0.21
 -- PHP Version: 7.4.6
 
@@ -65,7 +65,8 @@ CREATE TABLE `Requests` (
 
 INSERT INTO `Requests` (`RequestId`, `BuyerId`, `ProductName`, `Tag`, `Description`, `Image`, `IntendedPrice`, `SaleId`) VALUES
 (2, 'cs411', 'House', 'Daily Necessity', 'Warm', '', 30, NULL),
-(3, 'cs411', 'Mantou', 'Food', 'Yummy', '', 2, NULL);
+(3, 'cs411', 'Mantou', 'Food', 'Yummy', '', 2, 12),
+(4, 'genius', 'CS 411 Textbook', 'Textbook', 'CS411 Textbook', '', 25, NULL);
 
 -- --------------------------------------------------------
 
@@ -95,7 +96,7 @@ INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, 
 (7, 'cs411', 'Genius', 'Toy', 'Smart and sharp', 'images/cs411/20200722132817.jpeg', 150, 180, 9, NULL),
 (8, 'cs411', 'Another Island', 'Daily Necessity', 'Beautiful', 'images/cs411/20200722132849.jpg', 888, 999, 9, NULL),
 (9, 'cs411', 'Fake Genius', 'Toy', 'Sleepy and stupid', 'images/cs411/20200722132913.png', 1, 10, 9, NULL),
-(10, 'genius', 'Mouse', 'Toy', 'Cute', 'images/genius/20200722133204.png', 0.1, 0.2, 9, NULL);
+(12, 'genius', 'Another Mouse', 'Toy', 'Cute', 'images/genius/20200722143115.png', 10, 12, 9, NULL);
 
 -- --------------------------------------------------------
 
@@ -119,7 +120,8 @@ CREATE TABLE `Transactions` (
 
 INSERT INTO `Transactions` (`TransactionId`, `SellerId`, `BuyerId`, `ProductName`, `Price`, `Tag`, `Description`) VALUES
 (2, 'cs411', 'genius', 'Island', 1000, 'Daily Necessity', 'Beautiful'),
-(3, 'genius', 'cs411', 'Baozi', 1, 'Food', 'Good');
+(3, 'genius', 'cs411', 'Baozi', 1, 'Food', 'Good'),
+(4, 'genius', 'cs411', 'Mouse', 0.1, 'Toy', 'Cute');
 
 -- --------------------------------------------------------
 
@@ -197,19 +199,19 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT for table `Requests`
 --
 ALTER TABLE `Requests`
-  MODIFY `RequestId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `RequestId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `Sales`
 --
 ALTER TABLE `Sales`
-  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `Transactions`
 --
 ALTER TABLE `Transactions`
-  MODIFY `TransactionId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `TransactionId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
