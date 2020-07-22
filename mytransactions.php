@@ -1,10 +1,49 @@
+<?php
+	include_once "db_functions.php";	
+	session_start(); 
+	$curr_user = $_SESSION['curr_user'];
+	$msg = "";
+	if (empty($curr_user)) {
+		$msg = "curr_user is empty";
+	}
+	else {
+		$conn = connectDB();
+		
+		$sql = "SELECT * FROM Transactions WHERE BuyerId = '$curr_user'";
+		$result = $conn->query($sql);
+		if ($result) {
+			$buyarray = array();
+			while($row = mysqli_fetch_assoc($result)){
+				$buyarray[]=$row;
+			}
+		} else {
+			$msg = "No buys" . $sql . "<br>" . $conn->error;
+		}
+
+		$sql = "SELECT * FROM Transactions WHERE SellerId = '$curr_user'";
+		$result = $conn->query($sql);
+		if ($result) {
+			$sellarray = array();
+			while($row = mysqli_fetch_assoc($result)){
+				$sellarray[]=$row;
+			}
+		} else {
+			$msg = "No sells" . $sql . "<br>" . $conn->error;
+		}
+
+		$conn->close();
+	}
+	// echo "<script>console.log('$msg');</script>";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>Beacon - User Profile</title>
+	<title>Beacon - My Transactions</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="">
 	<meta name="keyword" content="">
@@ -36,15 +75,13 @@
 	<!-- start: Favicon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
 	<!-- end: Favicon -->
-	
-		
-		
-		
+
 </head>
 
 <body>
-<!-- start: Header -->
-<div class="navbar">
+
+	<!-- start: Header -->
+	<div class="navbar">
 		<div class="navbar-inner">
 			<div class="container-fluid">
 				<a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
@@ -73,12 +110,8 @@
                                     <a href="#">
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
-											<span class="from">
-										    	
-										     </span>
-											<span class="time">
-										    	6 min
-										    </span>
+											<span class="from"> </span>
+											<span class="time"> 6 min </span>
 										</span>
                                         <span class="message">
                                             Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
@@ -89,12 +122,8 @@
                                     <a href="#">
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
-											<span class="from">
-										    	
-										     </span>
-											<span class="time">
-										    	56 min
-										    </span>
+											<span class="from"> </span>
+											<span class="time"> 56 min </span>
 										</span>
                                         <span class="message">
                                             Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
@@ -105,12 +134,8 @@
                                     <a href="#">
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
-											<span class="from">
-										    	
-										     </span>
-											<span class="time">
-										    	3 hours
-										    </span>
+											<span class="from"> </span>
+											<span class="time"> 3 hours </span>
 										</span>
                                         <span class="message">
                                             Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
@@ -121,12 +146,8 @@
                                     <a href="#">
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
-											<span class="from">
-										    	
-										     </span>
-											<span class="time">
-										    	yesterday
-										    </span>
+											<span class="from"> </span>
+											<span class="time"> yesterday </span>
 										</span>
                                         <span class="message">
                                             Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
@@ -178,161 +199,58 @@
 				<li><a href="myrequests.php"><i class="icon-flag"></i><span class="hidden-tablet"> My Requests</span></a></li>
 				<li><a href="myorders.php"><i class="icon-list"></i><span class="hidden-tablet"> Orders</span></a></li>	
 				<li><a href="mytransactions.php"><i class="icon-money"></i><span class="hidden-tablet"> Transactions</span></a></li>
-				<li><a href="messages.html"><i class="icon-envelope"></i><span class="hidden-tablet"> Messages</span></a></li>
-				<li><a href="dashboard.html"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Dashboard</span></a></li>
+				<li><a href="mymessages.php"><i class="icon-envelope"></i><span class="hidden-tablet"> Messages</span></a></li>
+				<li><a href="dashboard.php"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Dashboard</span></a></li>
 				
 			</ul>
 		</div>
 	</div>
 	<!-- end: Main Menu -->
 			
-			<noscript>
-				<div class="alert alert-block span10">
-					<h4 class="alert-heading">Warning!</h4>
-					<p>You need to have <a href="" target="_blank">JavaScript</a> enabled to use this site.</p>
-				</div>
-			</noscript>
+	<noscript>
+		<div class="alert alert-block span10">
+			<h4 class="alert-heading">Warning!</h4>
+			<p>You need to have <a href="" target="_blank">JavaScript</a> enabled to use this site.</p>
+		</div>
+	</noscript>
 			
 			<!-- start: Content -->
 			<div id="content" class="span10">
-			
-	
 				<div class="row-fluid">
-					
 					<div class="span12">
 						<h1>Transaction History</h1>
 						
-						</br><div class="priority high"><span>This Week</span></div>
-						
+						</br><div class="priority high"><span>I bought</span></div>
+						<?php foreach($buyarray as $val): ?>
 						<div class="task high">
 							<div class="desc">
-								<div class="title">Product Name</div>
-								<div>I am product description. I am product description. I am product description</div>
+								<div class="title"><?php echo $val['ProductName']; ?></div>
+								<div> Tag: <?php echo $val['Tag']; ?>; Description: <?php echo $val['Description']; ?></div>
 							</div>
 							<div class="time">
-								<div class="date">Date</div>
-								<div> finished/proceeding</div>
+								<div class="date">$<?php echo $val['Price']; ?></div>
+								<div> From <?php echo $val['SellerId']; ?> </div>
 							</div>
 						</div>
-						<div class="task high">
-							<div class="desc">
-								<div class="title">Product Name</div>
-								<div>I am product description. I am product description. I am product description</div>
-							</div>
-							<div class="time">
-								<div class="date">Date</div>
-								<div> finished/proceeding</div>
-							</div>
-						</div>
-						
-						
-						</br><div class="priority medium"><span>This Month</span></div>
-						
+						<?php endforeach; ?>
+
+						</br><div class="priority medium"><span>I sold</span></div>
+						<?php foreach($sellarray as $val): ?>
 						<div class="task medium">
 							<div class="desc">
-								<div class="title">Product Name</div>
-								<div>I am product description. I am product description. I am product description</div>
+								<div class="title"><?php echo $val['ProductName']; ?></div>
+								<div> Tag: <?php echo $val['Tag']; ?>; Description: <?php echo $val['Description']; ?></div>
 							</div>
 							<div class="time">
-								<div class="date">Date</div>
-								<div> finished/proceeding</div>
+								<div class="date">$<?php echo $val['Price']; ?></div>
+								<div> To <?php echo $val['BuyerId']; ?> </div>
 							</div>
 						</div>
-						<div class="task medium last">
-							<div class="desc">
-								<div class="title">Product Name</div>
-								<div>I am product description. I am product description. I am product description</div>
-							</div>
-							<div class="time">
-								<div class="date">Date</div>
-								<div> finished/proceeding</div>
-							</div>
-						</div>
+						<?php endforeach; ?>
 						
-						</br><div class="priority low"><span>Earlier</span></div>
-						
-						<div class="task low">
-							<div class="desc">
-								<div class="title">Product Name</div>
-								<div>I am product description. I am product description. I am product description</div>
-							</div>
-							<div class="time">
-								<div class="date">Date</div>
-								<div> finished/proceeding</div>
-							</div>
-						</div>
-						<div class="task low">
-							<div class="desc">
-								<div class="title">Product Name</div>
-								<div>I am product description. I am product description. I am product description</div>
-							</div>
-							<div class="time">
-								<div class="date">Date</div>
-								<div> finished/proceeding</div>
-							</div>
-						</div>
-						<div class="task low">
-							<div class="desc">
-								<div class="title">Product Name</div>
-								<div>I am product description. I am product description. I am product description</div>
-							</div>
-							<div class="time">
-								<div class="date">Date</div>
-								<div> finished/proceeding</div>
-							</div>
-						</div>
-						<div class="task low">
-							<div class="desc">
-								<div class="title">Product Name</div>
-								<div>I am product description. I am product description. I am product description</div>
-							</div>
-							<div class="time">
-								<div class="date">Date</div>
-								<div> finished/proceeding</div>
-							</div>
-						</div>
-						<div class="task low">
-							<div class="desc">
-								<div class="title">Product Name</div>
-								<div>I am product description. I am product description. I am product description</div>
-							</div>
-							<div class="time">
-								<div class="date">Date</div>
-								<div> finished/proceeding</div>
-							</div>
-						</div>
-						<div class="task low">
-							<div class="desc">
-								<div class="title">Product Name</div>
-								<div>I am product description. I am product description. I am product description</div>
-							</div>
-							<div class="time">
-								<div class="date">Date</div>
-								<div> finished/proceeding</div>
-							</div>
-						</div>
-						<div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
-							<div class="modal-content">
-								<ul class="list-inline item-details">
-									<li><a href="http://www.freemoban.com">Admin templates</a></li>
-									<li><a href="http://www.freemoban.com">Bootstrap themes</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="clearfix"></div>		
-						
-					</div>
+					</div><!--/span12 -->
 					
-					<!-- <div class="span5 noMarginLeft">
-						
-						<div class="dark">
-						
-						<h1>Timeline</h1>
-						
-						
-					</div> -->
-					
-					</div>	
+				</div><!--/row-fluid -->
 							
 				</div>
 				
@@ -370,18 +288,15 @@
 	<div class="clearfix"></div>
 	
 	<footer>
-
 		<p>
 			<span style="text-align:left;float:left">Copyright &copy; 2016.Company name All rights reserved.</span>
-			
 		</p>
-
 	</footer>
 	
 	<!-- start: JavaScript-->
 
 		<script src="js/jquery-1.9.1.min.js"></script>
-	<script src="js/jquery-migrate-1.0.0.min.js"></script>
+		<script src="js/jquery-migrate-1.0.0.min.js"></script>
 	
 		<script src="js/jquery-ui-1.10.0.custom.min.js"></script>
 	
@@ -398,10 +313,10 @@
 		<script src='js/jquery.dataTables.min.js'></script>
 
 		<script src="js/excanvas.js"></script>
-	<script src="js/jquery.flot.js"></script>
-	<script src="js/jquery.flot.pie.js"></script>
-	<script src="js/jquery.flot.stack.js"></script>
-	<script src="js/jquery.flot.resize.min.js"></script>
+		<script src="js/jquery.flot.js"></script>
+		<script src="js/jquery.flot.pie.js"></script>
+		<script src="js/jquery.flot.stack.js"></script>
+		<script src="js/jquery.flot.resize.min.js"></script>
 	
 		<script src="js/jquery.chosen.min.js"></script>
 	

@@ -212,7 +212,6 @@
 				<h1>My Orders</h1> </br>
 				<a href= "search.php" type="btn" class="btn btn-primary" style="font-weight:600;">Go Shopping</a>
 				
-				
 				<?php foreach($array as $val): ?>
 
 				<div class="task none" style="margin-top:10px;">
