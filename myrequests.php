@@ -24,7 +24,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<script src="delete.js"></script>
+<script src="operations.js"></script>
 
 <head>
 	

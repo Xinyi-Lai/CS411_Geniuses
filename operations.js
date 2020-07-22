@@ -9,9 +9,49 @@ function delete_post(id, table) {
         return false;
     }
     // Get url
-    var url = "delete.php";
+    var url = "op_delete.php";
     url = url + "?id=" + id;
     url = url + "&table=" + table;
+    url = url + "&sid=" + Math.random();
+    // Set the callback function
+    xmlHttp.onreadystatechange=refreshPage;
+    //open
+    xmlHttp.open("GET",url,true)
+    xmlHttp.send(null)
+    return false
+} 
+
+function approve_sale(id) {
+
+    // Get xmlHttpObject object，if null，then the browser doesn't suppport ajax
+    xmlHttp = GetXmlHttpObject();
+    if (xmlHttp == null) {
+        alert ("Browser does not support HTTP Request");
+        return false;
+    }
+    // Get url
+    var url = "op_approve.php";
+    url = url + "?id=" + id;
+    url = url + "&sid=" + Math.random();
+    // Set the callback function
+    xmlHttp.onreadystatechange=refreshPage;
+    //open
+    xmlHttp.open("GET",url,true)
+    xmlHttp.send(null)
+    return false
+} 
+
+function reject_sale(id) {
+
+    // Get xmlHttpObject object，if null，then the browser doesn't suppport ajax
+    xmlHttp = GetXmlHttpObject();
+    if (xmlHttp == null) {
+        alert ("Browser does not support HTTP Request");
+        return false;
+    }
+    // Get url
+    var url = "op_reject.php";
+    url = url + "?id=" + id;
     url = url + "&sid=" + Math.random();
     // Set the callback function
     xmlHttp.onreadystatechange=refreshPage;
