@@ -223,7 +223,7 @@
 						
 						</br>
 						<div class="priority high"><span>I bought </span> 
-							<a data-toggle="collapse" data-parent="#accordion" href="#needtocollapse" style="text-decoration:none;"><i class="icon-collapse-alt"></i></a>
+							<a data-toggle="collapse" data-parent="#accordion" href="#needtocollapse" style="text-decoration:none;"><i class="icon-collapse-alt" style="color:#FA603D;"></i></a>
 						</div>
 						
 						<div id="needtocollapse" class="panel-collapse collapse in">
@@ -242,7 +242,7 @@
 						</div>
 
 						</br><div class="priority medium"><span>I sold</span>
-							<a data-toggle="collapse" data-parent="#accordion" href="#needtocollapse2" style="text-decoration:none;"><i class="icon-collapse-alt"></i></a>
+							<a data-toggle="collapse" data-parent="#accordion" href="#needtocollapse2" style="text-decoration:none;"><i class="icon-collapse-alt" style="color:#FABB3D;"></i></a>
 						</div>
 						<div id="needtocollapse2" class="panel-collapse collapse in">
 						<?php foreach($sellarray as $val): ?>
