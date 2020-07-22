@@ -26,6 +26,7 @@
 
 <script src="delete.js"></script>
 <script src="reject.js"></script>
+<script src="approve.js"></script>
 
 <head>
 	
@@ -234,7 +235,7 @@
 					<div class="time">
 						<div class="date"> <?php echo $val['IntendedBuyerId']==null ? "On Sale": $val['IntendedBuyerId']." wants"; ?> </div>
 						<div>
-							<button type="querybtn" style="border:none; background:none;"<?php echo $val['IntendedBuyerId']==null ? 'disabled':'' ?> >Approve</button>
+							<button type="querybtn" style="border:none; background:none;" onclick="approve_sale(<?php echo $val['SaleId']; ?>, 'Sales')" <?php echo $val['IntendedBuyerId']==null ? 'disabled':'' ?> >Approve</button>
 							<button type="querybtn" style="border:none; background:none;margin-right:-6px;" onclick="reject_sale(<?php echo $val['SaleId']; ?>, 'Sales')" <?php echo $val['IntendedBuyerId']==null ? 'disabled':'' ?> >Reject</button>
 						</div>
 					</div>

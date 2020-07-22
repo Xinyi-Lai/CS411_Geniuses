@@ -13,9 +13,6 @@
         $conn = connectDB();
 
         // set intended buyer to null
-        
-        
-
         $sql = "UPDATE Sales 
                 SET IntendedBuyerId = NULL
                 WHERE SaleId = '$id'";
