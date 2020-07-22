@@ -230,7 +230,8 @@
 					</div>
 					<div class="time">
 					<div class="date"> <?php echo $val['SaleId']==null ? "Requesting": $val['SaleId']; ?> </div>
-						<div> <?php echo $val['SaleId'] ?> </div>
+						<div> <a href="single-product.php?Id=<?php echo $val['SaleId'];?>&choosedb=Sales"><?php echo $val['SaleId']; ?></a> </div>
+						
 					</div>
 				</div>
 
