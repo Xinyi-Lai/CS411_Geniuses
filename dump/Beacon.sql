@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: database
--- Generation Time: Jul 22, 2020 at 02:33 PM
--- Server version: 8.0.21
+-- Generation Time: Jul 22, 2020 at 07:48 PM
+-- Server version: 8.0.20
 -- PHP Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -96,7 +96,7 @@ INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, 
 (7, 'cs411', 'Genius', 'Toy', 'Smart and sharp', 'images/cs411/20200722132817.jpeg', 150, 180, 9, NULL),
 (8, 'cs411', 'Another Island', 'Daily Necessity', 'Beautiful', 'images/cs411/20200722132849.jpg', 888, 999, 9, NULL),
 (9, 'cs411', 'Fake Genius', 'Toy', 'Sleepy and stupid', 'images/cs411/20200722132913.png', 1, 10, 9, NULL),
-(12, 'genius', 'Another Mouse', 'Toy', 'Cute', 'images/genius/20200722143115.png', 10, 12, 9, NULL);
+(12, 'genius', 'Another Mouse', 'Toy', 'Cute', 'images/genius/20200722143115.png', 10, 12, 9, 'keruiz2');
 
 -- --------------------------------------------------------
 
