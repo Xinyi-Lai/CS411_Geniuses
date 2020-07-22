@@ -60,7 +60,22 @@
                 } else {
                     $msg = 'Store fail';
                 }
-            } else {
+            } else if($product_name != "" && $intended_price > 0 && $original_price > 0){
+                $conn = connectDB();
+                    
+                // update record
+                $sql = "UPDATE Sales 
+                        SET ProductName = '$product_name', Tag = '$tag', Description = '$description', IntendedPrice = '$intended_price', OriginalPrice = '$original_price', Depreciation = '$depreciation'
+                        WHERE SaleId = '$saleid'";
+                if ($conn->query($sql)) {
+                    header("location:myproducts.php");
+                    exit;
+                } else {
+                    $msg = 'Update fail';
+                }
+                $conn->close();
+            }
+            else{
                 $msg = 'Wrong information';
             }
         }

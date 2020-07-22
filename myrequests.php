@@ -206,7 +206,7 @@
 			
 			<div class="span12">
 				<h1>My Requests</h1> </br>
-				<a href= "post_product.php" class="btn btn-primary" style="font-weight:600;"> Add a Request </a>
+				<a href= "post_request.php" class="btn btn-primary" style="font-weight:600;"> Add a Request </a>
 				</br>
 
 				<?php foreach($array as $val): ?>
@@ -215,10 +215,10 @@
 					<div class="desc">
 						
 						<span class="title"> 
-							<span style="font-size:x-large;"><?php echo $val['ProductName']; ?></span>
+							<a href="single-product.php?Id=<?php echo $val['RequestId'];?>&choosedb=Requests" style="color:#13294B;font-size:x-large;"><?php echo $val['ProductName']; ?></a>
 						</span>&nbsp;
 							
-						<a href= "post_product.html" style="font-size:12px;">Edit </a>&nbsp;
+						<a href="edit_request.php?id=<?php echo $val['RequestId'];?>" style="font-size:12px;">Edit </a>&nbsp;
 						<a href="javascript:void(0);" onclick="delete_post(<?php echo $val['RequestId']; ?>, 'Requests')" style="font-size:12px;">Delete</a>
 
 						<div style="font-size:13px; margin-top:8px;"> 	
