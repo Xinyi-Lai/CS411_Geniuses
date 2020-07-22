@@ -210,7 +210,7 @@
 			<div class="span12">
 
 				<h1>My Orders</h1> </br>
-				<a href= "search.php" type="btn" class="btn btn-primary" style="font-weight:600;">Go Shopping</a>
+				<a href= "index.php" type="btn" class="btn btn-primary" style="font-weight:600;">Go Shopping</a>
 				
 				<?php foreach($array as $val): ?>
 
