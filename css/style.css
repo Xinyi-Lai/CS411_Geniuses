@@ -341,6 +341,7 @@ h6 {
 a.brand span {
 	color: #fff;
 	text-shadow: none;
+	
 }
 
 .header-nav {
@@ -3065,7 +3066,10 @@ ul.messagesList li span.date {
 	padding: 2px 5px;
 }
 .navbar .brand{
+	/* min-height: 30px; */
 	margin: 10px;
-	font-size: 35px;
+	margin-left: 0px;
+	font-size: 30px;
+	font-weight: 500;
 }
 
