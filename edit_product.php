@@ -15,7 +15,7 @@
             $depreciation = (int)$_POST["depreciation"];
 
             if ($product_name != "" && $intended_price > 0 && $original_price > 0 
-                    && file_exists($_FILES['image']['tmp_name'])) {
+                && file_exists($_FILES['image']['tmp_name']) ) {
                 
                 // make directory if not exists
                 $upload_dir="images/".$seller_id."/";
@@ -39,38 +39,29 @@
                         }
                     }
                     else {
-                        $msg = "Error: " . $sql . "<br>" . $conn->error;
+                        $msg = "Delete old image Error: " . $sql . "<br>" . $conn->error;
                         header("location:index.php");
                         exit;
                     }
 
-                    // delete original sale record
-                    $sql = "DELETE FROM Sales WHERE SaleId=$saleid";
+                    // update record
+                    $sql = "UPDATE Sales 
+						    SET ProductName = '$product_name', Tag = '$tag', Description = '$description', Image = '$filename', IntendedPrice = '$intended_price', OriginalPrice = '$original_price', Depreciation = '$depreciation'
+                            WHERE SaleId = '$saleid'";
                     if ($conn->query($sql)) {
-                        $msg = "Old product successfully deleted.";
-                    }
-                    else {
-                        $msg = "Error delete product: " . $sql . "<br>" . $conn->error;
-                        header("location:index.php");
-                        exit;
-                    }
-
-                    // insert new sale record
-                    $sql = "INSERT INTO Sales(SellerId, ProductName, Tag, Description, Image, IntendedPrice, OriginalPrice, Depreciation) 
-                            VALUES ('$seller_id', '$product_name', '$tag', '$description', '$filename', $intended_price, $original_price, $depreciation)";         
-                    $result = $conn->query($sql);
-                    if ($result){
                         header("location:myproducts.php");
                         exit;
                     } else {
-                        $msg = "Edit product Error: " . $sql . "<br>" . $conn->error;
+                        $msg = 'Update fail';
                     }
+                
+
                     $conn->close();
                 } else {
                     $msg = 'Store fail';
                 }
             } else {
-                $msg+= 'Wrong information';
+                $msg = 'Wrong information';
             }
         }
 
@@ -96,7 +87,7 @@
 
     }
 
-    echo "<script>console.log('$saleid')</script>";
+    //echo "<script>console.log('$msg')</script>";
 
 ?>
 
@@ -129,7 +120,8 @@
                 <div class="block-heading">
                     <h2 class="text-info">Edit Your Product</h2>
 				</div>
-				<form action="upload_product.php" method="post" enctype="multipart/form-data">
+                
+                <form action="" method="post" enctype="multipart/form-data">
 
 					<!-- productName input -->
                     <div class="form-group">
@@ -143,7 +135,7 @@
 						<input class="form-control item" type="text" name="tag" value="<?php echo $tag;?>"/>
 					</div>
 
-					<!-- description confirm -->
+					<!-- description input -->
                     <div class="form-group">
 						<label for="focusedInput">Description</label> <span class="warning">
 						<input class="form-control item" type="text" name="description" value="<?php echo $description;?>"/>
@@ -179,21 +171,21 @@
 						</select>
 					</div>
 					
-					<!-- Image choose -->
+					<!-- Image upload -->
                     <div class="form-group">
 						<label for="focusedInput">Image</label><br/>
 						<input type="file" name="image"/><br/>
 					</div>
                    
 
-				<div class="form-group">
-					<fieldset>
-						<legend></legend>
-					</fieldset>
-				</div>
+                    <div class="form-group">
+                        <fieldset>
+                            <legend></legend>
+                        </fieldset>
+                    </div>
 
-				<button class="btn btn-primary btn-block" type="submit" name="submit">Post</button>
-			</form>
+				    <button class="btn btn-primary btn-block" type="submit" name="submit">Post</button>
+			    </form>
 			
             </div>
         </section>
