@@ -59,7 +59,7 @@ function reject_sale(id) {
     xmlHttp.open("GET",url,true)
     xmlHttp.send(null)
     return false
-} 
+}
 
 // Refresh page
 function refreshPage() {

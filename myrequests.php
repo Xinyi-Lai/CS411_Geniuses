@@ -30,7 +30,7 @@
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>Beacon - User Profile</title>
+	<title>Beacon - My Requests</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="">
 	<meta name="keyword" content="">
