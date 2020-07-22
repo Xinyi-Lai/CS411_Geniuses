@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: database
--- Generation Time: Jul 21, 2020 at 06:52 PM
--- Server version: 8.0.20
+-- Generation Time: Jul 22, 2020 at 12:33 PM
+-- Server version: 8.0.21
 -- PHP Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -80,6 +80,13 @@ CREATE TABLE `Requests` (
   `SaleId` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dumping data for table `Requests`
+--
+
+INSERT INTO `Requests` (`RequestId`, `BuyerId`, `ProductName`, `Tag`, `Description`, `Image`, `IntendedPrice`, `SaleId`) VALUES
+(1, 'cs411', 'Island', 'Food', 'Beautiful', '', 0, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -98,6 +105,15 @@ CREATE TABLE `Sales` (
   `Depreciation` int DEFAULT NULL,
   `IntendedBuyerId` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `Sales`
+--
+
+INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, `Image`, `IntendedPrice`, `OriginalPrice`, `Depreciation`, `IntendedBuyerId`) VALUES
+(1, 'cs411', 'Island', 'Necessity', 'Beautiful', 'images/cs411/20200722122839.jpg', 1000, 1200, 9, 'xlai7'),
+(3, 'cs411', 'Genius', 'Toy', 'Smart and sharp', 'images/cs411/20200722123008.jpeg', 200, 100, 9, 'xlai7'),
+(4, 'cs411', 'Another genius', 'Toy', 'Sleepy and stupid', 'images/cs411/20200722123249.png', 1, 100, 9, NULL);
 
 -- --------------------------------------------------------
 
@@ -173,13 +189,13 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT for table `Requests`
 --
 ALTER TABLE `Requests`
-  MODIFY `RequestId` int NOT NULL AUTO_INCREMENT;
+  MODIFY `RequestId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `Sales`
 --
 ALTER TABLE `Sales`
-  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT;
+  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
