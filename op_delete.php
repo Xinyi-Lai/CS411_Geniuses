@@ -1,11 +1,10 @@
 <?php 
+    include_once "db_functions.php";
 
     //get the parameter from URL
     $id = $_GET["id"];
     $table=$_GET["table"];
 
-    include_once "db_functions.php";
-    
     //connect db
     if ($id && ($table=="Sales" || $table=="Requests")) {
 
@@ -24,16 +23,16 @@
                 }
             }
             else {
-                $msg = "Error: " . $sql . "<br>" . $conn->error;
+                $msg = "Error get path from sales: " . $sql . "<br>" . $conn->error;
             }
         }
 
         $sql = "DELETE FROM $table WHERE $tablekey = '$id'";
         if ($conn->query($sql)) {
-            $msg = "Product successfully deleted.";
+            $msg = "Successfully deleted.";
         }
         else {
-            $msg = "Error delete product: " . $sql . "<br>" . $conn->error;
+            $msg = "Error delete: " . $sql . "<br>" . $conn->error;
         }
 
         $conn->close();

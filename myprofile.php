@@ -215,7 +215,7 @@
  									<span><?php echo $curr_user; ?></span>
 								</li>
 								<li><a href="myprofile.php"><i class="halflings-icon user"></i> Profile</a></li>
-								<li><a href="login.php"><i class="halflings-icon off"></i> Logout</a></li>
+								<li><a href="logout.php"><i class="halflings-icon off"></i> Logout</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
@@ -351,7 +351,8 @@
 
 	</div><!--/.fluid-container-->
 	<!-- end: Content -->
-
+	</div><!--/#content.span10-->
+	</div><!--/fluid-row-->
 
 	<footer>
 		<p>

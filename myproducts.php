@@ -18,19 +18,19 @@
 		
 		$conn->close();
 	}
-	echo "<script>console.log('$msg');</script>";
+	// echo "<script>console.log('$msg');</script>";
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
-<script src="delete.js"></script>
+<script src="operations.js"></script>
 
 <head>
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>Beacon - User Profile</title>
+	<title>Beacon - My Products</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="">
 	<meta name="keyword" content="">
@@ -159,7 +159,7 @@
  									<span><?php echo $curr_user; ?></span>
 								</li>
 								<li><a href="myprofile.php"><i class="halflings-icon user"></i> Profile</a></li>
-								<li><a href="login.php"><i class="halflings-icon off"></i> Logout</a></li>
+								<li><a href="logout.php"><i class="halflings-icon off"></i> Logout</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
@@ -217,13 +217,14 @@
 				<div class="task none" style="margin-top:10px;">
 					<div class="desc">
 						<span class="title"> 
-							<span style="font-size:x-large;"><?php echo $val['ProductName']; ?></span>
+							<a href="single-product.php?Id=<?php echo $val['SaleId'];?>&choosedb=Sales" style="color:#13294B;font-size:x-large;"><?php echo $val['ProductName']; ?></a>
 						</span>&nbsp;
 						
 						<a href="edit_product.php?id=<?php echo $val['SaleId'];?>" style="font-size:12px;">Edit </a>&nbsp;
 						<a href="javascript:void(0);" onclick="delete_post(<?php echo $val['SaleId']; ?>, 'Sales')" style="font-size:12px;">Delete</a>
 
-						<div style="font-size:13px; margin-top:8px;"> 	
+						<div style="font-size:13px; margin-top:8px;"> 
+							Sale ID: <?php echo $val['SaleId']; ?>;	
 							Tag: <?php echo $val['Tag']; ?> ;
 							Intended Price: $ <?php echo $val['IntendedPrice']; ?> . 
 						</div>
@@ -232,8 +233,8 @@
 					<div class="time">
 						<div class="date"> <?php echo $val['IntendedBuyerId']==null ? "On Sale": $val['IntendedBuyerId']." wants"; ?> </div>
 						<div>
-							<button type="querybtn" style="border:none; background:none;"<?php echo $val['IntendedBuyerId']==null ? 'disabled':'' ?> >Approve</button>
-							<button type="querybtn" style="margin-right:-6px;"<?php echo $val['IntendedBuyerId']==null ? 'disabled':'' ?> >Reject</button>
+							<button type="querybtn" style="border:none; background:none;" onclick="approve_sale(<?php echo $val['SaleId']; ?>)" <?php echo $val['IntendedBuyerId']==null ? 'disabled':'' ?> >Approve</button>
+							<button type="querybtn" style="border:none; background:none;margin-right:-6px;" onclick="reject_sale(<?php echo $val['SaleId']; ?>)" <?php echo $val['IntendedBuyerId']==null ? 'disabled':'' ?> >Reject</button>
 						</div>
 					</div>
 				</div>
@@ -244,6 +245,9 @@
 		</div>	
 	</div>
 	<!-- end: Content -->
+	</div><!--/#content.span10-->
+	</div><!--/fluid-row-->
+
 
 	
 	<footer>

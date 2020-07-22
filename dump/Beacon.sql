@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: database
--- Generation Time: Jul 21, 2020 at 03:08 PM
--- Server version: 8.0.20
+-- Generation Time: Jul 22, 2020 at 02:33 PM
+-- Server version: 8.0.21
 -- PHP Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -20,27 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `Beacon`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `Accounts`
---
-
-CREATE TABLE `Accounts` (
-  `NetId` varchar(15) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `Name` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `Email` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `Accounts`
---
-
-INSERT INTO `Accounts` (`NetId`, `Name`, `Email`) VALUES
-('hanyins2', 'Hanyin Shao', 'hanyins2@illinois.edu'),
-('jiaqil6', 'Jiaqi Lou', 'jiaqil6@illinois.edu'),
-('keruiz2', 'Kerui Zhu', 'keruiz2@illinois.edu');
 
 -- --------------------------------------------------------
 
@@ -85,7 +64,9 @@ CREATE TABLE `Requests` (
 --
 
 INSERT INTO `Requests` (`RequestId`, `BuyerId`, `ProductName`, `Tag`, `Description`, `Image`, `IntendedPrice`, `SaleId`) VALUES
-(1, 'keruiz2', 'house', 'house', 'best house', 'images/keruiz2/20200721140927.jpg', 2017, NULL);
+(2, 'cs411', 'House', 'Daily Necessity', 'Warm', '', 30, NULL),
+(3, 'cs411', 'Mantou', 'Food', 'Yummy', '', 2, 12),
+(4, 'genius', 'CS 411 Textbook', 'Textbook', 'CS411 Textbook', '', 25, NULL);
 
 -- --------------------------------------------------------
 
@@ -95,24 +76,52 @@ INSERT INTO `Requests` (`RequestId`, `BuyerId`, `ProductName`, `Tag`, `Descripti
 
 CREATE TABLE `Sales` (
   `SaleId` int NOT NULL,
-  `SellerId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `ProductName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Tag` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Description` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Image` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `SellerId` varchar(50) DEFAULT NULL,
+  `ProductName` varchar(50) DEFAULT NULL,
+  `Tag` varchar(50) DEFAULT NULL,
+  `Description` varchar(500) DEFAULT NULL,
+  `Image` varchar(100) DEFAULT NULL,
   `IntendedPrice` double DEFAULT NULL,
   `OriginalPrice` double DEFAULT NULL,
   `Depreciation` int DEFAULT NULL,
-  `BuyerId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `IntendedBuyerId` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `Sales`
 --
 
-INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, `Image`, `IntendedPrice`, `OriginalPrice`, `Depreciation`, `BuyerId`) VALUES
-(2, 'keruiz2', 'house', 'house', 'best house', 'images/keruiz2/20200721133647.jpg', 2020, 2100, 9, NULL),
-(3, 'keruiz2', 'mouse', 'mouse', 'logi mouse', 'images/keruiz2/20200721141501.jpg', 40, 60, 9, NULL);
+INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, `Image`, `IntendedPrice`, `OriginalPrice`, `Depreciation`, `IntendedBuyerId`) VALUES
+(6, 'cs411', 'Baozi', 'Food', 'Delicious', 'images/cs411/20200722132752.png', 100, 200, 9, 'genius'),
+(7, 'cs411', 'Genius', 'Toy', 'Smart and sharp', 'images/cs411/20200722132817.jpeg', 150, 180, 9, NULL),
+(8, 'cs411', 'Another Island', 'Daily Necessity', 'Beautiful', 'images/cs411/20200722132849.jpg', 888, 999, 9, NULL),
+(9, 'cs411', 'Fake Genius', 'Toy', 'Sleepy and stupid', 'images/cs411/20200722132913.png', 1, 10, 9, NULL),
+(12, 'genius', 'Another Mouse', 'Toy', 'Cute', 'images/genius/20200722143115.png', 10, 12, 9, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Transactions`
+--
+
+CREATE TABLE `Transactions` (
+  `TransactionId` int NOT NULL,
+  `SellerId` varchar(50) NOT NULL,
+  `BuyerId` varchar(50) NOT NULL,
+  `ProductName` varchar(50) NOT NULL,
+  `Price` double NOT NULL,
+  `Tag` varchar(50) NOT NULL,
+  `Description` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `Transactions`
+--
+
+INSERT INTO `Transactions` (`TransactionId`, `SellerId`, `BuyerId`, `ProductName`, `Price`, `Tag`, `Description`) VALUES
+(2, 'cs411', 'genius', 'Island', 1000, 'Daily Necessity', 'Beautiful'),
+(3, 'genius', 'cs411', 'Baozi', 1, 'Food', 'Good'),
+(4, 'genius', 'cs411', 'Mouse', 0.1, 'Toy', 'Cute');
 
 -- --------------------------------------------------------
 
@@ -135,8 +144,8 @@ CREATE TABLE `Users` (
 --
 
 INSERT INTO `Users` (`NetId`, `Password`, `Campus`, `Name`, `Email`, `Major`, `Year`) VALUES
-('123', '123', 'ZJUIntl', '123', '123@123.123', 'other', 'graduate'),
 ('cs411', 'cs411', 'UIUC', 'Little Genius', 'cs411@geniuses.com', 'CS', 'Freshman'),
+('genius', 'genius', 'UIUC', 'Real Genius', 'genius@geniuses.com', 'CEE', 'graduate'),
 ('hanyins2', 'hanyins2', 'UIUC', 'Hanyin Shao', 'hanyins2@illinois.edu', 'ME', 'Freshman'),
 ('jiaqil6', 'jiaqil6', 'ZJUIntl', 'Jiaqi Lou', 'jiaqil6@illinois.edu', 'ECE', 'Junior'),
 ('keruiz2', 'keruiz2', 'ZJUIntl', 'Kerui Zhu', 'keruiz2@illinois.edu', 'ECE', 'Junior'),
@@ -145,12 +154,6 @@ INSERT INTO `Users` (`NetId`, `Password`, `Campus`, `Name`, `Email`, `Major`, `Y
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `Accounts`
---
-ALTER TABLE `Accounts`
-  ADD PRIMARY KEY (`NetId`);
 
 --
 -- Indexes for table `Group_Mem`
@@ -172,7 +175,15 @@ ALTER TABLE `Requests`
 ALTER TABLE `Sales`
   ADD PRIMARY KEY (`SaleId`),
   ADD KEY `SellerId` (`SellerId`),
-  ADD KEY `BuyerId` (`BuyerId`);
+  ADD KEY `IntendedBuyerId` (`IntendedBuyerId`);
+
+--
+-- Indexes for table `Transactions`
+--
+ALTER TABLE `Transactions`
+  ADD PRIMARY KEY (`TransactionId`),
+  ADD KEY `Transactions_ibfk_1` (`SellerId`),
+  ADD KEY `Transactions_ibfk_2` (`BuyerId`);
 
 --
 -- Indexes for table `Users`
@@ -188,13 +199,19 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT for table `Requests`
 --
 ALTER TABLE `Requests`
-  MODIFY `RequestId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `RequestId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `Sales`
 --
 ALTER TABLE `Sales`
-  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `Transactions`
+--
+ALTER TABLE `Transactions`
+  MODIFY `TransactionId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -212,7 +229,14 @@ ALTER TABLE `Requests`
 --
 ALTER TABLE `Sales`
   ADD CONSTRAINT `Sales_ibfk_1` FOREIGN KEY (`SellerId`) REFERENCES `Users` (`NetId`) ON DELETE CASCADE,
-  ADD CONSTRAINT `Sales_ibfk_2` FOREIGN KEY (`BuyerId`) REFERENCES `Users` (`NetId`) ON DELETE SET NULL;
+  ADD CONSTRAINT `Sales_ibfk_2` FOREIGN KEY (`IntendedBuyerId`) REFERENCES `Users` (`NetId`) ON DELETE SET NULL;
+
+--
+-- Constraints for table `Transactions`
+--
+ALTER TABLE `Transactions`
+  ADD CONSTRAINT `Transactions_ibfk_1` FOREIGN KEY (`SellerId`) REFERENCES `Users` (`NetId`) ON DELETE CASCADE ON UPDATE RESTRICT,
+  ADD CONSTRAINT `Transactions_ibfk_2` FOREIGN KEY (`BuyerId`) REFERENCES `Users` (`NetId`) ON DELETE CASCADE ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

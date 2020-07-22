@@ -18,19 +18,19 @@
 		
 		$conn->close();
 	}
-	echo "<script>console.log('$msg');</script>";
+	// echo "<script>console.log('$msg');</script>";
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
-<script src="delete.js"></script>
+<script src="operations.js"></script>
 
 <head>
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>Beacon - User Profile</title>
+	<title>Beacon - My Requests</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="">
 	<meta name="keyword" content="">
@@ -159,7 +159,7 @@
  									<span><?php echo $curr_user; ?></span>
 								</li>
 								<li><a href="myprofile.php"><i class="halflings-icon user"></i> Profile</a></li>
-								<li><a href="login.php"><i class="halflings-icon off"></i> Logout</a></li>
+								<li><a href="logout.php"><i class="halflings-icon off"></i> Logout</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
@@ -206,7 +206,7 @@
 			
 			<div class="span12">
 				<h1>My Requests</h1> </br>
-				<a href= "#"> <button type="btn" class="btn btn-primary">Post a Request</button> </a>
+				<a href= "post_request.php" class="btn btn-primary" style="font-weight:600;"> Add a Request </a>
 				</br>
 
 				<?php foreach($array as $val): ?>
@@ -215,10 +215,10 @@
 					<div class="desc">
 						
 						<span class="title"> 
-							<span style="font-size:x-large;"><?php echo $val['ProductName']; ?></span>
+							<a href="single-product.php?Id=<?php echo $val['RequestId'];?>&choosedb=Requests" style="color:#13294B;font-size:x-large;"><?php echo $val['ProductName']; ?></a>
 						</span>&nbsp;
 							
-						<a href= "post_product.html" style="font-size:12px;">Edit </a>&nbsp;
+						<a href="edit_request.php?id=<?php echo $val['RequestId'];?>" style="font-size:12px;">Edit </a>&nbsp;
 						<a href="javascript:void(0);" onclick="delete_post(<?php echo $val['RequestId']; ?>, 'Requests')" style="font-size:12px;">Delete</a>
 
 						<div style="font-size:13px; margin-top:8px;"> 	
@@ -229,8 +229,9 @@
 
 					</div>
 					<div class="time">
-					<div class="date"> <?php echo $val['SaleId']==null ? "Requesting": $val['SaleId']; ?> </div>
-						<div> <?php echo $val['SaleId'] ?> </div>
+					<div class="date"> <?php echo $val['SaleId']==null ? "Requesting": "Maybe related:"; ?> </div>
+						<div> <a href="single-product.php?Id=<?php echo $val['SaleId'];?>&choosedb=Sales"><?php echo $val['SaleId']==null ? "": "#".$val['SaleId']; ?></a> </div>
+						
 					</div>
 				</div>
 
@@ -241,34 +242,13 @@
 		</div>			
 	</div>
 	<!-- end: Content -->
+	</div><!--/#content.span10-->
+	</div><!--/fluid-row-->
 
 
 
 		
-	<div class="modal hide fade" id="myModal">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>Settings</h3>
-		</div>
-		<div class="modal-body">
-			<p>Here settings can be configured...</p>
-		</div>
-		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">Close</a>
-			<a href="#" class="btn btn-primary">Save changes</a>
-		</div>
-	</div>
 	
-	<div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-content">
-			<ul class="list-inline item-details">
-				<li><a href="http://www.freemoban.com">Admin templates</a></li>
-				<li><a href="http://www.freemoban.com">Bootstrap themes</a></li>
-			</ul>
-		</div>
-	</div>
-	
-	<div class="clearfix"></div>
 	
 	<footer>
 
