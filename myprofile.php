@@ -59,7 +59,7 @@
 
 		$conn->close();
 	}
-	echo "<script>console.log('$msg');</script>";
+	// echo "<script>console.log('$msg');</script>";
 
 ?>
 
@@ -137,12 +137,8 @@
                                     <a href="#">
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
-											<span class="from">
-										    	
-										     </span>
-											<span class="time">
-										    	6 min
-										    </span>
+											<span class="from"> </span>
+											<span class="time"> 6 min </span>
 										</span>
                                         <span class="message">
                                             Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
@@ -153,12 +149,8 @@
                                     <a href="#">
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
-											<span class="from">
-										    	
-										     </span>
-											<span class="time">
-										    	56 min
-										    </span>
+											<span class="from"> </span>
+											<span class="time"> 56 min </span>
 										</span>
                                         <span class="message">
                                             Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
@@ -169,12 +161,8 @@
                                     <a href="#">
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
-											<span class="from">
-										    	
-										     </span>
-											<span class="time">
-										    	3 hours
-										    </span>
+											<span class="from"> </span>
+											<span class="time"> 3 hours </span>
 										</span>
                                         <span class="message">
                                             Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
@@ -185,12 +173,8 @@
                                     <a href="#">
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
-											<span class="from">
-										    	
-										     </span>
-											<span class="time">
-										    	yesterday
-										    </span>
+											<span class="from"> </span>
+											<span class="time"> yesterday </span>
 										</span>
                                         <span class="message">
                                             Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore

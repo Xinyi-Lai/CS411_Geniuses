@@ -220,7 +220,13 @@
 					<div class="span12">
 						<h1>Transaction History</h1>
 						
-						</br><div class="priority high"><span>I bought</span></div>
+						
+						</br>
+						<div class="priority high"><span>I bought </span> 
+							<a data-toggle="collapse" data-parent="#accordion" href="#needtocollapse" style="text-decoration:none;"><i class="icon-collapse-alt" style="color:#FA603D;"></i></a>
+						</div>
+						
+						<div id="needtocollapse" class="panel-collapse collapse in">
 						<?php foreach($buyarray as $val): ?>
 						<div class="task high">
 							<div class="desc">
@@ -233,10 +239,14 @@
 							</div>
 						</div>
 						<?php endforeach; ?>
+						</div>
 
-						</br><div class="priority medium"><span>I sold</span></div>
+						</br><div class="priority medium"><span>I sold</span>
+							<a data-toggle="collapse" data-parent="#accordion" href="#needtocollapse2" style="text-decoration:none;"><i class="icon-collapse-alt" style="color:#FABB3D;"></i></a>
+						</div>
+						<div id="needtocollapse2" class="panel-collapse collapse in">
 						<?php foreach($sellarray as $val): ?>
-						<div class="task medium">
+						<div class="task medium" >
 							<div class="desc">
 								<div class="title"><?php echo $val['ProductName']; ?></div>
 								<div> Tag: <?php echo $val['Tag']; ?>; Description: <?php echo $val['Description']; ?></div>
@@ -247,6 +257,7 @@
 							</div>
 						</div>
 						<?php endforeach; ?>
+						</div>
 						
 					</div><!--/span12 -->
 					

@@ -315,7 +315,7 @@ h6 {
        -moz-border-radius: 0px;
           	border-radius: 0px;
   	*zoom: 1;
-	border-bottom: 1px solid #1e3877; /* rgba(0, 0, 0, 0.05); */
+	border-bottom: 1px solid #fff; /* rgba(0, 0, 0, 0.05); */
 	
 }
 
@@ -341,6 +341,7 @@ h6 {
 a.brand span {
 	color: #fff;
 	text-shadow: none;
+	
 }
 
 .header-nav {
@@ -546,7 +547,7 @@ border-bottom: 1px solid transparent;
 
 .dropdown-menu.pull-right {
   	right: 0;
-  	left: auto;
+	  left: auto;
 }
 
 .dropdown-menu .divider {
@@ -2820,6 +2821,13 @@ ul.messagesList li span.date {
 	margin-bottom: 1px;
 }
 
+.priority.high a:hover i {
+	text-decoration: none;
+}
+#needtocollapse2 a:hover i {
+	text-decoration: none;
+}
+
 .priority.high span {
 	background: #FA603D; /* rgba(250,96,61,1); */
 	padding: 2px 10px;
@@ -3058,7 +3066,10 @@ ul.messagesList li span.date {
 	padding: 2px 5px;
 }
 .navbar .brand{
+	/* min-height: 30px; */
 	margin: 10px;
-	font-size: 35px;
+	margin-left: 0px;
+	font-size: 30px;
+	font-weight: 500;
 }
 
