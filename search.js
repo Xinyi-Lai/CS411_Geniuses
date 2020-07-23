@@ -38,7 +38,7 @@ function load_related(search_item, choosedb, user_id, tag)
     } 
     // Get url
     var url="get_related.php"
-    url=url+"?search_item="+search_item+"&choosedb="+choosedb+"&user_id="+user_id+"&tag"+tag
+    url=url+"?search_item="+search_item+"&choosedb="+choosedb+"&user_id="+user_id+"&tag="+tag
     url=url+"&sid="+Math.random()
     // Set the callback function
     xmlHttp.onreadystatechange=stateChanged 
