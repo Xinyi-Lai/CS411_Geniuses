@@ -37,7 +37,7 @@
 
 </head>
 
-<body>
+<body onload="load_related('', 'Sales', '')">
 
     <div class="top-bar">
 
@@ -361,7 +361,7 @@
 
                 </div>
 
-                <div class="clearfix"></div>
+                <div class="clearfix" id="related"></div>
 
                 <!-- <div class="col-md-4 col-sm-4">
 

@@ -52,7 +52,10 @@ function stateChanged()
     { 
         // Set the html content
         document.getElementById("related").innerHTML=xmlHttp.responseText 
-        document.getElementById("search_info").innerHTML = 'Search '+'"'+search_item+'"'+' in '+choosedb+((user_id) ? (" from "+user_id) : "")
+        var search_info = document.getElementById("search_info")
+        if (search_info){
+            search_info.innerHTML = 'Search '+'"'+search_item+'"'+' in '+choosedb+((user_id) ? (" from "+user_id) : "")
+        }
         return false
     } 
 }
