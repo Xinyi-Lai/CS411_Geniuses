@@ -83,7 +83,7 @@
 
 </head>
 
-<body>
+<body onload="load_related('','Sales','')">
 
     <div class="top-bar">
 
@@ -337,7 +337,7 @@
                             <button class="btn btn-theme" type="submit" onclick="<?php echo $url; ?>">I wanna buy</button>
                     <?php } ?>
 
-                        <button class="btn btn-theme" type="submit" onclick="window.location.href='search.php?search_item=&choosedb=<?php echo $choosedb; ?>&user_id=<?php echo $host_id;?>'">See more <?php echo ($choosedb=="Sales") ? "products":"requests"; ?> from <?php echo $host_id; ?></button>
+                        <button class="btn btn-theme" type="submit" onclick="window.location.href='search.php?search_item=&choosedb=<?php echo $choosedb; ?>&user_id=<?php echo $host_id;?>&tag='">See more <?php echo ($choosedb=="Sales") ? "products":"requests"; ?> from <?php echo $host_id; ?></button>
                     </p>
 
                     <?php if($choosedb=="Requests"){
@@ -377,6 +377,8 @@
 
                     </div>
 
+                    <button class="btn btn-theme" type="submit" onclick="window.location.href='search.php?choosedb=<?php echo $choosedb; ?>&tag=<?php echo $tag;?>'"> <?php echo $tag; ?> </button>
+
                 </div>
 
             </div>
@@ -401,134 +403,6 @@
                 <div class="tab-content">
 
                     <div class="tab-pane active" id="related">
-
-                        <div class="col-md-3 col-sm-4">
-
-                            <div class="single-product">
-
-                                <div class="product-block">
-
-                                    <img src="images/post-1.jpg" alt="" class="thumbnail">
-
-                                    <div class="related-product text-center">
-
-                                        <p class="title">iPad</p>
-
-                                        <p class="price">$ 55.00</p>
-
-                                    </div>
-
-                                    <div class="product-hover">
-
-                                        <ul>
-
-                                            <li><a href=""><i class="fa fa-cart-arrow-down"></i></a></li>
-
-                                        </ul>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-3 col-sm-4">
-
-                            <div class="single-product">
-
-                                <div class="product-block">
-
-                                    <img src="images/post-2.jpg" alt="" class="thumbnail">
-
-                                    <div class="related-product text-center">
-
-                                        <p class="title">Flowers</p>
-
-                                        <p class="price">$ 55.00</p>
-
-                                    </div>
-
-                                    <div class="product-hover">
-
-                                        <ul>
-
-                                            <li><a href=""><i class="fa fa-cart-arrow-down"></i></a></li>
-
-                                        </ul>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-3 col-sm-4">
-
-                            <div class="single-product">
-
-                                <div class="product-block">
-
-                                    <img src="images/post-3.jpg" alt="" class="thumbnail">
-
-                                    <div class="related-product text-center">
-
-                                        <p class="title">Shoes</p>
-
-                                        <p class="price">$ 55.00</p>
-
-                                    </div>
-
-                                    <div class="product-hover">
-
-                                        <ul>
-
-                                            <li><a href=""><i class="fa fa-cart-arrow-down"></i></a></li>
-
-                                        </ul>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-3 col-sm-4">
-
-                            <div class="single-product">
-
-                                <div class="product-block">
-
-                                    <img src="images/post-3.jpg" alt="" class="thumbnail">
-
-                                    <div class="related-product text-center">
-
-                                        <p class="title">Shoes</p>
-
-                                        <p class="price">$ 55.00</p>
-
-                                    </div>
-
-                                    <div class="product-hover">
-
-                                        <ul>
-
-                                            <li><a href=""><i class="fa fa-cart-arrow-down"></i></a></li>
-
-                                        </ul>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
 
                     </div>
 
