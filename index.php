@@ -249,7 +249,7 @@
 
                                     <h2 class="raleway">New semester <span>2020 Fall</span></h2>
 
-                                    <a href="search.php" class="btn btn-theme">Shop Now</a>
+                                    <a onclick="jump_to_search()" class="btn btn-theme">Shop Now</a>
 
                                 </div>
 
@@ -357,7 +357,7 @@
 
                     <h2 class="pull-left text-left">Most Recent Post</h2>
 
-                    <a href="search.php" class="pull-right text-right">More Post <i class="fa fa-long-arrow-right"></i></a>
+                    <a onclick="jump_to_search()" class="pull-right text-right">More Post <i class="fa fa-long-arrow-right"></i></a>
 
                 </div>
 

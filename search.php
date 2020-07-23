@@ -219,7 +219,7 @@
 
                 <ul class="nav nav-tabs nav-single-product-tabs">
 
-                    <li class="active"><a href="#related">Results</a></li>
+                    <li class="active"><a href="#related"><p id="search_info"></p></a></li>
 
                 </ul>
 

@@ -1,4 +1,7 @@
-var xmlHttp
+var xmlHttp = null
+var search_item
+var choosedb
+var user_id
 
 document.write("<script type='text/javascript' src='getQueryString.js'></script>")
 
@@ -16,9 +19,9 @@ function jump_to_search() {
 }
 
 function load_page() {
-    var search_item = getQueryString("search_item")
-    var choosedb = getQueryString("choosedb")
-    var user_id = getQueryString("user_id")
+    search_item = getQueryString("search_item")
+    choosedb = getQueryString("choosedb")
+    user_id = getQueryString("user_id")
     load_related(search_item, choosedb, user_id)
 }
  
@@ -49,6 +52,7 @@ function stateChanged()
     { 
         // Set the html content
         document.getElementById("related").innerHTML=xmlHttp.responseText 
+        document.getElementById("search_info").innerHTML = 'Search '+'"'+search_item+'"'+' in '+choosedb+((user_id) ? (" from "+user_id) : "")
         return false
     } 
 }
