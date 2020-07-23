@@ -7,22 +7,31 @@
     $search_item=$_GET["search_item"];
     $choosedb=$_GET["choosedb"];
     $user_id=$_GET["user_id"];
+    $tag=$_GET["tag"];
     
     //connect db
     if (strlen($choosedb) > 0) {
 
         $sql = "";
         
-        if (strlen($search_item) > 0 || strlen($user_id) > 0) {
+        if (strlen($search_item) > 0 || strlen($user_id) > 0 || strlen($tag) > 0) {
 
-            if (strlen($search_item) > 0) {
+            if (strlen($tag) > 0) {
+                if ($choosedb == "Sales") {
+                    $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE Tag = '$tag' AND IntendedBuyerId IS NULL";
+                }
+                else {
+                    $sql = "SELECT RequestId, Image, ProductName, IntendedPrice FROM Requests WHERE Tag = '$tag' AND SaleId IS NULL";
+                }
+            } else if (strlen($search_item) > 0) {
                 if ($choosedb == "Sales") {
                     $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE ProductName LIKE '%$search_item%' AND IntendedBuyerId IS NULL";
                 }
                 else {
                     $sql = "SELECT RequestId, Image, ProductName, IntendedPrice FROM Requests WHERE ProductName LIKE '%$search_item%' AND SaleId IS NULL";
                 }
-            }else {
+            }
+            else {
                 if ($choosedb == "Sales") {
                     $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE SellerId = '$user_id' AND IntendedBuyerId IS NULL";
                 }

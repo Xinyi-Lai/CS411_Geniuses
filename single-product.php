@@ -337,7 +337,7 @@
                             <button class="btn btn-theme" type="submit" onclick="<?php echo $url; ?>">I wanna buy</button>
                     <?php } ?>
 
-                        <button class="btn btn-theme" type="submit" onclick="window.location.href='search.php?search_item=&choosedb=<?php echo $choosedb; ?>&user_id=<?php echo $host_id;?>'">See more <?php echo ($choosedb=="Sales") ? "products":"requests"; ?> from <?php echo $host_id; ?></button>
+                        <button class="btn btn-theme" type="submit" onclick="window.location.href='search.php?search_item=&choosedb=<?php echo $choosedb; ?>&user_id=<?php echo $host_id;?>&tag='">See more <?php echo ($choosedb=="Sales") ? "products":"requests"; ?> from <?php echo $host_id; ?></button>
                     </p>
 
                     <?php if($choosedb=="Requests"){
@@ -376,6 +376,8 @@
                         <span class="product-identity" herf=""><span class="strong-text">Tags:</span> <?php echo $tag; ?></span>
 
                     </div>
+
+                    <button class="btn btn-theme" type="submit" onclick="window.location.href='search.php?choosedb=<?php echo $choosedb; ?>&tag=<?php echo $tag;?>'"> <?php echo $tag; ?> </button>
 
                 </div>
 

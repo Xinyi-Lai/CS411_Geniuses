@@ -2,6 +2,7 @@ var xmlHttp = null
 var search_item
 var choosedb
 var user_id
+var tag
 
 document.write("<script type='text/javascript' src='getQueryString.js'></script>")
 
@@ -22,10 +23,11 @@ function load_page() {
     search_item = getQueryString("search_item")
     choosedb = getQueryString("choosedb")
     user_id = getQueryString("user_id")
-    load_related(search_item, choosedb, user_id)
+    tag = getQueryString("tag")
+    load_related(search_item, choosedb, user_id, tag)
 }
  
-function load_related(search_item, choosedb, user_id)
+function load_related(search_item, choosedb, user_id, tag)
 {
     // Get xmlHttpObject object，if null，then the browser doesn't suppport ajax
     xmlHttp=GetXmlHttpObject()
@@ -36,7 +38,7 @@ function load_related(search_item, choosedb, user_id)
     } 
     // Get url
     var url="get_related.php"
-    url=url+"?search_item="+search_item+"&choosedb="+choosedb+"&user_id="+user_id
+    url=url+"?search_item="+search_item+"&choosedb="+choosedb+"&user_id="+user_id+"&tag"+tag
     url=url+"&sid="+Math.random()
     // Set the callback function
     xmlHttp.onreadystatechange=stateChanged 
