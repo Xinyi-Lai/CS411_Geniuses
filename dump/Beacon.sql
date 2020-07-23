@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: database
--- Generation Time: Jul 22, 2020 at 07:48 PM
+-- Generation Time: Jul 23, 2020 at 07:39 AM
 -- Server version: 8.0.20
 -- PHP Version: 7.4.6
 
@@ -93,7 +93,6 @@ CREATE TABLE `Sales` (
 
 INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, `Image`, `IntendedPrice`, `OriginalPrice`, `Depreciation`, `IntendedBuyerId`) VALUES
 (6, 'cs411', 'Baozi', 'Food', 'Delicious', 'images/cs411/20200722132752.png', 100, 200, 9, 'genius'),
-(7, 'cs411', 'Genius', 'Toy', 'Smart and sharp', 'images/cs411/20200722132817.jpeg', 150, 180, 9, NULL),
 (8, 'cs411', 'Another Island', 'Daily Necessity', 'Beautiful', 'images/cs411/20200722132849.jpg', 888, 999, 9, NULL),
 (9, 'cs411', 'Fake Genius', 'Toy', 'Sleepy and stupid', 'images/cs411/20200722132913.png', 1, 10, 9, NULL),
 (12, 'genius', 'Another Mouse', 'Toy', 'Cute', 'images/genius/20200722143115.png', 10, 12, 9, 'keruiz2');
@@ -121,7 +120,9 @@ CREATE TABLE `Transactions` (
 INSERT INTO `Transactions` (`TransactionId`, `SellerId`, `BuyerId`, `ProductName`, `Price`, `Tag`, `Description`) VALUES
 (2, 'cs411', 'genius', 'Island', 1000, 'Daily Necessity', 'Beautiful'),
 (3, 'genius', 'cs411', 'Baozi', 1, 'Food', 'Good'),
-(4, 'genius', 'cs411', 'Mouse', 0.1, 'Toy', 'Cute');
+(4, 'genius', 'cs411', 'Mouse', 0.1, 'Toy', 'Cute'),
+(5, 'cs411', 'genius', 'Genius', 150, 'Toy', 'Smart and sharp'),
+(6, 'keruiz2', 'cs411', 'house', 2000, 'house', 'best house');
 
 -- --------------------------------------------------------
 
@@ -205,13 +206,13 @@ ALTER TABLE `Requests`
 -- AUTO_INCREMENT for table `Sales`
 --
 ALTER TABLE `Sales`
-  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `Transactions`
 --
 ALTER TABLE `Transactions`
-  MODIFY `TransactionId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `TransactionId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables

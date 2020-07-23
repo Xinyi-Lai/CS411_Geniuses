@@ -14,95 +14,61 @@ function browser() {
 	}
 	
 	if (isOpera) {
-		
 		return false;
-		
-	}else if (isSafari || isChrome) {
-		
+	} else if (isSafari || isChrome) {
 		return true;
-		
 	} else {
-		
 		return false;
-		
 	}
-	
 }
 
 /* ---------- IE8 list style hack (:nth-child(odd)) ---------- */
 
 jQuery(document).ready(function($){
-	
 	if($('.messagesList').width()) {
-		
 		if(jQuery.browser.version.substring(0, 2) == "8.") {
-
 			$('ul.messagesList li:nth-child(2n+1)').addClass('odd');
-			
 		}
-		
 	}
-	
 });	
 
 $(document).ready(function(){
 		
-			
 	$("#username").focus(function() {
-		
 		$(this).parent(".input-prepend").addClass("input-prepend-focus");
-	
 	});
 	
 	$("#username").focusout(function() {
-		
 		$(this).parent(".input-prepend").removeClass("input-prepend-focus");
-	
 	});
 	
 	$("#password").focus(function() {
-		
 		$(this).parent(".input-prepend").addClass("input-prepend-focus");
-	
 	});
 	
 	$("#password").focusout(function() {
-		
 		$(this).parent(".input-prepend").removeClass("input-prepend-focus");
-	
 	});
 	
-				
 	/* ---------- Add class .active to current link  ---------- */
 	$('ul.main-menu li a').each(function(){
-		
-			if($($(this))[0].href==String(window.location)) {
-				
-				$(this).parent().addClass('active');
-				
-			}
-	
+		if($($(this))[0].href==String(window.location)) {
+			$(this).parent().addClass('active');
+		}
 	});
 	
 	$('ul.main-menu li ul li a').each(function(){
-		
 			if($($(this))[0].href==String(window.location)) {
-				
 				$(this).parent().addClass('active');
 				$(this).parent().parent().show();
-				
 			}
-	
 	});
 	
 	/* ---------- Submenu  ---------- */
 	
 	$('.dropmenu').click(function(e){
-
 		e.preventDefault();
-
 		$(this).parent().find('ul').slideToggle();
-	
 	});
 			
 	/* ---------- Acivate Functions ---------- */
@@ -115,15 +81,11 @@ $(document).ready(function(){
 	widthFunctions();
 	
 	if(jQuery.browser.version.substring(0, 2) == "8.") {
-		 
 		//disable jQuery Knob
-		
 	} else {
-		
 		circle_progess();
-		
 	}
-	
+
 	chart();
 	messageLike();	
 	
@@ -132,67 +94,41 @@ $(document).ready(function(){
 /* ---------- Like/Dislike ---------- */
 
 function messageLike(){
-	
 	if($('.messagesList')) {
-		
 		$('.messagesList').on('click', '.star', function(){
-			
 			$(this).removeClass('star');
-			
 			$(this).addClass('dislikes');
-			
 			//here add your function
-			
 		});
 		
 		$('.messagesList').on('click', '.dislikes', function(){
-			
 			$(this).removeClass('dislikes');
-			
 			$(this).addClass('star');
-			
 			//here add your function
-			
 		});		
-		
 	}	
-	
 }
 
 /* ---------- Check Retina ---------- */
 
 function retina(){
-	
 	retinaMode = (window.devicePixelRatio > 1);
-	
 	return retinaMode;
-	
 }
 
 /* ---------- Chart ---------- */
 
 function chart(){
-	
 	if($('.verticalChart')) {
-		
 		$('.singleBar').each(function(){
-			
 			var theColorIs = $(this).parent().parent().parent().css("background");
-			
 			var percent = $(this).find('.value span').html();
-			
 			$(this).find('.value span').css('color',theColorIs);
-			
 			$(this).find('.value').animate({height:percent}, 2000, function() {
-			    
 				$(this).find('span').fadeIn();
-			 
 			});
-			
 		});
-		
 	}
-	
 }
 
 /* ---------- Masonry Gallery ---------- */
@@ -234,6 +170,8 @@ function numberWithCommas(x) {
     return x;
 }
 
+
+
 /* ---------- Template Functions ---------- */		
 		
 function template_functions(){
@@ -241,50 +179,36 @@ function template_functions(){
 	/* ---------- ToDo List Action Buttons ---------- */
 	
 	$(".todo-remove").click(function(){
-		
 		$(this).parent().parent().fadeTo("slow", 0.00, function(){ //fade
 			$(this).slideUp("slow", function() { //slide up
 		    	$(this).remove(); //then remove from the DOM
 		    });
 		});
-		
-		
 		return false;
 	});
 	
 	$(".todo-list").find('.action').each(function(){
 		
 		$(this).click(function(){
-			
 			if($(this).hasClass('icon-check-empty')) {
-				
 				$(this).removeClass('icon-check-empty');
 				$(this).addClass('icon-check');
-				
 				$(this).parent().css('text-decoration','line-through');
-				
 			} else {
-				
 				$(this).removeClass('icon-check');
 				$(this).addClass('icon-check-empty');
-				
 				$(this).parent().css('text-decoration','none');
-				
 			}
-			
 			return false;
-			
 		});
 		
 	});
 	
-	
-
 	/* ---------- Skill Bars ---------- */
 	$(".meter > span").each(function() {
 		
 		var getColor = $(this).parent().css('borderTopColor');
-				
+
 		$(this).css('background',getColor);
 		
 		$(this)
@@ -440,46 +364,32 @@ function template_functions(){
 		});
 		
 		if($(".taskProgress")) {
-		
 			$(".taskProgress").each(function(){
-				
 				var endValue = parseInt($(this).html());
-												
 				$(this).progressbar({
 					value: endValue
 				});
-				
 				$(this).parent().find(".percent").html(endValue + "%");
-				
 			});
-		
 		}
 		
 		if($(".progressBarValue")) {
-		
 			$(".progressBarValue").each(function(){
-				
 				var endValueHTML = $(this).find(".progressCustomValueVal").html();
-				
 				var endValue = parseInt(endValueHTML);
-												
 				$(this).find(".progressCustomValue").progressbar({
-					
 					value: 1,
 					create: function() {
 						$(this).find(".ui-progressbar-value").animate({"width": endValue + "%"},{
 							duration: 5000,
 							step: function(now){
-																
 								$(this).parent().parent().parent().find(".progressCustomValueVal").html(parseInt(now)+"%");
 							},
 							easing: "linear"
 						})
 					}
 				});
-				
 			});
-		
 		}
 	
 	
@@ -695,6 +605,7 @@ function template_functions(){
 			
 }
 
+
 /* ---------- Circle Progess Bars ---------- */
 
 function circle_progess() {
@@ -719,7 +630,6 @@ function circle_progess() {
 		$(".circleStat").css('zoom',0.5);
 		$(".whiteCircle").css('zoom',0.999);
 		
-		
 	} else {
 		
 		$(".whiteCircle").knob({
@@ -737,41 +647,32 @@ function circle_progess() {
 		
 	}
 	
-	
-	
 	$(".circleStatsItemBox").each(function(){
 		
 		var value = $(this).find(".value > .number").html();
 		var unit = $(this).find(".value > .unit").html();
 		var percent = $(this).find("input").val()/100;
-		
 		countSpeed = 2300*percent;
-		
 		endValue = value*percent;
 		
 		$(this).find(".count > .unit").html(unit);
 		$(this).find(".count > .number").countTo({
-			
 			from: 0,
 		    to: endValue,
 		    speed: countSpeed,
 		    refreshInterval: 50
-		
 		});
-		
+
 		//$(this).find(".count").html(value*percent + unit);
-		
 	});
 	
-}                
+}
 
-      
 
 /* ---------- Calendars ---------- */
 
 function calendars(){
 	
-
 	$('#external-events div.external-event').each(function() {
 
 		// it doesn't need to have a start or end
@@ -1041,6 +942,7 @@ function sparkline_charts() {
 	}
 		
 }
+
 
 /* ---------- Charts ---------- */
 
@@ -1415,7 +1317,6 @@ function charts() {
 	}
 	
 	
-	
 	/* ---------- Chart with points ---------- */
 	if($("#sincos").length)
 	{
@@ -1573,74 +1474,152 @@ function charts() {
 		});
 	}
 	
-	/* ---------- Device chart ---------- */
-	
-	var data = [
-	{ label: "Desktop",  data: 73},
-	{ label: "Mobile",  data: 27}
+
+	////////////////////////////////////////////////////////////////////
+
+	// ask php to help getting data from database
+	var request=$.ajax({url: 'dashboard_db.php?table=users'});
+	var jsonStr=request.responseText;
+	//var jsonObj=JSON.parse(jsonStr);
+
+	console.log(jsonStr);
+
+	// var data_user_campus = [
+	// 	{ label: "UIUC",  data: jsonObj.campus.UIUC},
+	// 	{ label: "ZJU",  data: jsonObj.campus.ZJU},
+	// 	{ label: "ZJUIntl",  data: jsonObj.campus.ZJUIntl}
+	// ];
+
+	// var data_user_major = [
+	// 	{ label: "BMI",  data: jsonObj.major.BMI},
+	// 	{ label: "BMS",  data: jsonObj.major.BMS},
+	// 	{ label: "CS",  data: jsonObj.major.CS},
+	// 	{ label: "CEE",  data: jsonObj.major.CEE},
+	// 	{ label: "ME",  data: jsonObj.major.ME},
+	// 	{ label: "ECE",  data: jsonObj.major.ECE},
+	// 	{ label: "EE",  data: jsonObj.major.EE}
+	// ];
+
+	// var data_user_year = [
+	// 	{ label: "Freshman",  data: jsonObj.year.Freshman},
+	// 	{ label: "Sophomore",  data: jsonObj.year.Sophoremore},
+	// 	{ label: "Junior",  data: jsonObj.year.Junior},
+	// 	{ label: "Senior",  data: jsonObj.year.Senior},
+	// 	{ label: "Graduate",  data: jsonObj.year.Graduate}
+	// ];
+
+  
+
+	/* ---------- User-campus Piechart ---------- */
+	var data_user_campus = [
+		{ label: "UIUC",  data: 12},
+		{ label: "ZJU",  data: 27},
+		{ label: "ZJUIntl",  data: 90}
 	];
-	
-	/* ---------- Donut chart ---------- */
-	if($("#deviceChart").length)
+	if($("#pie_user_campus").length) 
 	{
-		$.plot($("#deviceChart"), data,
+
+				
+		$.plot($("#pie_user_campus"), data_user_campus,
 		{
-				series: {
-						pie: {
-								innerRadius: 0.6,
-								show: true
-						}
-				},
-				legend: {
-					show: true
-				},
-				colors: ["#FA5833", "#2FABE9", "#FABB3D", "#78CD51"]
+			series: {
+					pie: {
+						innerRadius: 0.5,	
+						show: true
+					}
+			},
+			grid: {
+					hoverable: true,
+					clickable: true
+			},
+			legend: {
+				show: false
+			},
+			colors: ["#FA5833", "#2FABE9", "#FABB3D", "#78CD51"]
 		});
 	}
 	
-	var data = [
-	{ label: "iOS",  data: 20},
-	{ label: "Android",  data: 7},
-	{ label: "Linux",  data: 11},
-	{ label: "Mac OSX",  data: 14},
-	{ label: "Windows",  data: 48}
+	/* ---------- User-major Piechart ---------- */
+	var data_user_major = [
+		{ label: "BMI",  data: 12},
+		{ label: "BMS",  data: 27},
+		{ label: "CS",  data: 90},
+		{ label: "CEE",  data: 85},
+		{ label: "ME",  data: 64},
+		{ label: "ECE",  data: 130},
+		{ label: "EE",  data: 90}
 	];
-	
-	/* ---------- Donut chart ---------- */
-	if($("#osChart").length)
+	if($("#pie_user_major").length) 
 	{
-		$.plot($("#osChart"), data,
+		$.plot($("#pie_user_major"), data_user_major,
 		{
-				series: {
-						pie: {
-								innerRadius: 0.6,
-								show: true
-						}
-				},
-				legend: {
-					show: true
-				},
-				colors: ["#FA5833", "#2FABE9", "#FABB3D", "#78CD51"]
+			series: {
+					pie: {
+						innerRadius: 0.5,	
+						show: true
+					}
+			},
+			grid: {
+					hoverable: true,
+					clickable: true
+			},
+			legend: {
+				show: false
+			},
+			colors: ["#FA5833", "#2FABE9", "#FABB3D", "#78CD51"]
+		});
+	}
+	
+	/* ---------- User-year Piechart ---------- */
+	var data_user_year = [
+		{ label: "Freshman",  data: 12},
+		{ label: "Sophomore",  data: 27},
+		{ label: "Junior",  data: 85},
+		{ label: "Senior",  data: 64},
+		{ label: "Graduate",  data: 90}
+	];
+	if($("#pie_user_year").length) 
+	{
+		$.plot($("#pie_user_year"), data_user_year,
+		{
+			series: {
+					pie: {
+						innerRadius: 0.5,	
+						show: true
+					}
+			},
+			grid: {
+					hoverable: true,
+					clickable: true
+			},
+			legend: {
+				show: false
+			},
+			colors: ["#FA5833", "#2FABE9", "#FABB3D", "#78CD51"]
 		});
 	}
 
-	/* ---------- Pie chart ---------- */
+
+	////////////////////////////////////////////////////////////////////
+
+
+	/* ---------- Pie chart template ---------- */
 	var data = [
-	{ label: "Internet Explorer",  data: 12},
-	{ label: "Mobile",  data: 27},
-	{ label: "Safari",  data: 85},
-	{ label: "Opera",  data: 64},
-	{ label: "Firefox",  data: 90},
-	{ label: "Chrome",  data: 112}
+		{ label: "Internet Explorer",  data: 12},
+		{ label: "Mobile",  data: 27},
+		{ label: "Safari",  data: 85},
+		{ label: "Opera",  data: 64},
+		{ label: "Firefox",  data: 90},
+		{ label: "Chrome",  data: 112}
 	];
-	
+		
 	if($("#piechart").length)
 	{
 		$.plot($("#piechart"), data,
 		{
 			series: {
 					pie: {
-							show: true
+						show: true
 					}
 			},
 			grid: {
@@ -1662,8 +1641,8 @@ function charts() {
 		}
 		$("#piechart").bind("plothover", pieHover);
 	}
-	
-	/* ---------- Donut chart ---------- */
+		
+	/* ---------- Donut chart template ---------- */
 	if($("#donutchart").length)
 	{
 		$.plot($("#donutchart"), data,
@@ -1683,8 +1662,7 @@ function charts() {
 
 
 
-
-	 // we use an inline data source in the example, usually data would
+	// we use an inline data source in the example, usually data would
 	// be fetched from a server
 	var data = [], totalPoints = 300;
 	function getRandomData() {

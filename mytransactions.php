@@ -214,20 +214,20 @@
 		</div>
 	</noscript>
 			
-			<!-- start: Content -->
-			<div id="content" class="span10">
-				<div class="row-fluid">
-					<div class="span12">
-						<h1>Transaction History</h1>
-						
-						
-						</br>
-						<div class="priority high"><span>I bought </span> 
-							<a data-toggle="collapse" data-parent="#accordion" href="#needtocollapse" style="text-decoration:none;"><i class="icon-collapse-alt" style="color:#FA603D;"></i></a>
-						</div>
-						
-						<div id="needtocollapse" class="panel-collapse collapse in">
-						<?php foreach($buyarray as $val): ?>
+	<!-- start: Content -->
+	<div id="content" class="span10">
+		<div class="row-fluid">
+			<div class="span12">
+				<h1>Transaction History</h1>
+				
+				</br>
+
+				<div class="priority high"><span>I bought </span> 
+					<a data-toggle="collapse" data-parent="#accordion" href="#needtocollapse" style="text-decoration:none;"><i class="icon-collapse-alt" style="color:#FA603D;"></i></a>
+				</div>
+				
+				<div id="needtocollapse" class="panel-collapse collapse in">
+					<?php foreach($buyarray as $val): ?>
 						<div class="task high">
 							<div class="desc">
 								<div class="title"><?php echo $val['ProductName']; ?></div>
@@ -238,14 +238,17 @@
 								<div> From <?php echo $val['SellerId']; ?> </div>
 							</div>
 						</div>
-						<?php endforeach; ?>
-						</div>
+					<?php endforeach; ?>
+				</div>
 
-						</br><div class="priority medium"><span>I sold</span>
-							<a data-toggle="collapse" data-parent="#accordion" href="#needtocollapse2" style="text-decoration:none;"><i class="icon-collapse-alt" style="color:#FABB3D;"></i></a>
-						</div>
-						<div id="needtocollapse2" class="panel-collapse collapse in">
-						<?php foreach($sellarray as $val): ?>
+				</br>
+
+				<div class="priority medium"><span>I sold</span>
+					<a data-toggle="collapse" data-parent="#accordion" href="#needtocollapse2" style="text-decoration:none;"><i class="icon-collapse-alt" style="color:#FABB3D;"></i></a>
+				</div>
+				
+				<div id="needtocollapse2" class="panel-collapse collapse in">
+					<?php foreach($sellarray as $val): ?>
 						<div class="task medium" >
 							<div class="desc">
 								<div class="title"><?php echo $val['ProductName']; ?></div>
@@ -256,22 +259,18 @@
 								<div> To <?php echo $val['BuyerId']; ?> </div>
 							</div>
 						</div>
-						<?php endforeach; ?>
-						</div>
-						
-					</div><!--/span12 -->
-					
-				</div><!--/row-fluid -->
-							
+					<?php endforeach; ?>
 				</div>
 				
+			</div><!--/span12 -->
+		</div><!--/row-fluid -->
+	</div><!--  /span10 -->
+	<!-- end: Content -->
 		   
-	
-		</div><!--/.fluid-container-->
+	</div><!--/row-fluid-->
+	</div><!--/container-fluid-full-->
+
 		
-			<!-- end: Content -->
-		</div><!--/#content.span10-->
-		</div><!--/fluid-row-->
 		
 	<div class="modal hide fade" id="myModal">
 		<div class="modal-header">

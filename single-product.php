@@ -330,30 +330,44 @@
 
                     <p>
                         <button class="btn btn-theme" type="submit">Live chat with <?php echo ($choosedb=="Sales") ? "seller":"buyer"; ?></button>
-                    <?php
-                        if ($choosedb=="Sales"){
-                            $url = "window.location.href='mark_to_buy.php?Id=$item_id'";
-                            echo '<button class="btn btn-theme" type="submit" onclick="'.$url.'">I wanna buy</button>';
-                        }
+
+                    <?php if ($choosedb=="Sales"){
+                        $url = "window.location.href='mark_to_buy.php?Id=$item_id'";
                     ?>
+                            <button class="btn btn-theme" type="submit" onclick="<?php echo $url; ?>">I wanna buy</button>
+                    <?php } ?>
+
                         <button class="btn btn-theme" type="submit" onclick="window.location.href='search.php?search_item=&choosedb=<?php echo $choosedb; ?>&user_id=<?php echo $host_id;?>'">See more <?php echo ($choosedb=="Sales") ? "products":"requests"; ?> from <?php echo $host_id; ?></button>
                     </p>
 
-                    <?php
-                        if($choosedb=="Requests"){
-                            $url = "window.location.href='mark_to_sell.php?RequestId=".$item_id."&SaleId='+document.getElementById('saleid_box').value";
-                            echo '
-                            <div class="form-group">
-
-                                <input type="text" style="display:none" />
-
-                                <input type="text" id="saleid_box" class="form-control" placeholder="The id of your product"/>
-
-                            </div>
-
-                            <button class="btn btn-theme" type="submit" onclick="'.$url.'">I wanna sell</button>';
-                        }
+                    <?php if($choosedb=="Requests"){
+                        // $url = "window.location.href='mark_to_sell.php?RequestId=".$item_id."&SaleId='+document.getElementById('saleid_box').value";
+                        $url = "window.location.href='mark_to_sell.php?RequestId=".$item_id."&SaleId='+$('#saleid_box').find('option:selected').attr('value')";
                     ?>
+
+                        <div class="form-group">
+                        <label for="selectError3">My Product ID:</label><span class="warning"> <?php echo $product_id_err;?></span>
+                        <select class="form-control" id="saleid_box">
+                            <optgroup label="My Products">
+                                <?php
+                                $get_id_conn = connectDB();
+                                $get_id_sql = "SELECT SaleId, ProductName FROM Sales WHERE SellerId = '$curr_user' AND IntendedBuyerId IS NULL";
+                                $result = $get_id_conn->query($get_id_sql);
+                                $array=array();
+                                while($row = mysqli_fetch_assoc($result)){
+                                    $array[]=$row;
+                                }
+                                $get_id_conn->close();
+                                foreach($array as $val):
+                                    echo '<option value="'.$val["SaleId"].'">'.$val["SaleId"].' -- '.$val["ProductName"].'</option>';
+                                endforeach;
+                                ?>
+                            </optgroup>
+                        </select>
+                        </div>
+
+                        <button class="btn btn-theme" type="submit" onclick="<?php echo $url; ?>">I wanna sell</button>
+                    <?php } ?>
 
                     <div class="product-info">
 
