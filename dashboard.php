@@ -1,10 +1,62 @@
+<?php
+	include_once "db_functions.php";
+	session_start(); 
+	$curr_user = $_SESSION['curr_user'];
+	$msg = "";
+
+	$conn = connectDB();
+		
+	$sql = "SELECT COUNT(*) AS totUsers FROM Users";
+	$result = $conn->query($sql);
+	if ($result) {
+		$tot_users = mysqli_fetch_assoc($result)['totUsers'];
+	} else {
+		$msg = "Error counting total users" . $sql . "<br>" . $conn->error;
+	}
+
+	$sql = "SELECT COUNT(*) AS totSales FROM Sales";
+	$result = $conn->query($sql);
+	if ($result) {
+		$tot_sales = mysqli_fetch_assoc($result)['totSales'];
+	} else {
+		$msg = "Error counting total sales" . $sql . "<br>" . $conn->error;
+	}
+	
+	$sql = "SELECT COUNT(*) AS totRequests FROM Requests";
+	$result = $conn->query($sql);
+	if ($result) {
+		$tot_requests = mysqli_fetch_assoc($result)['totRequests'];
+	} else {
+		$msg = "Error counting total requests" . $sql . "<br>" . $conn->error;
+	}
+
+	$sql = "SELECT COUNT(*) AS totTransactions FROM Transactions";
+	$result = $conn->query($sql);
+	if ($result) {
+		$tot_transactions = mysqli_fetch_assoc($result)['totTransactions'];
+	} else {
+		$msg = "Error counting total transactions" . $sql . "<br>" . $conn->error;
+	}
+
+	$sql = "SELECT SUM(Price) AS totPrice FROM Transactions";
+	$result = $conn->query($sql);
+	if ($result) {
+		$tot_prices = mysqli_fetch_assoc($result)['totPrice'];
+	} else {
+		$msg = "Error counting total price" . $sql . "<br>" . $conn->error;
+	}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>Beacon - User Profile</title>
+	<title>Beacon - Dashboard</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="">
 	<meta name="keyword" content="">
@@ -36,15 +88,12 @@
 	<!-- start: Favicon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
 	<!-- end: Favicon -->
-	
-		
-		
-		
+
 </head>
 
 <body>
-<!-- start: Header -->
-<div class="navbar">
+	<!-- start: Header -->
+	<div class="navbar">
 		<div class="navbar-inner">
 			<div class="container-fluid">
 				<a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
@@ -73,12 +122,8 @@
                                     <a href="#">
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
-											<span class="from">
-										    	
-										     </span>
-											<span class="time">
-										    	6 min
-										    </span>
+											<span class="from"> </span>
+											<span class="time"> 6 min </span>
 										</span>
                                         <span class="message">
                                             Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
@@ -89,12 +134,8 @@
                                     <a href="#">
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
-											<span class="from">
-										    	
-										     </span>
-											<span class="time">
-										    	56 min
-										    </span>
+											<span class="from"> </span>
+											<span class="time"> 56 min </span>
 										</span>
                                         <span class="message">
                                             Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
@@ -105,12 +146,8 @@
                                     <a href="#">
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
-											<span class="from">
-										    	
-										     </span>
-											<span class="time">
-										    	3 hours
-										    </span>
+											<span class="from"> </span>
+											<span class="time"> 3 hours </span>
 										</span>
                                         <span class="message">
                                             Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
@@ -121,12 +158,8 @@
                                     <a href="#">
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
-											<span class="from">
-										    	
-										     </span>
-											<span class="time">
-										    	yesterday
-										    </span>
+											<span class="from"> </span>
+											<span class="time"> yesterday </span>
 										</span>
                                         <span class="message">
                                             Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
@@ -180,651 +213,265 @@
 				<li><a href="mytransactions.php"><i class="icon-money"></i><span class="hidden-tablet"> Transactions</span></a></li>
 				<li><a href="mymessages.php"><i class="icon-envelope"></i><span class="hidden-tablet"> Messages</span></a></li>
 				<li><a href="dashboard.php"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Dashboard</span></a></li>
-				
 			</ul>
 		</div>
 	</div>
 	<!-- end: Main Menu -->
 			
-			<noscript>
-				<div class="alert alert-block span10">
-					<h4 class="alert-heading">Warning!</h4>
-					<p>You need to have <a href="" target="_blank">JavaScript</a> enabled to use this site.</p>
-				</div>
-			</noscript>
+	<noscript>
+		<div class="alert alert-block span10">
+			<h4 class="alert-heading">Warning!</h4>
+			<p>You need to have <a href="" target="_blank">JavaScript</a> enabled to use this site.</p>
+		</div>
+	</noscript>
 			
-			<!-- start: Content -->
-			<div id="content" class="span10">
-			
+	<!-- start: Content -->
+	<div id="content" class="span10">
+	
 
-			<div class="row-fluid">
-				
-				<div class="span3 statbox purple" onTablet="span6" onDesktop="span3">
-					<div class="boxchart">5,6,7,2,0,4,2,4,8,2,3,3,2</div>
-					<div class="number">854<i class="icon-arrow-up"></i></div>
-					<div class="title">visits</div>
-					<div class="footer">
-						<a href="#"> read full report</a>
-					</div>	
-				</div>
-				<div class="span3 statbox green" onTablet="span6" onDesktop="span3">
-					<div class="boxchart">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
-					<div class="number">123<i class="icon-arrow-up"></i></div>
-					<div class="title">sales</div>
-					<div class="footer">
-						<a href="#"> read full report</a>
-					</div>
-				</div>
-				<div class="span3 statbox blue noMargin" onTablet="span6" onDesktop="span3">
-					<div class="boxchart">5,6,7,2,0,-4,-2,4,8,2,3,3,2</div>
-					<div class="number">982<i class="icon-arrow-up"></i></div>
-					<div class="title">orders</div>
-					<div class="footer">
-						<a href="#"> read full report</a>
-					</div>
-				</div>
-				<div class="span3 statbox yellow" onTablet="span6" onDesktop="span3">
-					<div class="boxchart">7,2,2,2,1,-4,-2,4,8,,0,3,3,5</div>
-					<div class="number">678<i class="icon-arrow-down"></i></div>
-					<div class="title">visits</div>
-					<div class="footer">
-						<a href="#"> read full report</a>
-					</div>
+		<div class="row-fluid">
+			
+			<div class="span3 statbox purple" onTablet="span6" onDesktop="span3">
+				<div class="boxchart">5,6,7,2,0,4,2,4,8,2,3,3,2</div>
+				<div class="number">854<i class="icon-arrow-up"></i></div>
+				<div class="title">visits</div>
+				<div class="footer">
+					<a href="#"> read full report</a>
 				</div>	
-				
-			</div>		
-
-			<div class="row-fluid">
-				
-				<div class="span8 widget blue" onTablet="span7" onDesktop="span8">
-					
-					<div id="stats-chart2"  style="height:282px" ></div>
-					
+			</div>
+			<div class="span3 statbox green" onTablet="span6" onDesktop="span3">
+				<div class="boxchart">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
+				<div class="number">123<i class="icon-arrow-up"></i></div>
+				<div class="title">sales</div>
+				<div class="footer">
+					<a href="#"> read full report</a>
 				</div>
-				
-				<div class="sparkLineStats span4 widget green" onTablet="span5" onDesktop="span4">
+			</div>
+			<div class="span3 statbox blue noMargin" onTablet="span6" onDesktop="span3">
+				<div class="boxchart">5,6,7,2,0,-4,-2,4,8,2,3,3,2</div>
+				<div class="number">982<i class="icon-arrow-up"></i></div>
+				<div class="title">orders</div>
+				<div class="footer">
+					<a href="#"> read full report</a>
+				</div>
+			</div>
+			<div class="span3 statbox yellow" onTablet="span6" onDesktop="span3">
+				<div class="boxchart">7,2,2,2,1,-4,-2,4,8,,0,3,3,5</div>
+				<div class="number">678<i class="icon-arrow-down"></i></div>
+				<div class="title">visits</div>
+				<div class="footer">
+					<a href="#"> read full report</a>
+				</div>
+			</div>	
+			
+		</div>		
 
-                    <ul class="unstyled">
-                        
-                        <li><span class="sparkLineStats3"></span> 
-                            Pageviews: 
-                            <span class="number">781</span>
-                        </li>
-                        <li><span class="sparkLineStats4"></span>
-                            Pages / Visit: 
-                            <span class="number">2,19</span>
-                        </li>
-                        <li><span class="sparkLineStats5"></span>
-                            Avg. Visit Duration: 
-                            <span class="number">00:02:58</span>
-                        </li>
-                        <li><span class="sparkLineStats6"></span>
-                            Bounce Rate: <span class="number">59,83%</span>
-                        </li>
-                        <li><span class="sparkLineStats7"></span>
-                            % New Visits: 
-                            <span class="number">70,79%</span>
-                        </li>
-                        <li><span class="sparkLineStats8"></span>
-                            % Returning Visitor: 
-                            <span class="number">29,21%</span>
-                        </li>
+		<div class="row-fluid hideInIE8 circleStats">
+			
+			<div class="span2" onTablet="span4" onDesktop="span2">
+				<div class="circleStatsItemBox yellow">
+					<div class="header">Disk Space Usage</div>
+					<span class="percent">percent</span>
+					<div class="circleStat">
+						<input type="text" value="58" class="whiteCircle" />
+					</div>		
+					<div class="footer">
+						<span class="count">
+							<span class="number">20000</span>
+							<span class="unit">MB</span>
+						</span>
+						<span class="sep"> / </span>
+						<span class="value">
+							<span class="number">50000</span>
+							<span class="unit">MB</span>
+						</span>	
+					</div>
+				</div>
+			</div>
 
-                    </ul>
+			<div class="span2" onTablet="span4" onDesktop="span2">
+				<div class="circleStatsItemBox green">
+					<div class="header">Bandwidth</div>
+					<span class="percent">percent</span>
+					<div class="circleStat">
+						<input type="text" value="78" class="whiteCircle" />
+					</div>
+					<div class="footer">
+						<span class="count">
+							<span class="number">5000</span>
+							<span class="unit">GB</span>
+						</span>
+						<span class="sep"> / </span>
+						<span class="value">
+							<span class="number">5000</span>
+							<span class="unit">GB</span>
+						</span>	
+					</div>
+				</div>
+			</div>
+
+			<div class="span2" onTablet="span4" onDesktop="span2">
+				<div class="circleStatsItemBox red">
+					<div class="header">Memory</div>
+					<span class="percent">percent</span>
+					<div class="circleStat">
+						<input type="text" value="100" class="whiteCircle" />
+					</div>
+					<div class="footer">
+						<span class="count">
+							<span class="number">64</span>
+							<span class="unit">GB</span>
+						</span>
+						<span class="sep"> / </span>
+						<span class="value">
+							<span class="number">64</span>
+							<span class="unit">GB</span>
+						</span>	
+					</div>
+				</div>
+			</div>
+
+			<div class="span2 noMargin" onTablet="span4" onDesktop="span2">
+				<div class="circleStatsItemBox pink">
+					<div class="header">CPU</div>
+					<span class="percent">percent</span>
+					<div class="circleStat">
+						<input type="text" value="83" class="whiteCircle" />
+					</div>
+					<div class="footer">
+						<span class="count">
+							<span class="number">64</span>
+							<span class="unit">GHz</span>
+						</span>
+						<span class="sep"> / </span>
+						<span class="value">
+							<span class="number">3.2</span>
+							<span class="unit">GHz</span>
+						</span>	
+					</div>
+				</div>
+			</div>
+
+			<div class="span2" onTablet="span4" onDesktop="span2">
+				<div class="circleStatsItemBox blue">
+					<div class="header">Memory</div>
+					<span class="percent">percent</span>
+					<div class="circleStat">
+						<input type="text" value="100" class="whiteCircle" />
+					</div>
+					<div class="footer">
+						<span class="count">
+							<span class="number">64</span>
+							<span class="unit">GB</span>
+						</span>
+						<span class="sep"> / </span>
+						<span class="value">
+							<span class="number">64</span>
+							<span class="unit">GB</span>
+						</span>	
+					</div>
+				</div>
+			</div>
+
+			<div class="span2" onTablet="span4" onDesktop="span2">
+				<div class="circleStatsItemBox green">
+					<div class="header">Memory</div>
+					<span class="percent">percent</span>
+					<div class="circleStat">
+						<input type="text" value="100" class="whiteCircle" />
+					</div>
+					<div class="footer">
+						<span class="count">
+							<span class="number">64</span>
+							<span class="unit">GB</span>
+						</span>
+						<span class="sep"> / </span>
+						<span class="value">
+							<span class="number">64</span>
+							<span class="unit">GB</span>
+						</span>	
+					</div>
+				</div>
+			</div>
 					
-					<div class="clearfix"></div>
+		</div>		
 
-                </div><!-- End .sparkStats -->
 
+		<!-- /////////////////////////////////////////////////////////////////////////////// -->
+
+		<div class="row-fluid sortable">
+
+			<a class="quick-button metro yellow span2">
+				<i class="icon-group"></i>
+				<p>Users</p>
+				<span class="badge"> <?php echo $tot_users ?> </span>
+			</a>
+
+			<div class="box span3">
+				<div class="box-header">
+					<h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Campus</h2>
+				</div>
+				<div class="box-content">
+						<div id="pie_user_campus" style="height:200px"></div>
+				</div>
+			</div>
+
+			<div class="box span3">
+				<div class="box-header">
+					<h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Major</h2>
+				</div>
+				<div class="box-content">
+						<div id="pie_user_major" style="height:200px"></div>
+				</div>
+			</div>
+
+			<div class="box span3">
+				<div class="box-header">
+					<h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Year</h2>
+				</div>
+				<div class="box-content">
+						<div id="pie_user_year" style="height:200px"></div>
+				</div>
 			</div>
 			
-						
-			<div class="row-fluid">
-				
-				<div class="widget blue span5" onTablet="span6" onDesktop="span5">
-					
-					<h2><span class="glyphicons globe"><i></i></span> Demographics</h2>
-					
-					<hr>
-					
-					<div class="content">
-						
-						<div class="verticalChart">
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>37%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">US</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>16%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">PL</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>12%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">GB</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>9%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">DE</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>7%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">NL</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>6%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">CA</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>5%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">FI</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>4%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">RU</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>3%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">AU</div>
-							
-							</div>
-							
-							<div class="singleBar">
-							
-								<div class="bar">
-								
-									<div class="value">
-										<span>1%</span>
-									</div>
-								
-								</div>
-								
-								<div class="title">N/A</div>
-							
-							</div>	
-							
-							<div class="clearfix"></div>
-							
-						</div>
-					
-					</div>
-					
-				</div><!--/span-->
-				
-				<div class="widget span3 red" onTablet="span6" onDesktop="span3">
-					
-					<h2><span class="glyphicons pie_chart"><i></i></span> Browsers</h2>
-					
-					<hr>
-					
-					<div class="content">
-						
-						<div class="browserStat big">
-							<img src="img/browser-chrome-big.png" alt="Chrome">
-							<span>34%</span>
-						</div>
-						<div class="browserStat big">
-							<img src="img/browser-firefox-big.png" alt="Firefox">
-							<span>34%</span>
-						</div>
-						<div class="browserStat">
-							<img src="img/browser-ie.png" alt="Internet Explorer">
-							<span>34%</span>
-						</div>
-						<div class="browserStat">
-							<img src="img/browser-safari.png" alt="Safari">
-							<span>34%</span>
-						</div>
-						<div class="browserStat">
-							<img src="img/browser-opera.png" alt="Opera">
-							<span>34%</span>
-						</div>	
-								
-						
-					</div>
-				</div>
-				
-				<div class="widget yellow span4 noMargin" onTablet="span12" onDesktop="span4">
-					<h2><span class="glyphicons fire"><i></i></span> Server Load</h2>
-					<hr>
-					<div class="content">
-						 <div id="serverLoad2" style="height:224px;"></div>
-					</div>
-				</div>
+		</div><!--/row-->
 			
-			</div>
+		<!-- /////////////////////////////////////////////////////////////////////////////// -->
+
+		<div class="row-fluid">	
+
+			<a class="quick-button metro yellow span2">
+				<i class="icon-group"></i>
+				<p>Users</p>
+				<span class="badge"> <?php echo $tot_users ?> </span>
+			</a>
+			<a class="quick-button metro red span2">
+				<i class="icon-comments-alt"></i>
+				<p>Products</p>
+				<span class="badge"> <?php echo $tot_sales ?> </span>
+			</a>
+			<a class="quick-button metro blue span2">
+				<i class="icon-shopping-cart"></i>
+				<p>Requests</p>
+				<span class="badge"> <?php echo $tot_requests ?> </span>
+			</a>
+			<a class="quick-button metro blue span2">
+				<i class="icon-shopping-cart"></i>
+				<p>Transactions</p>
+				<span class="badge"> <?php echo $tot_transactions ?> </span>
+			</a>
+			<a class="quick-button metro pink span2">
+				<i class="icon-envelope"></i>
+				<p>Trading Volumes</p>
+				<span class="badge"> <?php echo $tot_prices ?> </span>
+			</a>
 			
-			<div class="row-fluid">
-				
-				<div class="box black span4" onTablet="span6" onDesktop="span4">
-					<div class="box-header">
-						<h2><i class="halflings-icon white list"></i><span class="break"></span>Weekly Stat</h2>
-						<div class="box-icon">
-							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
-						</div>
-					</div>
-					<div class="box-content">
-						<ul class="dashboard-list metro">
-							<li>
-								<a href="#">
-									<i class="icon-arrow-up green"></i>                               
-									<strong>92</strong>
-									New Comments                                    
-								</a>
-							</li>
-						  <li>
-							<a href="#">
-							  <i class="icon-arrow-down red"></i>
-							  <strong>15</strong>
-							  New Registrations
-							</a>
-						  </li>
-						  <li>
-							<a href="#">
-							  <i class="icon-minus blue"></i>
-							  <strong>36</strong>
-							  New Articles                                    
-							</a>
-						  </li>
-						  <li>
-							<a href="#">
-							  <i class="icon-comment yellow"></i>
-							  <strong>45</strong>
-							  User reviews                                    
-							</a>
-						  </li>
-						  <li>
-							<a href="#">
-							  <i class="icon-arrow-up green"></i>                               
-							  <strong>112</strong>
-							  New Comments                                    
-							</a>
-						  </li>
-						  <li>
-							<a href="#">
-							  <i class="icon-arrow-down red"></i>
-							  <strong>31</strong>
-							  New Registrations
-							</a>
-						  </li>
-						  <li>
-							<a href="#">
-							  <i class="icon-minus blue"></i>
-							  <strong>93</strong>
-							  New Articles                                    
-							</a>
-						  </li>
-						  <li>
-							<a href="#">
-							  <i class="icon-comment yellow"></i>
-							  <strong>256</strong>
-							  User reviews                                    
-							</a>
-						  </li>
-						</ul>
-					</div>
-				</div><!--/span-->
-				
-				<div class="box black span4" onTablet="span6" onDesktop="span4">
-					<div class="box-header">
-						<h2><i class="halflings-icon white user"></i><span class="break"></span>Last Users</h2>
-						<div class="box-icon">
-							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
-						</div>
-					</div>
-					<div class="box-content">
-						<ul class="dashboard-list metro">
-							<li class="green">
-								<a href="#">
-									<img class="avatar" alt="" src="img/avatar.jpg">
-								</a>
-								<strong>Name:</strong> <br>
-								<strong>Since:</strong> Jul 25, 2012 11:09<br>
-								<strong>Status:</strong> Approved             
-							</li>
-							<li class="yellow">
-								<a href="#">
-									<img class="avatar" alt="" src="img/avatar.jpg">
-								</a>
-								<strong>Name:</strong> <br>
-								<strong>Since:</strong> Jul 25, 2012 11:09<br>
-								<strong>Status:</strong> Pending                                
-							</li>
-							<li class="red">
-								<a href="#">
-									<img class="avatar" alt="" src="img/avatar.jpg">
-								</a>
-								<strong>Name:</strong> <br>
-								<strong>Since:</strong> Jul 25, 2012 11:09<br>
-								<strong>Status:</strong> Banned                                  
-							</li>
-							<li class="blue">
-								<a href="#">
-									<img class="avatar" alt="" src="img/avatar.jpg">
-								</a>
-								<strong>Name:</strong> <br>
-								<strong>Since:</strong> Jul 25, 2012 11:09<br>
-								<strong>Status:</strong> Updated                                 
-							</li>
-						</ul>
-					</div>
-				</div><!--/span-->
-				
-				<div class="box black span4 noMargin" onTablet="span12" onDesktop="span4">
-					<div class="box-header">
-						<h2><i class="halflings-icon white check"></i><span class="break"></span>To Do List</h2>
-						<div class="box-icon">
-							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
-						</div>
-					</div>
-					<div class="box-content">
-						<div class="todo metro">
-							<ul class="todo-list">
-								<li class="red">
-									<a class="action icon-check-empty" href="#"></a>	
-									Windows Phone 8 App 
-									<strong>today</strong>
-								</li>
-								<li class="red">
-									<a class="action icon-check-empty" href="#"></a>
-									New frontend layout
-									<strong>today</strong>
-								</li>
-								<li class="yellow">
-									<a class="action icon-check-empty" href="#"></a>
-									Hire developers
-									<strong>tommorow</strong>
-								</li>
-								<li class="yellow">
-									<a class="action icon-check-empty" href="#"></a>
-									Windows Phone 8 App
-									<strong>tommorow</strong>
-								</li>
-								<li class="green">
-									<a class="action icon-check-empty" href="#"></a>
-									New frontend layout
-									<strong>this week</strong>
-								</li>
-								<li class="green">
-									<a class="action icon-check-empty" href="#"></a>
-									Hire developers
-									<strong>this week</strong>
-								</li>
-								<li class="blue">
-									<a class="action icon-check-empty" href="#"></a>
-									New frontend layout
-									<strong>this month</strong>
-								</li>
-								<li class="blue">
-									<a class="action icon-check-empty" href="#"></a>
-									Hire developers
-									<strong>this month</strong>
-								</li>
-							</ul>
-						</div>	
-					</div>
-				</div>
+			<!-- <div class="clearfix"></div> -->
+							
+		</div><!--/row-->
+
+
 			
-			</div>
-			<div class="row-fluid hideInIE8 circleStats">
-				
-				<div class="span2" onTablet="span4" onDesktop="span2">
-                	<div class="circleStatsItemBox yellow">
-						<div class="header">Disk Space Usage</div>
-						<span class="percent">percent</span>
-						<div class="circleStat">
-                    		<input type="text" value="58" class="whiteCircle" />
-						</div>		
-						<div class="footer">
-							<span class="count">
-								<span class="number">20000</span>
-								<span class="unit">MB</span>
-							</span>
-							<span class="sep"> / </span>
-							<span class="value">
-								<span class="number">50000</span>
-								<span class="unit">MB</span>
-							</span>	
-						</div>
-                	</div>
-				</div>
-
-				<div class="span2" onTablet="span4" onDesktop="span2">
-                	<div class="circleStatsItemBox green">
-						<div class="header">Bandwidth</div>
-						<span class="percent">percent</span>
-						<div class="circleStat">
-                    		<input type="text" value="78" class="whiteCircle" />
-						</div>
-						<div class="footer">
-							<span class="count">
-								<span class="number">5000</span>
-								<span class="unit">GB</span>
-							</span>
-							<span class="sep"> / </span>
-							<span class="value">
-								<span class="number">5000</span>
-								<span class="unit">GB</span>
-							</span>	
-						</div>
-                	</div>
-				</div>
-
-				<div class="span2" onTablet="span4" onDesktop="span2">
-                	<div class="circleStatsItemBox red">
-						<div class="header">Memory</div>
-						<span class="percent">percent</span>
-                    	<div class="circleStat">
-                    		<input type="text" value="100" class="whiteCircle" />
-						</div>
-						<div class="footer">
-							<span class="count">
-								<span class="number">64</span>
-								<span class="unit">GB</span>
-							</span>
-							<span class="sep"> / </span>
-							<span class="value">
-								<span class="number">64</span>
-								<span class="unit">GB</span>
-							</span>	
-						</div>
-                	</div>
-				</div>
-
-				<div class="span2 noMargin" onTablet="span4" onDesktop="span2">
-                	<div class="circleStatsItemBox pink">
-						<div class="header">CPU</div>
-						<span class="percent">percent</span>
-                    	<div class="circleStat">
-                    		<input type="text" value="83" class="whiteCircle" />
-						</div>
-						<div class="footer">
-							<span class="count">
-								<span class="number">64</span>
-								<span class="unit">GHz</span>
-							</span>
-							<span class="sep"> / </span>
-							<span class="value">
-								<span class="number">3.2</span>
-								<span class="unit">GHz</span>
-							</span>	
-						</div>
-                	</div>
-				</div>
-
-				<div class="span2" onTablet="span4" onDesktop="span2">
-                	<div class="circleStatsItemBox blue">
-						<div class="header">Memory</div>
-						<span class="percent">percent</span>
-                    	<div class="circleStat">
-                    		<input type="text" value="100" class="whiteCircle" />
-						</div>
-						<div class="footer">
-							<span class="count">
-								<span class="number">64</span>
-								<span class="unit">GB</span>
-							</span>
-							<span class="sep"> / </span>
-							<span class="value">
-								<span class="number">64</span>
-								<span class="unit">GB</span>
-							</span>	
-						</div>
-                	</div>
-				</div>
-
-				<div class="span2" onTablet="span4" onDesktop="span2">
-                	<div class="circleStatsItemBox green">
-						<div class="header">Memory</div>
-						<span class="percent">percent</span>
-                    	<div class="circleStat">
-                    		<input type="text" value="100" class="whiteCircle" />
-						</div>
-						<div class="footer">
-							<span class="count">
-								<span class="number">64</span>
-								<span class="unit">GB</span>
-							</span>
-							<span class="sep"> / </span>
-							<span class="value">
-								<span class="number">64</span>
-								<span class="unit">GB</span>
-							</span>	
-						</div>
-                	</div>
-				</div>
-						
-			</div>		
-			
-			<div class="row-fluid">	
-
-				<a class="quick-button metro yellow span2">
-					<i class="icon-group"></i>
-					<p>Users</p>
-					<span class="badge">237</span>
-				</a>
-				<a class="quick-button metro red span2">
-					<i class="icon-comments-alt"></i>
-					<p>Comments</p>
-					<span class="badge">46</span>
-				</a>
-				<a class="quick-button metro blue span2">
-					<i class="icon-shopping-cart"></i>
-					<p>Orders</p>
-					<span class="badge">13</span>
-				</a>
-				<a class="quick-button metro green span2">
-					<i class="icon-barcode"></i>
-					<p>Products</p>
-				</a>
-				<a class="quick-button metro pink span2">
-					<i class="icon-envelope"></i>
-					<p>Messages</p>
-					<span class="badge">88</span>
-				</a>
-				<a class="quick-button metro black span2">
-					<i class="icon-calendar"></i>
-					<p>Calendar</p>
-				</a>
-				
-				<div class="clearfix"></div>
-								
-			</div><!--/row-->
-			
-       
-
 	</div><!--/.fluid-container-->
 	
 			<!-- end: Content -->
@@ -857,18 +504,15 @@
 	<div class="clearfix"></div>
 	
 	<footer>
-
 		<p>
 			<span style="text-align:left;float:left">Copyright &copy; 2016.Company name All rights reserved.</span>
-			
 		</p>
-
 	</footer>
 	
 	<!-- start: JavaScript-->
 
 		<script src="js/jquery-1.9.1.min.js"></script>
-	<script src="js/jquery-migrate-1.0.0.min.js"></script>
+		<script src="js/jquery-migrate-1.0.0.min.js"></script>
 	
 		<script src="js/jquery-ui-1.10.0.custom.min.js"></script>
 	
@@ -885,10 +529,10 @@
 		<script src='js/jquery.dataTables.min.js'></script>
 
 		<script src="js/excanvas.js"></script>
-	<script src="js/jquery.flot.js"></script>
-	<script src="js/jquery.flot.pie.js"></script>
-	<script src="js/jquery.flot.stack.js"></script>
-	<script src="js/jquery.flot.resize.min.js"></script>
+		<script src="js/jquery.flot.js"></script>
+		<script src="js/jquery.flot.pie.js"></script>
+		<script src="js/jquery.flot.stack.js"></script>
+		<script src="js/jquery.flot.resize.min.js"></script>
 	
 		<script src="js/jquery.chosen.min.js"></script>
 	
