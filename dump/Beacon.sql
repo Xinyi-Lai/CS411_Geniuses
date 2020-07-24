@@ -94,6 +94,16 @@ CREATE TABLE `Users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
+-- 表的结构 `Visit`
+--
+
+CREATE TABLE `Visit` (
+  `Visit` int DEFAULt 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- 转储表的索引
 --
 
