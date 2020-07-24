@@ -53,6 +53,16 @@
 <html lang="en">
 
 <head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-173456413-1"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-173456413-1');
+	</script>
+
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
@@ -229,7 +239,7 @@
 	<div id="content" class="span10">
 	
 
-		<div class="row-fluid">
+		<!-- <div class="row-fluid">
 			
 			<div class="span3 statbox purple" onTablet="span6" onDesktop="span3">
 				<div class="boxchart">5,6,7,2,0,4,2,4,8,2,3,3,2</div>
@@ -264,9 +274,9 @@
 				</div>
 			</div>	
 			
-		</div>		
+		</div>		 -->
 
-		<div class="row-fluid hideInIE8 circleStats">
+		<!-- <div class="row-fluid hideInIE8 circleStats">
 			
 			<div class="span2" onTablet="span4" onDesktop="span2">
 				<div class="circleStatsItemBox yellow">
@@ -394,45 +404,11 @@
 				</div>
 			</div>
 					
-		</div>		
+		</div>		 -->
 
 
 		<!-- /////////////////////////////////////////////////////////////////////////////// -->
-
-		<div class="row-fluid sortable">
-			<div class="box span12">
-				<div class="box-header">
-					<h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Users</h2>
-				</div>
-				<div class="row">
-					<div class="span4">
-							<div id="pie_user_campus" style="height:300px"></div>
-					</div>
-					<div class="span4">
-							<div id="pie_user_major" style="height:300px"></div>
-					</div>
-					<div class="span4">
-							<div id="pie_user_year" style="height:300px"></div>
-					</div>
-				</div>
-			</div>
-		</div><!--/row-->
-
-
-		<div class="row-fluid sortable">
-			<div class="box">
-				<div class="box-header">
-					<h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Items on Beacon</h2>
-				</div>
-					<div class="box-content">
-						 <div id="stack_item" class="center" style="height:300px;"></div>
-					</div>
-				</div>
-		</div><!--/row-->
-			
-		<!-- /////////////////////////////////////////////////////////////////////////////// -->
-
-		<div class="row-fluid">	
+		<div class="row-fluid" style="margin-bottom:20px;">	
 
 			<a class="quick-button metro yellow span2">
 				<i class="icon-group"></i>
@@ -449,7 +425,7 @@
 				<p>Requests</p>
 				<span class="badge"> <?php echo $tot_requests ?> </span>
 			</a>
-			<a class="quick-button metro blue span2">
+			<a class="quick-button metro green span2">
 				<i class="icon-money"></i>
 				<p>Transactions</p>
 				<span class="badge"> <?php echo $tot_transactions ?> </span>
@@ -459,10 +435,70 @@
 				<p>Trading Volumes</p>
 				<span class="badge"> <?php echo $tot_prices ?> </span>
 			</a>
+			<a class="quick-button metro black span2">
+				<i class="icon-bar-chart"></i>
+				<p>Visits</p>
+				<span class="badge"> 101 </span>
+			</a>
 			
 			<!-- <div class="clearfix"></div> -->
 							
 		</div><!--/row-->
+
+		<div class="row-fluid sortable">
+			<div class="box span12">
+				<div class="box-header">
+					<h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Users</h2>
+				</div>
+				<div class="row">
+					<div class="span4">
+							<div id="pie_user_campus" style="height:250px;margin-top:15px;margin-bottom:20px;"></div>
+					</div>
+					<div class="span4">
+							<div id="pie_user_major" style="height:250px;margin-top:15px;margin-bottom:20px;"></div>
+					</div>
+					<div class="span4">
+							<div id="pie_user_year" style="height:250px;margin-top:15px;margin-bottom:20px;"></div>
+					</div>
+				</div>
+			</div>
+		</div><!--/row-->
+
+
+		<div class="row-fluid sortable">
+			<div class="box">
+				<div class="box-header">
+					<h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Items on Beacon</h2>
+				</div>
+					<div class="box-content">
+						 <div id="stack_item" class="center" style="height:300px;"></div>
+					</div>
+				</div>
+		</div><!--/row-->
+
+		<div class="row-fluid">
+				
+				<div class="widget span6" onTablet="span6" onDesktop="span6">
+					<h2><span class="glyphicons facebook"><i></i></span>Products by tag</h2>
+					<hr>
+					<div class="content">
+						<div id="facebookChart" style="height:300px" ></div>
+					</div>
+				</div><!--/span-->
+				
+				<div class="widget span6" onTablet="span6" onDesktop="span6">
+					<h2><span class="glyphicons twitter"><i></i></span>Requests by tag</h2>
+					<hr>
+					<div class="content">
+						<div id="twitterChart" style="height:300px" ></div>
+					</div>
+				</div><!--/span-->
+			
+		</div>
+			
+		<!-- /////////////////////////////////////////////////////////////////////////////// -->
+
+		
 
 
 			
@@ -471,31 +507,7 @@
 			<!-- end: Content -->
 		</div><!--/#content.span10-->
 		</div><!--/fluid-row-->
-		
-	<div class="modal hide fade" id="myModal">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>Settings</h3>
-		</div>
-		<div class="modal-body">
-			<p>Here settings can be configured...</p>
-		</div>
-		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">Close</a>
-			<a href="#" class="btn btn-primary">Save changes</a>
-		</div>
-	</div>
-	
-	<div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-content">
-			<ul class="list-inline item-details">
-				<li><a href="http://www.freemoban.com">Admin templates</a></li>
-				<li><a href="http://www.freemoban.com">Bootstrap themes</a></li>
-			</ul>
-		</div>
-	</div>
-	
-	<div class="clearfix"></div>
+
 	
 	<footer>
 		<p>

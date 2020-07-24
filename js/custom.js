@@ -1079,7 +1079,7 @@ function charts() {
 		var likes = [[1, 5+randNumFB()], [2, 10+randNumFB()], [3, 15+randNumFB()], [4, 20+randNumFB()],[5, 25+randNumFB()],[6, 30+randNumFB()],[7, 35+randNumFB()],[8, 40+randNumFB()],[9, 45+randNumFB()],[10, 50+randNumFB()],[11, 55+randNumFB()],[12, 60+randNumFB()],[13, 65+randNumFB()],[14, 70+randNumFB()],[15, 75+randNumFB()],[16, 80+randNumFB()],[17, 85+randNumFB()],[18, 90+randNumFB()],[19, 85+randNumFB()],[20, 80+randNumFB()],[21, 75+randNumFB()],[22, 80+randNumFB()],[23, 75+randNumFB()],[24, 70+randNumFB()],[25, 65+randNumFB()],[26, 75+randNumFB()],[27,80+randNumFB()],[28, 85+randNumFB()],[29, 90+randNumFB()], [30, 95+randNumFB()]];
 
 		var plot = $.plot($("#facebookChart"),
-			   [ { data: likes, label: "Fans"} ], {
+			   [ { data: likes, label: "Products"} ], {
 				   series: {
 					   lines: { show: true,
 								lineWidth: 2,
@@ -1604,7 +1604,7 @@ function charts() {
 				xaxis: { ticks: xticks },
 				legend: { show: true },
 				grid: 	{ hoverable: true, clickable: true },
-				colors: ["#FA5833", "#2FABE9", "#FABB3D"]
+				colors: ["#32d3eb", "#60acfc", "#9287e7"]
 			});
 
 		}
