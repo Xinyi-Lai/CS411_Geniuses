@@ -1478,127 +1478,65 @@ function charts() {
 	////////////////////////////////////////////////////////////////////
 
 	// ask php to help getting data from database
-	var request=$.ajax({url: 'dashboard_db.php?table=users'});
-	var jsonStr=request.responseText;
-	//var jsonObj=JSON.parse(jsonStr);
-
-	console.log(jsonStr);
-
-	// var data_user_campus = [
-	// 	{ label: "UIUC",  data: jsonObj.campus.UIUC},
-	// 	{ label: "ZJU",  data: jsonObj.campus.ZJU},
-	// 	{ label: "ZJUIntl",  data: jsonObj.campus.ZJUIntl}
-	// ];
-
-	// var data_user_major = [
-	// 	{ label: "BMI",  data: jsonObj.major.BMI},
-	// 	{ label: "BMS",  data: jsonObj.major.BMS},
-	// 	{ label: "CS",  data: jsonObj.major.CS},
-	// 	{ label: "CEE",  data: jsonObj.major.CEE},
-	// 	{ label: "ME",  data: jsonObj.major.ME},
-	// 	{ label: "ECE",  data: jsonObj.major.ECE},
-	// 	{ label: "EE",  data: jsonObj.major.EE}
-	// ];
-
-	// var data_user_year = [
-	// 	{ label: "Freshman",  data: jsonObj.year.Freshman},
-	// 	{ label: "Sophomore",  data: jsonObj.year.Sophoremore},
-	// 	{ label: "Junior",  data: jsonObj.year.Junior},
-	// 	{ label: "Senior",  data: jsonObj.year.Senior},
-	// 	{ label: "Graduate",  data: jsonObj.year.Graduate}
-	// ];
-
-  
-
-	/* ---------- User-campus Piechart ---------- */
-	var data_user_campus = [
-		{ label: "UIUC",  data: 12},
-		{ label: "ZJU",  data: 27},
-		{ label: "ZJUIntl",  data: 90}
-	];
-	if($("#pie_user_campus").length) 
-	{
-
-				
-		$.plot($("#pie_user_campus"), data_user_campus,
-		{
-			series: {
-					pie: {
-						innerRadius: 0.5,	
-						show: true
-					}
-			},
-			grid: {
-					hoverable: true,
-					clickable: true
-			},
-			legend: {
-				show: false
-			},
-			colors: ["#FA5833", "#2FABE9", "#FABB3D", "#78CD51"]
-		});
-	}
 	
-	/* ---------- User-major Piechart ---------- */
-	var data_user_major = [
-		{ label: "BMI",  data: 12},
-		{ label: "BMS",  data: 27},
-		{ label: "CS",  data: 90},
-		{ label: "CEE",  data: 85},
-		{ label: "ME",  data: 64},
-		{ label: "ECE",  data: 130},
-		{ label: "EE",  data: 90}
-	];
-	if($("#pie_user_major").length) 
-	{
-		$.plot($("#pie_user_major"), data_user_major,
-		{
-			series: {
-					pie: {
-						innerRadius: 0.5,	
-						show: true
-					}
-			},
-			grid: {
-					hoverable: true,
-					clickable: true
-			},
-			legend: {
-				show: false
-			},
-			colors: ["#FA5833", "#2FABE9", "#FABB3D", "#78CD51"]
-		});
-	}
-	
-	/* ---------- User-year Piechart ---------- */
-	var data_user_year = [
-		{ label: "Freshman",  data: 12},
-		{ label: "Sophomore",  data: 27},
-		{ label: "Junior",  data: 85},
-		{ label: "Senior",  data: 64},
-		{ label: "Graduate",  data: 90}
-	];
-	if($("#pie_user_year").length) 
-	{
-		$.plot($("#pie_user_year"), data_user_year,
-		{
-			series: {
-					pie: {
-						innerRadius: 0.5,	
-						show: true
-					}
-			},
-			grid: {
-					hoverable: true,
-					clickable: true
-			},
-			legend: {
-				show: false
-			},
-			colors: ["#FA5833", "#2FABE9", "#FABB3D", "#78CD51"]
-		});
-	}
+	$.ajax({url:"dashboard_db.php?table=users",success:function(result){
+		jsonObj = JSON.parse(result);
+		var data_user_campus = [];
+		var data_user_major = [];
+		var data_user_year = [];
+		
 
+		/* ---------- User-campus Piechart ---------- */
+
+		for (var campus in jsonObj["Campus"]) {
+			var tmp = {};
+			tmp.label = campus;
+			tmp.data = parseInt(jsonObj['Campus'][campus]);
+			data_user_campus.push(tmp);
+		}
+		if($("#pie_user_campus").length) {
+			$.plot($("#pie_user_campus"), data_user_campus, {
+				series: { pie: { innerRadius: 0.5, show: true } },
+				grid: 	{ hoverable: true, clickable: true },
+				legend: { show: false },
+				colors: ["#FA5833", "#2FABE9", "#FABB3D", "#78CD51"]
+			});
+		}
+
+		/* ---------- User-major Piechart ---------- */
+		for (var major in jsonObj["Major"]) {
+			var tmp = {};
+			tmp.label = major;
+			tmp.data = parseInt(jsonObj['Major'][major]);
+			data_user_major.push(tmp);
+		}
+		if($("#pie_user_major").length) {
+			$.plot($("#pie_user_major"), data_user_major, {
+				series: { pie: { innerRadius: 0.5, show: true } },
+				grid: 	{ hoverable: true, clickable: true },
+				legend: { show: false },
+				colors: ["#FA5833", "#2FABE9", "#FABB3D", "#78CD51"]
+			});
+		}
+		
+		/* ---------- User-year Piechart ---------- */
+		for (var year in jsonObj["Year"]) {
+			var tmp = {};
+			tmp.label = year;
+			tmp.data = parseInt(jsonObj['Year'][year]);
+			data_user_year.push(tmp);
+		}
+		if($("#pie_user_year").length) {
+			$.plot($("#pie_user_year"), data_user_year, {
+				series: { pie: { innerRadius: 0.5, show: true } },
+				grid: 	{ hoverable: true, clickable: true },
+				legend: { show: false },
+				colors: ["#FA5833", "#2FABE9", "#FABB3D", "#78CD51"]
+			});
+		}
+
+    }});
+	
 
 	////////////////////////////////////////////////////////////////////
 
