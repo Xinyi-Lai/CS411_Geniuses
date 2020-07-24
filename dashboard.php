@@ -401,38 +401,23 @@
 
 		<div class="row-fluid sortable">
 
-			<a class="quick-button metro yellow span2">
-				<i class="icon-group"></i>
-				<p>Users</p>
-				<span class="badge"> <?php echo $tot_users ?> </span>
-			</a>
-
-			<div class="box span3">
+			<div class="box span12">
 				<div class="box-header">
-					<h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Campus</h2>
+					<h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Users</h2>
 				</div>
-				<div class="box-content">
-						<div id="pie_user_campus" style="height:200px"></div>
+				<div class="row">
+					<div class="span4">
+							<div id="pie_user_campus" style="height:300px"></div>
+					</div>
+					<div class="span4">
+							<div id="pie_user_major" style="height:300px"></div>
+					</div>
+					<div class="span4">
+							<div id="pie_user_year" style="height:300px"></div>
+					</div>
 				</div>
 			</div>
 
-			<div class="box span3">
-				<div class="box-header">
-					<h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Major</h2>
-				</div>
-				<div class="box-content">
-						<div id="pie_user_major" style="height:200px"></div>
-				</div>
-			</div>
-
-			<div class="box span3">
-				<div class="box-header">
-					<h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Year</h2>
-				</div>
-				<div class="box-content">
-						<div id="pie_user_year" style="height:200px"></div>
-				</div>
-			</div>
 			
 		</div><!--/row-->
 			
@@ -446,22 +431,22 @@
 				<span class="badge"> <?php echo $tot_users ?> </span>
 			</a>
 			<a class="quick-button metro red span2">
-				<i class="icon-comments-alt"></i>
+				<i class="icon-inbox"></i>
 				<p>Products</p>
 				<span class="badge"> <?php echo $tot_sales ?> </span>
 			</a>
 			<a class="quick-button metro blue span2">
-				<i class="icon-shopping-cart"></i>
+				<i class="icon-flag"></i>
 				<p>Requests</p>
 				<span class="badge"> <?php echo $tot_requests ?> </span>
 			</a>
 			<a class="quick-button metro blue span2">
-				<i class="icon-shopping-cart"></i>
+				<i class="icon-money"></i>
 				<p>Transactions</p>
 				<span class="badge"> <?php echo $tot_transactions ?> </span>
 			</a>
 			<a class="quick-button metro pink span2">
-				<i class="icon-envelope"></i>
+				<i class="icon-shopping-cart"></i>
 				<p>Trading Volumes</p>
 				<span class="badge"> <?php echo $tot_prices ?> </span>
 			</a>
