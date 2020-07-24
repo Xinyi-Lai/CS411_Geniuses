@@ -448,7 +448,7 @@
 		<div class="row-fluid sortable">
 			<div class="box span12">
 				<div class="box-header">
-					<h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Users</h2>
+					<h2><i class="icon-user white list-alt"></i><span class="break"></span>Users</h2>
 				</div>
 				<div class="row">
 					<div class="span4">
@@ -482,7 +482,7 @@
 					<h2><span class="glyphicons facebook"><i></i></span>Products by tag</h2>
 					<hr>
 					<div class="content">
-						<div id="facebookChart" style="height:300px" ></div>
+						<div id="ProductsByTagChart" style="height:300px" ></div>
 					</div>
 				</div><!--/span-->
 				
@@ -490,7 +490,7 @@
 					<h2><span class="glyphicons twitter"><i></i></span>Requests by tag</h2>
 					<hr>
 					<div class="content">
-						<div id="twitterChart" style="height:300px" ></div>
+						<div id="RequestsByTagChart" style="height:300px" ></div>
 					</div>
 				</div><!--/span-->
 			

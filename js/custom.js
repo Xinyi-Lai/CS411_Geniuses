@@ -1073,70 +1073,7 @@ function charts() {
 		return ((Math.floor( Math.random()* (1+40-20) ) ) + 20);
 	}
 	
-	/* ---------- Chart with points ---------- */
-	if($("#facebookChart").length)
-	{	
-		var likes = [[1, 5+randNumFB()], [2, 10+randNumFB()], [3, 15+randNumFB()], [4, 20+randNumFB()],[5, 25+randNumFB()],[6, 30+randNumFB()],[7, 35+randNumFB()],[8, 40+randNumFB()],[9, 45+randNumFB()],[10, 50+randNumFB()],[11, 55+randNumFB()],[12, 60+randNumFB()],[13, 65+randNumFB()],[14, 70+randNumFB()],[15, 75+randNumFB()],[16, 80+randNumFB()],[17, 85+randNumFB()],[18, 90+randNumFB()],[19, 85+randNumFB()],[20, 80+randNumFB()],[21, 75+randNumFB()],[22, 80+randNumFB()],[23, 75+randNumFB()],[24, 70+randNumFB()],[25, 65+randNumFB()],[26, 75+randNumFB()],[27,80+randNumFB()],[28, 85+randNumFB()],[29, 90+randNumFB()], [30, 95+randNumFB()]];
-
-		var plot = $.plot($("#facebookChart"),
-			   [ { data: likes, label: "Products"} ], {
-				   series: {
-					   lines: { show: true,
-								lineWidth: 2,
-								fill: true, fillColor: { colors: [ { opacity: 0.5 }, { opacity: 0.2 } ] }
-							 },
-					   points: { show: true, 
-								 lineWidth: 2 
-							 },
-					   shadowSize: 0
-				   },
-				   grid: { hoverable: true, 
-						   clickable: true, 
-						   tickColor: "#f9f9f9",
-						   borderWidth: 0
-						 },
-				   colors: ["#3B5998"],
-					xaxis: {ticks:6, tickDecimals: 0},
-					yaxis: {ticks:3, tickDecimals: 0},
-				 });
-
-		function showTooltip(x, y, contents) {
-			$('<div id="tooltip">' + contents + '</div>').css( {
-				position: 'absolute',
-				display: 'none',
-				top: y + 5,
-				left: x + 5,
-				border: '1px solid #fdd',
-				padding: '2px',
-				'background-color': '#dfeffc',
-				opacity: 0.80
-			}).appendTo("body").fadeIn(200);
-		}
-
-		var previousPoint = null;
-		$("#facebookChart").bind("plothover", function (event, pos, item) {
-			$("#x").text(pos.x.toFixed(2));
-			$("#y").text(pos.y.toFixed(2));
-
-				if (item) {
-					if (previousPoint != item.dataIndex) {
-						previousPoint = item.dataIndex;
-
-						$("#tooltip").remove();
-						var x = item.datapoint[0].toFixed(2),
-							y = item.datapoint[1].toFixed(2);
-
-						showTooltip(item.pageX, item.pageY,
-									item.series.label + " of " + x + " = " + y);
-					}
-				}
-				else {
-					$("#tooltip").remove();
-					previousPoint = null;
-				}
-		});
 	
-	}
 	
 	function randNumTW(){
 		return ((Math.floor( Math.random()* (1+40-20) ) ) + 20);
@@ -1610,6 +1547,163 @@ function charts() {
 		}
 
 	}});
+
+
+	/* ---------- Chart with points ---------- */
+	$.ajax({url:"dashboard_db.php?option=items",success:function(result){
+
+		jsonObj = JSON.parse(result);
+		var data_products = [];
+		var xticks = [];
+
+		for (var i=0; i<Object.keys(jsonObj['Sales']).length; i++ ){
+			//Object.keys(jsonObj['Sales'])[4]
+			var tag = Object.keys(jsonObj['Sales'])[i];
+			xticks.push([i, tag]);
+			data_products.push([i, parseInt(Object.values(jsonObj['Sales'])[i])		]);
+		}
+
+		if($("#ProductsByTagChart").length)
+	{
+		var plot = $.plot($("#ProductsByTagChart"),
+			   [ { data: data_products, label: "Number of Products"} ], {
+				   series: {
+					   lines: { show: true,
+								lineWidth: 2,
+								fill: true, fillColor: { colors: [ { opacity: 0.5 }, { opacity: 0.2 } ] }
+							 },
+					   points: { show: true, 
+								 lineWidth: 2 
+							 },
+					   shadowSize: 0
+				   },
+				   grid: { hoverable: true, 
+						   clickable: true, 
+						   tickColor: "#f9f9f9",
+						   borderWidth: 0
+						 },
+				   colors: ["#5bc49f"],
+					xaxis: {ticks: xticks},
+					yaxis: {ticks:3, tickDecimals: 0},
+				 });
+
+		function showTooltip(x, y, contents) {
+			$('<div id="tooltip">' + contents + '</div>').css( {
+				position: 'absolute',
+				display: 'none',
+				top: y + 5,
+				left: x + 5,
+				border: '1px solid #fdd',
+				padding: '2px',
+				'background-color': '#dfeffc',
+				opacity: 0.80
+			}).appendTo("body").fadeIn(200);
+		}
+
+		var previousPoint = null;
+		$("#ProductsByTagChart").bind("plothover", function (event, pos, item) {
+			$("#x").text(pos.x.toFixed(2));
+			$("#y").text(pos.y.toFixed(2));
+
+				if (item) {
+					if (previousPoint != item.dataIndex) {
+						previousPoint = item.dataIndex;
+
+						$("#tooltip").remove();
+						var x = item.datapoint[0].toFixed(0),
+							y = item.datapoint[1].toFixed(0);
+
+						showTooltip(item.pageX, item.pageY,
+									"Number of " + xticks[x][1] + " : " + y);
+					}
+				}
+				else {
+					$("#tooltip").remove();
+					previousPoint = null;
+				}
+		});
+	
+	}
+
+	}});
+
+	/* ---------- Chart with points ---------- */
+	$.ajax({url:"dashboard_db.php?option=items",success:function(result){
+
+		jsonObj = JSON.parse(result);
+		var data_requests = [];
+		var xticks = [];
+
+		for (var i=0; i<Object.keys(jsonObj['Requests']).length; i++ ){
+			var tag = Object.keys(jsonObj['Requests'])[i];
+			xticks.push([i, tag]);
+			data_requests.push([i, parseInt(Object.values(jsonObj['Requests'])[i])	]);
+		}
+
+		if($("#RequestsByTagChart").length)
+	{
+		var plot = $.plot($("#RequestsByTagChart"),
+			   [ { data: data_requests, label: "Number of Requests"} ], {
+				   series: {
+					   lines: { show: true,
+								lineWidth: 2,
+								fill: true, fillColor: { colors: [ { opacity: 0.5 }, { opacity: 0.2 } ] }
+							 },
+					   points: { show: true, 
+								 lineWidth: 2 
+							 },
+					   shadowSize: 0
+				   },
+				   grid: { hoverable: true, 
+						   clickable: true, 
+						   tickColor: "#f9f9f9",
+						   borderWidth: 0
+						 },
+				   colors: ["#60acfc"],
+					xaxis: {ticks: xticks},
+					yaxis: {ticks:3, tickDecimals: 0},
+				 });
+
+		function showTooltip(x, y, contents) {
+			$('<div id="tooltip">' + contents + '</div>').css( {
+				position: 'absolute',
+				display: 'none',
+				top: y + 5,
+				left: x + 5,
+				border: '1px solid #fdd',
+				padding: '2px',
+				'background-color': '#dfeffc',
+				opacity: 0.80
+			}).appendTo("body").fadeIn(200);
+		}
+
+		var previousPoint = null;
+		$("#RequestsByTagChart").bind("plothover", function (event, pos, item) {
+			$("#x").text(pos.x.toFixed(2));
+			$("#y").text(pos.y.toFixed(2));
+
+				if (item) {
+					if (previousPoint != item.dataIndex) {
+						previousPoint = item.dataIndex;
+
+						$("#tooltip").remove();
+						var x = item.datapoint[0].toFixed(0),
+							y = item.datapoint[1].toFixed(0);
+
+						showTooltip(item.pageX, item.pageY,
+									"Number of " + xticks[x][1] + " : " + y);
+					}
+				}
+				else {
+					$("#tooltip").remove();
+					previousPoint = null;
+				}
+		});
+	
+	}
+
+	}});
+	
 	
 
 	////////////////////////////////////////////////////////////////////
