@@ -400,7 +400,6 @@
 		<!-- /////////////////////////////////////////////////////////////////////////////// -->
 
 		<div class="row-fluid sortable">
-
 			<div class="box span12">
 				<div class="box-header">
 					<h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Users</h2>
@@ -417,8 +416,29 @@
 					</div>
 				</div>
 			</div>
+		</div><!--/row-->
 
-			
+
+		<div class="row-fluid sortable">
+			<div class="box">
+				<div class="box-header">
+					<h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Items on Beacon</h2>
+				</div>
+					<div class="box-content">
+						 <div id="stack_item" class="center" style="height:300px;"></div>
+
+						<p class="stackControls center">
+							<input class="btn" type="button" value="With stacking">
+							<input class="btn" type="button" value="Without stacking">
+						</p>
+
+						<p class="graphControls center">
+							<input class="btn-primary" type="button" value="Bars">
+							<input class="btn-primary" type="button" value="Lines">
+							<input class="btn-primary" type="button" value="Lines with steps">
+						</p>
+					</div>
+				</div>
 		</div><!--/row-->
 			
 		<!-- /////////////////////////////////////////////////////////////////////////////// -->

@@ -309,7 +309,7 @@
 								<label class="control-label" for="selectError3">Major</label>
 								<div class="controls">
 								<select id="selectError3" name="major">
-									<option value='BMI' <?php echo $major=='BME' ? 'selected':'' ?>>BMI</option>
+									<option value='BMI' <?php echo $major=='BMI' ? 'selected':'' ?>>BMI</option>
 									<option value='BMS' <?php echo $major=='BMS' ? 'selected':'' ?>>BMS</option>
 									<option value='CS' <?php echo $major=='CS' ? 'selected':'' ?>>Computer Science</option>
 									<option value='CompE' <?php echo $major=='ECE' ? 'selected':'' ?>>Computer Engineering</option>

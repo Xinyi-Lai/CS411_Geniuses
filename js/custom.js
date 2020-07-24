@@ -1380,8 +1380,6 @@ function charts() {
 					previousPoint = null;
 				}
 		});
-		
-
 
 		$("#sincos").bind("plotclick", function (event, pos, item) {
 			if (item) {
@@ -1477,17 +1475,31 @@ function charts() {
 
 	////////////////////////////////////////////////////////////////////
 
-	// ask php to help getting data from database
+	function showTooltip(x, y, contents) {
+		$('<div id="tooltip">' + contents + '</div>').css( {
+			position: 'absolute',
+			display: 'none',
+			top: y + 5,
+			left: x + 5,
+			border: '1px solid #fdd',
+			padding: '2px',
+			'background-color': '#dfeffc',
+			opacity: 0.80
+		}).appendTo("body").fadeIn(100);
+		console.log("in show tooltip");
+	}
+
 	
+	// user segmentation
+	// ask php to help getting data from database
+
 	$.ajax({url:"dashboard_db.php?table=users",success:function(result){
 		jsonObj = JSON.parse(result);
 		var data_user_campus = [];
 		var data_user_major = [];
 		var data_user_year = [];
 		
-
 		/* ---------- User-campus Piechart ---------- */
-
 		for (var campus in jsonObj["Campus"]) {
 			var tmp = {};
 			tmp.label = campus;
@@ -1500,6 +1512,13 @@ function charts() {
 				grid: 	{ hoverable: true, clickable: true },
 				legend: { show: false },
 				colors: ["#FA5833", "#2FABE9", "#FABB3D", "#78CD51"]
+			});
+
+			$("#pie_user_campus").bind("plothover", function (event, pos, item) {
+				if (item) {
+					$("#tooltip").remove();
+					showTooltip(pos.pageX, pos.pageY, item.series.label + ": " + item.series.data[0][1]);
+				}
 			});
 		}
 
@@ -1517,6 +1536,13 @@ function charts() {
 				legend: { show: false },
 				colors: ["#FA5833", "#2FABE9", "#FABB3D", "#78CD51"]
 			});
+
+			$("#pie_user_major").bind("plothover", function (event, pos, item) {
+				if (item) {
+					$("#tooltip").remove();
+					showTooltip(pos.pageX, pos.pageY, item.series.label + ": " + item.series.data[0][1]);
+				}
+			});
 		}
 		
 		/* ---------- User-year Piechart ---------- */
@@ -1533,9 +1559,40 @@ function charts() {
 				legend: { show: false },
 				colors: ["#FA5833", "#2FABE9", "#FABB3D", "#78CD51"]
 			});
+
+			$("#pie_user_year").bind("plothover", function (event, pos, item) {
+				if (item) {
+					$("#tooltip").remove();
+					showTooltip(pos.pageX, pos.pageY, item.series.label + ": " + item.series.data[0][1]);
+				}
+			});
 		}
 
-    }});
+	}});
+	
+
+	// items segmentation
+
+	/* ---------- Items-tag Stack chart ---------- */
+	if($("#stack_item").length)
+	{
+		var d1 = [[0,1],[1,1],[2,2],[3,2],[4,3],[5,3],[6,4],[7,4],[8,5],[9,5]];
+		var d2 = [[0,1],[1,2],[2,3],[3,4],[4,5],[5,1],[6,2],[7,3],[8,4],[9,5]];
+		var d3 = [[0,5],[1,4],[2,3],[3,2],[4,1],[5,1],[6,2],[7,3],[8,4],[9,5]];
+		
+		$.plot($("#stack_item"), [ {label: 'Transactions', data: d1}, {label: 'Requests', data: d2}, {label: 'Products', data: d3} ], {
+			series: {
+				stack: 0,	// null
+				lines: { show: false, fill: true, steps: true },
+				bars: { show: true, barWidth: 0.6, align: "center" },
+			},
+			xaxis: { ticks: [[0, "food"], [1, "personal care"], [2, "accessories"], [8, "八"]] },
+			legend: { show: true },
+			grid: 	{ hoverable: true, clickable: true },
+			colors: ["#FA5833", "#2FABE9", "#FABB3D"]
+		});
+
+	}
 	
 
 	////////////////////////////////////////////////////////////////////
