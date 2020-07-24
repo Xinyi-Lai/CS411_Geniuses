@@ -385,11 +385,11 @@
 
                         <!-- <span class="product-identity"><span class="strong-text">Categories:</span> Pants, T-Shirt, Jama</span></p> -->
 
-                        <span class="product-identity" herf=""><span class="strong-text">Tags:</span> <?php echo $tag; ?></span>
+                        <span class="product-identity" herf=""><span class="strong-text">Tags:</span><span type="submit" onclick="window.location.href='search.php?choosedb=<?php echo $choosedb; ?>&tag=<?php echo $tag;?>'"> <u> <?php echo $tag; ?> </u> </span>
 
                     </div>
 
-                    <button class="btn btn-theme" type="submit" onclick="window.location.href='search.php?choosedb=<?php echo $choosedb; ?>&tag=<?php echo $tag;?>'"> <?php echo $tag; ?> </button>
+                    
 
                 </div>
 

@@ -18,11 +18,20 @@
         if (strlen($search_item) > 0 || strlen($user_id) > 0 || strlen($tag) > 0) {
 
             if (strlen($tag) > 0) {
-                if ($choosedb == "Sales") {
-                    $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE Tag = '$tag' AND IntendedBuyerId IS NULL".($id_excluded) ? "AND SaleId <> $id_excluded":"";
-                }
-                else {
-                    $sql = "SELECT RequestId, Image, ProductName, IntendedPrice FROM Requests WHERE Tag = '$tag' AND SaleId IS NULL".($id_excluded) ? "AND RequestId <> $id_excluded":"";
+                if (strlen($id_excluded) > 0) {
+                    if ($choosedb == "Sales") {
+                        $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE Tag = '$tag' AND IntendedBuyerId IS NULL".($id_excluded) ? "AND SaleId <> $id_excluded":"";
+                    }
+                    else {
+                        $sql = "SELECT RequestId, Image, ProductName, IntendedPrice FROM Requests WHERE Tag = '$tag' AND SaleId IS NULL".($id_excluded) ? "AND RequestId <> $id_excluded":"";
+                    }
+                } else {
+                    if ($choosedb == "Sales") {
+                        $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE Tag = '$tag' AND IntendedBuyerId IS NULL";
+                    }
+                    else {
+                        $sql = "SELECT RequestId, Image, ProductName, IntendedPrice FROM Requests WHERE Tag = '$tag' AND SaleId IS NULL";
+                    }
                 }
             } else if (strlen($search_item) > 0) {
                 if ($choosedb == "Sales") {
