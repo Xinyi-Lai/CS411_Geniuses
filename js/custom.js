@@ -1541,7 +1541,7 @@ function charts() {
 				xaxis: { ticks: xticks },
 				legend: { show: true },
 				grid: 	{ hoverable: true, clickable: true },
-				colors: ["#32d3eb", "#60acfc", "#9287e7"]
+				colors: ["#ff9f69", "#ffda43", "#9cdc82"]
 			});
 
 		}
@@ -1557,7 +1557,6 @@ function charts() {
 		var xticks = [];
 
 		for (var i=0; i<Object.keys(jsonObj['Sales']).length; i++ ){
-			//Object.keys(jsonObj['Sales'])[4]
 			var tag = Object.keys(jsonObj['Sales'])[i];
 			xticks.push([i, tag]);
 			data_products.push([i, parseInt(Object.values(jsonObj['Sales'])[i])		]);
@@ -1582,7 +1581,7 @@ function charts() {
 						   tickColor: "#f9f9f9",
 						   borderWidth: 0
 						 },
-				   colors: ["#5bc49f"],
+				   colors: ["#1D58A7"],
 					xaxis: {ticks: xticks},
 					yaxis: {ticks:3, tickDecimals: 0},
 				 });
@@ -1659,7 +1658,7 @@ function charts() {
 						   tickColor: "#f9f9f9",
 						   borderWidth: 0
 						 },
-				   colors: ["#60acfc"],
+				   colors: ["#DD3403"],
 					xaxis: {ticks: xticks},
 					yaxis: {ticks:3, tickDecimals: 0},
 				 });

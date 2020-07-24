@@ -239,42 +239,42 @@
 	<div id="content" class="span10">
 	
 
-		<!-- <div class="row-fluid">
+		<div class="row-fluid">
 			
 			<div class="span3 statbox purple" onTablet="span6" onDesktop="span3">
 				<div class="boxchart">5,6,7,2,0,4,2,4,8,2,3,3,2</div>
-				<div class="number">854<i class="icon-arrow-up"></i></div>
-				<div class="title">visits</div>
+				<div class="number">2020<i class="icon-arrow-up"></i></div>
+				<div class="title">"Hello World!"</div>
 				<div class="footer">
-					<a href="#"> read full report</a>
+					<a href="#"> Start since</a>
 				</div>	
 			</div>
 			<div class="span3 statbox green" onTablet="span6" onDesktop="span3">
 				<div class="boxchart">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
-				<div class="number">123<i class="icon-arrow-up"></i></div>
-				<div class="title">sales</div>
+				<div class="number">4<i class="icon-arrow-up"></i></div>
+				<div class="title"> Geniuses</div>
 				<div class="footer">
-					<a href="#"> read full report</a>
+					<a href="#"> Developed by </a>
 				</div>
 			</div>
 			<div class="span3 statbox blue noMargin" onTablet="span6" onDesktop="span3">
-				<div class="boxchart">5,6,7,2,0,-4,-2,4,8,2,3,3,2</div>
-				<div class="number">982<i class="icon-arrow-up"></i></div>
-				<div class="title">orders</div>
+				<div class="boxchart">1,1,2,2,2,3,3,3,3,2,2,2,1,1</div>
+				<div class="number">3<i class="icon-arrow-up"></i></div>
+				<div class="title">Campuses</div>
 				<div class="footer">
-					<a href="#"> read full report</a>
+					<a href="#"> Used in </a>
 				</div>
 			</div>
-			<div class="span3 statbox yellow" onTablet="span6" onDesktop="span3">
-				<div class="boxchart">7,2,2,2,1,-4,-2,4,8,,0,3,3,5</div>
-				<div class="number">678<i class="icon-arrow-down"></i></div>
-				<div class="title">visits</div>
+			<div class="span3 statbox red" onTablet="span6" onDesktop="span3">
+				<div class="boxchart">7,2,5,4,6,5,1,4,2,8,5,7,0,7</div>
+				<div class="number">12<i class="icon-arrow-up"></i></div>
+				<div class="title">Functions</div>
 				<div class="footer">
-					<a href="#"> read full report</a>
+					<a href="#"> There are</a>
 				</div>
 			</div>	
 			
-		</div>		 -->
+		</div>		
 
 		<!-- <div class="row-fluid hideInIE8 circleStats">
 			
@@ -468,7 +468,7 @@
 		<div class="row-fluid sortable">
 			<div class="box">
 				<div class="box-header">
-					<h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Items on Beacon</h2>
+					<h2><i class="icon-dollar white list-alt"></i><span class="break"></span>Items on Beacon</h2>
 				</div>
 					<div class="box-content">
 						 <div id="stack_item" class="center" style="height:300px;"></div>
@@ -476,7 +476,7 @@
 				</div>
 		</div><!--/row-->
 
-		<div class="row-fluid">
+		<div class="row-fluid sortable">
 				
 				<div class="widget span6" onTablet="span6" onDesktop="span6">
 					<h2><span class="glyphicons facebook"><i></i></span>Products by tag</h2>
