@@ -37,7 +37,7 @@
 
 </head>
 
-<body onload="load_related('', 'Sales', '','')">
+<body onload="load_related('', 'Sales', '','','')">
 
     <div class="top-bar">
 
