@@ -167,11 +167,11 @@
 						<select class="form-control" id="selectError3" name="year">
 							<optgroup label="School Year">
 								<option value="" selected disabled hidden>--</option>
-								<option value="freshman" <?php echo $year=='freshman' ? 'selected':'' ?> >Freshman</option>
-								<option value="sophomore" <?php echo $year=='sophomore' ? 'selected':'' ?> >Sophomore</option>
-								<option value="junior" <?php echo $year=='junior' ? 'selected':'' ?> >Junior</option>
-								<option value="senior" <?php echo $year=='senior' ? 'selected':'' ?> >Senior</option>
-								<option value="graduate" <?php echo $year=='graduate' ? 'selected':'' ?> >Graduate</option>
+								<option value="Freshman" <?php echo $year=='freshman' ? 'selected':'' ?> >Freshman</option>
+								<option value="Sophomore" <?php echo $year=='sophomore' ? 'selected':'' ?> >Sophomore</option>
+								<option value="Junior" <?php echo $year=='junior' ? 'selected':'' ?> >Junior</option>
+								<option value="Senior" <?php echo $year=='senior' ? 'selected':'' ?> >Senior</option>
+								<option value="Graduate" <?php echo $year=='graduate' ? 'selected':'' ?> >Graduate</option>
 							</optgroup>
 						</select>
 					</div>

@@ -286,8 +286,9 @@
 								<label class="control-label" for="selectError3">Campus</label>
 								<div class="controls">
 								<select id="selectError3" name="campus">
-									<option <?php echo $campus=='UIUC' ? 'selected':'' ?>>UIUC</option>
-									<option <?php echo $campus=='ZJUIntl' ? 'selected':'' ?>>ZJUIntl</option>
+									<option value='UIUC' <?php echo $campus=='UIUC' ? 'selected':'' ?>>UIUC</option>
+									<option value='ZJUIntl' <?php echo $campus=='ZJUIntl' ? 'selected':'' ?>>ZJUIntl</option>
+									<option value='ZJU' <?php echo $campus=='ZJU' ? 'selected':'' ?>>ZJU</option>
 								</select>
 								</div>
 							</div>
@@ -296,11 +297,11 @@
 								<label class="control-label" for="selectError3">School Year</label>
 								<div class="controls">
 								<select id="selectError3" name="year">
-									<option <?php echo $year=='Freshman' ? 'selected':'' ?>>Freshman</option>
-									<option <?php echo $year=='Sophomore' ? 'selected':'' ?>>Sophomore</option>
-									<option <?php echo $year=='Junior' ? 'selected':'' ?>>Junior</option>
-									<option <?php echo $year=='Senior' ? 'selected':'' ?>>Senior</option>
-									<option <?php echo $year=='Graduate' ? 'selected':'' ?>>Graduate</option>
+									<option value='Freshman' <?php echo $year=='Freshman' ? 'selected':'' ?>>Freshman</option>
+									<option value='Sophomore' <?php echo $year=='Sophomore' ? 'selected':'' ?>>Sophomore</option>
+									<option value='Junior' <?php echo $year=='Junior' ? 'selected':'' ?>>Junior</option>
+									<option value='Senior' <?php echo $year=='Senior' ? 'selected':'' ?>>Senior</option>
+									<option value='Graduate' <?php echo $year=='Graduate' ? 'selected':'' ?>>Graduate</option>
 								</select>
 								</div>
 							</div>
@@ -312,7 +313,7 @@
 									<option value='BMI' <?php echo $major=='BMI' ? 'selected':'' ?>>BMI</option>
 									<option value='BMS' <?php echo $major=='BMS' ? 'selected':'' ?>>BMS</option>
 									<option value='CS' <?php echo $major=='CS' ? 'selected':'' ?>>Computer Science</option>
-									<option value='CompE' <?php echo $major=='ECE' ? 'selected':'' ?>>Computer Engineering</option>
+									<option value='CompE' <?php echo $major=='CompE' ? 'selected':'' ?>>Computer Engineering</option>
 									<option value='CEE' <?php echo $major=='CEE' ? 'selected':'' ?>>Civil and Environment Engineering</option>
 									<option value='EE' <?php echo $major=='EE' ? 'selected':'' ?>>Electrical Engineering</option>
 									<option value='ME' <?php echo $major=='ME' ? 'selected':'' ?>>Mechanical Engineering</option>
