@@ -257,15 +257,15 @@
 					<a href="#"> Developed by </a>
 				</div>
 			</div>
-			<div class="span3 statbox blue noMargin" onTablet="span6" onDesktop="span3">
-				<div class="boxchart">1,1,2,2,2,3,3,3,3,2,2,2,1,1</div>
+			<div class="span3 statbox red noMargin" onTablet="span6" onDesktop="span3">
+				<div class="boxchart">0,1,2,2,2,3,4,4,3,2,2,2,1,0</div>
 				<div class="number">3<i class="icon-arrow-up"></i></div>
 				<div class="title">Campuses</div>
 				<div class="footer">
 					<a href="#"> Used in </a>
 				</div>
 			</div>
-			<div class="span3 statbox red" onTablet="span6" onDesktop="span3">
+			<div class="span3 statbox yellow" onTablet="span6" onDesktop="span3">
 				<div class="boxchart">7,2,5,4,6,5,1,4,2,8,5,7,0,7</div>
 				<div class="number">12<i class="icon-arrow-up"></i></div>
 				<div class="title">Functions</div>
@@ -468,7 +468,7 @@
 		<div class="row-fluid sortable">
 			<div class="box">
 				<div class="box-header">
-					<h2><i class="icon-dollar white list-alt"></i><span class="break"></span>Items on Beacon</h2>
+					<h2><i class="icon-dollar white list-alt"></i><span class="break"></span>Prices on Beacon</h2>
 				</div>
 					<div class="box-content">
 						 <div id="stack_item" class="center" style="height:300px;"></div>
@@ -495,6 +495,8 @@
 				</div><!--/span-->
 			
 		</div>
+
+		
 			
 		<!-- /////////////////////////////////////////////////////////////////////////////// -->
 

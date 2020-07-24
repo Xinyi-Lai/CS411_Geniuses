@@ -1530,9 +1530,9 @@ function charts() {
 
 		if($("#stack_item").length) {
 			
-			$.plot($("#stack_item"), [ 	{label: 'Transactions', data: data_trans}, 
-										{label: 'Requests', data: data_requests}, 
-										{label: 'Products', data: data_products} ], {
+			$.plot($("#stack_item"), [ 	{label: 'Max', data: data_trans}, 
+										{label: 'Avg', data: data_requests}, 
+										{label: 'Min', data: data_products} ], {
 				series: {
 					stack: 0,	// null
 					lines: { show: false, fill: true, steps: true },
@@ -1541,7 +1541,7 @@ function charts() {
 				xaxis: { ticks: xticks },
 				legend: { show: true },
 				grid: 	{ hoverable: true, clickable: true },
-				colors: ["#ff9f69", "#ffda43", "#9cdc82"]
+				colors: ["#E25A59", "#e5c33c", "#43B5AD"]
 			});
 
 		}
@@ -1569,7 +1569,7 @@ function charts() {
 				   series: {
 					   lines: { show: true,
 								lineWidth: 2,
-								fill: true, fillColor: { colors: [ { opacity: 0.5 }, { opacity: 0.2 } ] }
+								fill: true, fillColor: { colors: [ { opacity: 0.3 }, { opacity: 0.5 } ] }
 							 },
 					   points: { show: true, 
 								 lineWidth: 2 
@@ -1581,7 +1581,7 @@ function charts() {
 						   tickColor: "#f9f9f9",
 						   borderWidth: 0
 						 },
-				   colors: ["#1D58A7"],
+				   colors: ["#3B5998"],
 					xaxis: {ticks: xticks},
 					yaxis: {ticks:3, tickDecimals: 0},
 				 });
@@ -1646,7 +1646,7 @@ function charts() {
 				   series: {
 					   lines: { show: true,
 								lineWidth: 2,
-								fill: true, fillColor: { colors: [ { opacity: 0.5 }, { opacity: 0.2 } ] }
+								fill: true, fillColor: { colors: [ { opacity: 0.3 }, { opacity: 0.5 } ] }
 							 },
 					   points: { show: true, 
 								 lineWidth: 2 
@@ -1658,7 +1658,7 @@ function charts() {
 						   tickColor: "#f9f9f9",
 						   borderWidth: 0
 						 },
-				   colors: ["#DD3403"],
+				   colors: ["#1BB2E9"],
 					xaxis: {ticks: xticks},
 					yaxis: {ticks:3, tickDecimals: 0},
 				 });
