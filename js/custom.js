@@ -1486,14 +1486,13 @@ function charts() {
 			'background-color': '#dfeffc',
 			opacity: 0.80
 		}).appendTo("body").fadeIn(100);
-		console.log("in show tooltip");
 	}
 
 	
 	// user segmentation
 	// ask php to help getting data from database
 
-	$.ajax({url:"dashboard_db.php?table=users",success:function(result){
+	$.ajax({url:"dashboard_db.php?option=users",success:function(result){
 		jsonObj = JSON.parse(result);
 		var data_user_campus = [];
 		var data_user_major = [];
@@ -1573,26 +1572,44 @@ function charts() {
 
 	// items segmentation
 
-	/* ---------- Items-tag Stack chart ---------- */
-	if($("#stack_item").length)
-	{
-		var d1 = [[0,1],[1,1],[2,2],[3,2],[4,3],[5,3],[6,4],[7,4],[8,5],[9,5]];
-		var d2 = [[0,1],[1,2],[2,3],[3,4],[4,5],[5,1],[6,2],[7,3],[8,4],[9,5]];
-		var d3 = [[0,5],[1,4],[2,3],[3,2],[4,1],[5,1],[6,2],[7,3],[8,4],[9,5]];
-		
-		$.plot($("#stack_item"), [ {label: 'Transactions', data: d1}, {label: 'Requests', data: d2}, {label: 'Products', data: d3} ], {
-			series: {
-				stack: 0,	// null
-				lines: { show: false, fill: true, steps: true },
-				bars: { show: true, barWidth: 0.6, align: "center" },
-			},
-			xaxis: { ticks: [[0, "food"], [1, "personal care"], [2, "accessories"], [8, "八"]] },
-			legend: { show: true },
-			grid: 	{ hoverable: true, clickable: true },
-			colors: ["#FA5833", "#2FABE9", "#FABB3D"]
-		});
+	$.ajax({url:"dashboard_db.php?option=items",success:function(result){
 
-	}
+		jsonObj = JSON.parse(result);
+		var data_products = [];
+		var data_requests = [];
+		var data_trans = [];
+		var xticks = [];
+
+		for (var i=0; i<Object.keys(jsonObj['Sales']).length; i++ ){
+			//Object.keys(jsonObj['Sales'])[4]
+			var tag = Object.keys(jsonObj['Sales'])[i];
+			xticks.push([i, tag]);
+			data_products.push([i, parseInt(Object.values(jsonObj['Sales'])[i])		]);
+			data_requests.push([i, parseInt(Object.values(jsonObj['Requests'])[i])	]);
+			data_trans.push([	i, parseInt(Object.values(jsonObj['Trans'])[i])		]);
+		}
+		
+		/* ---------- Items-tag Stack chart ---------- */
+
+		if($("#stack_item").length) {
+			
+			$.plot($("#stack_item"), [ 	{label: 'Transactions', data: data_trans}, 
+										{label: 'Requests', data: data_requests}, 
+										{label: 'Products', data: data_products} ], {
+				series: {
+					stack: 0,	// null
+					lines: { show: false, fill: true, steps: true },
+					bars: { show: true, barWidth: 0.6, align: "center" },
+				},
+				xaxis: { ticks: xticks },
+				legend: { show: true },
+				grid: 	{ hoverable: true, clickable: true },
+				colors: ["#FA5833", "#2FABE9", "#FABB3D"]
+			});
+
+		}
+
+	}});
 	
 
 	////////////////////////////////////////////////////////////////////
