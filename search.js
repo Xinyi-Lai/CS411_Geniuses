@@ -24,10 +24,11 @@ function load_page() {
     choosedb = getQueryString("choosedb")
     user_id = getQueryString("user_id")
     tag = getQueryString("tag")
-    load_related(search_item, choosedb, user_id, tag)
+    id_excluded = getQueryString("id_excluded")
+    load_related(search_item, choosedb, user_id, tag, id_excluded)
 }
  
-function load_related(search_item, choosedb, user_id, tag)
+function load_related(search_item, choosedb, user_id, tag, id_excluded)
 {
     // Get xmlHttpObject object，if null，then the browser doesn't suppport ajax
     xmlHttp=GetXmlHttpObject()
@@ -38,7 +39,7 @@ function load_related(search_item, choosedb, user_id, tag)
     } 
     // Get url
     var url="get_related.php"
-    url=url+"?search_item="+search_item+"&choosedb="+choosedb+"&user_id="+user_id+"&tag="+tag
+    url=url+"?search_item="+search_item+"&choosedb="+choosedb+"&user_id="+user_id+"&tag="+tag+"&id_excluded="+id_excluded
     url=url+"&sid="+Math.random()
     // Set the callback function
     xmlHttp.onreadystatechange=stateChanged 

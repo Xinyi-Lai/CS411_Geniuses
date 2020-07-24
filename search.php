@@ -111,7 +111,7 @@
 
                             </div>
 
-                            <button id="search_btn" type="button" class="btn" onclick="load_related(document.getElementById('search_box').value, document.getElementById('choosedb').value,'')"><i class="fa fa-search"></i></button>
+                            <button id="search_btn" type="button" class="btn" onclick="load_related(document.getElementById('search_box').value, document.getElementById('choosedb').value,'','','')"><i class="fa fa-search"></i></button>
 
                         </form>
 

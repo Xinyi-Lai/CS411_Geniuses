@@ -83,7 +83,7 @@
 
 </head>
 
-<body onload="load_related('','<?php echo $choosedb; ?>','','<?php echo $tag; ?>')">
+<body onload="load_related('','<?php echo $choosedb; ?>','','<?php echo $tag; ?>','<?php echo $item_id; ?>')">
 
     <div class="top-bar">
 

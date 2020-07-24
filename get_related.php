@@ -8,6 +8,7 @@
     $choosedb=$_GET["choosedb"];
     $user_id=$_GET["user_id"];
     $tag=$_GET["tag"];
+    $id_excluded=$_GET["id_excluded"];
     
     //connect db
     if (strlen($choosedb) > 0) {
@@ -18,10 +19,10 @@
 
             if (strlen($tag) > 0) {
                 if ($choosedb == "Sales") {
-                    $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE Tag = '$tag' AND IntendedBuyerId IS NULL";
+                    $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE Tag = '$tag' AND IntendedBuyerId IS NULL".($id_excluded) ? "AND SaleId <> $id_excluded":"";
                 }
                 else {
-                    $sql = "SELECT RequestId, Image, ProductName, IntendedPrice FROM Requests WHERE Tag = '$tag' AND SaleId IS NULL";
+                    $sql = "SELECT RequestId, Image, ProductName, IntendedPrice FROM Requests WHERE Tag = '$tag' AND SaleId IS NULL".($id_excluded) ? "AND RequestId <> $id_excluded":"";
                 }
             } else if (strlen($search_item) > 0) {
                 if ($choosedb == "Sales") {
@@ -54,8 +55,10 @@
 
         $array=array();
         
-        while($row = mysqli_fetch_assoc($result)){
-            $array[]=$row;
+        if ($result){
+            while($row = mysqli_fetch_assoc($result)){
+                $array[]=$row;
+            }
         }
     
         $conn->close();
