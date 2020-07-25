@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： database
--- 生成日期： 2020-07-25 09:06:54
+-- 生成日期： 2020-07-25 07:15:59
 -- 服务器版本： 8.0.20
 -- PHP 版本： 7.4.6
 
@@ -59,20 +59,6 @@ CREATE TABLE `Sales` (
   `DatePost` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- 转存表中的数据 `Sales`
---
-
-INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, `Image`, `IntendedPrice`, `OriginalPrice`, `Depreciation`, `IntendedBuyerId`, `DatePost`) VALUES
-(1, 'xinyi.17', 'ECE310 textbook', 'textbook', 'ECE310 textbook, digital signal processing', 'images/xinyi.17/20200725082851.png', 30, 50, 9, NULL, '2020-07-25 08:28:51'),
-(5, 'Hxh123', 'Basketball', 'sports', 'A old basketball', 'images/Hxh123/20200725083423.jpg', 10, 20, 9, NULL, '2020-07-25 08:34:23'),
-(6, 'xinyi.17', 'Toy#1', 'toys/games', 'A lovely toy', 'images/xinyi.17/20200725085554.jpg', 3, 5, 7, NULL, '2020-07-25 08:55:54'),
-(7, 'xinyi.17', 'Toy#2', 'toys/games', 'A lovely toy', 'images/xinyi.17/20200725085630.jpg', 3, 5, 7, NULL, '2020-07-25 08:56:30'),
-(8, 'xinyi.17', 'Uni-ball Pen', 'stationery', 'A box of Uni-ball pen (12 pcs)', 'images/xinyi.17/20200725085957.jpg', 10, 15, 9, NULL, '2020-07-25 08:59:57'),
-(9, 'xinyi.17', 'Stapler', 'stationery', 'A brand new stapler', 'images/xinyi.17/20200725090043.jpg', 5, 8, 9, NULL, '2020-07-25 09:00:43'),
-(10, 'xinyi.17', 'Pins', 'stationery', 'A box of pins', 'images/xinyi.17/20200725090225.jpg', 1, 2, 9, NULL, '2020-07-25 09:02:25'),
-(11, 'xinyi.17', 'lamp', 'furniture', 'Eye protective, warm yellow light', 'images/xinyi.17/20200725090352.jpg', 10, 15, 6, NULL, '2020-07-25 09:03:52');
-
 -- --------------------------------------------------------
 
 --
@@ -80,10 +66,10 @@ INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, 
 -- （参见下面的实际视图）
 --
 CREATE TABLE `SRT_leftJoin` (
-`cntRequests` bigint
+`Tag` varchar(50)
 ,`cntSales` bigint
+,`cntRequests` bigint
 ,`cntTrans` bigint
-,`Tag` varchar(50)
 );
 
 -- --------------------------------------------------------
@@ -93,10 +79,10 @@ CREATE TABLE `SRT_leftJoin` (
 -- （参见下面的实际视图）
 --
 CREATE TABLE `SRT_rightJoin` (
-`cntRequests` bigint
+`Tag` varchar(50)
 ,`cntSales` bigint
+,`cntRequests` bigint
 ,`cntTrans` bigint
-,`Tag` varchar(50)
 );
 
 -- --------------------------------------------------------
@@ -106,9 +92,9 @@ CREATE TABLE `SRT_rightJoin` (
 -- （参见下面的实际视图）
 --
 CREATE TABLE `SR_fullJoin` (
-`cntRequests` bigint
+`Tag` varchar(50)
 ,`cntSales` bigint
-,`Tag` varchar(50)
+,`cntRequests` bigint
 );
 
 -- --------------------------------------------------------
@@ -118,9 +104,9 @@ CREATE TABLE `SR_fullJoin` (
 -- （参见下面的实际视图）
 --
 CREATE TABLE `SR_leftJoin` (
-`cntRequests` bigint
+`Tag` varchar(50)
 ,`cntSales` bigint
-,`Tag` varchar(50)
+,`cntRequests` bigint
 );
 
 -- --------------------------------------------------------
@@ -130,9 +116,9 @@ CREATE TABLE `SR_leftJoin` (
 -- （参见下面的实际视图）
 --
 CREATE TABLE `SR_rightJoin` (
-`cntRequests` bigint
+`Tag` varchar(50)
 ,`cntSales` bigint
-,`Tag` varchar(50)
+,`cntRequests` bigint
 );
 
 -- --------------------------------------------------------
@@ -151,14 +137,6 @@ CREATE TABLE `Transactions` (
   `Description` varchar(500) DEFAULT NULL,
   `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- 转存表中的数据 `Transactions`
---
-
-INSERT INTO `Transactions` (`TransactionId`, `SellerId`, `BuyerId`, `ProductName`, `Price`, `Tag`, `Description`, `Date`) VALUES
-(1, 'Hxh123', 'xinyi.17', 'Basketball', 10, 'sports', 'A old basketball', '2020-07-25 08:34:46'),
-(2, 'xinyi.17', 'Hxh123', 'Badminton bat', 10, 'sports', 'Li Ning Badminton bat', '2020-07-25 08:35:18');
 
 -- --------------------------------------------------------
 
@@ -183,10 +161,7 @@ CREATE TABLE `Users` (
 
 INSERT INTO `Users` (`NetId`, `Password`, `Name`, `Email`, `Campus`, `Major`, `Year`, `DateJoin`) VALUES
 ('cs411', 'cs411', 'Little Genius', 'cs411@genius.com', 'UIUC', 'CS', 'Junior', '2020-07-25 06:14:03'),
-('genius', 'genius', 'Real Genius', 'genius@genius.com', 'ZJU', 'Other', 'Graduate', '2020-07-25 07:03:09'),
-('Hxh123', '123456789', 'Hao', 'haoh4@illinois.edu', 'ZJUIntl', 'ME', 'Junior', '2020-07-25 08:21:19'),
-('xinyi.17', 'xinyi.17', 'Xinyi Lai', 'xinyi.17@intl.zju.edu.cn', 'ZJUIntl', 'EE', 'Senior', '2020-07-25 08:20:40'),
-('xlai7', 'xlai7', 'Xinyi Lai', 'xlai7@illinois.edu', 'UIUC', 'EE', 'Senior', '2020-07-25 09:06:02');
+('genius', 'genius', 'Real Genius', 'genius@genius.com', 'ZJU', 'Other', 'Graduate', '2020-07-25 07:03:09');
 
 -- --------------------------------------------------------
 
@@ -291,13 +266,13 @@ ALTER TABLE `Requests`
 -- 使用表AUTO_INCREMENT `Sales`
 --
 ALTER TABLE `Sales`
-  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT;
 
 --
 -- 使用表AUTO_INCREMENT `Transactions`
 --
 ALTER TABLE `Transactions`
-  MODIFY `TransactionId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `TransactionId` int NOT NULL AUTO_INCREMENT;
 
 --
 -- 限制导出的表
