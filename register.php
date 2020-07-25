@@ -138,7 +138,7 @@
 								<option value="" selected disabled hidden>--</option>
 								<option value="UIUC" <?php echo $campus=='UIUC' ? 'selected':'' ?> > UIUC </option>
 								<option value="ZJUIntl" <?php echo $campus=='ZJUIntl' ? 'selected':'' ?> > ZJUIntl </option>
-								<option value="ZJU" <?php echo $campus=='ZJUIntl' ? 'selected':'' ?> > ZJU </option>
+								<option value="ZJU" <?php echo $campus=='ZJU' ? 'selected':'' ?> > ZJU </option>
 							</optgroup>
 						</select>
 					</div>
@@ -167,11 +167,11 @@
 						<select class="form-control" id="selectError3" name="year">
 							<optgroup label="School Year">
 								<option value="" selected disabled hidden>--</option>
-								<option value="Freshman" <?php echo $year=='freshman' ? 'selected':'' ?> >Freshman</option>
-								<option value="Sophomore" <?php echo $year=='sophomore' ? 'selected':'' ?> >Sophomore</option>
-								<option value="Junior" <?php echo $year=='junior' ? 'selected':'' ?> >Junior</option>
-								<option value="Senior" <?php echo $year=='senior' ? 'selected':'' ?> >Senior</option>
-								<option value="Graduate" <?php echo $year=='graduate' ? 'selected':'' ?> >Graduate</option>
+								<option value="Freshman" <?php echo $year=='Freshman' ? 'selected':'' ?> >Freshman</option>
+								<option value="Sophomore" <?php echo $year=='Sophomore' ? 'selected':'' ?> >Sophomore</option>
+								<option value="Junior" <?php echo $year=='Junior' ? 'selected':'' ?> >Junior</option>
+								<option value="Senior" <?php echo $year=='Senior' ? 'selected':'' ?> >Senior</option>
+								<option value="Graduate" <?php echo $year=='Graduate' ? 'selected':'' ?> >Graduate</option>
 							</optgroup>
 						</select>
 					</div>
