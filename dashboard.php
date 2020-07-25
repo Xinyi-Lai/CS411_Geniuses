@@ -426,6 +426,18 @@
 			</div>
 		</div><!--/row-->
 
+		<div class="row-fluid">
+				
+				<div class="widget span12" onTablet="span12" onDesktop="span12">
+					<h2><span class="glyphicons twitter"><i></i></span>Time</h2>
+					<hr>
+					<div class="content">
+						<div id="twitterChart" style="height:300px" ></div>
+					</div>
+				</div><!--/span-->
+			
+			</div>
+
 	
 
 		
