@@ -105,7 +105,7 @@
                                 <option value="electronics"<?php echo $tag=="electronics" ? 'selected':'' ?> >electronics</option>
                                 <option value="accessories" <?php echo $tag=="accessories" ? 'selected':'' ?> >accessories</option>
                                 <option value="toys/games" <?php echo $tag=="toys/games" ? 'selected':'' ?> >toys/games</option>
-                                <option value="makeup & personal care" <?php echo $tag=="makeup & personal care" ? 'selected':'' ?> >makeup & personal care</option>
+                                <option value="makeup/personal care" <?php echo $tag=="makeup/personal care" ? 'selected':'' ?> >makeup/personal care</option>
                                 <option value="clothing" <?php echo $tag=="clothing" ? 'selected':'' ?> >clothing</option>
                                 <option value="daily necessity" <?php echo $tag=="daily necessity" ? 'selected':'' ?> >daily necessity</option>
                                 <option value="sports" <?php echo $tag=="sports" ? 'selected':'' ?> >sports</option>
