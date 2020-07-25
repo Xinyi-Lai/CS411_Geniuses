@@ -222,7 +222,7 @@
                     <li><a href="search.php?choosedb=Sales&tag=furniture">furniture</a></li>
                     <li><a href="search.php?choosedb=Sales&tag=tools">tools</a></li>
                     <li><a href="search.php?choosedb=Sales&tag=food">food</a></li>
-                    <li><a href="search.php?choosedb=Sales&tag=makeup">makeup</a></li>
+                    <li><a href="search.php?choosedb=Sales&tag=makeup & personal care">makeup & personal care</a></li>
                     <li><a href="search.php?choosedb=Sales&tag=clothing">clothing</a></li>
                     <li><a href="search.php?choosedb=Sales&tag=jewelry">jewelry</a></li>
                     <li><a href="search.php?choosedb=Sales&tag=sublease">sublease</a></li>
@@ -331,6 +331,13 @@
                         
 
                         <span class="product-identity"><span class="strong-text">Description:</span> <?php echo $description; ?></span>
+
+                    <?php
+                        if ($choosedb == "Sales"){
+                            echo '<span class="product-identity"><span class="strong-text">Original Price: $</span> '.$originalPrice.'</span>';
+                            echo '<span class="product-identity"><span class="strong-text">Depreciation:</span> '.$depreciation.'</span>';
+                        }
+                    ?>
 
                     </div></br>
 

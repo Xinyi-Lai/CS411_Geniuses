@@ -91,13 +91,13 @@
 					<!-- productName input -->
                     <div class="form-group">
 						<label for="focusedInput">Product Name</label><span class="warning"> <?php echo $product_name_err;?></span>
-						<input class="form-control item" type="text" name="product_name" placeholder="product name"/>
+						<input class="form-control item" type="text" name="product_name" placeholder="product name" value="<?php echo $product_name; ?>"/>
 					</div>
 					
 					<!-- tag input -->
                     <div class="form-group">
 						<label for="focusedInput">Tag</label><span class="warning"> <?php echo $tag_err;?></span>
-                        <select class="form-control" id="tag" name="tag">
+                        <select class="form-control" id="tag" name="tag" value="<?php echo $tag; ?>">
 							<optgroup label="tag">
 								<option value="textbook" <?php echo $tag=="textbook" ? 'selected':'' ?> >textbook</option>
                                 <option value="test prep" <?php echo $tag=="test prep" ? 'selected':'' ?> >test prep</option>
@@ -105,7 +105,7 @@
                                 <option value="electronics"<?php echo $tag=="electronics" ? 'selected':'' ?> >electronics</option>
                                 <option value="accessories" <?php echo $tag=="accessories" ? 'selected':'' ?> >accessories</option>
                                 <option value="toys/games" <?php echo $tag=="toys/games" ? 'selected':'' ?> >toys/games</option>
-                                <option value="makeup" <?php echo $tag=="makeup" ? 'selected':'' ?> >makeup</option>
+                                <option value="makeup & personal care" <?php echo $tag=="makeup & personal care" ? 'selected':'' ?> >makeup & personal care</option>
                                 <option value="clothing" <?php echo $tag=="clothing" ? 'selected':'' ?> >clothing</option>
                                 <option value="daily necessity" <?php echo $tag=="daily necessity" ? 'selected':'' ?> >daily necessity</option>
                                 <option value="sports" <?php echo $tag=="sports" ? 'selected':'' ?> >sports</option>
@@ -123,13 +123,13 @@
 					<!-- description confirm -->
                     <div class="form-group">
 						<label for="focusedInput">Description</label> <span class="warning">
-						<input class="form-control item" type="text" name="description" placeholder="description"/>
+						<input class="form-control item" type="text" name="description" placeholder="description" value="<?php echo $description; ?>"/>
 					</div>
 
 					<!-- intendedPrice input -->
                     <div class="form-group">
 						<label for="focusedInput">Intended Price</label>
-						<input class="form-control item" type="text" name="intendedPrice" placeholder="intended price"/>
+						<input class="form-control item" type="text" name="intendedPrice" placeholder="intended price" value="<?php echo $intended_price; ?>"/>
 					</div>
 
                     <!-- Image upload -->
