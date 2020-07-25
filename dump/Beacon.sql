@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： database
--- 生成日期： 2020-07-25 10:19:05
+-- 生成日期： 2020-07-25 13:35:26
 -- 服务器版本： 8.0.20
 -- PHP 版本： 7.4.6
 
@@ -38,6 +38,13 @@ CREATE TABLE `Requests` (
   `SaleId` int DEFAULT NULL,
   `DatePost` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- 转存表中的数据 `Requests`
+--
+
+INSERT INTO `Requests` (`RequestId`, `BuyerId`, `ProductName`, `Tag`, `Description`, `Image`, `IntendedPrice`, `SaleId`, `DatePost`) VALUES
+(1, 'xlai7', 'CS411 Textbook', 'textbook', '', '', 0, NULL, '2020-07-25 12:58:13');
 
 -- --------------------------------------------------------
 
@@ -77,7 +84,6 @@ INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, 
 (14, 'xlai7', 'clock', 'furniture', 'A small alarm clock', 'images/xlai7/20200725091355.jpg', 2, 5, 5, NULL, '2020-07-25 09:13:55'),
 (15, 'xlai7', 'Slow Cooker', 'furniture', 'A slow cooker, low in power, perfect for porridge or soup', 'images/xlai7/20200725091510.jpg', 50, 60, 8, NULL, '2020-07-25 09:15:10'),
 (16, 'xlai7', 'Mouse', 'electronics', 'A Logit mouse', 'images/xlai7/20200725092840.jpg', 5, 7, 9, NULL, '2020-07-25 09:28:40'),
-(17, 'xlai7', 'Small Shelf', 'furniture', 'A good helper to keep your room organized', 'images/xlai7/20200725093016.jpg', 3, 5, 7, NULL, '2020-07-25 09:30:16'),
 (18, 'keruiz2', 'closet', 'furniture', 'wood closet, no smell', 'images/keruiz2/20200725093248.jpg', 100, 130, 9, NULL, '2020-07-25 09:32:48'),
 (19, 'keruiz2', 'trash bin', 'furniture', 'two trash bins for garbage sorting', 'images/keruiz2/20200725093427.jpg', 5, 7, 8, NULL, '2020-07-25 09:34:27'),
 (20, 'keruiz2', 'air conditioner', 'furniture', 'It can both heat and cool the room', 'images/keruiz2/20200725093705.jpg', 120, 150, 9, NULL, '2020-07-25 09:37:05'),
@@ -86,7 +92,39 @@ INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, 
 (23, 'keruiz2', 'chair', 'furniture', 'common chair', 'images/keruiz2/20200725094414.jpg', 15, 30, 7, NULL, '2020-07-25 09:44:14'),
 (24, 'sunshine boy', 'mask', 'daily necessity', 'medical mask', 'images/sunshine boy/20200725095851.jpg', 2, 2.5, 9, NULL, '2020-07-25 09:58:51'),
 (25, 'sunshine boy', 'bone conduction headset', 'electronics', 'wireless bone conduction headset, Aftershokz', 'images/sunshine boy/20200725100043.jpg', 50, 65, 8, NULL, '2020-07-25 10:00:43'),
-(26, 'sunshine boy', 'FPGA', 'electronics', 'FPGA for ECE385 lab', 'images/sunshine boy/20200725100301.jpg', 100, 150, 9, NULL, '2020-07-25 10:03:01');
+(26, 'sunshine boy', 'FPGA', 'electronics', 'FPGA for ECE385 lab', 'images/sunshine boy/20200725100301.jpg', 100, 150, 9, NULL, '2020-07-25 10:03:01'),
+(27, 'xinyi', 'Lego Technic 42093', 'toys/games', 'Lego Technic 42093, 578pcs, 2 in 1', 'images/xinyi/20200725103009.jpg', 40, 50, 9, NULL, '2020-07-25 10:30:09'),
+(28, 'xinyi', 'cutter', 'tools', 'helper for electronic labs (eg ECE385)', 'images/xinyi/20200725103235.jpg', 4, 7, 9, NULL, '2020-07-25 10:32:35'),
+(29, 'xinyi', 'Digital Weighing Scale', 'furniture', 'Remind you of keeping fit!', 'images/xinyi/20200725103418.jpg', 10, 15, 9, NULL, '2020-07-25 10:34:18'),
+(30, 'xinyi', 'Yoga String and Massaging Ball', 'sports', 'Yoga String and Massaging Ball', 'images/xinyi/20200725103759.jpg', 2, 5, 9, NULL, '2020-07-25 10:37:59'),
+(31, 'xinyi', 'Foam Roller', 'sports', 'Good for relaxing after exercising', 'images/xinyi/20200725103846.jpg', 5, 7, 9, NULL, '2020-07-25 10:38:46'),
+(32, 'xinyi', 'Yoga Mat', 'sports', 'A Blue Yoga mat', 'images/xinyi/20200725104007.jpg', 5, 7, 9, NULL, '2020-07-25 10:40:07'),
+(33, 'xinyi', 'automatic sphygmomanometer', 'furniture', 'automatic sphygmomanometer', 'images/xinyi/20200725104200.jpg', 10, 15, 9, NULL, '2020-07-25 10:42:00'),
+(34, 'xinyi', 'ECE330 textbook', 'textbook', 'ECE330 textbook, Power Circuits', 'images/xinyi/20200725104332.jpg', 30, 50, 6, NULL, '2020-07-25 10:43:32'),
+(35, 'xinyi', 'Guitar Kepma', 'other', 'Guitar Kepma', 'images/xinyi/20200725104424.jpg', 70, 100, 9, NULL, '2020-07-25 10:44:24'),
+(36, 'xinyi', 'Medical Mask', 'daily necessity', 'Medical Mask, 10pc, fight with COVID19 together!', 'images/xinyi/20200725104523.jpg', 1, 2, 9, NULL, '2020-07-25 10:45:23'),
+(37, 'xlai7', 'iPhone Cable', 'accessories', 'iPhone Cable', 'images/xlai7/20200725105130.jpg', 2, 5, 7, NULL, '2020-07-25 10:51:30'),
+(38, 'xinyi.17', 'iPhone Earphone', 'accessories', 'iPhone Earphone', 'images/xinyi.17/20200725110246.jpg', 5, 7, 9, NULL, '2020-07-25 11:02:46'),
+(39, 'xinyi.17', 'Hand Sanitizer', 'daily necessity', 'Hand Sanitizer, fight with COVID19 together!', 'images/xinyi.17/20200725110632.jpg', 6, 9, 9, NULL, '2020-07-25 11:06:32'),
+(40, 'xlai7', 'thermos cup', 'daily necessity', 'stay warm, keep healthy', 'images/xlai7/20200725111447.jpg', 6, 9, 9, NULL, '2020-07-25 11:14:47'),
+(41, 'xlai7', 'Book: HongKong study', 'otherbooks', 'A Social Science book about HK', 'images/xlai7/20200725111619.jpg', 3, 5, 9, NULL, '2020-07-25 11:16:19'),
+(42, 'xlai7', 'Book: Psychology of Crowds', 'otherbooks', 'Psychology of Crowds / Psychologie des foules', 'images/xlai7/20200725111809.jpg', 3, 5, 9, NULL, '2020-07-25 11:18:09'),
+(43, 'hxh123', 'Watch', 'electronics', 'A Casio watch', 'images/hxh123/20200725121737.jpg', 50, 280, 9, NULL, '2020-07-25 12:17:37'),
+(44, 'hxh123', 'Banana', 'food', 'A big banana', 'images/hxh123/20200725121809.jpg', 1, 2, 9, NULL, '2020-07-25 12:18:09'),
+(45, 'hxh123', 'Mask', 'daily necessity', '10 maskes', 'images/hxh123/20200725123407.jpg', 10, 15, 9, NULL, '2020-07-25 12:34:07'),
+(46, 'hxh123', 'Umbrella', 'daily necessity', 'A big umbrella', 'images/hxh123/20200725123435.jpg', 10, 20, 9, NULL, '2020-07-25 12:34:35'),
+(47, 'hxh123', 'Mouse', 'electronics', 'A blue mouse', 'images/hxh123/20200725123505.jpg', 5, 8, 7, NULL, '2020-07-25 12:35:05'),
+(48, 'hxh123', 'Magnetic sensor', 'electronics', 'A seneor', 'images/hxh123/20200725123537.jpg', 10, 20, 7, NULL, '2020-07-25 12:35:37'),
+(49, 'hxh123', 'Mechanical car', 'toys/games', 'A constructive car', 'images/hxh123/20200725123728.jpg', 100, 200, 7, NULL, '2020-07-25 12:37:28'),
+(50, 'hxh123', 'A laptop', 'electronics', 'A mac laptop', 'images/hxh123/20200725123753.jpg', 100, 200, 4, NULL, '2020-07-25 12:37:53'),
+(51, 'hxh123', 'A 3D printer', 'electronics', 'A 3D printer', 'images/hxh123/20200725123822.jpg', 200, 400, 7, NULL, '2020-07-25 12:38:22'),
+(52, 'Barbara', 'vacuum cup', 'daily necessity', 'a new vaccum cup bought from Japan', 'images/Barbara/20200725130309.jpg', 20, 35, 8, NULL, '2020-07-25 13:03:09'),
+(53, 'Barbara', 'Lancome Tonique Confort 50ml', 'makeup & personal care', 'new bottle', 'images/Barbara/20200725131148.jpg', 6, 7, 9, NULL, '2020-07-25 13:11:48'),
+(54, 'Barbara', 'ALLIE UV GEL 90g', 'makeup & personal care', 'brand new bottle of UV GEL', 'images/Barbara/20200725131427.jpg', 18, 25, 9, NULL, '2020-07-25 13:14:27'),
+(55, 'Barbara', 'Tea tree witch hazel Spot Wand', 'makeup & personal care', 'brand new', 'images/Barbara/20200725131634.jpg', 3, 5, 9, NULL, '2020-07-25 13:16:34'),
+(56, 'Barbara', 'scissor', 'daily necessity', 'second hand but still sharp', 'images/Barbara/20200725131834.jpg', 2, 3, 6, NULL, '2020-07-25 13:18:34'),
+(57, 'Barbara', 'Power bank 10000mA', 'electronics', 'second hand', 'images/Barbara/20200725132810.jpg', 7, 14, 5, NULL, '2020-07-25 13:28:10'),
+(58, 'Barbara', 'mobile phone holder', 'daily necessity', 'new', 'images/Barbara/20200725133308.jpg', 1, 1.5, 9, NULL, '2020-07-25 13:33:08');
 
 -- --------------------------------------------------------
 
@@ -173,7 +211,8 @@ CREATE TABLE `Transactions` (
 
 INSERT INTO `Transactions` (`TransactionId`, `SellerId`, `BuyerId`, `ProductName`, `Price`, `Tag`, `Description`, `Date`) VALUES
 (1, 'Hxh123', 'xinyi.17', 'Basketball', 10, 'sports', 'A old basketball', '2020-07-25 08:34:46'),
-(2, 'xinyi.17', 'Hxh123', 'Badminton bat', 10, 'sports', 'Li Ning Badminton bat', '2020-07-25 08:35:18');
+(2, 'xinyi.17', 'Hxh123', 'Badminton bat', 10, 'sports', 'Li Ning Badminton bat', '2020-07-25 08:35:18'),
+(3, 'xlai7', 'Barbara', 'Small Shelf', 3, 'furniture', 'A good helper to keep your room organized', '2020-07-25 12:51:34');
 
 -- --------------------------------------------------------
 
@@ -197,6 +236,7 @@ CREATE TABLE `Users` (
 --
 
 INSERT INTO `Users` (`NetId`, `Password`, `Name`, `Email`, `Campus`, `Major`, `Year`, `DateJoin`) VALUES
+('Barbara', 'Barbara', 'Barbara', '3170111549@zju.edu.cn', 'ZJUIntl', 'BMS', 'Junior', '2020-07-25 12:35:32'),
 ('cs411', 'cs411', 'Little Genius', 'cs411@genius.com', 'UIUC', 'CS', 'Junior', '2020-07-25 06:14:03'),
 ('genius', 'genius', 'Real Genius', 'genius@genius.com', 'ZJU', 'Other', 'Graduate', '2020-07-25 07:03:09'),
 ('Hxh123', '123456789', 'Hao', 'haoh4@illinois.edu', 'ZJUIntl', 'ME', 'Junior', '2020-07-25 08:21:19'),
@@ -303,19 +343,19 @@ ALTER TABLE `Users`
 -- 使用表AUTO_INCREMENT `Requests`
 --
 ALTER TABLE `Requests`
-  MODIFY `RequestId` int NOT NULL AUTO_INCREMENT;
+  MODIFY `RequestId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- 使用表AUTO_INCREMENT `Sales`
 --
 ALTER TABLE `Sales`
-  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- 使用表AUTO_INCREMENT `Transactions`
 --
 ALTER TABLE `Transactions`
-  MODIFY `TransactionId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `TransactionId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- 限制导出的表
