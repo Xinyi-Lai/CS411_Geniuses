@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： database
--- 生成日期： 2020-07-25 02:57:05
--- 服务器版本： 8.0.21
+-- 生成日期： 2020-07-25 07:15:59
+-- 服务器版本： 8.0.20
 -- PHP 版本： 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -39,13 +39,6 @@ CREATE TABLE `Requests` (
   `DatePost` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- 转存表中的数据 `Requests`
---
-
-INSERT INTO `Requests` (`RequestId`, `BuyerId`, `ProductName`, `Tag`, `Description`, `Image`, `IntendedPrice`, `SaleId`, `DatePost`) VALUES
-(1, 'baozi008', 'baozi008', 'textbook', 'genius', '', 60, NULL, '2020-07-24 20:30:39');
-
 -- --------------------------------------------------------
 
 --
@@ -65,22 +58,6 @@ CREATE TABLE `Sales` (
   `IntendedBuyerId` varchar(50) DEFAULT NULL,
   `DatePost` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- 转存表中的数据 `Sales`
---
-
-INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, `Image`, `IntendedPrice`, `OriginalPrice`, `Depreciation`, `IntendedBuyerId`, `DatePost`) VALUES
-(2, 'baozi008', 'gre OG', 'test prep', 'new', 'images/baozi008/20200724191852.jpg', 50, 250, 9, NULL, '2020-07-24 19:18:52'),
-(3, 'baozi008', 'toefl', 'textbook', 'new', 'images/baozi008/20200724191915.jpg', 10, 1, 8, NULL, '2020-07-24 19:19:15'),
-(4, 'baozi008', 'foundation', 'makeup', 'new', 'images/baozi008/20200724191936.jpg', 60, 100, 9, NULL, '2020-07-24 19:19:36'),
-(5, 'baozi008', 'genius', 'toys/games', 'true genius', 'images/baozi008/20200724191955.jpg', 1, 10, 9, NULL, '2020-07-24 19:19:55'),
-(7, 'baozi008', 'baozi008', 'clothing', 'a delicious baozi', 'images/baozi008/20200724201425.jpg', 1, 1, 9, NULL, '2020-07-24 20:14:25'),
-(8, 'baozi008', 'baozi008', 'other', 'genius', 'images/baozi008/20200724201441.jpg', 1, 10, 9, NULL, '2020-07-24 20:14:41'),
-(9, 'baozi008', 'baozi', 'stationery', 'a delicious baozi', 'images/baozi008/20200724201516.jpg', 60, 100, 9, NULL, '2020-07-24 20:15:16'),
-(10, 'baozi008', 'f', 'furniture', 'f', 'images/baozi008/20200724201546.jpg', 1, 10000000000000, 9, NULL, '2020-07-24 20:15:46'),
-(11, 'baozi008', 's', 'otherbooks', 's', 'images/baozi008/20200724201614.jpg', 1, 1, 3, NULL, '2020-07-24 20:16:14'),
-(12, 'baozi008', 'toefl og', 'test prep', 'a', 'images/baozi008/20200725003204.jpg', 20, 60, 9, NULL, '2020-07-25 00:32:04');
 
 -- --------------------------------------------------------
 
@@ -161,13 +138,6 @@ CREATE TABLE `Transactions` (
   `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- 转存表中的数据 `Transactions`
---
-
-INSERT INTO `Transactions` (`TransactionId`, `SellerId`, `BuyerId`, `ProductName`, `Price`, `Tag`, `Description`, `Date`) VALUES
-(1, 'baozi008', 'baozi008', 'baozi', 10000, 'food', 'a delicious baozi', '2020-07-24 21:33:00');
-
 -- --------------------------------------------------------
 
 --
@@ -190,7 +160,8 @@ CREATE TABLE `Users` (
 --
 
 INSERT INTO `Users` (`NetId`, `Password`, `Name`, `Email`, `Campus`, `Major`, `Year`, `DateJoin`) VALUES
-('baozi008', 'baozi008', 'baozi', 'baozi008@illinois.edu', 'ZJUIntl', 'CompE', 'Senior', '2020-07-24 19:15:10');
+('cs411', 'cs411', 'Little Genius', 'cs411@genius.com', 'UIUC', 'CS', 'Junior', '2020-07-25 06:14:03'),
+('genius', 'genius', 'Real Genius', 'genius@genius.com', 'ZJU', 'Other', 'Graduate', '2020-07-25 07:03:09');
 
 -- --------------------------------------------------------
 
@@ -289,19 +260,19 @@ ALTER TABLE `Users`
 -- 使用表AUTO_INCREMENT `Requests`
 --
 ALTER TABLE `Requests`
-  MODIFY `RequestId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `RequestId` int NOT NULL AUTO_INCREMENT;
 
 --
 -- 使用表AUTO_INCREMENT `Sales`
 --
 ALTER TABLE `Sales`
-  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT;
 
 --
 -- 使用表AUTO_INCREMENT `Transactions`
 --
 ALTER TABLE `Transactions`
-  MODIFY `TransactionId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `TransactionId` int NOT NULL AUTO_INCREMENT;
 
 --
 -- 限制导出的表
