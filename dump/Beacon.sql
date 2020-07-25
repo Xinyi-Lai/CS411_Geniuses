@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： database
--- 生成日期： 2020-07-25 09:18:29
+-- 生成日期： 2020-07-25 10:19:05
 -- 服务器版本： 8.0.20
 -- PHP 版本： 7.4.6
 
@@ -75,7 +75,18 @@ INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, 
 (12, 'xlai7', 'Paper Towel', 'daily necessity', 'A roll of brand new paper towel', 'images/xlai7/20200725090918.jpg', 0.5, 1, 9, NULL, '2020-07-25 09:09:18'),
 (13, 'xlai7', 'Slippers', 'daily necessity', 'A pair of slippers, brand new', 'images/xlai7/20200725091024.jpg', 5, 7, 9, NULL, '2020-07-25 09:10:24'),
 (14, 'xlai7', 'clock', 'furniture', 'A small alarm clock', 'images/xlai7/20200725091355.jpg', 2, 5, 5, NULL, '2020-07-25 09:13:55'),
-(15, 'xlai7', 'Slow Cooker', 'furniture', 'A slow cooker, low in power, perfect for porridge or soup', 'images/xlai7/20200725091510.jpg', 50, 60, 8, NULL, '2020-07-25 09:15:10');
+(15, 'xlai7', 'Slow Cooker', 'furniture', 'A slow cooker, low in power, perfect for porridge or soup', 'images/xlai7/20200725091510.jpg', 50, 60, 8, NULL, '2020-07-25 09:15:10'),
+(16, 'xlai7', 'Mouse', 'electronics', 'A Logit mouse', 'images/xlai7/20200725092840.jpg', 5, 7, 9, NULL, '2020-07-25 09:28:40'),
+(17, 'xlai7', 'Small Shelf', 'furniture', 'A good helper to keep your room organized', 'images/xlai7/20200725093016.jpg', 3, 5, 7, NULL, '2020-07-25 09:30:16'),
+(18, 'keruiz2', 'closet', 'furniture', 'wood closet, no smell', 'images/keruiz2/20200725093248.jpg', 100, 130, 9, NULL, '2020-07-25 09:32:48'),
+(19, 'keruiz2', 'trash bin', 'furniture', 'two trash bins for garbage sorting', 'images/keruiz2/20200725093427.jpg', 5, 7, 8, NULL, '2020-07-25 09:34:27'),
+(20, 'keruiz2', 'air conditioner', 'furniture', 'It can both heat and cool the room', 'images/keruiz2/20200725093705.jpg', 120, 150, 9, NULL, '2020-07-25 09:37:05'),
+(21, 'keruiz2', 'door', 'furniture', 'Entrance only with an authorized card', 'images/keruiz2/20200725094034.jpg', 60, 75, 8, NULL, '2020-07-25 09:40:34'),
+(22, 'keruiz2', 'kettle', 'furniture', 'common kettle, never used', 'images/keruiz2/20200725094218.jpg', 3, 4, 9, NULL, '2020-07-25 09:42:18'),
+(23, 'keruiz2', 'chair', 'furniture', 'common chair', 'images/keruiz2/20200725094414.jpg', 15, 30, 7, NULL, '2020-07-25 09:44:14'),
+(24, 'sunshine boy', 'mask', 'daily necessity', 'medical mask', 'images/sunshine boy/20200725095851.jpg', 2, 2.5, 9, NULL, '2020-07-25 09:58:51'),
+(25, 'sunshine boy', 'bone conduction headset', 'electronics', 'wireless bone conduction headset, Aftershokz', 'images/sunshine boy/20200725100043.jpg', 50, 65, 8, NULL, '2020-07-25 10:00:43'),
+(26, 'sunshine boy', 'FPGA', 'electronics', 'FPGA for ECE385 lab', 'images/sunshine boy/20200725100301.jpg', 100, 150, 9, NULL, '2020-07-25 10:03:01');
 
 -- --------------------------------------------------------
 
@@ -189,7 +200,10 @@ INSERT INTO `Users` (`NetId`, `Password`, `Name`, `Email`, `Campus`, `Major`, `Y
 ('cs411', 'cs411', 'Little Genius', 'cs411@genius.com', 'UIUC', 'CS', 'Junior', '2020-07-25 06:14:03'),
 ('genius', 'genius', 'Real Genius', 'genius@genius.com', 'ZJU', 'Other', 'Graduate', '2020-07-25 07:03:09'),
 ('Hxh123', '123456789', 'Hao', 'haoh4@illinois.edu', 'ZJUIntl', 'ME', 'Junior', '2020-07-25 08:21:19'),
-('xinyi.17', 'xinyi.17', 'Xinyi Lai', 'xinyi.17@intl.zju.edu.cn', 'ZJUIntl', 'EE', 'Senior', '2020-07-25 08:20:40'),
+('keruiz2', 'keruiz2', 'Kerui Zhu', 'keruiz2@illinois.edu', 'UIUC', 'CS', 'Junior', '2020-07-25 09:25:18'),
+('sunshine boy', 'sb', 'Kerui Zhu', 'kerui.17@intl.zju.edu.cn', 'ZJUIntl', 'CompE', 'Junior', '2020-07-25 09:46:40'),
+('Xinyi', 'xinyi', 'Xinyi', '3170111149@zju.edu.cn', 'ZJU', 'EE', 'Freshman', '2020-07-25 10:12:33'),
+('xinyi.17', 'xinyi.17', 'Lai Xinyi', 'xinyi.17@intl.zju.edu.cn', 'ZJUIntl', 'EE', 'Senior', '2020-07-25 08:20:40'),
 ('xlai7', 'xlai7', 'Xinyi Lai', 'xlai7@illinois.edu', 'UIUC', 'EE', 'Senior', '2020-07-25 09:06:02');
 
 -- --------------------------------------------------------
@@ -295,7 +309,7 @@ ALTER TABLE `Requests`
 -- 使用表AUTO_INCREMENT `Sales`
 --
 ALTER TABLE `Sales`
-  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- 使用表AUTO_INCREMENT `Transactions`
