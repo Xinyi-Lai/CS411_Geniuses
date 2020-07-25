@@ -191,7 +191,7 @@
                     <li><a href="search.php?choosedb=Sales&tag=furniture">furniture</a></li>
                     <li><a href="search.php?choosedb=Sales&tag=tools">tools</a></li>
                     <li><a href="search.php?choosedb=Sales&tag=food">food</a></li>
-                    <li><a href="search.php?choosedb=Sales&tag=makeup">makeup</a></li>
+                    <li><a href="search.php?choosedb=Sales&tag=makeup & personal care">makeup & personal care</a></li>
                     <li><a href="search.php?choosedb=Sales&tag=clothing">clothing</a></li>
                     <li><a href="search.php?choosedb=Sales&tag=jewelry">jewelry</a></li>
                     <li><a href="search.php?choosedb=Sales&tag=sublease">sublease</a></li>
