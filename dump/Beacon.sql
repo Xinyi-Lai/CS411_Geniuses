@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： database
--- 生成日期： 2020-07-25 09:06:54
+-- 生成日期： 2020-07-25 09:18:29
 -- 服务器版本： 8.0.20
 -- PHP 版本： 7.4.6
 
@@ -71,7 +71,11 @@ INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, 
 (8, 'xinyi.17', 'Uni-ball Pen', 'stationery', 'A box of Uni-ball pen (12 pcs)', 'images/xinyi.17/20200725085957.jpg', 10, 15, 9, NULL, '2020-07-25 08:59:57'),
 (9, 'xinyi.17', 'Stapler', 'stationery', 'A brand new stapler', 'images/xinyi.17/20200725090043.jpg', 5, 8, 9, NULL, '2020-07-25 09:00:43'),
 (10, 'xinyi.17', 'Pins', 'stationery', 'A box of pins', 'images/xinyi.17/20200725090225.jpg', 1, 2, 9, NULL, '2020-07-25 09:02:25'),
-(11, 'xinyi.17', 'lamp', 'furniture', 'Eye protective, warm yellow light', 'images/xinyi.17/20200725090352.jpg', 10, 15, 6, NULL, '2020-07-25 09:03:52');
+(11, 'xinyi.17', 'lamp', 'furniture', 'Eye protective, warm yellow light', 'images/xinyi.17/20200725090352.jpg', 10, 15, 6, NULL, '2020-07-25 09:03:52'),
+(12, 'xlai7', 'Paper Towel', 'daily necessity', 'A roll of brand new paper towel', 'images/xlai7/20200725090918.jpg', 0.5, 1, 9, NULL, '2020-07-25 09:09:18'),
+(13, 'xlai7', 'Slippers', 'daily necessity', 'A pair of slippers, brand new', 'images/xlai7/20200725091024.jpg', 5, 7, 9, NULL, '2020-07-25 09:10:24'),
+(14, 'xlai7', 'clock', 'furniture', 'A small alarm clock', 'images/xlai7/20200725091355.jpg', 2, 5, 5, NULL, '2020-07-25 09:13:55'),
+(15, 'xlai7', 'Slow Cooker', 'furniture', 'A slow cooker, low in power, perfect for porridge or soup', 'images/xlai7/20200725091510.jpg', 50, 60, 8, NULL, '2020-07-25 09:15:10');
 
 -- --------------------------------------------------------
 
@@ -291,7 +295,7 @@ ALTER TABLE `Requests`
 -- 使用表AUTO_INCREMENT `Sales`
 --
 ALTER TABLE `Sales`
-  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- 使用表AUTO_INCREMENT `Transactions`
