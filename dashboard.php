@@ -388,13 +388,13 @@
 				<hr>
 				<div class="row">
 					<div class="span4">
-							<div id="pie_user_campus" style="height:250px;margin-top:15px;margin-bottom:25px;"></div>
+							<div id="pie_user_campus" style="height:250px;margin-top:10px;margin-bottom:10px;"></div>
 					</div>
 					<div class="span4">
-							<div id="pie_user_major" style="height:250px;margin-top:15px;margin-bottom:25px;"></div>
+							<div id="pie_user_major" style="height:250px;margin-top:10px;margin-bottom:10px;"></div>
 					</div>
 					<div class="span4">
-							<div id="pie_user_year" style="height:250px;margin-top:15px;margin-bottom:25px;"></div>
+							<div id="pie_user_year" style="height:250px;margin-top:10px;margin-bottom:10px;"></div>
 					</div>
 				</div>
 			</div>
