@@ -57,7 +57,7 @@ function stateChanged()
         document.getElementById("related").innerHTML=xmlHttp.responseText 
         var search_info = document.getElementById("search_info")
         if (search_info){
-            search_info.innerHTML = 'Search '+'"'+search_item+'"'+' in '+choosedb+((user_id) ? (" from "+user_id) : "")
+            search_info.innerHTML = 'Search '+'"'+search_item+tag+'"'+' in '+choosedb+((user_id) ? (" from "+user_id) : "")
         }
         return false
     } 
