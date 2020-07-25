@@ -117,76 +117,12 @@
 				<div class="nav-no-collapse header-nav">
 					<ul class="nav pull-right">
 						
-						<!-- start: Message Dropdown -->
-						<li class="dropdown hidden-phone">
-							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<i class="icon-envelope"></i>
-								<span class="badge red"> 4 </span>
-							</a>
-							<ul class="dropdown-menu messages">
-								<li class="dropdown-menu-title">
- 									<span>You have 9 messages</span>
-									<a href="#refresh"><i class="icon-repeat"></i></a>
-								</li>	
-                            	<li>
-                                    <a href="#">
-										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
-										<span class="header">
-											<span class="from"> </span>
-											<span class="time"> 6 min </span>
-										</span>
-                                        <span class="message">
-                                            Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
-                                        </span>  
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
-										<span class="header">
-											<span class="from"> </span>
-											<span class="time"> 56 min </span>
-										</span>
-                                        <span class="message">
-                                            Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
-                                        </span>  
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
-										<span class="header">
-											<span class="from"> </span>
-											<span class="time"> 3 hours </span>
-										</span>
-                                        <span class="message">
-                                            Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
-                                        </span>  
-                                    </a>
-                                </li>
-								<li>
-                                    <a href="#">
-										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
-										<span class="header">
-											<span class="from"> </span>
-											<span class="time"> yesterday </span>
-										</span>
-                                        <span class="message">
-                                            Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
-                                        </span>  
-                                    </a>
-                                </li>
-								<li>
-                            		<a class="dropdown-menu-sub-footer">View all messages</a>
-								</li>	
-							</ul>
-						</li>
-						<!-- end: Message Dropdown -->
+						
 						
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<span><?php echo $curr_user; ?></span>
+								<span><i class="icon-user"> </i><?php echo $curr_user; ?></span>
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
@@ -452,13 +388,13 @@
 				</div>
 				<div class="row">
 					<div class="span4">
-							<div id="pie_user_campus" style="height:250px;margin-top:15px;margin-bottom:20px;"></div>
+							<div id="pie_user_campus" style="height:250px;margin-top:15px;margin-bottom:25px;"></div>
 					</div>
 					<div class="span4">
-							<div id="pie_user_major" style="height:250px;margin-top:15px;margin-bottom:20px;"></div>
+							<div id="pie_user_major" style="height:250px;margin-top:15px;margin-bottom:25px;"></div>
 					</div>
 					<div class="span4">
-							<div id="pie_user_year" style="height:250px;margin-top:15px;margin-bottom:20px;"></div>
+							<div id="pie_user_year" style="height:250px;margin-top:15px;margin-bottom:25px;"></div>
 					</div>
 				</div>
 			</div>

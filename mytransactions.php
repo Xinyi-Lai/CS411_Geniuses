@@ -164,7 +164,7 @@
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<span><?php echo $curr_user; ?></span>
+								<span><span><i class="icon-user"> </i><?php echo $curr_user; ?></span></span>
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
