@@ -385,7 +385,7 @@
 
                         <!-- <span class="product-identity"><span class="strong-text">Categories:</span> Pants, T-Shirt, Jama</span></p> -->
 
-                        <span class="product-identity" herf=""><span class="strong-text">Tags:</span><span type="submit" onclick="window.location.href='search.php?choosedb=<?php echo $choosedb; ?>&tag=<?php echo $tag;?>'"> <u> <?php echo $tag; ?> </u> </span>
+                        <span class="product-identity" herf=""><span class="strong-text">Tags:</span> <button type="querybtn" style="border:none; background:none;" onclick="window.location.href='search.php?choosedb=<?php echo $choosedb; ?>&tag=<?php echo $tag;?>'" > <u> <?php echo $tag; ?> </u> </button>
 
                     </div>
 

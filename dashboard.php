@@ -413,8 +413,8 @@
 		</div><!--/row-->
 
 
-		<div class="row-fluid sortable">
-			<!-- <div class="box"> -->
+		<!-- <div class="row-fluid sortable">
+			
 			<div class="widget span12" onTablet="span12" onDesktop="span12">
 				<h2><span class="glyphicons facebook"><i></i></span>Price</h2>
 				<hr>
@@ -422,21 +422,21 @@
 			<div class="box-content">
 					<div id="price_chart" class="center" style="height:300px;"></div>
 			</div>
-				<!-- </div> -->
-			</div>
-		</div><!--/row-->
-
-		<div class="row-fluid">
 				
-				<div class="widget span12" onTablet="span12" onDesktop="span12">
-					<h2><span class="glyphicons twitter"><i></i></span>Time</h2>
-					<hr>
-					<div class="content">
-						<div id="twitterChart" style="height:300px" ></div>
-					</div>
-				</div><!--/span-->
-			
 			</div>
+		</div> -->
+
+		<!-- <div class="row-fluid">
+				
+			<div class="widget span12" onTablet="span12" onDesktop="span12">
+				<h2><span class="glyphicons twitter"><i></i></span>Time</h2>
+				<hr>
+				<div class="content">
+					<div id="twitterChart" style="height:300px" ></div>
+				</div>
+			</div>
+		
+		</div> -->
 
 	
 

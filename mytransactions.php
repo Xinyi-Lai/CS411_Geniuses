@@ -9,7 +9,7 @@
 	else {
 		$conn = connectDB();
 		
-		$sql = "SELECT * FROM Transactions WHERE BuyerId = '$curr_user'";
+		$sql = "SELECT SellerId, ProductName, Price, Tag, Description, DATE(Date) AS Date FROM Transactions WHERE BuyerId = '$curr_user'";
 		$result = $conn->query($sql);
 		if ($result) {
 			$buyarray = array();
@@ -20,7 +20,7 @@
 			$msg = "No buys" . $sql . "<br>" . $conn->error;
 		}
 
-		$sql = "SELECT * FROM Transactions WHERE SellerId = '$curr_user'";
+		$sql = "SELECT BuyerId, ProductName, Price, Tag, Description, DATE(Date) AS Date FROM Transactions WHERE SellerId = '$curr_user'";
 		$result = $conn->query($sql);
 		if ($result) {
 			$sellarray = array();
@@ -95,8 +95,6 @@
 				<div class="nav-no-collapse header-nav">
 					<ul class="nav pull-right">
 						
-						
-						
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -167,11 +165,11 @@
 						<div class="task high">
 							<div class="desc">
 								<div class="title"><?php echo $val['ProductName']; ?></div>
-								<div> Tag: <?php echo $val['Tag']; ?>; Description: <?php echo $val['Description']; ?></div>
+								<div> Tag: <?php echo $val['Tag']; ?>; From <?php echo $val['SellerId']; ?>; Description: <?php echo $val['Description']; ?> </div>
 							</div>
 							<div class="time">
 								<div class="date">$<?php echo $val['Price']; ?></div>
-								<div> From <?php echo $val['SellerId']; ?> </div>
+								<div> <?php echo $val['Date']; ?>  </div>
 							</div>
 						</div>
 					<?php endforeach; ?>
@@ -188,11 +186,11 @@
 						<div class="task medium" >
 							<div class="desc">
 								<div class="title"><?php echo $val['ProductName']; ?></div>
-								<div> Tag: <?php echo $val['Tag']; ?>; Description: <?php echo $val['Description']; ?></div>
+								<div> Tag: <?php echo $val['Tag']; ?>; To <?php echo $val['BuyerId']; ?>; Description: <?php echo $val['Description']; ?></div>
 							</div>
 							<div class="time">
 								<div class="date">$<?php echo $val['Price']; ?></div>
-								<div> To <?php echo $val['BuyerId']; ?> </div>
+								<div> <?php echo $val['Date']; ?> </div>
 							</div>
 						</div>
 					<?php endforeach; ?>
