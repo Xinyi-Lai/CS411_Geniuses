@@ -1509,30 +1509,29 @@ function charts() {
 
 	// items segmentation
 
-	$.ajax({url:"dashboard_db.php?option=items",success:function(result){
+	$.ajax({url:"dashboard_db.php?option=price",success:function(result){
 
 		jsonObj = JSON.parse(result);
-		var data_products = [];
-		var data_requests = [];
-		var data_trans = [];
+		var data_max = [];
+		var data_avg = [];
+		var data_min = [];
 		var xticks = [];
 
-		for (var i=0; i<Object.keys(jsonObj['Sales']).length; i++ ){
-			//Object.keys(jsonObj['Sales'])[4]
-			var tag = Object.keys(jsonObj['Sales'])[i];
+		for (var i=0; i<Object.keys(jsonObj['Max']).length; i++ ){
+			var tag = Object.keys(jsonObj['Max'])[i];
 			xticks.push([i, tag]);
-			data_products.push([i, parseInt(Object.values(jsonObj['Sales'])[i])		]);
-			data_requests.push([i, parseInt(Object.values(jsonObj['Requests'])[i])	]);
-			data_trans.push([	i, parseInt(Object.values(jsonObj['Trans'])[i])		]);
+			data_max.push([i, parseInt(Object.values(jsonObj['Max'])[i] - Object.values(jsonObj['Avg'])[i])		]);
+			data_avg.push([i, parseInt(Object.values(jsonObj['Avg'])[i] - Object.values(jsonObj['Min'])[i])	]);
+			data_min.push([	i, parseInt(Object.values(jsonObj['Min'])[i])		]);
 		}
 		
 		/* ---------- Items-tag Stack chart ---------- */
 
 		if($("#stack_item").length) {
 			
-			$.plot($("#stack_item"), [ 	{label: 'Max', data: data_trans}, 
-										{label: 'Avg', data: data_requests}, 
-										{label: 'Min', data: data_products} ], {
+			$.plot($("#stack_item"), [ 	{label: 'Min', data: data_min}, 
+										{label: 'Avg', data: data_avg}, 
+										{label: 'Max', data: data_max} ], {
 				series: {
 					stack: 0,	// null
 					lines: { show: false, fill: true, steps: true },
@@ -1541,7 +1540,7 @@ function charts() {
 				xaxis: { ticks: xticks },
 				legend: { show: true },
 				grid: 	{ hoverable: true, clickable: true },
-				colors: ["#E25A59", "#e5c33c", "#43B5AD"]
+				colors: ["#43B5AD", "#e5c33c", "#E25A59"]
 			});
 
 		}
@@ -1581,7 +1580,7 @@ function charts() {
 						   tickColor: "#f9f9f9",
 						   borderWidth: 0
 						 },
-				   colors: ["#3B5998"],
+				   colors: ["#8674A6"],
 					xaxis: {ticks: xticks},
 					yaxis: {ticks:3, tickDecimals: 0},
 				 });

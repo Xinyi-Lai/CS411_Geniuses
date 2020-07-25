@@ -468,7 +468,7 @@
 		<div class="row-fluid sortable">
 			<div class="box">
 				<div class="box-header">
-					<h2><i class="icon-dollar white list-alt"></i><span class="break"></span>Prices on Beacon</h2>
+					<h2><i class="icon-dollar white list-alt"></i><span class="break"></span>Price on Beacon</h2>
 				</div>
 					<div class="box-content">
 						 <div id="stack_item" class="center" style="height:300px;"></div>

@@ -115,6 +115,35 @@
             
             echo $json;
             $conn->close();
+        } elseif($_REQUEST['option'] == 'price'){
+            // the array to be returned
+            $arr = array();
+            $arrMax = array();
+            $arrAvg = array();
+            $arrMin = array();
+
+            $conn = connectDB();
+            $sql = "SELECT Tag, max(IntendedPrice) as MaxPrice, min(IntendedPrice) as MinPrice, avg(IntendedPrice) as AvgPrice FROM Sales GROUP BY Tag";
+            $result = $conn->query($sql);
+            
+            if ($result) {
+                while ( $row = mysqli_fetch_assoc($result) ) {
+                    $arrMax[$row['Tag']] = $row['MaxPrice'] == null ? 0 : $row['MaxPrice'];
+                    $arrAvg[$row['Tag']] = $row['AvgPrice'] == null ? 0 : $row['AvgPrice'];
+                    $arrMin[$row['Tag']] = $row['MinPrice'] == null ? 0 : $row['MinPrice'];
+                }
+            } else {
+                $msg = "Error full join after grouping by tag" . $sql . "<br>" . $conn->error;
+            }
+
+            $arr['Max'] = $arrMax;
+            $arr['Avg'] = $arrAvg;
+            $arr['Min'] = $arrMin;
+
+            $json=urldecode(json_encode($arr)) ;
+            
+            echo $json;
+            $conn->close();
         }
 
     }
