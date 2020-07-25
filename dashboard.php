@@ -382,10 +382,10 @@
 		</div><!--/row-->
 
 		<div class="row-fluid sortable">
-			<div class="box span12">
-				<div class="box-header">
-					<h2><i class="icon-user white list-alt"></i><span class="break"></span>Users</h2>
-				</div>
+			<!-- <div class="box span12"> -->
+			<div class="widget span12" onTablet="span12" onDesktop="span12">
+				<h2><span class="glyphicons facebook"><i></i></span>Users</h2>
+				<hr>
 				<div class="row">
 					<div class="span4">
 							<div id="pie_user_campus" style="height:250px;margin-top:15px;margin-bottom:25px;"></div>
@@ -402,35 +402,31 @@
 
 
 		<div class="row-fluid sortable">
-			<div class="box">
-				<div class="box-header">
-					<h2><i class="icon-dollar white list-alt"></i><span class="break"></span>Price on Beacon</h2>
-				</div>
+			<!-- <div class="box"> -->
+			<div class="widget span12" onTablet="span12" onDesktop="span12">
+				<h2><span class="glyphicons facebook"><i></i></span>Items on Beacon</h2>
+				<hr>
 					<div class="box-content">
 						 <div id="stack_item" class="center" style="height:300px;"></div>
 					</div>
 				</div>
 		</div><!--/row-->
 
+
 		<div class="row-fluid sortable">
-				
-				<div class="widget span6" onTablet="span6" onDesktop="span6">
-					<h2><span class="glyphicons facebook"><i></i></span>Products by tag</h2>
-					<hr>
-					<div class="content">
-						<div id="ProductsByTagChart" style="height:300px" ></div>
-					</div>
-				</div><!--/span-->
-				
-				<div class="widget span6" onTablet="span6" onDesktop="span6">
-					<h2><span class="glyphicons twitter"><i></i></span>Requests by tag</h2>
-					<hr>
-					<div class="content">
-						<div id="RequestsByTagChart" style="height:300px" ></div>
-					</div>
-				</div><!--/span-->
+			<!-- <div class="box"> -->
+			<div class="widget span12" onTablet="span12" onDesktop="span12">
+				<h2><span class="glyphicons facebook"><i></i></span>Price</h2>
+				<hr>
 			
-		</div>
+			<div class="box-content">
+					<div id="price_chart" class="center" style="height:300px;"></div>
+			</div>
+				<!-- </div> -->
+			</div>
+		</div><!--/row-->
+
+	
 
 		
 			

@@ -1527,15 +1527,15 @@ function charts() {
 		
 		/* ---------- Items-tag Stack chart ---------- */
 
-		if($("#stack_item").length) {
+		if($("#price_chart").length) {
 			
-			$.plot($("#stack_item"), [ 	{label: 'Min', data: data_min}, 
+			$.plot($("#price_chart"), [ 	{label: 'Min', data: data_min}, 
 										{label: 'Avg', data: data_avg}, 
 										{label: 'Max', data: data_max} ], {
 				series: {
 					stack: 0,	// null
-					lines: { show: false, fill: true, steps: true },
-					bars: { show: true, barWidth: 0.6, align: "center" },
+					lines: { show: true, fill: true, steps: false },
+					bars: { show: false, barWidth: 0.6, align: "center" },
 				},
 				xaxis: { ticks: xticks },
 				legend: { show: true },
@@ -1548,157 +1548,44 @@ function charts() {
 	}});
 
 
+	
 	/* ---------- Chart with points ---------- */
 	$.ajax({url:"dashboard_db.php?option=items",success:function(result){
 
 		jsonObj = JSON.parse(result);
 		var data_products = [];
+		var data_requests = [];
+		var data_trans = [];
 		var xticks = [];
 
 		for (var i=0; i<Object.keys(jsonObj['Sales']).length; i++ ){
+			//Object.keys(jsonObj['Sales'])[4]
 			var tag = Object.keys(jsonObj['Sales'])[i];
 			xticks.push([i, tag]);
 			data_products.push([i, parseInt(Object.values(jsonObj['Sales'])[i])		]);
-		}
-
-		if($("#ProductsByTagChart").length)
-	{
-		var plot = $.plot($("#ProductsByTagChart"),
-			   [ { data: data_products, label: "Number of Products"} ], {
-				   series: {
-					   lines: { show: true,
-								lineWidth: 2,
-								fill: true, fillColor: { colors: [ { opacity: 0.3 }, { opacity: 0.5 } ] }
-							 },
-					   points: { show: true, 
-								 lineWidth: 2 
-							 },
-					   shadowSize: 0
-				   },
-				   grid: { hoverable: true, 
-						   clickable: true, 
-						   tickColor: "#f9f9f9",
-						   borderWidth: 0
-						 },
-				   colors: ["#8674A6"],
-					xaxis: {ticks: xticks},
-					yaxis: {ticks:3, tickDecimals: 0},
-				 });
-
-		function showTooltip(x, y, contents) {
-			$('<div id="tooltip">' + contents + '</div>').css( {
-				position: 'absolute',
-				display: 'none',
-				top: y + 5,
-				left: x + 5,
-				border: '1px solid #fdd',
-				padding: '2px',
-				'background-color': '#dfeffc',
-				opacity: 0.80
-			}).appendTo("body").fadeIn(200);
-		}
-
-		var previousPoint = null;
-		$("#ProductsByTagChart").bind("plothover", function (event, pos, item) {
-			$("#x").text(pos.x.toFixed(2));
-			$("#y").text(pos.y.toFixed(2));
-
-				if (item) {
-					if (previousPoint != item.dataIndex) {
-						previousPoint = item.dataIndex;
-
-						$("#tooltip").remove();
-						var x = item.datapoint[0].toFixed(0),
-							y = item.datapoint[1].toFixed(0);
-
-						showTooltip(item.pageX, item.pageY,
-									"Number of " + xticks[x][1] + " : " + y);
-					}
-				}
-				else {
-					$("#tooltip").remove();
-					previousPoint = null;
-				}
-		});
-	
-	}
-
-	}});
-
-	/* ---------- Chart with points ---------- */
-	$.ajax({url:"dashboard_db.php?option=items",success:function(result){
-
-		jsonObj = JSON.parse(result);
-		var data_requests = [];
-		var xticks = [];
-
-		for (var i=0; i<Object.keys(jsonObj['Requests']).length; i++ ){
-			var tag = Object.keys(jsonObj['Requests'])[i];
-			xticks.push([i, tag]);
 			data_requests.push([i, parseInt(Object.values(jsonObj['Requests'])[i])	]);
+			data_trans.push([	i, parseInt(Object.values(jsonObj['Trans'])[i])		]);
 		}
+		
+		/* ---------- Items-tag Stack chart ---------- */
 
-		if($("#RequestsByTagChart").length)
-	{
-		var plot = $.plot($("#RequestsByTagChart"),
-			   [ { data: data_requests, label: "Number of Requests"} ], {
-				   series: {
-					   lines: { show: true,
-								lineWidth: 2,
-								fill: true, fillColor: { colors: [ { opacity: 0.3 }, { opacity: 0.5 } ] }
-							 },
-					   points: { show: true, 
-								 lineWidth: 2 
-							 },
-					   shadowSize: 0
-				   },
-				   grid: { hoverable: true, 
-						   clickable: true, 
-						   tickColor: "#f9f9f9",
-						   borderWidth: 0
-						 },
-				   colors: ["#1BB2E9"],
-					xaxis: {ticks: xticks},
-					yaxis: {ticks:3, tickDecimals: 0},
-				 });
+		if($("#stack_item").length) {
+			
+			$.plot($("#stack_item"), [ 	{label: 'Transactions', data: data_trans}, 
+										{label: 'Requests', data: data_requests}, 
+										{label: 'Products', data: data_products} ], {
+				series: {
+					stack: 0,	// null
+					lines: { show: false, fill: true, steps: true },
+					bars: { show: true, barWidth: 0.6, align: "center" },
+				},
+				xaxis: { ticks: xticks },
+				legend: { show: true },
+				grid: 	{ hoverable: true, clickable: true },
+				colors: ["#FA5833", "#2FABE9", "#FABB3D"]
+			});
 
-		function showTooltip(x, y, contents) {
-			$('<div id="tooltip">' + contents + '</div>').css( {
-				position: 'absolute',
-				display: 'none',
-				top: y + 5,
-				left: x + 5,
-				border: '1px solid #fdd',
-				padding: '2px',
-				'background-color': '#dfeffc',
-				opacity: 0.80
-			}).appendTo("body").fadeIn(200);
 		}
-
-		var previousPoint = null;
-		$("#RequestsByTagChart").bind("plothover", function (event, pos, item) {
-			$("#x").text(pos.x.toFixed(2));
-			$("#y").text(pos.y.toFixed(2));
-
-				if (item) {
-					if (previousPoint != item.dataIndex) {
-						previousPoint = item.dataIndex;
-
-						$("#tooltip").remove();
-						var x = item.datapoint[0].toFixed(0),
-							y = item.datapoint[1].toFixed(0);
-
-						showTooltip(item.pageX, item.pageY,
-									"Number of " + xticks[x][1] + " : " + y);
-					}
-				}
-				else {
-					$("#tooltip").remove();
-					previousPoint = null;
-				}
-		});
-	
-	}
 
 	}});
 	
