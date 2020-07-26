@@ -62,7 +62,7 @@
                     
                     // update record
                     $sql = "UPDATE Requests 
-						    SET ProductName = '$product_name', Tag = '$tag', Description = '$description'
+						    SET ProductName = '$product_name', Tag = '$tag', Description = '$description', IntendedPrice = '$intended_price'
                             WHERE RequestId = '$requestid'";
                     if ($conn->query($sql)) {
                         header("location:myrequests.php");

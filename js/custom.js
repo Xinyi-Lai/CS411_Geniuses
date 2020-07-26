@@ -1571,9 +1571,9 @@ function charts() {
 
 		if($("#stack_item").length) {
 			
-			$.plot($("#stack_item"), [ 	{label: 'Transactions', data: data_trans}, 
-										{label: 'Requests', data: data_requests}, 
-										{label: 'Products', data: data_products} ], {
+			$.plot($("#stack_item"), [ 	{label: 'Sold', data: data_trans}, 
+										{label: 'Requesting', data: data_requests}, 
+										{label: 'For Sale', data: data_products} ], {
 				series: {
 					stack: 0,	// null
 					lines: { show: false, fill: true, steps: true },

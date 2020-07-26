@@ -330,11 +330,11 @@
 
                         
 
-                        <span class="product-identity"><span class="strong-text">Description:</span> <?php echo $description; ?></span>
+                        <span class="product-identity"><span class="strong-text">Description:</span> <?php echo $description; ?></span><br><br>
 
                     <?php
                         if ($choosedb == "Sales"){
-                            echo '<span class="product-identity"><span class="strong-text">Original Price: $</span> '.$originalPrice.'</span>';
+                            echo '<span class="product-identity"><span class="strong-text">Original Price: $</span> '.$originalPrice.'</span><br><br>';
                             echo '<span class="product-identity"><span class="strong-text">Depreciation:</span> '.$depreciation.'</span>';
                         }
                     ?>
