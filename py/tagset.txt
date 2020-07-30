@@ -1,0 +1,14 @@
+toys/games
+daily necessity,furniture,stationery
+sports
+daily necessity,tools
+tools,toys/games
+daily necessity,food,sports,stationery
+textbook
+test prep
+textbook
+daily necessity,electronics,furniture,toys/games
+accessories,electronics,sports,toys/games
+daily necessity,otherbooks,sports,stationery,textbook
+accessories,daily necessity,electronics,stationery,toys/games
+textbook,tools

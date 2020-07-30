@@ -12,7 +12,7 @@
     //connect db
     if (strlen($item_id) > 0) {
         $conn = connectDB();
-        if ($choosedb == "Sales"){
+        if ($choosedb == "Sales") {
             $sql = "SELECT * FROM Sales WHERE SaleId = $item_id";
             $result = $conn->query($sql);
     
@@ -27,7 +27,7 @@
                 $originalPrice = $row["OriginalPrice"];
                 $depreciation = $row["Depreciation"];
             } 
-        }else{
+        } else {
             $sql = "SELECT * FROM Requests WHERE RequestId = $item_id";
             $result = $conn->query($sql);
     
@@ -43,10 +43,59 @@
         }
     
         $conn->close();
-    }else{
+    } 
+    else {
         echo "Wrong Url Parameter";
         exit;
     }
+
+    // get recommend tags
+    $myfile = fopen("py/recommend.txt", "r") or die("Unable to open file!");
+    $row = fgets($myfile);
+    // the first row -> an array of 3 topsale tags
+    $topSaleTags = explode( ", ", explode(": ",$row)[1] );
+
+    $tagFriends = array($tag);
+
+    while(!feof($myfile)) {
+        $row = fgets($myfile);
+        $arr = explode(": ",$row);
+        if ($tag == $arr[0]) {
+            $friends = explode(", ",$arr[1]);
+            $tagFriends = array_merge( $tagFriends, array_slice($friends, 0, -1) );
+        }
+    }
+
+    for ($i=0; $i < 3; $i++) { 
+        if (count($tagFriends) == 4) {
+            break;
+        }
+        if ( in_array($topSaleTags[$i], $tagFriends) ) {
+            continue;
+        }
+        array_push($tagFriends, $topSaleTags[$i]);
+    }
+
+    fclose($myfile);
+
+    // get example products
+    $conn = connectDB();
+    $productFriends = array();
+    foreach ($tagFriends as $t) {
+        $sql = "SELECT * FROM Sales WHERE Tag = '$t' AND SaleId <> '$item_id' AND IntendedBuyerId IS NULL ORDER BY SaleId DESC LIMIT 1";
+        $result = $conn->query($sql);
+        if ($result && $result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            $productFriends[] = $row;
+        }
+        else {
+            $productFriends[] = null;
+            $msg = "Error getting example product with tag ".$tag. " " . $sql . "<br>" . $conn->error;
+        }
+    }
+
+    $conn->close();
+
 ?>
 
 <!DOCTYPE HTML>
@@ -364,7 +413,7 @@
                         $url = "window.location.href='mark_to_sell.php?RequestId=".$item_id."&SaleId='+$('#saleid_box').find('option:selected').attr('value')";
                     ?>
 
-                        <div class="form-group">
+                    <div class="form-group">
                         <label for="selectError3">My Product ID:</label><span class="warning"> <?php echo $product_id_err;?></span>
                         <select class="form-control" id="saleid_box">
                             <optgroup label="My Products">
@@ -383,7 +432,7 @@
                                 ?>
                             </optgroup>
                         </select>
-                        </div>
+                    </div>
 
                         <button class="btn btn-theme" type="submit" onclick="<?php echo $url; ?>">I wanna sell</button>
                     <?php } ?>
@@ -392,7 +441,12 @@
 
                         <!-- <span class="product-identity"><span class="strong-text">Categories:</span> Pants, T-Shirt, Jama</span></p> -->
 
-                        <span class="product-identity" herf=""><span class="strong-text">Tags:</span> <button type="querybtn" style="border:none; background:none;" onclick="window.location.href='search.php?choosedb=<?php echo $choosedb; ?>&tag=<?php echo $tag;?>'" > <u> <?php echo $tag; ?> </u> </button>
+                        <span class="product-identity" herf="">
+                            <span class="strong-text">Tags:</span> 
+                            <button type="querybtn" style="border:none; background:none;" onclick="window.location.href='search.php?choosedb=<?php echo $choosedb; ?>&tag=<?php echo $tag;?>'" > 
+                                <u> <?php echo $tag; ?> </u> 
+                            </button>
+                        </span>
 
                     </div>
 
@@ -421,7 +475,43 @@
 
                 <div class="tab-content">
 
-                    <div class="tab-pane active" id="related">
+                    <div class="tab-pane active" >  <!-- id="related" ??? -->
+
+                    <?php for ($i=0; $i < count($tagFriends) ; $i++) { ?>
+                        
+                        <div class="col-md-3 col-sm-4">
+                            
+                            <div class="single-product">
+                                <div class="product-block">
+                                    
+                                    <img src="<?php echo $productFriends[$i]['Image']; ?>" alt="" class="thumbnail">
+                                    
+                                    <div class="related-product text-center">
+                                        <p class="title"> <?php echo $productFriends[$i]['ProductName']; ?> </p>
+                                        <p class="price"> $ <?php echo $productFriends[$i]['IntendedPrice']; ?> </p>
+                                    </div>
+                                    
+                                    <div class="product-hover">
+                                        <ul>
+                                            <li><a href="single-product.php?Id=<?php echo $productFriends[$i]['SaleId'];?>&choosedb=Sales"><i class="fa fa-cart-arrow-down"></i></a></li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <button type="querybtn" style="border:none; background:none;" onclick="window.location.href='search.php?choosedb=<?php echo $choosedb; ?>&tag=<?php echo $tagFriends[$i];?>'" > 
+                                <u> See more in <?php echo $tagFriends[$i]; ?> </u> 
+                            </button>
+
+                        </div>
+
+                    
+                    <?php } ?> 
+
+                        
+
+                    
 
                     </div>
 
