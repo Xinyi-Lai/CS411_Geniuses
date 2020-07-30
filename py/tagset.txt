@@ -1,8 +1,14 @@
-textbook test_prep stationery
-sports tools daily
-sports tools electronics accessory
-electronics accessory games
-textbook test_prep stationery
-sports tools daily
-sports tools electronics accessory
-electronics accessory games
+toys/games
+daily necessity,furniture,stationery
+sports
+daily necessity,tools
+tools,toys/games
+daily necessity,food,sports,stationery
+textbook
+test prep
+textbook
+daily necessity,electronics,toys/games
+accessories,electronics,sports,toys/games
+daily necessity,otherbooks,sports,stationery,textbook
+accessories,daily necessity,electronics,stationery,toys/games
+textbook,tools

@@ -3,15 +3,14 @@
 # A recommendation system based on Apriori algorithm
 # @input:  tagset.txt - each row is a shopping cart of a user
 # @param:  minsup - minimal support
-# @output: closed frequent patterns ####################################
-# we use a dictionary - patterns = {itemset: support}
-# keys (itemset) are stored as strings, e.g. 'A B'; and are converted into sets before operations
+# @output: closed frequent patterns 
+# @final output: recommend.txt - tag friends for each tag
+# we use a dictionary to stores patterns = {itemset: support}
+# keys (itemset) are stored as strings, e.g. 'test prep, sports, daily necessity'
+# itemsets are converted into sets before operations
 # values (support) are integers
 
-
-minsup = 2 ### to be changed
 from itertools import combinations
-
 
 # convert a set to an ordered string
 def set2str(aset):
@@ -22,12 +21,12 @@ def set2str(aset):
     alist.sort()
     for i in alist:
         astr += str(i)
-        astr += ' '
-    astr = astr[:-1]
+        astr += ", "
+    astr = astr[:-2]
     return astr
 # convert a string to a set
 def str2set(astr):
-    return set(astr.split())
+    return set(astr.split(", "))
 
 
 # scan DB to check the candidate
@@ -80,89 +79,66 @@ def genCand(freq_curr):
 
 
 # main Apriori algorithm
-# @return patterns [dict]
-def minePatterns(database, minsup):
+# @return closed patterns [ ( string(pattern), int(support) ) ]
+def mineClosedPatterns(database, minsup):
     patterns = {}
     cand = []
     freq = []
+    
     # 1-candidate
     for transaction in database:
         for item in transaction:
             if item not in cand:
                 cand.append(item)
     cand.sort()
-
+    
+    # generate itemsets based on Apriori algorithm
     while len(cand) != 0:
         freq = checkFreq(cand, patterns, minsup, database)
         cand = genCand(freq)
-    return patterns
-
-
-# extract the closed patterns out from patterns
-def closedPattern(patterns):
+    
+    # only keep closed patterns
     closed_patterns = patterns.copy()
     for pat in patterns:
         for other_pat in patterns:
             if str2set(pat) < str2set(other_pat) and patterns[pat] <= patterns[other_pat]:                    
                 del closed_patterns[pat]
                 break
-    return closed_patterns
-# extract the max patterns out from patterns
-def maxPattern(patterns):
-    max_patterns = patterns.copy()
-    for pat in patterns:
-        for other_pat in patterns:
-            #print(other_pat)
-            if str2set(pat) < str2set(other_pat):
-                del max_patterns[pat]
-                break
-    return max_patterns
-
-
-### print patterns to screen in the output format
-def outPatterns(patterns):
     
-    minsup = min(patterns.values())
-    sup = max(patterns.values())
-    
-    while sup >= minsup:
-        outlist = []
-        for itemset in patterns:
-            if patterns[itemset] == sup:
-                outlist.append(itemset)
-        outlist.sort()
-        for itemset in outlist:
-            print(str(sup) + ' [', end='')
-            print(itemset, end='')
-            print(']')
-        sup -= 1
-    
-    return
+    # sort by support
+    ret = sorted(closed_patterns.items(), key = lambda kv:(-kv[1], kv[0]))
+
+    return ret
 
 
 
-
-###
-fo = open('py/tagset.txt')
+### __main__
+minsup = 2 ### to be changed
+fo = open('tagset.txt') ### to be changed
 lines = fo.readlines()
 database = []
 for line in lines:
-    database.append(sorted(line.split()))
+    database.append(sorted(line.strip().split(",")))
 fo.close()
 
+# print(database)
+# print()
+closed_patterns = mineClosedPatterns(database, minsup)
+print(closed_patterns)
+# print()
 
-patterns = minePatterns(database, minsup)
-closed_patterns = closedPattern(patterns)
-max_patterns = maxPattern(patterns)
-outPatterns(patterns)
-print()
-outPatterns(closed_patterns)
-print()
-outPatterns(max_patterns)
+recommend = {}
+for tagset,_ in closed_patterns:
+    tags = tagset.split(", ")
+    tagset = str2set(tagset)
+    # if len(tags) == 1:
+    #     continue
+    for tag in tags:
+        if tag not in recommend.keys():
+            recommend[tag] = tagset - str2set(tag)
+        else:
+            recommend[tag] = tagset - str2set(tag) | recommend[tag]
 
-
-fo = open("py/recommend.txt", "w")
-str = "123"
-fo.write( str )
-fo.close()
+for k in recommend.keys():
+    print(k, recommend[k])
 
