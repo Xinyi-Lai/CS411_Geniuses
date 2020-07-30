@@ -114,7 +114,7 @@ def mineClosedPatterns(database, minsup):
 
 ### __main__
 minsup = 2 ### to be changed
-fo = open('tagset.txt') ### to be changed
+fo = open('py/tagset.txt') ### py/tagset.txt
 lines = fo.readlines()
 database = []
 for line in lines:
@@ -122,23 +122,28 @@ for line in lines:
 fo.close()
 
 # print(database)
-# print()
 closed_patterns = mineClosedPatterns(database, minsup)
-print(closed_patterns)
-# print()
+# print(closed_patterns)
 
 recommend = {}
 for tagset,_ in closed_patterns:
     tags = tagset.split(", ")
     tagset = str2set(tagset)
-    # if len(tags) == 1:
-    #     continue
     for tag in tags:
         if tag not in recommend.keys():
             recommend[tag] = tagset - str2set(tag)
-        else:
+        elif len(recommend[tag]) < 3:
             recommend[tag] = tagset - str2set(tag) | recommend[tag]
+        else:
+            continue
 
+fo = open("py/recommend.txt", 'a')
 for k in recommend.keys():
-    print(k, recommend[k])
+    fo.write(k)
+    fo.write(": ")
+    for i in recommend[k]:
+        fo.write(i)
+        fo.write(", ")
+    fo.write('\n')
 
+fo.close()
