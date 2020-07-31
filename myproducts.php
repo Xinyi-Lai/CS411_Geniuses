@@ -19,12 +19,17 @@
 		$conn->close();
 	}
 	// echo "<script>console.log('$msg');</script>";
+
+	// $productsList = "See all from: http://47.97.98.49:8084/search.php?search_item=&choosedb=Sales&user_id={$curr_user}";
+	$productsList = "";
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <script src="operations.js"></script>
+
 
 <head>
 	
@@ -136,6 +141,8 @@
 			<p>You need to have <a href="" target="_blank">JavaScript</a> enabled to use this site.</p>
 		</div>
 	</noscript>
+
+
 			
 
 	<!-- start: Content -->
@@ -145,7 +152,8 @@
 
 				<h1>My Products</h1> </br>
 				<a href= "post_product.php" type="btn" class="btn btn-primary" style="font-weight:600;">Add a Product</a>
-				<button type="btn" class="btn btn-primary">Generate Your Product List</button></br>
+				<button type="btn" onclick="copyToClipbd()" class="btn btn-primary">Generate Your Product List</button></br>
+				
 				
 				
 				<?php foreach($array as $val): ?>
@@ -164,8 +172,11 @@
 							Tag: <?php echo $val['Tag']; ?> ;
 							Intended Price: $ <?php echo $val['IntendedPrice']; ?> . 
 						</div>
+
+						<?php $productsList .= "{$val['ProductName']}: $"."{$val['IntendedPrice']}"."<br \>" ?>
 					</div>
 
+					
 					<div class="time">
 						<div class="date"> <?php echo $val['IntendedBuyerId']==null ? "On Sale": $val['IntendedBuyerId']." wants"; ?> </div>
 						<div>
@@ -176,6 +187,11 @@
 				</div>
 				
 				<?php endforeach; ?>
+
+				<!-- The text field -->
+				<?php $productsList .= "See all from: http://47.97.98.49:8084/search.php?search_item=&choosedb=Sales&user_id={$curr_user}" ?>
+
+
 				
 			</div>
 		</div>	
@@ -193,6 +209,33 @@
 	</footer>
 	
 	<!-- start: JavaScript-->
+		<script>
+			function copyToClipbd() {
+		
+
+				var dummyContent = <?php echo json_encode($productsList, JSON_UNESCAPED_SLASHES); ?>;
+				dummyContent = dummyContent.replace(/<br[^>]*>/g, "\n");
+				// var dummy = $('<input>').val(dummyContent).appendTo('body').select()
+				// document.execCommand('copy')
+
+				var dummy = document.createElement("textarea");
+				// to avoid breaking orgain page when copying more words
+				// cant copy when adding below this code
+				// dummy.style.display = 'none'
+				document.body.appendChild(dummy);
+				//Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
+				dummy.value = dummyContent;
+				dummy.select();
+				document.execCommand("copy");
+				document.body.removeChild(dummy);
+
+
+				
+			
+				/* Alert the copied text */
+				alert("Copied to clipboard:\n" + dummyContent);
+			}
+		</script>
 
 		<script src="js/jquery-1.9.1.min.js"></script>
 		<script src="js/jquery-migrate-1.0.0.min.js"></script>

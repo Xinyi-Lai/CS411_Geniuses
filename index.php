@@ -377,13 +377,13 @@
 
                 <div class="blog-title">
 
-                    <h2 class="pull-left text-left">Most Recent Post</h2>
+                    <h2 class="pull-left text-left" >Most Recent Post</h2>
 
                     <a onclick="jump_to_search()" class="pull-right text-right">More Post <i class="fa fa-long-arrow-right"></i></a>
 
                 </div>
 
-                <div class="clearfix" id="related"></div>
+                <div class="clearfix" style="height:100px" id="related"></div>
 
                 <!-- <div class="col-md-4 col-sm-4">
 
