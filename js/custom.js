@@ -1073,70 +1073,7 @@ function charts() {
 		return ((Math.floor( Math.random()* (1+40-20) ) ) + 20);
 	}
 	
-	/* ---------- Chart with points ---------- */
-	if($("#facebookChart").length)
-	{	
-		var likes = [[1, 5+randNumFB()], [2, 10+randNumFB()], [3, 15+randNumFB()], [4, 20+randNumFB()],[5, 25+randNumFB()],[6, 30+randNumFB()],[7, 35+randNumFB()],[8, 40+randNumFB()],[9, 45+randNumFB()],[10, 50+randNumFB()],[11, 55+randNumFB()],[12, 60+randNumFB()],[13, 65+randNumFB()],[14, 70+randNumFB()],[15, 75+randNumFB()],[16, 80+randNumFB()],[17, 85+randNumFB()],[18, 90+randNumFB()],[19, 85+randNumFB()],[20, 80+randNumFB()],[21, 75+randNumFB()],[22, 80+randNumFB()],[23, 75+randNumFB()],[24, 70+randNumFB()],[25, 65+randNumFB()],[26, 75+randNumFB()],[27,80+randNumFB()],[28, 85+randNumFB()],[29, 90+randNumFB()], [30, 95+randNumFB()]];
-
-		var plot = $.plot($("#facebookChart"),
-			   [ { data: likes, label: "Fans"} ], {
-				   series: {
-					   lines: { show: true,
-								lineWidth: 2,
-								fill: true, fillColor: { colors: [ { opacity: 0.5 }, { opacity: 0.2 } ] }
-							 },
-					   points: { show: true, 
-								 lineWidth: 2 
-							 },
-					   shadowSize: 0
-				   },
-				   grid: { hoverable: true, 
-						   clickable: true, 
-						   tickColor: "#f9f9f9",
-						   borderWidth: 0
-						 },
-				   colors: ["#3B5998"],
-					xaxis: {ticks:6, tickDecimals: 0},
-					yaxis: {ticks:3, tickDecimals: 0},
-				 });
-
-		function showTooltip(x, y, contents) {
-			$('<div id="tooltip">' + contents + '</div>').css( {
-				position: 'absolute',
-				display: 'none',
-				top: y + 5,
-				left: x + 5,
-				border: '1px solid #fdd',
-				padding: '2px',
-				'background-color': '#dfeffc',
-				opacity: 0.80
-			}).appendTo("body").fadeIn(200);
-		}
-
-		var previousPoint = null;
-		$("#facebookChart").bind("plothover", function (event, pos, item) {
-			$("#x").text(pos.x.toFixed(2));
-			$("#y").text(pos.y.toFixed(2));
-
-				if (item) {
-					if (previousPoint != item.dataIndex) {
-						previousPoint = item.dataIndex;
-
-						$("#tooltip").remove();
-						var x = item.datapoint[0].toFixed(2),
-							y = item.datapoint[1].toFixed(2);
-
-						showTooltip(item.pageX, item.pageY,
-									item.series.label + " of " + x + " = " + y);
-					}
-				}
-				else {
-					$("#tooltip").remove();
-					previousPoint = null;
-				}
-		});
 	
-	}
 	
 	function randNumTW(){
 		return ((Math.floor( Math.random()* (1+40-20) ) ) + 20);
@@ -1572,6 +1509,47 @@ function charts() {
 
 	// items segmentation
 
+	$.ajax({url:"dashboard_db.php?option=price",success:function(result){
+
+		jsonObj = JSON.parse(result);
+		var data_max = [];
+		var data_avg = [];
+		var data_min = [];
+		var xticks = [];
+
+		for (var i=0; i<Object.keys(jsonObj['Max']).length; i++ ){
+			var tag = Object.keys(jsonObj['Max'])[i];
+			xticks.push([i, tag]);
+			data_max.push([i, parseInt(Object.values(jsonObj['Max'])[i] - Object.values(jsonObj['Avg'])[i])		]);
+			data_avg.push([i, parseInt(Object.values(jsonObj['Avg'])[i] - Object.values(jsonObj['Min'])[i])	]);
+			data_min.push([	i, parseInt(Object.values(jsonObj['Min'])[i])		]);
+		}
+		
+		/* ---------- Items-tag Stack chart ---------- */
+
+		if($("#price_chart").length) {
+			
+			$.plot($("#price_chart"), [ 	{label: 'Min', data: data_min}, 
+										{label: 'Avg', data: data_avg}, 
+										{label: 'Max', data: data_max} ], {
+				series: {
+					stack: 0,	// null
+					lines: { show: true, fill: true, steps: false },
+					bars: { show: false, barWidth: 0.6, align: "center" },
+				},
+				xaxis: { ticks: xticks },
+				legend: { show: true },
+				grid: 	{ hoverable: true, clickable: true },
+				colors: ["#43B5AD", "#e5c33c", "#E25A59"]
+			});
+
+		}
+
+	}});
+
+
+	
+	/* ---------- Chart with points ---------- */
 	$.ajax({url:"dashboard_db.php?option=items",success:function(result){
 
 		jsonObj = JSON.parse(result);
@@ -1593,9 +1571,9 @@ function charts() {
 
 		if($("#stack_item").length) {
 			
-			$.plot($("#stack_item"), [ 	{label: 'Transactions', data: data_trans}, 
-										{label: 'Requests', data: data_requests}, 
-										{label: 'Products', data: data_products} ], {
+			$.plot($("#stack_item"), [ 	{label: 'Sold', data: data_trans}, 
+										{label: 'Requesting', data: data_requests}, 
+										{label: 'For Sale', data: data_products} ], {
 				series: {
 					stack: 0,	// null
 					lines: { show: false, fill: true, steps: true },
@@ -1610,6 +1588,7 @@ function charts() {
 		}
 
 	}});
+	
 	
 
 	////////////////////////////////////////////////////////////////////

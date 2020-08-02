@@ -8,6 +8,16 @@
 <html lang="en-US">
 
 <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173456413-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-173456413-1');
+    </script>
+
 
 	<meta charset="UTF-8">
 
@@ -178,7 +188,7 @@
                     <li><a href="search.php?choosedb=Sales&tag=food">food</a></li>
                     <li><a href="search.php?choosedb=Sales&tag=furniture">furniture</a></li>
                     <li><a href="search.php?choosedb=Sales&tag=jewelry">jewelry</a></li>
-                    <li><a href="search.php?choosedb=Sales&tag=makeup">makeup</a></li>
+                    <li><a href="search.php?choosedb=Sales&tag=makeup/personal care">makeup/personal care</a></li>
                     <li><a href="search.php?choosedb=Sales&tag=otherbooks">otherbooks</a></li>
                     <li><a href="search.php?choosedb=Sales&tag=other">other</a></li>
                     <li><a href="search.php?choosedb=Sales&tag=sports">sports</a></li>

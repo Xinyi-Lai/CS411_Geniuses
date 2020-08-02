@@ -108,31 +108,31 @@
 					<!-- productName input -->
                     <div class="form-group">
 						<label for="focusedInput">Product Name</label><span class="warning"> <?php echo $product_name_err;?></span>
-						<input class="form-control item" type="text" name="product_name" placeholder="product name"/>
+						<input class="form-control item" type="text" name="product_name" placeholder="product name" value="<?php echo $product_name; ?>"/>
 					</div>
 					
 					<!-- tag input -->
-					<div class="form-group">
+                    <div class="form-group">
 						<label for="focusedInput">Tag</label><span class="warning"> <?php echo $tag_err;?></span>
-                        <select class="form-control" id="tag" name="tag">
+                        <select class="form-control" id="tag" name="tag" value="<?php echo $tag; ?>">
 							<optgroup label="tag">
-                                <option value="accessories">accessories</option>
-                                <option value="clothing">clothing</option>
-                                <option value="daily necessity">daily necessity</option>
-                                <option value="electronics">electronics</option>
-                                <option value="food">food</option>
-                                <option value="furniture">furniture</option>
-                                <option value="jewelry">jewelry</option>
-                                <option value="makeup">makeup</option>
-                                <option value="otherbooks">otherbooks</option>
-                                <option value="other">other</option>
-                                <option value="sports">sports</option>
-                                <option value="stationery">stationery</option>
-                                <option value="sublease">sublease</option>
-                                <option value="test prep">test prep</option>
-                                <option value="textbook">textbook</option>
-                                <option value="tools">tools</option>
-                                <option value="toys/games">toys/games</option>
+                            <option value="accessories" <?php echo $tag=="accessories" ? 'selected':'' ?> >accessories</option>
+                                <option value="clothing" <?php echo $tag=="clothing" ? 'selected':'' ?> >clothing</option>
+                                <option value="daily necessity" <?php echo $tag=="daily necessity" ? 'selected':'' ?> >daily necessity</option>
+                                <option value="electronics"<?php echo $tag=="electronics" ? 'selected':'' ?> >electronics</option>
+                                <option value="food" <?php echo $tag=="food" ? 'selected':'' ?> >food</option>
+                                <option value="furniture" <?php echo $tag=="furniture" ? 'selected':'' ?> >furniture</option>
+                                <option value="jewelry" <?php echo $tag=="jewelry" ? 'selected':'' ?> >jewelry</option>
+                                <option value="makeup/personal care" <?php echo $tag=="makeup/personal care" ? 'selected':'' ?> >makeup/personal care</option>
+                                <option value="otherbooks" <?php echo $tag=="otherbooks" ? 'selected':'' ?> >otherbooks</option>
+                                <option value="other" <?php echo $tag=="other" ? 'selected':'' ?> >other</option>
+                                <option value="sports" <?php echo $tag=="sports" ? 'selected':'' ?> >sports</option>
+                                <option value="sublease" <?php echo $tag=="sublease" ? 'selected':'' ?> >sublease</option>
+                                <option value="stationery" <?php echo $tag=="stationery" ? 'selected':'' ?> >stationery</option>
+                                <option value="test prep" <?php echo $tag=="test prep" ? 'selected':'' ?> >test prep</option>
+                                <option value="textbook" <?php echo $tag=="textbook" ? 'selected':'' ?> >textbook</option>
+                                <option value="tools" <?php echo $tag=="tools" ? 'selected':'' ?> >tools</option>
+                                <option value="toys/games" <?php echo $tag=="toys/games" ? 'selected':'' ?> >toys/games</option>
 							</optgroup>
 						</select>
 					</div>
@@ -140,25 +140,25 @@
 					<!-- description confirm -->
                     <div class="form-group">
 						<label for="focusedInput">Description</label> <span class="warning"><span class="warning"> <?php echo $description_err;?></span>
-						<input class="form-control item" type="text" name="description" placeholder="description"/>
+						<input class="form-control item" type="text" name="description" placeholder="description" value="<?php echo $description; ?>"/>
 					</div>
 
 					<!-- intendedPrice input -->
                     <div class="form-group">
 						<label for="focusedInput">Intended Price</label><span class="warning"> <?php echo $intended_price_err;?></span>
-						<input class="form-control item" type="text" name="intendedPrice" placeholder="intended price"/>
+						<input class="form-control item" type="text" name="intendedPrice" placeholder="intended price" value="<?php echo $intended_price; ?>"/>
 					</div>
 
 					<!-- originalPrice input -->
                     <div class="form-group">
 						<label for="focusedInput">Original Price</label> <span class="warning"> <?php echo $original_price_err;?></span>
-						<input class="form-control item" type="text" name="originalPrice" placeholder="original price"/>
+						<input class="form-control item" type="text" name="originalPrice" placeholder="original price" value="<?php echo $original_price; ?>"/>
 					</div>
 
 					<!-- depreciation choose -->
                     <div class="form-group">
 						<label for="selectError3">Depreciation</label><span class="warning"> <?php echo $depreciation_err;?></span>
-						<select class="form-control" id="selectError3" name="depreciation">
+						<select class="form-control" id="selectError3" name="depreciation" value="<?php echo $depreciation; ?>">
 							<optgroup label="Depreciation">
 								<option value="9">9</option>
                                 <option value="8">8</option>

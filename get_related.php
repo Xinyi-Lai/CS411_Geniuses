@@ -20,41 +20,41 @@
             if (strlen($tag) > 0) {
                 if (strlen($id_excluded) > 0) {
                     if ($choosedb == "Sales") {
-                        $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE Tag = '$tag' AND IntendedBuyerId IS NULL".($id_excluded) ? "AND SaleId <> $id_excluded":"";
+                        $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE Tag = '$tag' AND IntendedBuyerId IS NULL".(($id_excluded) ? "AND SaleId <> $id_excluded":"")."ORDER BY DatePost DESC";
                     }
                     else {
-                        $sql = "SELECT RequestId, Image, ProductName, IntendedPrice FROM Requests WHERE Tag = '$tag' AND SaleId IS NULL".($id_excluded) ? "AND RequestId <> $id_excluded":"";
+                        $sql = "SELECT RequestId, Image, ProductName, IntendedPrice FROM Requests WHERE Tag = '$tag' AND SaleId IS NULL".(($id_excluded) ? "AND RequestId <> $id_excluded":"")."ORDER BY DatePost DESC";
                     }
                 } else {
                     if ($choosedb == "Sales") {
-                        $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE Tag = '$tag' AND IntendedBuyerId IS NULL";
+                        $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE Tag = '$tag' AND IntendedBuyerId IS NULL ORDER BY DatePost DESC";
                     }
                     else {
-                        $sql = "SELECT RequestId, Image, ProductName, IntendedPrice FROM Requests WHERE Tag = '$tag' AND SaleId IS NULL";
+                        $sql = "SELECT RequestId, Image, ProductName, IntendedPrice FROM Requests WHERE Tag = '$tag' AND SaleId IS NULL ORDER BY DatePost DESC";
                     }
                 }
             } else if (strlen($search_item) > 0) {
                 if ($choosedb == "Sales") {
-                    $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE ProductName LIKE '%$search_item%' AND IntendedBuyerId IS NULL";
+                    $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE ProductName LIKE '%$search_item%' AND IntendedBuyerId IS NULL ORDER BY DatePost DESC";
                 }
                 else {
-                    $sql = "SELECT RequestId, Image, ProductName, IntendedPrice FROM Requests WHERE ProductName LIKE '%$search_item%' AND SaleId IS NULL";
+                    $sql = "SELECT RequestId, Image, ProductName, IntendedPrice FROM Requests WHERE ProductName LIKE '%$search_item%' AND SaleId IS NULL ORDER BY DatePost DESC";
                 }
             }
             else {
                 if ($choosedb == "Sales") {
-                    $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE SellerId = '$user_id' AND IntendedBuyerId IS NULL";
+                    $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE SellerId = '$user_id' AND IntendedBuyerId IS NULL ORDER BY DatePost DESC";
                 }
                 else {
-                    $sql = "SELECT RequestId, Image, ProductName, IntendedPrice FROM Requests WHERE BuyerId = '$user_id' AND SaleId IS NULL";
+                    $sql = "SELECT RequestId, Image, ProductName, IntendedPrice FROM Requests WHERE BuyerId = '$user_id' AND SaleId IS NULL ORDER BY DatePost DESC";
                 }
             }
         }else {
             if ($choosedb == "Sales") {
-                $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE IntendedBuyerId IS NULL LIMIT 4";
+                $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE IntendedBuyerId IS NULL ORDER BY DatePost DESC LIMIT 4";
             }
             else {
-                $sql = "SELECT RequestId, Image, ProductName, IntendedPrice FROM Requests WHERE SaleId IS NULL LIMIT 4";
+                $sql = "SELECT RequestId, Image, ProductName, IntendedPrice FROM Requests WHERE SaleId IS NULL ORDER BY DatePost DESC LIMIT 4";
             }
         }
 

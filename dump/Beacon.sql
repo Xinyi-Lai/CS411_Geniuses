@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: database
--- Generation Time: Jul 23, 2020 at 07:39 AM
--- Server version: 8.0.20
--- PHP Version: 7.4.6
+-- 主机： database
+-- 生成日期： 2020-07-26 06:01:56
+-- 服务器版本： 8.0.20
+-- PHP 版本： 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,34 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `Beacon`
+-- 数据库： `Beacon`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Group_Mem`
---
-
-CREATE TABLE `Group_Mem` (
-  `Name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `NetId` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `Group_Mem`
---
-
-INSERT INTO `Group_Mem` (`Name`, `NetId`) VALUES
-('Hanyin Shao', 'hanyins2'),
-('Jiaqi Lou', 'jiaqil6'),
-('Kerui Zhu', 'keruiz2'),
-('Xinyi Lai', 'xlai7');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `Requests`
+-- 表的结构 `Requests`
 --
 
 CREATE TABLE `Requests` (
@@ -56,22 +35,36 @@ CREATE TABLE `Requests` (
   `Description` varchar(500) DEFAULT NULL,
   `Image` varchar(100) DEFAULT NULL,
   `IntendedPrice` double DEFAULT NULL,
-  `SaleId` int DEFAULT NULL
+  `SaleId` int DEFAULT NULL,
+  `DatePost` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `Requests`
+-- 转存表中的数据 `Requests`
 --
 
-INSERT INTO `Requests` (`RequestId`, `BuyerId`, `ProductName`, `Tag`, `Description`, `Image`, `IntendedPrice`, `SaleId`) VALUES
-(2, 'cs411', 'House', 'Daily Necessity', 'Warm', '', 30, NULL),
-(3, 'cs411', 'Mantou', 'Food', 'Yummy', '', 2, 12),
-(4, 'genius', 'CS 411 Textbook', 'Textbook', 'CS411 Textbook', '', 25, NULL);
+INSERT INTO `Requests` (`RequestId`, `BuyerId`, `ProductName`, `Tag`, `Description`, `Image`, `IntendedPrice`, `SaleId`, `DatePost`) VALUES
+(1, 'xlai7', 'CS411 Textbook', 'textbook', 'CS411 Textbook', '', 20, NULL, '2020-07-25 12:58:13'),
+(2, 'xlai7', 'Apple Pencil Tip', 'accessories', 'Apple Pencil Tip', '', 2, NULL, '2020-07-25 14:23:49'),
+(3, 'yiru', 'Mathmatic text preparation material', 'test prep', 'The exercise book', 'images/yiru/20200725142556.jpg', 10, NULL, '2020-07-25 14:25:56'),
+(4, 'xlai7', 'Notebook', 'stationery', 'loose leaf', '', 1, NULL, '2020-07-25 15:37:27'),
+(5, 'xlai7', 'Toefl test prep book', 'test prep', 'Toefl', '', 5, NULL, '2020-07-25 15:39:36'),
+(6, 'xlai7', 'GRE prep book', 'test prep', 'GRE', '', 5, NULL, '2020-07-25 15:41:15'),
+(7, 'xinyi.17', 'Nail Clipper', 'tools', 'Nail Clipper', '', 3, NULL, '2020-07-25 15:45:10'),
+(8, 'xinyi.17', 'Tennis Bat', 'sports', 'Tennis Bat', '', 15, NULL, '2020-07-26 03:32:39'),
+(9, 'xinyi.17', '4B4B bedroom near ECEB', 'sublease', '4B4B bedroom near ECEB', '', 400, NULL, '2020-07-26 03:32:52'),
+(10, 'xinyi.17', 'Tennis Ball', 'sports', 'Tennis Ball', '', 1, NULL, '2020-07-26 03:43:23'),
+(11, 'xinyi.17', 'Yoga Mat', 'sports', 'Yoga Mat', '', 5, NULL, '2020-07-26 03:43:41'),
+(12, 'xinyi', 'AirPods', 'electronics', 'AirPods or AirPods Pro', '', 200, NULL, '2020-07-26 03:44:52'),
+(13, 'xinyi', 'Radio', 'electronics', 'Radio', '', 10, NULL, '2020-07-26 03:45:27'),
+(14, 'xinyi', 'iPhone Charger', 'accessories', 'iPhone Charger', '', 5, NULL, '2020-07-26 03:46:01'),
+(15, 'xinyi', 'back cushion', 'furniture', 'back cushion', '', 5, NULL, '2020-07-26 03:46:47'),
+(16, 'xinyi', 'curtain', 'furniture', 'curtain', '', 10, NULL, '2020-07-26 03:47:22');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Sales`
+-- 表的结构 `Sales`
 --
 
 CREATE TABLE `Sales` (
@@ -84,160 +77,352 @@ CREATE TABLE `Sales` (
   `IntendedPrice` double DEFAULT NULL,
   `OriginalPrice` double DEFAULT NULL,
   `Depreciation` int DEFAULT NULL,
-  `IntendedBuyerId` varchar(50) DEFAULT NULL
+  `IntendedBuyerId` varchar(50) DEFAULT NULL,
+  `DatePost` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `Sales`
+-- 转存表中的数据 `Sales`
 --
 
-INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, `Image`, `IntendedPrice`, `OriginalPrice`, `Depreciation`, `IntendedBuyerId`) VALUES
-(6, 'cs411', 'Baozi', 'Food', 'Delicious', 'images/cs411/20200722132752.png', 100, 200, 9, 'genius'),
-(8, 'cs411', 'Another Island', 'Daily Necessity', 'Beautiful', 'images/cs411/20200722132849.jpg', 888, 999, 9, NULL),
-(9, 'cs411', 'Fake Genius', 'Toy', 'Sleepy and stupid', 'images/cs411/20200722132913.png', 1, 10, 9, NULL),
-(12, 'genius', 'Another Mouse', 'Toy', 'Cute', 'images/genius/20200722143115.png', 10, 12, 9, 'keruiz2');
+INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, `Image`, `IntendedPrice`, `OriginalPrice`, `Depreciation`, `IntendedBuyerId`, `DatePost`) VALUES
+(5, 'Hxh123', 'Basketball', 'sports', 'A old basketball', 'images/Hxh123/20200725083423.jpg', 10, 20, 9, NULL, '2020-07-25 08:34:23'),
+(6, 'xinyi.17', 'Toy#1', 'toys/games', 'A lovely toy', 'images/xinyi.17/20200725085554.jpg', 3, 5, 7, NULL, '2020-07-25 08:55:54'),
+(10, 'xinyi.17', 'Pins', 'stationery', 'A box of pins', 'images/xinyi.17/20200725090225.jpg', 1, 2, 9, NULL, '2020-07-25 09:02:25'),
+(11, 'xinyi.17', 'lamp', 'furniture', 'Eye protective, warm yellow light', 'images/xinyi.17/20200725090352.jpg', 10, 15, 6, NULL, '2020-07-25 09:03:52'),
+(12, 'xlai7', 'Paper Towel', 'daily necessity', 'A roll of brand new paper towel', 'images/xlai7/20200725090918.jpg', 0.5, 1, 9, NULL, '2020-07-25 09:09:18'),
+(14, 'xlai7', 'clock', 'furniture', 'A small alarm clock', 'images/xlai7/20200725091355.jpg', 2, 5, 5, NULL, '2020-07-25 09:13:55'),
+(15, 'xlai7', 'Slow Cooker', 'furniture', 'A slow cooker, low in power, perfect for porridge or soup', 'images/xlai7/20200725091510.jpg', 50, 60, 8, NULL, '2020-07-25 09:15:10'),
+(16, 'xlai7', 'Mouse', 'electronics', 'A Logit mouse', 'images/xlai7/20200725092840.jpg', 5, 7, 9, NULL, '2020-07-25 09:28:40'),
+(18, 'keruiz2', 'closet', 'furniture', 'wood closet, no smell', 'images/keruiz2/20200725093248.jpg', 100, 130, 9, 'xinyi', '2020-07-25 09:32:48'),
+(19, 'keruiz2', 'trash bin', 'furniture', 'two trash bins for garbage sorting', 'images/keruiz2/20200725093427.jpg', 5, 7, 8, NULL, '2020-07-25 09:34:27'),
+(20, 'keruiz2', 'air conditioner', 'furniture', 'It can both heat and cool the room', 'images/keruiz2/20200725093705.jpg', 120, 150, 9, NULL, '2020-07-25 09:37:05'),
+(21, 'keruiz2', 'door', 'furniture', 'Entrance only with an authorized card', 'images/keruiz2/20200725094034.jpg', 60, 75, 8, 'xinyi', '2020-07-25 09:40:34'),
+(22, 'keruiz2', 'kettle', 'furniture', 'common kettle, never used', 'images/keruiz2/20200725094218.jpg', 3, 4, 9, NULL, '2020-07-25 09:42:18'),
+(23, 'keruiz2', 'chair', 'furniture', 'common chair', 'images/keruiz2/20200725094414.jpg', 15, 30, 7, NULL, '2020-07-25 09:44:14'),
+(24, 'sunshine boy', 'mask', 'daily necessity', 'medical mask', 'images/sunshine boy/20200725095851.jpg', 2, 2.5, 9, 'xinyi.17', '2020-07-25 09:58:51'),
+(25, 'sunshine boy', 'bone conduction headset', 'electronics', 'wireless bone conduction headset, Aftershokz', 'images/sunshine boy/20200725100043.jpg', 50, 65, 8, 'xinyi.17', '2020-07-25 10:00:43'),
+(26, 'sunshine boy', 'FPGA', 'electronics', 'FPGA for ECE385 lab', 'images/sunshine boy/20200725100301.jpg', 100, 150, 9, NULL, '2020-07-25 10:03:01'),
+(27, 'xinyi', 'Lego Technic 42093', 'toys/games', 'Lego Technic 42093, 578pcs, 2 in 1', 'images/xinyi/20200725103009.jpg', 40, 50, 9, NULL, '2020-07-25 10:30:09'),
+(29, 'xinyi', 'Digital Weighing Scale', 'furniture', 'Remind you of keeping fit!', 'images/xinyi/20200725103418.jpg', 10, 15, 9, NULL, '2020-07-25 10:34:18'),
+(31, 'xinyi', 'Foam Roller', 'sports', 'Good for relaxing after exercising', 'images/xinyi/20200725103846.jpg', 5, 7, 9, NULL, '2020-07-25 10:38:46'),
+(33, 'xinyi', 'automatic sphygmomanometer', 'furniture', 'automatic sphygmomanometer', 'images/xinyi/20200725104200.jpg', 10, 15, 9, NULL, '2020-07-25 10:42:00'),
+(35, 'xinyi', 'Guitar Kepma', 'other', 'Guitar Kepma', 'images/xinyi/20200725104424.jpg', 70, 100, 9, NULL, '2020-07-25 10:44:24'),
+(36, 'xinyi', 'Medical Mask', 'daily necessity', 'Medical Mask, 10pc, fight with COVID19 together!', 'images/xinyi/20200725104523.jpg', 1, 2, 9, NULL, '2020-07-25 10:45:23'),
+(38, 'xinyi.17', 'iPhone Earphone', 'accessories', 'iPhone Earphone', 'images/xinyi.17/20200725110246.jpg', 5, 7, 9, NULL, '2020-07-25 11:02:46'),
+(39, 'xinyi.17', 'Hand Sanitizer', 'daily necessity', 'Hand Sanitizer, fight with COVID19 together!', 'images/xinyi.17/20200725110632.jpg', 6, 9, 9, NULL, '2020-07-25 11:06:32'),
+(40, 'xlai7', 'thermos cup', 'daily necessity', 'stay warm, keep healthy', 'images/xlai7/20200725111447.jpg', 6, 9, 9, NULL, '2020-07-25 11:14:47'),
+(41, 'xlai7', 'Book: HongKong study', 'otherbooks', 'A Social Science book about HK', 'images/xlai7/20200725111619.jpg', 3, 5, 9, NULL, '2020-07-25 11:16:19'),
+(43, 'hxh123', 'Watch', 'electronics', 'A Casio watch', 'images/hxh123/20200725121737.jpg', 50, 280, 9, 'xinyi', '2020-07-25 12:17:37'),
+(44, 'hxh123', 'Banana', 'food', 'A big banana', 'images/hxh123/20200725121809.jpg', 1, 2, 9, NULL, '2020-07-25 12:18:09'),
+(45, 'hxh123', 'Mask', 'daily necessity', '10 maskes', 'images/hxh123/20200725123407.jpg', 10, 15, 9, NULL, '2020-07-25 12:34:07'),
+(46, 'hxh123', 'Umbrella', 'daily necessity', 'A big umbrella', 'images/hxh123/20200725123435.jpg', 10, 20, 9, 'xinyi', '2020-07-25 12:34:35'),
+(47, 'hxh123', 'Mouse', 'electronics', 'A blue mouse', 'images/hxh123/20200725123505.jpg', 5, 8, 7, NULL, '2020-07-25 12:35:05'),
+(48, 'hxh123', 'Magnetic sensor', 'electronics', 'A seneor', 'images/hxh123/20200725123537.jpg', 10, 20, 7, NULL, '2020-07-25 12:35:37'),
+(49, 'hxh123', 'Mechanical car', 'toys/games', 'A constructive car', 'images/hxh123/20200725123728.jpg', 100, 200, 7, 'xinyi.17', '2020-07-25 12:37:28'),
+(50, 'hxh123', 'A laptop', 'electronics', 'A mac laptop', 'images/hxh123/20200725123753.jpg', 100, 200, 4, 'xinyi.17', '2020-07-25 12:37:53'),
+(51, 'hxh123', 'A 3D printer', 'electronics', 'A 3D printer', 'images/hxh123/20200725123822.jpg', 200, 400, 7, NULL, '2020-07-25 12:38:22'),
+(52, 'Barbara', 'vacuum cup', 'daily necessity', 'a new vaccum cup bought from Japan', 'images/Barbara/20200725130309.jpg', 20, 35, 8, NULL, '2020-07-25 13:03:09'),
+(53, 'Barbara', 'Lancome Tonique Confort 50ml', 'makeup/personal care', 'new bottle', 'images/Barbara/20200725131148.jpg', 6, 7, 9, NULL, '2020-07-25 13:11:48'),
+(54, 'Barbara', 'ALLIE UV GEL 90g', 'makeup/personal care', 'brand new bottle of UV GEL', 'images/Barbara/20200725131427.jpg', 18, 25, 9, NULL, '2020-07-25 13:14:27'),
+(55, 'Barbara', 'Tea tree witch hazel Spot Wand', 'makeup/personal care', 'brand new', 'images/Barbara/20200725131634.jpg', 3, 5, 9, NULL, '2020-07-25 13:16:34'),
+(56, 'Barbara', 'scissor', 'daily necessity', 'second hand but still sharp', 'images/Barbara/20200725131834.jpg', 2, 3, 6, 'xlai7', '2020-07-25 13:18:34'),
+(57, 'Barbara', 'Power bank 10000mA', 'electronics', 'second hand', 'images/Barbara/20200725132810.jpg', 7, 14, 5, NULL, '2020-07-25 13:28:10'),
+(58, 'Barbara', 'mobile phone holder', 'daily necessity', 'new', 'images/Barbara/20200725133308.jpg', 1, 1.5, 9, 'xlai7', '2020-07-25 13:33:08'),
+(59, 'Barbara', 'Curel Foaming Wash', 'makeup/personal care', 'used two times', 'images/Barbara/20200725140948.jpg', 10, 20, 8, NULL, '2020-07-25 14:09:48'),
+(60, 'Barbara', 'hat', 'clothing', 'new', 'images/Barbara/20200725141111.jpg', 10, 15, 9, NULL, '2020-07-25 14:11:11'),
+(61, 'Barbara', 'White board', 'stationery', 'for TOEFL and GRE home test', 'images/Barbara/20200725141250.jpg', 5, 8, 7, NULL, '2020-07-25 14:12:50'),
+(62, 'yiru', 'Mathmatics textbook', 'textbook', 'PKU publisher, new', 'images/yiru/20200725141831.jpg', 10, 15, 9, NULL, '2020-07-25 14:18:31'),
+(63, 'yiru', 'Probability textbook', 'textbook', 'ZJU publisher', 'images/yiru/20200725141940.jpg', 7, 15, 5, 'young lady', '2020-07-25 14:19:40'),
+(64, 'yiru', 'Advanced Mathmatics', 'textbook', 'Tongji University Publisher, new, two books', 'images/yiru/20200725142101.jpg', 25, 40, 9, 'xlai7', '2020-07-25 14:21:01'),
+(65, 'yiru', 'White board pen*5', 'stationery', 'new', 'images/yiru/20200725142341.jpg', 5, 10, 9, NULL, '2020-07-25 14:23:41'),
+(68, 'Gavin', 'Fried Rice', 'food', 'Rice fried by handsome boy Panpan, with love.', 'images/Gavin/20200725151136.jpg', 5, 6, 9, NULL, '2020-07-25 15:02:21'),
+(69, 'Gavin', 'Kongfu book', 'otherbooks', 'Broken book, but the last owner learned to fly from it.', 'images/Gavin/20200725151649.jfif', 5, 100, 1, NULL, '2020-07-25 15:16:49'),
+(70, 'LittleBiscuit', 'Octave 20Fall Sublease', 'sublease', '4-people apartment near UIUC', 'images/LittleBiscuit/20200725213612.png', 855, 855, 9, NULL, '2020-07-25 21:36:12'),
+(71, 'xinyi', 'Yoga Mat', 'sports', 'A Blue Yoga Mat', 'images/xinyi/20200726034933.jpg', 5, 7, 9, NULL, '2020-07-26 03:49:33'),
+(72, 'xinyi', 'Badminton Bat', 'sports', 'Badminton Bat, LiNing', 'images/xinyi/20200726035009.jpg', 10, 20, 6, NULL, '2020-07-26 03:50:09'),
+(73, 'genius', 'Analog and Digital Circuits', 'textbook', 'Analog and Digital Circuits', 'images/genius/20200726035852.png', 10, 20, 9, NULL, '2020-07-26 03:58:52'),
+(74, 'genius', 'Calculus James Stewart', 'textbook', 'Calculus James Stewart, 7th edition', 'images/genius/20200726035939.png', 30, 50, 9, NULL, '2020-07-26 03:59:39'),
+(75, 'genius', 'Campbell Biology', 'textbook', 'Campbell Biology, 10th edition', 'images/genius/20200726040014.png', 30, 50, 9, NULL, '2020-07-26 04:00:14'),
+(76, 'genius', 'Discrete Mathematics, Rosen', 'textbook', 'Discrete Mathematics, Rosen, 7th edition', 'images/genius/20200726040055.png', 30, 50, 9, NULL, '2020-07-26 04:00:55'),
+(77, 'genius', 'Digital Signal Processing', 'textbook', 'Digital Signal Processing, ECE310 textbook', 'images/genius/20200726040132.jpg', 5, 10, 9, NULL, '2020-07-26 04:01:32'),
+(78, 'genius', 'Power Circuits', 'textbook', 'Power Circuits, ECE330 textbook', 'images/genius/20200726040156.jpg', 20, 30, 9, NULL, '2020-07-26 04:01:56'),
+(79, 'genius', 'Solid States Electronic Devices', 'textbook', 'Solid States Electronic Devices, ECE340 textbook', 'images/genius/20200726040230.jpg', 30, 50, 9, NULL, '2020-07-26 04:02:30'),
+(80, 'genius', 'Micro Electronic Circuits', 'textbook', 'Micro Electronic Circuits, ECE342 textbook', 'images/genius/20200726040304.png', 10, 20, 9, NULL, '2020-07-26 04:03:04'),
+(82, 'genius', 'Foundations of Economics', 'textbook', 'Foundations of Economics', 'images/genius/20200726040413.png', 10, 20, 9, NULL, '2020-07-26 04:04:13');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Transactions`
+-- 替换视图以便查看 `SRT_leftJoin`
+-- （参见下面的实际视图）
+--
+CREATE TABLE `SRT_leftJoin` (
+`Tag` varchar(50)
+,`cntSales` bigint
+,`cntRequests` bigint
+,`cntTrans` bigint
+);
+
+-- --------------------------------------------------------
+
+--
+-- 替换视图以便查看 `SRT_rightJoin`
+-- （参见下面的实际视图）
+--
+CREATE TABLE `SRT_rightJoin` (
+`Tag` varchar(50)
+,`cntSales` bigint
+,`cntRequests` bigint
+,`cntTrans` bigint
+);
+
+-- --------------------------------------------------------
+
+--
+-- 替换视图以便查看 `SR_fullJoin`
+-- （参见下面的实际视图）
+--
+CREATE TABLE `SR_fullJoin` (
+`Tag` varchar(50)
+,`cntSales` bigint
+,`cntRequests` bigint
+);
+
+-- --------------------------------------------------------
+
+--
+-- 替换视图以便查看 `SR_leftJoin`
+-- （参见下面的实际视图）
+--
+CREATE TABLE `SR_leftJoin` (
+`Tag` varchar(50)
+,`cntSales` bigint
+,`cntRequests` bigint
+);
+
+-- --------------------------------------------------------
+
+--
+-- 替换视图以便查看 `SR_rightJoin`
+-- （参见下面的实际视图）
+--
+CREATE TABLE `SR_rightJoin` (
+`Tag` varchar(50)
+,`cntSales` bigint
+,`cntRequests` bigint
+);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `Transactions`
 --
 
 CREATE TABLE `Transactions` (
   `TransactionId` int NOT NULL,
-  `SellerId` varchar(50) NOT NULL,
-  `BuyerId` varchar(50) NOT NULL,
-  `ProductName` varchar(50) NOT NULL,
-  `Price` double NOT NULL,
-  `Tag` varchar(50) NOT NULL,
-  `Description` varchar(500) NOT NULL
+  `SellerId` varchar(50) DEFAULT NULL,
+  `BuyerId` varchar(50) DEFAULT NULL,
+  `ProductName` varchar(50) DEFAULT NULL,
+  `Price` double DEFAULT NULL,
+  `Tag` varchar(50) DEFAULT NULL,
+  `Description` varchar(500) DEFAULT NULL,
+  `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `Transactions`
+-- 转存表中的数据 `Transactions`
 --
 
-INSERT INTO `Transactions` (`TransactionId`, `SellerId`, `BuyerId`, `ProductName`, `Price`, `Tag`, `Description`) VALUES
-(2, 'cs411', 'genius', 'Island', 1000, 'Daily Necessity', 'Beautiful'),
-(3, 'genius', 'cs411', 'Baozi', 1, 'Food', 'Good'),
-(4, 'genius', 'cs411', 'Mouse', 0.1, 'Toy', 'Cute'),
-(5, 'cs411', 'genius', 'Genius', 150, 'Toy', 'Smart and sharp'),
-(6, 'keruiz2', 'cs411', 'house', 2000, 'house', 'best house');
+INSERT INTO `Transactions` (`TransactionId`, `SellerId`, `BuyerId`, `ProductName`, `Price`, `Tag`, `Description`, `Date`) VALUES
+(1, 'Hxh123', 'xinyi.17', 'Basketball', 10, 'sports', 'A old basketball', '2020-07-25 08:34:46'),
+(2, 'xinyi.17', 'Hxh123', 'Badminton bat', 10, 'sports', 'Li Ning Badminton bat', '2020-07-25 08:35:18'),
+(3, 'xlai7', 'Barbara', 'Small Shelf', 3, 'furniture', 'A good helper to keep your room organized', '2020-07-25 12:51:34'),
+(5, 'young lady', 'xlai7', 'GRE vocabulary book', 3, 'otherbooks', 'good book', '2020-07-25 14:26:51'),
+(6, 'xlai7', 'xinyi.17', 'iPhone Cable', 2, 'accessories', 'iPhone Cable', '2020-07-26 03:30:35'),
+(7, 'xinyi.17', 'young lady', 'ECE310 textbook', 30, 'textbook', 'ECE310 textbook, digital signal processing', '2020-07-26 03:31:06'),
+(8, 'xinyi.17', 'yiru', 'Uni-ball Pen', 10, 'stationery', 'A box of Uni-ball pen (12 pcs)', '2020-07-26 03:31:09'),
+(9, 'xinyi', 'Gavin', 'Yoga Mat', 5, 'sports', 'A Blue Yoga mat', '2020-07-26 03:36:53'),
+(10, 'xinyi', 'young lady', 'ECE330 textbook', 30, 'textbook', 'ECE330 textbook, Power Circuits', '2020-07-26 03:36:59'),
+(11, 'xinyi', 'xinyi.17', 'Yoga String and Massaging Ball', 2, 'sports', 'Yoga String and Massaging Ball', '2020-07-26 03:37:05'),
+(12, 'xinyi', 'young lady', 'cutter', 4, 'tools', 'helper for electronic labs (eg ECE385)', '2020-07-26 03:37:09'),
+(13, 'xlai7', 'xinyi', 'Slippers', 3, 'daily necessity', 'A pair of slippers, brand new', '2020-07-26 03:42:00'),
+(14, 'xlai7', 'xlai7', 'Book: Psychology of Crowds', 3, 'otherbooks', 'Psychology of Crowds / Psychologie des foules', '2020-07-26 03:42:04'),
+(15, 'xinyi.17', 'xinyi', 'Toy#2', 3, 'toys/games', 'A lovely toy', '2020-07-26 03:42:36'),
+(16, 'xinyi.17', 'xlai7', 'Stapler', 5, 'stationery', 'A brand new stapler', '2020-07-26 03:42:39'),
+(17, 'genius', 'LittleBiscuit', 'Elements of Statistical Learning', 20, 'textbook', 'Elements of Statistical Learning', '2020-07-26 04:44:44');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Users`
+-- 表的结构 `Users`
 --
 
 CREATE TABLE `Users` (
-  `NetId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `Password` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Campus` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Major` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Year` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `NetId` varchar(50) NOT NULL,
+  `Password` varchar(50) DEFAULT NULL,
+  `Name` varchar(50) DEFAULT NULL,
+  `Email` varchar(50) DEFAULT NULL,
+  `Campus` varchar(10) DEFAULT NULL,
+  `Major` varchar(10) DEFAULT NULL,
+  `Year` varchar(10) DEFAULT NULL,
+  `DateJoin` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `Users`
+-- 转存表中的数据 `Users`
 --
 
-INSERT INTO `Users` (`NetId`, `Password`, `Campus`, `Name`, `Email`, `Major`, `Year`) VALUES
-('cs411', 'cs411', 'UIUC', 'Little Genius', 'cs411@geniuses.com', 'CS', 'Freshman'),
-('genius', 'genius', 'UIUC', 'Real Genius', 'genius@geniuses.com', 'CEE', 'graduate'),
-('hanyins2', 'hanyins2', 'UIUC', 'Hanyin Shao', 'hanyins2@illinois.edu', 'ME', 'Freshman'),
-('jiaqil6', 'jiaqil6', 'ZJUIntl', 'Jiaqi Lou', 'jiaqil6@illinois.edu', 'ECE', 'Junior'),
-('keruiz2', 'keruiz2', 'ZJUIntl', 'Kerui Zhu', 'keruiz2@illinois.edu', 'ECE', 'Junior'),
-('xlai7', 'xlai7', 'ZJUIntl', 'Xinyi Lai', 'xlai7@illinois.edu', 'EE', 'Senior');
+INSERT INTO `Users` (`NetId`, `Password`, `Name`, `Email`, `Campus`, `Major`, `Year`, `DateJoin`) VALUES
+('Barbara', 'Barbara', 'Barbara', '3170111549@zju.edu.cn', 'ZJUIntl', 'BMS', 'Junior', '2020-07-25 12:35:32'),
+('cs411', 'cs411', 'Little Genius', 'cs411@genius.com', 'UIUC', 'CS', 'Junior', '2020-07-25 06:14:03'),
+('Gavin', '123456', 'Haozhe Chen', 'Haozhe.18@intl.zju.edu.cn', 'ZJUIntl', 'CompE', 'Junior', '2020-07-25 14:42:54'),
+('genius', 'genius', 'Real Genius', 'genius@genius.com', 'ZJU', 'Other', 'Graduate', '2020-07-25 07:03:09'),
+('Hxh123', '123456789', 'Hao', 'haoh4@illinois.edu', 'ZJUIntl', 'ME', 'Junior', '2020-07-25 08:21:19'),
+('keruiz2', 'keruiz2', 'Kerui Zhu', 'keruiz2@illinois.edu', 'UIUC', 'CS', 'Junior', '2020-07-25 09:25:18'),
+('LittleBiscuit', 'fecbi5-kosrYz-focwyc', 'Yulin Li', 'yulin.17@intl.zju.edu.cn', 'UIUC', 'EE', 'Senior', '2020-07-25 21:27:42'),
+('sunshine boy', 'sb', 'Kerui Zhu', 'kerui.17@intl.zju.edu.cn', 'ZJUIntl', 'CompE', 'Junior', '2020-07-25 09:46:40'),
+('Xinyi', 'xinyi', 'Xinyi', '3170111149@zju.edu.cn', 'ZJU', 'EE', 'Freshman', '2020-07-25 10:12:33'),
+('xinyi.17', 'xinyi.17', 'Lai Xinyi', 'xinyi.17@intl.zju.edu.cn', 'ZJUIntl', 'EE', 'Senior', '2020-07-25 08:20:40'),
+('xlai7', 'xlai7', 'Xinyi Lai', 'xlai7@illinois.edu', 'UIUC', 'EE', 'Senior', '2020-07-25 09:06:02'),
+('yiru', 'yiru', 'Yiru', 'yiru.17@intl.zju.edu.cn', 'ZJUIntl', 'BMS', 'Junior', '2020-07-25 14:14:19'),
+('young lady', 'young lady', 'young lady', 'younglady@intl.zju.edu.cn', 'ZJUIntl', 'ME', 'Freshman', '2020-07-25 14:16:43');
+
+-- --------------------------------------------------------
 
 --
--- Indexes for dumped tables
+-- 表的结构 `Visit`
+--
+
+CREATE TABLE `Visit` (
+  `Visit` int DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- 视图结构 `SRT_leftJoin`
+--
+DROP TABLE IF EXISTS `SRT_leftJoin`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`Geniuses`@`%` SQL SECURITY DEFINER VIEW `SRT_leftJoin`  AS  select `SR_fullJoin`.`Tag` AS `Tag`,`SR_fullJoin`.`cntSales` AS `cntSales`,`SR_fullJoin`.`cntRequests` AS `cntRequests`,`tmp3`.`cntTrans` AS `cntTrans` from (`SR_fullJoin` left join (select `Transactions`.`Tag` AS `Tag`,count(0) AS `cntTrans` from `Transactions` group by `Transactions`.`Tag`) `tmp3` on((`SR_fullJoin`.`Tag` = `tmp3`.`Tag`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- 视图结构 `SRT_rightJoin`
+--
+DROP TABLE IF EXISTS `SRT_rightJoin`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`Geniuses`@`%` SQL SECURITY DEFINER VIEW `SRT_rightJoin`  AS  select `tmp3`.`Tag` AS `Tag`,`SR_fullJoin`.`cntSales` AS `cntSales`,`SR_fullJoin`.`cntRequests` AS `cntRequests`,`tmp3`.`cntTrans` AS `cntTrans` from ((select `Transactions`.`Tag` AS `Tag`,count(0) AS `cntTrans` from `Transactions` group by `Transactions`.`Tag`) `tmp3` left join `SR_fullJoin` on((`SR_fullJoin`.`Tag` = `tmp3`.`Tag`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- 视图结构 `SR_fullJoin`
+--
+DROP TABLE IF EXISTS `SR_fullJoin`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`Geniuses`@`%` SQL SECURITY DEFINER VIEW `SR_fullJoin`  AS  select `tmp`.`Tag` AS `Tag`,`tmp`.`cntSales` AS `cntSales`,`tmp`.`cntRequests` AS `cntRequests` from (select `SR_leftJoin`.`Tag` AS `Tag`,`SR_leftJoin`.`cntSales` AS `cntSales`,`SR_leftJoin`.`cntRequests` AS `cntRequests` from `SR_leftJoin` union select `SR_rightJoin`.`Tag` AS `Tag`,`SR_rightJoin`.`cntSales` AS `cntSales`,`SR_rightJoin`.`cntRequests` AS `cntRequests` from `SR_rightJoin`) `tmp` ;
+
+-- --------------------------------------------------------
+
+--
+-- 视图结构 `SR_leftJoin`
+--
+DROP TABLE IF EXISTS `SR_leftJoin`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`Geniuses`@`%` SQL SECURITY DEFINER VIEW `SR_leftJoin`  AS  select `tmp1`.`Tag` AS `Tag`,`tmp1`.`cntSales` AS `cntSales`,`tmp2`.`cntRequests` AS `cntRequests` from ((select `Sales`.`Tag` AS `Tag`,count(0) AS `cntSales` from `Sales` group by `Sales`.`Tag`) `tmp1` left join (select `Requests`.`Tag` AS `Tag`,count(0) AS `cntRequests` from `Requests` group by `Requests`.`Tag`) `tmp2` on((`tmp1`.`Tag` = `tmp2`.`Tag`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- 视图结构 `SR_rightJoin`
+--
+DROP TABLE IF EXISTS `SR_rightJoin`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`Geniuses`@`%` SQL SECURITY DEFINER VIEW `SR_rightJoin`  AS  select `tmp2`.`Tag` AS `Tag`,`tmp1`.`cntSales` AS `cntSales`,`tmp2`.`cntRequests` AS `cntRequests` from ((select `Requests`.`Tag` AS `Tag`,count(0) AS `cntRequests` from `Requests` group by `Requests`.`Tag`) `tmp2` left join (select `Sales`.`Tag` AS `Tag`,count(0) AS `cntSales` from `Sales` group by `Sales`.`Tag`) `tmp1` on((`tmp1`.`Tag` = `tmp2`.`Tag`))) ;
+
+--
+-- 转储表的索引
 --
 
 --
--- Indexes for table `Group_Mem`
---
-ALTER TABLE `Group_Mem`
-  ADD PRIMARY KEY (`NetId`);
-
---
--- Indexes for table `Requests`
+-- 表的索引 `Requests`
 --
 ALTER TABLE `Requests`
   ADD PRIMARY KEY (`RequestId`),
-  ADD KEY `BuyerId` (`BuyerId`),
-  ADD KEY `SaleId` (`SaleId`);
+  ADD KEY `Requests_ibfk_1` (`BuyerId`),
+  ADD KEY `Requests_ibfk_2` (`SaleId`);
 
 --
--- Indexes for table `Sales`
+-- 表的索引 `Sales`
 --
 ALTER TABLE `Sales`
   ADD PRIMARY KEY (`SaleId`),
-  ADD KEY `SellerId` (`SellerId`),
-  ADD KEY `IntendedBuyerId` (`IntendedBuyerId`);
+  ADD KEY `Sales_ibfk_1` (`SellerId`),
+  ADD KEY `Sales_ibfk_2` (`IntendedBuyerId`);
 
 --
--- Indexes for table `Transactions`
+-- 表的索引 `Transactions`
 --
 ALTER TABLE `Transactions`
   ADD PRIMARY KEY (`TransactionId`),
-  ADD KEY `Transactions_ibfk_1` (`SellerId`),
-  ADD KEY `Transactions_ibfk_2` (`BuyerId`);
+  ADD KEY `Transactions_ibfk_1` (`BuyerId`),
+  ADD KEY `Transactions_ibfk_2` (`SellerId`);
 
 --
--- Indexes for table `Users`
+-- 表的索引 `Users`
 --
 ALTER TABLE `Users`
   ADD PRIMARY KEY (`NetId`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- 在导出的表使用AUTO_INCREMENT
 --
 
 --
--- AUTO_INCREMENT for table `Requests`
+-- 使用表AUTO_INCREMENT `Requests`
 --
 ALTER TABLE `Requests`
-  MODIFY `RequestId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `RequestId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `Sales`
+-- 使用表AUTO_INCREMENT `Sales`
 --
 ALTER TABLE `Sales`
-  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
--- AUTO_INCREMENT for table `Transactions`
+-- 使用表AUTO_INCREMENT `Transactions`
 --
 ALTER TABLE `Transactions`
-  MODIFY `TransactionId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `TransactionId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- Constraints for dumped tables
+-- 限制导出的表
 --
 
 --
--- Constraints for table `Requests`
+-- 限制表 `Requests`
 --
 ALTER TABLE `Requests`
-  ADD CONSTRAINT `Requests_ibfk_1` FOREIGN KEY (`BuyerId`) REFERENCES `Users` (`NetId`) ON DELETE CASCADE,
-  ADD CONSTRAINT `Requests_ibfk_2` FOREIGN KEY (`SaleId`) REFERENCES `Sales` (`SaleId`) ON DELETE SET NULL;
+  ADD CONSTRAINT `Requests_ibfk_1` FOREIGN KEY (`BuyerId`) REFERENCES `Users` (`NetId`) ON DELETE CASCADE ON UPDATE RESTRICT,
+  ADD CONSTRAINT `Requests_ibfk_2` FOREIGN KEY (`SaleId`) REFERENCES `Sales` (`SaleId`) ON DELETE CASCADE ON UPDATE RESTRICT;
 
 --
--- Constraints for table `Sales`
+-- 限制表 `Sales`
 --
 ALTER TABLE `Sales`
-  ADD CONSTRAINT `Sales_ibfk_1` FOREIGN KEY (`SellerId`) REFERENCES `Users` (`NetId`) ON DELETE CASCADE,
-  ADD CONSTRAINT `Sales_ibfk_2` FOREIGN KEY (`IntendedBuyerId`) REFERENCES `Users` (`NetId`) ON DELETE SET NULL;
+  ADD CONSTRAINT `Sales_ibfk_1` FOREIGN KEY (`SellerId`) REFERENCES `Users` (`NetId`) ON DELETE CASCADE ON UPDATE RESTRICT,
+  ADD CONSTRAINT `Sales_ibfk_2` FOREIGN KEY (`IntendedBuyerId`) REFERENCES `Users` (`NetId`) ON DELETE CASCADE ON UPDATE RESTRICT;
 
 --
--- Constraints for table `Transactions`
+-- 限制表 `Transactions`
 --
 ALTER TABLE `Transactions`
-  ADD CONSTRAINT `Transactions_ibfk_1` FOREIGN KEY (`SellerId`) REFERENCES `Users` (`NetId`) ON DELETE CASCADE ON UPDATE RESTRICT,
-  ADD CONSTRAINT `Transactions_ibfk_2` FOREIGN KEY (`BuyerId`) REFERENCES `Users` (`NetId`) ON DELETE CASCADE ON UPDATE RESTRICT;
+  ADD CONSTRAINT `Transactions_ibfk_1` FOREIGN KEY (`BuyerId`) REFERENCES `Users` (`NetId`) ON DELETE CASCADE ON UPDATE RESTRICT,
+  ADD CONSTRAINT `Transactions_ibfk_2` FOREIGN KEY (`SellerId`) REFERENCES `Users` (`NetId`) ON DELETE CASCADE ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
