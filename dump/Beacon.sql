@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: database
--- Generation Time: Jul 30, 2020 at 02:55 PM
+-- Generation Time: Aug 02, 2020 at 04:29 PM
 -- Server version: 8.0.20
 -- PHP Version: 7.4.6
 
@@ -60,11 +60,11 @@ INSERT INTO `Requests` (`RequestId`, `BuyerId`, `ProductName`, `Tag`, `Descripti
 (14, 'xinyi', 'iPhone Charger', 'accessories', 'iPhone Charger', '', 5, NULL, '2020-07-26 03:46:01'),
 (15, 'xinyi', 'back cushion', 'furniture', 'back cushion', '', 5, NULL, '2020-07-26 03:46:47'),
 (16, 'xinyi', 'curtain', 'furniture', 'curtain', '', 10, NULL, '2020-07-26 03:47:22'),
-(17, 'baozi008', 'Nintendo Switch', 'electronics', 'not lite. better with games', '', 150, NULL, '2020-07-26 18:40:55'),
-(18, 'sunshine boy', 'mouse', 'textbook', 'good mouse', '', 15, 16, '2020-07-27 02:02:04'),
+(17, 'baozi008', 'Nintendo Switch', 'electronics', 'not lite. better with games', '', 150, 15, '2020-07-26 18:40:55'),
 (20, 'zoej', 'Dyson vacuum cleaner', 'electronics', 'V8', '', 100, NULL, '2020-07-30 00:57:19'),
 (21, 'zoej', 'Dyson hair dryer', 'electronics', '', '', 200, NULL, '2020-07-30 00:57:58'),
-(22, 'zoej', 'Bookshelf', 'furniture', 'width less than 50cm', '', 20, NULL, '2020-07-30 01:00:16');
+(22, 'zoej', 'Bookshelf', 'furniture', 'width less than 50cm', '', 20, NULL, '2020-07-30 01:00:16'),
+(23, 'vicky01', 'harry potter', 'otherbooks', 'english', '', 10, NULL, '2020-08-02 16:02:05');
 
 -- --------------------------------------------------------
 
@@ -95,11 +95,9 @@ INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, 
 (11, 'xinyi.17', 'lamp', 'furniture', 'Eye protective, warm yellow light', 'images/xinyi.17/20200725090352.jpg', 10, 15, 6, NULL, '2020-07-25 09:03:52'),
 (14, 'xlai7', 'clock', 'furniture', 'A small alarm clock', 'images/xlai7/20200725091355.jpg', 2, 5, 5, NULL, '2020-07-25 09:13:55'),
 (15, 'xlai7', 'Slow Cooker', 'furniture', 'A slow cooker, low in power, perfect for porridge or soup', 'images/xlai7/20200725091510.jpg', 50, 60, 8, NULL, '2020-07-25 09:15:10'),
-(16, 'xlai7', 'Mouse', 'electronics', 'A Logit mouse', 'images/xlai7/20200725092840.jpg', 5, 7, 9, 'sunshine boy', '2020-07-25 09:28:40'),
 (19, 'keruiz2', 'trash bin', 'furniture', 'two trash bins for garbage sorting', 'images/keruiz2/20200725093427.jpg', 5, 7, 8, NULL, '2020-07-25 09:34:27'),
 (20, 'keruiz2', 'air conditioner', 'furniture', 'It can both heat and cool the room', 'images/keruiz2/20200725093705.jpg', 120, 150, 9, NULL, '2020-07-25 09:37:05'),
 (33, 'xinyi', 'automatic sphygmomanometer', 'furniture', 'automatic sphygmomanometer', 'images/xinyi/20200725104200.jpg', 10, 15, 9, NULL, '2020-07-25 10:42:00'),
-(35, 'xinyi', 'Guitar Kepma', 'other', 'Guitar Kepma', 'images/xinyi/20200725104424.jpg', 70, 100, 9, 'baozi008', '2020-07-25 10:44:24'),
 (44, 'hxh123', 'Banana', 'food', 'A big banana', 'images/hxh123/20200725121809.jpg', 1, 2, 9, 'hahaGong', '2020-07-25 12:18:09'),
 (45, 'hxh123', 'Mask', 'daily necessity', '10 maskes', 'images/hxh123/20200725123407.jpg', 10, 15, 9, 'zoej', '2020-07-25 12:34:07'),
 (47, 'hxh123', 'Mouse', 'electronics', 'A blue mouse', 'images/hxh123/20200725123505.jpg', 5, 8, 7, 'hh', '2020-07-25 12:35:05'),
@@ -155,13 +153,12 @@ INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, 
 (128, 'hh', 'Cake', 'food', 'A big cake', 'images/hh/20200729102111.jpeg', 10, 15, 9, NULL, '2020-07-29 10:21:11'),
 (129, 'hh', 'Bag', 'stationery', 'A small bag', 'images/hh/20200729102144.jpeg', 50, 80, 9, 'baozi008', '2020-07-29 10:21:44'),
 (130, 'hh', 'Book', 'test prep', 'Sherlock Holmes', 'images/hh/20200729102218.jpeg', 10, 15, 9, NULL, '2020-07-29 10:22:18'),
-(131, 'hh', 'Pig', 'other', 'A black pig', 'images/hh/20200729102256.jpeg', 100, 150, 9, NULL, '2020-07-29 10:22:56'),
+(131, 'hh', 'Pig', 'other', 'A black pig', 'images/hh/20200729102256.jpeg', 100, 150, 9, 'Vicky', '2020-07-29 10:22:56'),
 (132, 'hh', 'Swan', 'other', 'A big white swan', 'images/hh/20200729102359.jpeg', 10, 20, 9, 'goodgirl', '2020-07-29 10:23:59'),
 (133, 'hh', 'Rugby ball', 'sports', 'A UIUC rugby ball', 'images/hh/20200729102440.jpeg', 100, 150, 9, NULL, '2020-07-29 10:24:40'),
 (134, 'jiaqil6', 'Laptop Bag', 'accessories', 'color: gray; size: 13 inch', 'images/jiaqil6/20200729150422.jpeg', 10, 15, 9, NULL, '2020-07-29 15:04:22'),
 (136, 'goodgirl', 'Hat', 'clothing', 'Beautiful hat, suitable for both holiday and daily usage', 'images/goodgirl/20200729151139.jpeg', 12, 20, 8, NULL, '2020-07-29 15:11:39'),
 (137, 'goodgirl', 'Chanel Makeup Bag', 'accessories', 'Red Chanel makeup bag, capable to put 4-5 lipsticks', 'images/goodgirl/20200729151352.jpeg', 35, 50, 9, NULL, '2020-07-29 15:13:52'),
-(139, 'zoej', 'AirPods', 'electronics', 'old version', 'images/zoej/20200729202443.png', 50, 129, 9, 'sunshine boy', '2020-07-29 20:24:43'),
 (140, 'zoej', 'Charles &amp; Keith bag', 'accessories', '40cm', 'images/zoej/20200729202739.png', 20, 50, 9, NULL, '2020-07-29 20:27:39'),
 (141, 'zoej', 'Charles &amp; Keith Handbag', 'accessories', 'the pink one', 'images/zoej/20200729202856.png', 50, 80, 9, NULL, '2020-07-29 20:28:56'),
 (142, 'zoej', 'Charles &amp; Keith backpack', 'accessories', 'medium size', 'images/zoej/20200729202929.png', 30, 60, 9, NULL, '2020-07-29 20:29:29'),
@@ -171,23 +168,17 @@ INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, 
 (148, 'zoej', 'maple syrup', 'food', 'new from Canada', 'images/zoej/20200729203555.png', 25, 30, 9, NULL, '2020-07-29 20:35:55'),
 (149, 'zoej', 'hand soap', 'daily necessity', '1.65L', 'images/zoej/20200729203820.png', 8, 12, 9, NULL, '2020-07-29 20:38:20'),
 (150, 'zoej', 'Mere Christianity', 'otherbooks', 'C.S. LEWIS', 'images/zoej/20200729203929.png', 15, 19.99, 9, NULL, '2020-07-29 20:39:29'),
-(151, 'zoej', 'Rubik Cube', 'toys/games', 'a weird cube', 'images/zoej/20200729204142.png', 5, 15, 6, 'sunshine boy', '2020-07-29 20:41:42'),
 (152, 'zoej', 'Never split the difference', 'otherbooks', 'forget the original price', 'images/zoej/20200729204227.png', 20, 50, 7, NULL, '2020-07-29 20:42:27'),
 (153, 'zoej', 'A notebook', 'stationery', '80 pages with lines', 'images/zoej/20200729204303.png', 10, 20, 9, NULL, '2020-07-29 20:43:03'),
 (154, 'zoej', 'Will in the World', 'otherbooks', 'Stephen Greenblatt', 'images/zoej/20200729204402.png', 8, 14.99, 9, NULL, '2020-07-29 20:44:02'),
 (155, 'baozi008', 'GRE sentence analysis', 'test prep', 'e-edition', 'images/baozi008/20200730001300.png', 5, 10, 9, NULL, '2020-07-30 00:13:00'),
-(156, 'baozi008', 'TOEFL wordlist', 'test prep', 'with a lot of notes', 'images/baozi008/20200730001455.png', 10, 40, 7, NULL, '2020-07-30 00:14:55'),
+(156, 'baozi008', 'TOEFL wordlist', 'test prep', 'with a lot of notes', 'images/baozi008/20200730001455.png', 10, 40, 7, 'vicky01', '2020-07-30 00:14:55'),
 (157, 'baozi008', 'GRE wordlist and exercise', 'test prep', 'e-edition', 'images/baozi008/20200730001709.png', 5, 10, 9, NULL, '2020-07-30 00:17:09'),
 (158, 'hanyins2', 'ANTH 103 Textbook', 'textbook', 'e-edition', 'images/hanyins2/20200730003943.png', 10, 20, 9, NULL, '2020-07-30 00:39:43'),
-(159, 'hanyins2', 'CS 412 Textbook', 'textbook', 'Data mining', 'images/hanyins2/20200730004024.png', 5, 20, 9, 'sunshine boy', '2020-07-30 00:40:24'),
 (160, 'hanyins2', 'MATH 213 textbook', 'textbook', 'discrete math', 'images/hanyins2/20200730004123.png', 5, 25, 9, NULL, '2020-07-30 00:41:23'),
 (161, 'hanyins2', 'HDFS 105 Textbook', 'textbook', 'life-span development', 'images/hanyins2/20200730004207.png', 28, 45, 9, NULL, '2020-07-30 00:42:07'),
 (162, 'hanyins2', 'RST 242 Textbook in Chinese', 'textbook', 'Chinese translation version', 'images/hanyins2/20200730004253.png', 20, 35, 9, NULL, '2020-07-30 00:42:53'),
-(163, 'hanyins2', 'RST 242 Textbook', 'textbook', 'Wilderness and the American Mind', 'images/hanyins2/20200730004409.png', 10, 22.5, 9, 'jiaqil6', '2020-07-30 00:44:09'),
-(164, 'baozi008', 'Invitation to Anthropology', 'otherbooks', 'in Chinese', 'images/baozi008/20200730004649.png', 10, 24, 9, NULL, '2020-07-30 00:46:49'),
-(165, 'baozi008', 'Jigsaw puzzle', 'toys/games', 'very difficult', 'images/baozi008/20200730005110.png', 20, 50, 6, 'sunshine boy', '2020-07-30 00:51:10'),
-(166, 'baozi008', 'dice puzzle', 'toys/games', 'difficult to solve', 'images/baozi008/20200730005212.png', 15, 38.5, 8, 'sunshine boy', '2020-07-30 00:52:12'),
-(167, 'zoej', 'Bose Headphone', 'electronics', 'bought 3 months ago', 'images/zoej/20200730005420.png', 120, 220, 9, NULL, '2020-07-30 00:54:20');
+(164, 'baozi008', 'Invitation to Anthropology', 'otherbooks', 'in Chinese', 'images/baozi008/20200730004649.png', 10, 24, 9, NULL, '2020-07-30 00:46:49');
 
 -- --------------------------------------------------------
 
@@ -339,7 +330,17 @@ INSERT INTO `Transactions` (`TransactionId`, `SellerId`, `BuyerId`, `ProductName
 (65, 'keruiz2', 'xinyi', 'closet', 100, 'furniture', 'wood closet, no smell', '2020-07-30 13:18:14'),
 (66, 'keruiz2', 'xinyi', 'door', 60, 'furniture', 'Entrance only with an authorized card', '2020-07-30 13:18:18'),
 (67, 'keruiz2', 'zoej', 'kettle', 3, 'furniture', 'common kettle, never used', '2020-07-30 13:18:22'),
-(68, 'keruiz2', 'zoej', 'chair', 15, 'furniture', 'common chair', '2020-07-30 13:18:25');
+(68, 'keruiz2', 'zoej', 'chair', 15, 'furniture', 'common chair', '2020-07-30 13:18:25'),
+(69, 'zoej', 'sunshine boy', 'AirPods', 50, 'electronics', 'old version', '2020-07-31 02:26:45'),
+(70, 'zoej', 'sunshine boy', 'Rubik Cube', 5, 'toys/games', 'a weird cube', '2020-07-31 02:26:49'),
+(71, 'baozi008', 'sunshine boy', 'Jigsaw puzzle', 20, 'toys/games', 'very difficult', '2020-07-31 02:28:39'),
+(72, 'baozi008', 'sunshine boy', 'dice puzzle', 15, 'toys/games', 'difficult to solve', '2020-07-31 02:28:41'),
+(73, 'hanyins2', 'sunshine boy', 'CS 412 Textbook', 5, 'textbook', 'Data mining', '2020-07-31 02:30:23'),
+(74, 'hanyins2', 'jiaqil6', 'RST 242 Textbook', 10, 'textbook', 'Wilderness and the American Mind', '2020-07-31 02:30:24'),
+(75, 'xinyi', 'baozi008', 'Guitar Kepma', 70, 'other', 'Guitar Kepma', '2020-07-31 09:03:32'),
+(76, 'xlai7', 'sunshine boy', 'Mouse', 5, 'electronics', 'A Logit mouse', '2020-07-31 09:04:04'),
+(77, 'zoej', 'Vicky', 'Bose Headphone', 120, 'electronics', 'bought 3 months ago', '2020-08-01 17:24:02'),
+(78, 'vicky01', 'vicky01', 'harry potter', 100, 'toys/games', 'bought from bilibili', '2020-08-02 16:02:39');
 
 -- --------------------------------------------------------
 
@@ -379,6 +380,8 @@ INSERT INTO `Users` (`NetId`, `Password`, `Name`, `Email`, `Campus`, `Major`, `Y
 ('LittleBiscuit', 'fecbi5-kosrYz-focwyc', 'Yulin Li', 'yulin.17@intl.zju.edu.cn', 'UIUC', 'EE', 'Senior', '2020-07-25 21:27:42'),
 ('Lynne', 'dihpot-sawcYh-3xodxe', 'Yulin Li', 'yulin.17@intl.zju.edu.cn', 'ZJUIntl', 'EE', 'Senior', '2020-07-27 22:13:33'),
 ('sunshine boy', 'sb', 'Kerui Zhu', 'kerui.17@intl.zju.edu.cn', 'ZJUIntl', 'CompE', 'Junior', '2020-07-25 09:46:40'),
+('Vicky', 'Cyf01039902323', 'Vicky', 'yifanc3@illinois.edu', 'ZJUIntl', 'CompE', 'Graduate', '2020-08-01 04:01:36'),
+('vicky01', 'vicky', 'vicky', 'vicky@illinois.edu', 'ZJUIntl', 'CS', 'Graduate', '2020-08-02 15:58:31'),
 ('Xinyi', 'xinyi', 'Xinyi', '3170111149@zju.edu.cn', 'ZJU', 'EE', 'Freshman', '2020-07-25 10:12:33'),
 ('xinyi.17', 'xinyi.17', 'Lai Xinyi', 'xinyi.17@intl.zju.edu.cn', 'ZJUIntl', 'EE', 'Senior', '2020-07-25 08:20:40'),
 ('xlai7', 'xlai7', 'Xinyi Lai', 'xlai7@illinois.edu', 'UIUC', 'EE', 'Senior', '2020-07-25 09:06:02'),
@@ -483,19 +486,19 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT for table `Requests`
 --
 ALTER TABLE `Requests`
-  MODIFY `RequestId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `RequestId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `Sales`
 --
 ALTER TABLE `Sales`
-  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
+  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
 
 --
 -- AUTO_INCREMENT for table `Transactions`
 --
 ALTER TABLE `Transactions`
-  MODIFY `TransactionId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `TransactionId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- Constraints for dumped tables
