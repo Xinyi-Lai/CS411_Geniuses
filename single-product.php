@@ -346,7 +346,7 @@
 
                         <div class="col-md-10 col-sm-10 col-xs-10">
 
-                        <li class="active"><a href="<?php echo $image; ?>"><img src="<?php echo $image; ?>" alt=""></a></li>
+                        <li class="active"><a href="<?php echo $image; ?>"><img src="<?php echo $image; ?>" alt=""  height="320px"></a></li>
 
                         </div>
 
@@ -462,7 +462,7 @@
 
                 <ul class="nav nav-tabs nav-single-product-tabs">
 
-                    <li class="active"><a href="#related">Related Products</a></li>
+                    <li class="active"><a href="#related">Recommended Products</a></li>
 
                 </ul>
 
@@ -475,10 +475,10 @@
                         <div class="col-md-3 col-sm-4">
                             
                             <div class="single-product">
-                                <div class="product-block">
+                                <div class="product-block" id="product">
                                     
-                                    <img src="<?php echo $productFriends[$i]['Image']; ?>" alt="" class="thumbnail">
-                                    
+                                    <img src="<?php echo $productFriends[$i]['Image']; ?>" height="320px">
+
                                     <div class="related-product text-center">
                                         <p class="title"> <?php echo $productFriends[$i]['ProductName']; ?> </p>
                                         <p class="price"> $ <?php echo $productFriends[$i]['IntendedPrice']; ?> </p>
