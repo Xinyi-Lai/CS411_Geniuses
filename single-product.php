@@ -346,7 +346,7 @@
 
                         <div class="col-md-10 col-sm-10 col-xs-10">
 
-                        <li class="active"><a href="<?php echo $image; ?>"><img src="<?php echo $image; ?>" alt=""  height="320px"></a></li>
+                        <li class="active"><a href="<?php echo $image; ?>"><img src="<?php echo $image; ?>" alt=""></a></li>
 
                         </div>
 
