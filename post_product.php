@@ -116,23 +116,23 @@
 						<label for="focusedInput">Tag</label><span class="warning"> <?php echo $tag_err;?></span>
                         <select class="form-control" id="tag" name="tag" value="<?php echo $tag; ?>">
 							<optgroup label="tag">
-								<option value="textbook" <?php echo $tag=="textbook" ? 'selected':'' ?> >textbook</option>
-                                <option value="test prep" <?php echo $tag=="test prep" ? 'selected':'' ?> >test prep</option>
-                                <option value="otherbooks" <?php echo $tag=="otherbooks" ? 'selected':'' ?> >otherbooks</option>
-                                <option value="electronics"<?php echo $tag=="electronics" ? 'selected':'' ?> >electronics</option>
-                                <option value="accessories" <?php echo $tag=="accessories" ? 'selected':'' ?> >accessories</option>
-                                <option value="toys/games" <?php echo $tag=="toys/games" ? 'selected':'' ?> >toys/games</option>
-                                <option value="makeup/personal care" <?php echo $tag=="makeup/personal care" ? 'selected':'' ?> >makeup/personal care</option>
+                            <option value="accessories" <?php echo $tag=="accessories" ? 'selected':'' ?> >accessories</option>
                                 <option value="clothing" <?php echo $tag=="clothing" ? 'selected':'' ?> >clothing</option>
                                 <option value="daily necessity" <?php echo $tag=="daily necessity" ? 'selected':'' ?> >daily necessity</option>
-                                <option value="sports" <?php echo $tag=="sports" ? 'selected':'' ?> >sports</option>
-                                <option value="jewelry" <?php echo $tag=="jewelry" ? 'selected':'' ?> >jewelry</option>
-                                <option value="furniture" <?php echo $tag=="furniture" ? 'selected':'' ?> >furniture</option>
-                                <option value="stationery" <?php echo $tag=="stationery" ? 'selected':'' ?> >stationery</option>
+                                <option value="electronics"<?php echo $tag=="electronics" ? 'selected':'' ?> >electronics</option>
                                 <option value="food" <?php echo $tag=="food" ? 'selected':'' ?> >food</option>
-                                <option value="tools" <?php echo $tag=="tools" ? 'selected':'' ?> >tools</option>
-                                <option value="sublease" <?php echo $tag=="sublease" ? 'selected':'' ?> >sublease</option>
+                                <option value="furniture" <?php echo $tag=="furniture" ? 'selected':'' ?> >furniture</option>
+                                <option value="jewelry" <?php echo $tag=="jewelry" ? 'selected':'' ?> >jewelry</option>
+                                <option value="makeup/personal care" <?php echo $tag=="makeup/personal care" ? 'selected':'' ?> >makeup/personal care</option>
+                                <option value="otherbooks" <?php echo $tag=="otherbooks" ? 'selected':'' ?> >otherbooks</option>
                                 <option value="other" <?php echo $tag=="other" ? 'selected':'' ?> >other</option>
+                                <option value="sports" <?php echo $tag=="sports" ? 'selected':'' ?> >sports</option>
+                                <option value="sublease" <?php echo $tag=="sublease" ? 'selected':'' ?> >sublease</option>
+                                <option value="stationery" <?php echo $tag=="stationery" ? 'selected':'' ?> >stationery</option>
+                                <option value="test prep" <?php echo $tag=="test prep" ? 'selected':'' ?> >test prep</option>
+                                <option value="textbook" <?php echo $tag=="textbook" ? 'selected':'' ?> >textbook</option>
+                                <option value="tools" <?php echo $tag=="tools" ? 'selected':'' ?> >tools</option>
+                                <option value="toys/games" <?php echo $tag=="toys/games" ? 'selected':'' ?> >toys/games</option>
 							</optgroup>
 						</select>
 					</div>

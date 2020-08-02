@@ -1520,26 +1520,39 @@ function charts() {
 		for (var i=0; i<Object.keys(jsonObj['Max']).length; i++ ){
 			var tag = Object.keys(jsonObj['Max'])[i];
 			xticks.push([i, tag]);
-			data_max.push([i, parseInt(Object.values(jsonObj['Max'])[i] - Object.values(jsonObj['Avg'])[i])		]);
+			data_max.push([i-0.2, parseInt(Object.values(jsonObj['Max'])[i] - Object.values(jsonObj['Avg'])[i])		]);
 			data_avg.push([i, parseInt(Object.values(jsonObj['Avg'])[i] - Object.values(jsonObj['Min'])[i])	]);
-			data_min.push([	i, parseInt(Object.values(jsonObj['Min'])[i])		]);
+			data_min.push([	i+0.2, parseInt(Object.values(jsonObj['Min'])[i])		]);
 		}
 		
 		/* ---------- Items-tag Stack chart ---------- */
 
 		if($("#price_chart").length) {
 			
-			$.plot($("#price_chart"), [ 	{label: 'Min', data: data_min}, 
-										{label: 'Avg', data: data_avg}, 
-										{label: 'Max', data: data_max} ], {
-				series: {
-					stack: 0,	// null
-					lines: { show: true, fill: true, steps: false },
-					bars: { show: false, barWidth: 0.6, align: "center" },
-				},
+			$.plot($("#price_chart"), [{  data: data_max,
+				bars: {
+					show: true,
+					barWidth: 0.1,
+					align: "left",
+				}
+			},
+			{
+				data: data_min,
+				bars: {
+					show: true,
+					barWidth: 0.1,
+					align: "center",
+				}
+			},{
+				data: data_avg,
+				bars: {
+					show: true,
+					barWidth: 0.1,
+					align: "right",
+			}}], {
 				xaxis: { ticks: xticks },
 				legend: { show: true },
-				grid: 	{ hoverable: true, clickable: true },
+				grid: 	{ hoverable: true, clickable: true, borderWidth: 0},
 				colors: ["#43B5AD", "#e5c33c", "#E25A59"]
 			});
 
@@ -1581,7 +1594,7 @@ function charts() {
 				},
 				xaxis: { ticks: xticks },
 				legend: { show: true },
-				grid: 	{ hoverable: true, clickable: true },
+				grid: 	{ hoverable: true, clickable: true, borderWidth: 0 },
 				colors: ["#FA5833", "#2FABE9", "#FABB3D"]
 			});
 

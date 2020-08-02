@@ -84,7 +84,7 @@
                 <div class="col-md-3 col-sm-4">
                     <div class="single-product">
                         <div class="product-block">
-                            <img src="'.$image.'" alt="" class="thumbnail">
+                            <img src="'.$image.'" alt="" class="thumbnail"  height="320px">
                             <div class="related-product text-center">
                                 <p class="title">'.$val['ProductName'].'</p>
                                 <p class="price">$ '.$val['IntendedPrice'].'</p>
