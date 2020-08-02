@@ -116,23 +116,23 @@
 						<label for="focusedInput">Tag</label><span class="warning"> <?php echo $tag_err;?></span>
                         <select class="form-control" id="tag" name="tag">
 							<optgroup label="tag">
-								<option value="textbook">textbook</option>
-                                <option value="test prep">test prep</option>
-                                <option value="otherbooks">otherbooks</option>
-                                <option value="electronics">electronics</option>
                                 <option value="accessories">accessories</option>
-                                <option value="toys/games">toys/games</option>
-                                <option value="makeup">makeup</option>
                                 <option value="clothing">clothing</option>
                                 <option value="daily necessity">daily necessity</option>
-                                <option value="sports">sports</option>
-                                <option value="jewelry">jewelry</option>
-                                <option value="furniture">furniture</option>
-                                <option value="stationery">stationery</option>
+                                <option value="electronics">electronics</option>
                                 <option value="food">food</option>
-                                <option value="tools">tools</option>
-                                <option value="sublease">sublease</option>
+                                <option value="furniture">furniture</option>
+                                <option value="jewelry">jewelry</option>
+                                <option value="makeup">makeup</option>
+                                <option value="otherbooks">otherbooks</option>
                                 <option value="other">other</option>
+                                <option value="sports">sports</option>
+                                <option value="stationery">stationery</option>
+                                <option value="sublease">sublease</option>
+                                <option value="test prep">test prep</option>
+                                <option value="textbook">textbook</option>
+                                <option value="tools">tools</option>
+                                <option value="toys/games">toys/games</option>
 							</optgroup>
 						</select>
 					</div>
