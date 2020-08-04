@@ -383,8 +383,8 @@
 
                     </div>
 
-                    <p>
-                        <button class="btn btn-theme" type="submit">Live chat with <?php echo ($choosedb=="Sales") ? "seller":"buyer"; ?></button>
+	    <p>
+		<!--<button class="btn btn-theme" type="submit">Live chat with <?php echo ($choosedb=="Sales") ? "seller":"buyer"; ?></button>-->
 
                     <?php if ($choosedb=="Sales"){
                         $url = "window.location.href='mark_to_buy.php?Id=$item_id'";
