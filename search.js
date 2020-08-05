@@ -14,9 +14,11 @@ function entersearch(){
     }  
 }
 
-function jump_to_search() {
+function jump_to_search(search_tag) {
+    search_tag = search_tag || "";
     window.location.href = "search.php?search_item="+document.getElementById("search_box").value+
-                                      "&choosedb="+document.getElementById("choosedb").value;
+                                      "&choosedb="+document.getElementById("choosedb").value+
+                                      "&tag="+search_tag;
 }
 
 function load_page() {

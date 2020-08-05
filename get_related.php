@@ -8,54 +8,35 @@
     $choosedb=$_GET["choosedb"];
     $user_id=$_GET["user_id"];
     $tag=$_GET["tag"];
+    $campus=$_GET["campus"];
     $id_excluded=$_GET["id_excluded"];
     
     //connect db
     if (strlen($choosedb) > 0) {
 
         $sql = "";
+        if ($choosedb == "Sales"){
+            $host_id_type = "SellerId";
+            $item_id_type = "SaleId";
+            $intended_id_type = "IntendedBuyerId";
+        }else{
+            $host_id_type = "BuyerId";
+            $item_id_type = "RequestId";
+            $intended_id_type = "SaleId";
+        }
+        $relation = ($campus != "") ? "(SELECT NetId FROM Users WHERE Campus='$campus') AS Temp JOIN $choosedb ON NetId=$host_id_type" : $choosedb;
         
         if (strlen($search_item) > 0 || strlen($user_id) > 0 || strlen($tag) > 0) {
 
             if (strlen($tag) > 0) {
-                if (strlen($id_excluded) > 0) {
-                    if ($choosedb == "Sales") {
-                        $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE Tag = '$tag' AND IntendedBuyerId IS NULL".(($id_excluded) ? "AND SaleId <> $id_excluded":"")."ORDER BY DatePost DESC";
-                    }
-                    else {
-                        $sql = "SELECT RequestId, Image, ProductName, IntendedPrice FROM Requests WHERE Tag = '$tag' AND SaleId IS NULL".(($id_excluded) ? "AND RequestId <> $id_excluded":"")."ORDER BY DatePost DESC";
-                    }
-                } else {
-                    if ($choosedb == "Sales") {
-                        $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE Tag = '$tag' AND IntendedBuyerId IS NULL ORDER BY DatePost DESC";
-                    }
-                    else {
-                        $sql = "SELECT RequestId, Image, ProductName, IntendedPrice FROM Requests WHERE Tag = '$tag' AND SaleId IS NULL ORDER BY DatePost DESC";
-                    }
-                }
+                $sql = "SELECT $item_id_type, Image, ProductName, IntendedPrice FROM $relation WHERE Tag = '$tag' AND $intended_id_type IS NULL".(($id_excluded) ? "AND $item_id_type <> $id_excluded":"")." ORDER BY DatePost DESC";
             } else if (strlen($search_item) > 0) {
-                if ($choosedb == "Sales") {
-                    $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE ProductName LIKE '%$search_item%' AND IntendedBuyerId IS NULL ORDER BY DatePost DESC";
-                }
-                else {
-                    $sql = "SELECT RequestId, Image, ProductName, IntendedPrice FROM Requests WHERE ProductName LIKE '%$search_item%' AND SaleId IS NULL ORDER BY DatePost DESC";
-                }
-            }
-            else {
-                if ($choosedb == "Sales") {
-                    $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE SellerId = '$user_id' AND IntendedBuyerId IS NULL ORDER BY DatePost DESC";
-                }
-                else {
-                    $sql = "SELECT RequestId, Image, ProductName, IntendedPrice FROM Requests WHERE BuyerId = '$user_id' AND SaleId IS NULL ORDER BY DatePost DESC";
-                }
+                $sql = "SELECT $item_id_type, Image, ProductName, IntendedPrice FROM $relation WHERE ProductName LIKE '%$search_item%' AND $intended_id_type IS NULL ORDER BY DatePost DESC";
+            }else {
+                $sql = "SELECT $item_id_type, Image, ProductName, IntendedPrice FROM $relation WHERE $host_id_type = '$user_id' AND $intended_id_type IS NULL ORDER BY DatePost DESC";
             }
         }else {
-            if ($choosedb == "Sales") {
-                $sql = "SELECT SaleId, Image, ProductName, IntendedPrice FROM Sales WHERE IntendedBuyerId IS NULL ORDER BY DatePost DESC LIMIT 4";
-            }
-            else {
-                $sql = "SELECT RequestId, Image, ProductName, IntendedPrice FROM Requests WHERE SaleId IS NULL ORDER BY DatePost DESC LIMIT 4";
-            }
+            $sql = "SELECT $item_id_type, Image, ProductName, IntendedPrice FROM $relation WHERE $intended_id_type IS NULL ORDER BY DatePost DESC LIMIT 4";
         }
 
         $conn = connectDB();
