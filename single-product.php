@@ -179,15 +179,28 @@
 
             <div class="row">
 
-                <div class="col-md-3 col-sm-4">
+                <div class="col-md-2 col-sm-4">
 
                 </div>
 
-                <div class="col-md-7 col-sm-5">
+                <div class="col-md-8 col-sm-5">
 
                     <div class="search-form">
 
                         <form class="navbar-form" role="search">
+
+                            <select id="campus" class="form-control">
+
+                                <option selected="selected" value=""> Campus </option>
+
+                                <option value="UIUC">UIUC</option>
+
+                                <option value="ZJUIntl">ZJUIntl</option>
+
+                                <option value="ZJU">ZJU</option>
+
+                            </select>
+
 
                             <select id="choosedb" class="form-control">
 
