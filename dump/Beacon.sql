@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: database
--- Generation Time: Aug 02, 2020 at 04:29 PM
--- Server version: 8.0.20
--- PHP Version: 7.4.6
+-- 主机： database
+-- 生成日期： 2020-08-05 09:12:54
+-- 服务器版本： 8.0.20
+-- PHP 版本： 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `Beacon`
+-- 数据库： `Beacon`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Requests`
+-- 表的结构 `Requests`
 --
 
 CREATE TABLE `Requests` (
@@ -40,7 +40,7 @@ CREATE TABLE `Requests` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `Requests`
+-- 转存表中的数据 `Requests`
 --
 
 INSERT INTO `Requests` (`RequestId`, `BuyerId`, `ProductName`, `Tag`, `Description`, `Image`, `IntendedPrice`, `SaleId`, `DatePost`) VALUES
@@ -60,16 +60,16 @@ INSERT INTO `Requests` (`RequestId`, `BuyerId`, `ProductName`, `Tag`, `Descripti
 (14, 'xinyi', 'iPhone Charger', 'accessories', 'iPhone Charger', '', 5, NULL, '2020-07-26 03:46:01'),
 (15, 'xinyi', 'back cushion', 'furniture', 'back cushion', '', 5, NULL, '2020-07-26 03:46:47'),
 (16, 'xinyi', 'curtain', 'furniture', 'curtain', '', 10, NULL, '2020-07-26 03:47:22'),
-(17, 'baozi008', 'Nintendo Switch', 'electronics', 'not lite. better with games', '', 150, 15, '2020-07-26 18:40:55'),
 (20, 'zoej', 'Dyson vacuum cleaner', 'electronics', 'V8', '', 100, NULL, '2020-07-30 00:57:19'),
 (21, 'zoej', 'Dyson hair dryer', 'electronics', '', '', 200, NULL, '2020-07-30 00:57:58'),
 (22, 'zoej', 'Bookshelf', 'furniture', 'width less than 50cm', '', 20, NULL, '2020-07-30 01:00:16'),
-(23, 'vicky01', 'harry potter', 'otherbooks', 'english', '', 10, NULL, '2020-08-02 16:02:05');
+(23, 'vicky01', 'harry potter', 'otherbooks', 'english', '', 10, NULL, '2020-08-02 16:02:05'),
+(24, 'jiaqil6', 'A shelf', 'furniture', '', '', 25, 174, '2020-08-04 14:46:56');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Sales`
+-- 表的结构 `Sales`
 --
 
 CREATE TABLE `Sales` (
@@ -87,7 +87,7 @@ CREATE TABLE `Sales` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `Sales`
+-- 转存表中的数据 `Sales`
 --
 
 INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, `Image`, `IntendedPrice`, `OriginalPrice`, `Depreciation`, `IntendedBuyerId`, `DatePost`) VALUES
@@ -166,25 +166,29 @@ INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, 
 (145, 'zoej', 'Oxford disctionary', 'otherbooks', 'new', 'images/zoej/20200729203300.png', 28, 44.82, 9, NULL, '2020-07-29 20:33:00'),
 (147, 'zoej', 'microphone', 'electronics', 'shining with five different colors', 'images/zoej/20200729203512.png', 15, 50, 6, NULL, '2020-07-29 20:35:12'),
 (148, 'zoej', 'maple syrup', 'food', 'new from Canada', 'images/zoej/20200729203555.png', 25, 30, 9, NULL, '2020-07-29 20:35:55'),
-(149, 'zoej', 'hand soap', 'daily necessity', '1.65L', 'images/zoej/20200729203820.png', 8, 12, 9, NULL, '2020-07-29 20:38:20'),
+(149, 'zoej', 'hand soap', 'daily necessity', '1.65L', 'images/zoej/20200729203820.png', 8, 12, 9, 'jiaqil6', '2020-07-29 20:38:20'),
 (150, 'zoej', 'Mere Christianity', 'otherbooks', 'C.S. LEWIS', 'images/zoej/20200729203929.png', 15, 19.99, 9, NULL, '2020-07-29 20:39:29'),
 (152, 'zoej', 'Never split the difference', 'otherbooks', 'forget the original price', 'images/zoej/20200729204227.png', 20, 50, 7, NULL, '2020-07-29 20:42:27'),
 (153, 'zoej', 'A notebook', 'stationery', '80 pages with lines', 'images/zoej/20200729204303.png', 10, 20, 9, NULL, '2020-07-29 20:43:03'),
 (154, 'zoej', 'Will in the World', 'otherbooks', 'Stephen Greenblatt', 'images/zoej/20200729204402.png', 8, 14.99, 9, NULL, '2020-07-29 20:44:02'),
 (155, 'baozi008', 'GRE sentence analysis', 'test prep', 'e-edition', 'images/baozi008/20200730001300.png', 5, 10, 9, NULL, '2020-07-30 00:13:00'),
-(156, 'baozi008', 'TOEFL wordlist', 'test prep', 'with a lot of notes', 'images/baozi008/20200730001455.png', 10, 40, 7, 'vicky01', '2020-07-30 00:14:55'),
+(156, 'baozi008', 'TOEFL wordlist', 'test prep', 'with a lot of notes', 'images/baozi008/20200730001455.png', 10, 40, 7, NULL, '2020-07-30 00:14:55'),
 (157, 'baozi008', 'GRE wordlist and exercise', 'test prep', 'e-edition', 'images/baozi008/20200730001709.png', 5, 10, 9, NULL, '2020-07-30 00:17:09'),
 (158, 'hanyins2', 'ANTH 103 Textbook', 'textbook', 'e-edition', 'images/hanyins2/20200730003943.png', 10, 20, 9, NULL, '2020-07-30 00:39:43'),
 (160, 'hanyins2', 'MATH 213 textbook', 'textbook', 'discrete math', 'images/hanyins2/20200730004123.png', 5, 25, 9, NULL, '2020-07-30 00:41:23'),
 (161, 'hanyins2', 'HDFS 105 Textbook', 'textbook', 'life-span development', 'images/hanyins2/20200730004207.png', 28, 45, 9, NULL, '2020-07-30 00:42:07'),
 (162, 'hanyins2', 'RST 242 Textbook in Chinese', 'textbook', 'Chinese translation version', 'images/hanyins2/20200730004253.png', 20, 35, 9, NULL, '2020-07-30 00:42:53'),
-(164, 'baozi008', 'Invitation to Anthropology', 'otherbooks', 'in Chinese', 'images/baozi008/20200730004649.png', 10, 24, 9, NULL, '2020-07-30 00:46:49');
+(164, 'baozi008', 'Invitation to Anthropology', 'otherbooks', 'in Chinese', 'images/baozi008/20200730004649.png', 10, 24, 9, NULL, '2020-07-30 00:46:49'),
+(169, 'Garbo', 'Math 221/231 Calculus', 'textbook', 'Textbook for math 221/231/241. There are some notes on it but they are useful!!!', 'images/Garbo/20200803060518.jpg', 30, 45, 7, NULL, '2020-08-03 06:05:18'),
+(174, 'abc001', 'Bookcase', 'furniture', '3 stores', 'images/abc001/20200804035820.png', 6, 29, 6, 'jiaqil6', '2020-08-04 03:58:20'),
+(175, 'abc001', 'Math 221/231 Calculus', 'textbook', 'Textbook for math 221 and 231. Very useful for practice and test preparation.', 'images/abc001/20200804135559.jpg', 30, 60, 7, NULL, '2020-08-04 13:55:59'),
+(176, 'abc001', 'Switch', 'electronics', 'The Switch is an incredibly versatile console, and Nintendo Switch accessories allow you to customize your play even further. You can use two Joy-Con controllers independently in each hand, slip them both into a grip for a conventional controller feel, or connect a strap to one controller.', 'images/abc001/20200804135809.jpg', 200, 299, 7, NULL, '2020-08-04 13:58:09');
 
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `SRT_leftJoin`
--- (See below for the actual view)
+-- 替换视图以便查看 `SRT_leftJoin`
+-- （参见下面的实际视图）
 --
 CREATE TABLE `SRT_leftJoin` (
 `Tag` varchar(50)
@@ -196,8 +200,8 @@ CREATE TABLE `SRT_leftJoin` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `SRT_rightJoin`
--- (See below for the actual view)
+-- 替换视图以便查看 `SRT_rightJoin`
+-- （参见下面的实际视图）
 --
 CREATE TABLE `SRT_rightJoin` (
 `Tag` varchar(50)
@@ -209,8 +213,8 @@ CREATE TABLE `SRT_rightJoin` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `SR_fullJoin`
--- (See below for the actual view)
+-- 替换视图以便查看 `SR_fullJoin`
+-- （参见下面的实际视图）
 --
 CREATE TABLE `SR_fullJoin` (
 `Tag` varchar(50)
@@ -221,8 +225,8 @@ CREATE TABLE `SR_fullJoin` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `SR_leftJoin`
--- (See below for the actual view)
+-- 替换视图以便查看 `SR_leftJoin`
+-- （参见下面的实际视图）
 --
 CREATE TABLE `SR_leftJoin` (
 `Tag` varchar(50)
@@ -233,8 +237,8 @@ CREATE TABLE `SR_leftJoin` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `SR_rightJoin`
--- (See below for the actual view)
+-- 替换视图以便查看 `SR_rightJoin`
+-- （参见下面的实际视图）
 --
 CREATE TABLE `SR_rightJoin` (
 `Tag` varchar(50)
@@ -245,7 +249,7 @@ CREATE TABLE `SR_rightJoin` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Transactions`
+-- 表的结构 `Transactions`
 --
 
 CREATE TABLE `Transactions` (
@@ -260,7 +264,7 @@ CREATE TABLE `Transactions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `Transactions`
+-- 转存表中的数据 `Transactions`
 --
 
 INSERT INTO `Transactions` (`TransactionId`, `SellerId`, `BuyerId`, `ProductName`, `Price`, `Tag`, `Description`, `Date`) VALUES
@@ -340,12 +344,14 @@ INSERT INTO `Transactions` (`TransactionId`, `SellerId`, `BuyerId`, `ProductName
 (75, 'xinyi', 'baozi008', 'Guitar Kepma', 70, 'other', 'Guitar Kepma', '2020-07-31 09:03:32'),
 (76, 'xlai7', 'sunshine boy', 'Mouse', 5, 'electronics', 'A Logit mouse', '2020-07-31 09:04:04'),
 (77, 'zoej', 'Vicky', 'Bose Headphone', 120, 'electronics', 'bought 3 months ago', '2020-08-01 17:24:02'),
-(78, 'vicky01', 'vicky01', 'harry potter', 100, 'toys/games', 'bought from bilibili', '2020-08-02 16:02:39');
+(78, 'vicky01', 'vicky01', 'harry potter', 100, 'toys/games', 'bought from bilibili', '2020-08-02 16:02:39'),
+(79, 'abc001', 'jiaqil6', 'AirPods', 60, 'electronics', 'Apple AirPods 1', '2020-08-04 21:54:12'),
+(80, 'abc001', 'jiaqil6', 'Essentials of Cultural Anthropology', 30, 'textbook', 'ANTH 103 textbook', '2020-08-04 21:54:18');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Users`
+-- 表的结构 `Users`
 --
 
 CREATE TABLE `Users` (
@@ -360,16 +366,19 @@ CREATE TABLE `Users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `Users`
+-- 转存表中的数据 `Users`
 --
 
 INSERT INTO `Users` (`NetId`, `Password`, `Name`, `Email`, `Campus`, `Major`, `Year`, `DateJoin`) VALUES
+('abc001', 'abc001', 'vicky', 'abc001@outlook.com', 'ZJUIntl', 'CompE', 'Graduate', '2020-08-04 03:46:39'),
 ('baozi008', 'baozi008', 'Hanyin', 'hanyin.17@intl.zju.edu.cn', 'ZJUIntl', 'CompE', 'Senior', '2020-07-26 17:38:08'),
 ('Barbara', 'Barbara', 'Barbara', '3170111549@zju.edu.cn', 'ZJUIntl', 'BMS', 'Junior', '2020-07-25 12:35:32'),
 ('cs411', 'cs411', 'Little Genius', 'cs411@genius.com', 'UIUC', 'CS', 'Junior', '2020-07-25 06:14:03'),
+('Garbo', 'Garbo', 'Garbo', 'garbo@illinois.edu', 'UIUC', 'CompE', 'Senior', '2020-08-03 06:02:52'),
 ('Gavin', '123456', 'Haozhe Chen', 'Haozhe.18@intl.zju.edu.cn', 'ZJUIntl', 'CompE', 'Junior', '2020-07-25 14:42:54'),
 ('genius', 'genius', 'Real Genius', 'genius@genius.com', 'ZJU', 'Other', 'Graduate', '2020-07-25 07:03:09'),
 ('goodgirl', 'goodgirl', 'goodgirl', 'loujiaqi1998@126.com', 'UIUC', 'BMI', 'Freshman', '2020-07-29 15:06:10'),
+('Graduated!', 'Graduated!', 'Vicky', 'vicky@illinois.edu', 'UIUC', 'CompE', 'Senior', '2020-08-03 06:01:48'),
 ('hahaGong', 'hahaGong', 'Gong', '304790320@qq.com', 'ZJUIntl', 'BMS', 'Junior', '2020-07-26 11:28:29'),
 ('hanyins2', 'hanyins2', 'Hanyin Shao', 'hanyins2@illinois.edu', 'UIUC', 'CompE', 'Junior', '2020-07-26 17:30:29'),
 ('Haohao', '123456789', 'Hao', 'hao.17@intl.zju.edu.cn', 'ZJUIntl', 'ME', 'Junior', '2020-07-29 09:05:00'),
@@ -382,6 +391,7 @@ INSERT INTO `Users` (`NetId`, `Password`, `Name`, `Email`, `Campus`, `Major`, `Y
 ('sunshine boy', 'sb', 'Kerui Zhu', 'kerui.17@intl.zju.edu.cn', 'ZJUIntl', 'CompE', 'Junior', '2020-07-25 09:46:40'),
 ('Vicky', 'Cyf01039902323', 'Vicky', 'yifanc3@illinois.edu', 'ZJUIntl', 'CompE', 'Graduate', '2020-08-01 04:01:36'),
 ('vicky01', 'vicky', 'vicky', 'vicky@illinois.edu', 'ZJUIntl', 'CS', 'Graduate', '2020-08-02 15:58:31'),
+('Vikcy', 'Vicky002', 'Vicky', 'vicky07@gmail.com', 'ZJUIntl', 'CompE', 'Graduate', '2020-08-04 03:25:02'),
 ('Xinyi', 'xinyi', 'Xinyi', '3170111149@zju.edu.cn', 'ZJU', 'EE', 'Freshman', '2020-07-25 10:12:33'),
 ('xinyi.17', 'xinyi.17', 'Lai Xinyi', 'xinyi.17@intl.zju.edu.cn', 'ZJUIntl', 'EE', 'Senior', '2020-07-25 08:20:40'),
 ('xlai7', 'xlai7', 'Xinyi Lai', 'xlai7@illinois.edu', 'UIUC', 'EE', 'Senior', '2020-07-25 09:06:02'),
@@ -392,7 +402,7 @@ INSERT INTO `Users` (`NetId`, `Password`, `Name`, `Email`, `Campus`, `Major`, `Y
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Visit`
+-- 表的结构 `Visit`
 --
 
 CREATE TABLE `Visit` (
@@ -402,7 +412,7 @@ CREATE TABLE `Visit` (
 -- --------------------------------------------------------
 
 --
--- Structure for view `SRT_leftJoin`
+-- 视图结构 `SRT_leftJoin`
 --
 DROP TABLE IF EXISTS `SRT_leftJoin`;
 
@@ -411,7 +421,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`Geniuses`@`%` SQL SECURITY DEFINER VIEW `SRT
 -- --------------------------------------------------------
 
 --
--- Structure for view `SRT_rightJoin`
+-- 视图结构 `SRT_rightJoin`
 --
 DROP TABLE IF EXISTS `SRT_rightJoin`;
 
@@ -420,7 +430,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`Geniuses`@`%` SQL SECURITY DEFINER VIEW `SRT
 -- --------------------------------------------------------
 
 --
--- Structure for view `SR_fullJoin`
+-- 视图结构 `SR_fullJoin`
 --
 DROP TABLE IF EXISTS `SR_fullJoin`;
 
@@ -429,7 +439,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`Geniuses`@`%` SQL SECURITY DEFINER VIEW `SR_
 -- --------------------------------------------------------
 
 --
--- Structure for view `SR_leftJoin`
+-- 视图结构 `SR_leftJoin`
 --
 DROP TABLE IF EXISTS `SR_leftJoin`;
 
@@ -438,18 +448,18 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`Geniuses`@`%` SQL SECURITY DEFINER VIEW `SR_
 -- --------------------------------------------------------
 
 --
--- Structure for view `SR_rightJoin`
+-- 视图结构 `SR_rightJoin`
 --
 DROP TABLE IF EXISTS `SR_rightJoin`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`Geniuses`@`%` SQL SECURITY DEFINER VIEW `SR_rightJoin`  AS  select `tmp2`.`Tag` AS `Tag`,`tmp1`.`cntSales` AS `cntSales`,`tmp2`.`cntRequests` AS `cntRequests` from ((select `Requests`.`Tag` AS `Tag`,count(0) AS `cntRequests` from `Requests` group by `Requests`.`Tag`) `tmp2` left join (select `Sales`.`Tag` AS `Tag`,count(0) AS `cntSales` from `Sales` group by `Sales`.`Tag`) `tmp1` on((`tmp1`.`Tag` = `tmp2`.`Tag`))) ;
 
 --
--- Indexes for dumped tables
+-- 转储表的索引
 --
 
 --
--- Indexes for table `Requests`
+-- 表的索引 `Requests`
 --
 ALTER TABLE `Requests`
   ADD PRIMARY KEY (`RequestId`),
@@ -457,7 +467,7 @@ ALTER TABLE `Requests`
   ADD KEY `Requests_ibfk_2` (`SaleId`);
 
 --
--- Indexes for table `Sales`
+-- 表的索引 `Sales`
 --
 ALTER TABLE `Sales`
   ADD PRIMARY KEY (`SaleId`),
@@ -465,7 +475,7 @@ ALTER TABLE `Sales`
   ADD KEY `Sales_ibfk_2` (`IntendedBuyerId`);
 
 --
--- Indexes for table `Transactions`
+-- 表的索引 `Transactions`
 --
 ALTER TABLE `Transactions`
   ADD PRIMARY KEY (`TransactionId`),
@@ -473,53 +483,53 @@ ALTER TABLE `Transactions`
   ADD KEY `Transactions_ibfk_2` (`SellerId`);
 
 --
--- Indexes for table `Users`
+-- 表的索引 `Users`
 --
 ALTER TABLE `Users`
   ADD PRIMARY KEY (`NetId`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- 在导出的表使用AUTO_INCREMENT
 --
 
 --
--- AUTO_INCREMENT for table `Requests`
+-- 使用表AUTO_INCREMENT `Requests`
 --
 ALTER TABLE `Requests`
-  MODIFY `RequestId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `RequestId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT for table `Sales`
+-- 使用表AUTO_INCREMENT `Sales`
 --
 ALTER TABLE `Sales`
-  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
+  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=177;
 
 --
--- AUTO_INCREMENT for table `Transactions`
+-- 使用表AUTO_INCREMENT `Transactions`
 --
 ALTER TABLE `Transactions`
-  MODIFY `TransactionId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `TransactionId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
--- Constraints for dumped tables
+-- 限制导出的表
 --
 
 --
--- Constraints for table `Requests`
+-- 限制表 `Requests`
 --
 ALTER TABLE `Requests`
   ADD CONSTRAINT `Requests_ibfk_1` FOREIGN KEY (`BuyerId`) REFERENCES `Users` (`NetId`) ON DELETE CASCADE ON UPDATE RESTRICT,
   ADD CONSTRAINT `Requests_ibfk_2` FOREIGN KEY (`SaleId`) REFERENCES `Sales` (`SaleId`) ON DELETE CASCADE ON UPDATE RESTRICT;
 
 --
--- Constraints for table `Sales`
+-- 限制表 `Sales`
 --
 ALTER TABLE `Sales`
   ADD CONSTRAINT `Sales_ibfk_1` FOREIGN KEY (`SellerId`) REFERENCES `Users` (`NetId`) ON DELETE CASCADE ON UPDATE RESTRICT,
   ADD CONSTRAINT `Sales_ibfk_2` FOREIGN KEY (`IntendedBuyerId`) REFERENCES `Users` (`NetId`) ON DELETE CASCADE ON UPDATE RESTRICT;
 
 --
--- Constraints for table `Transactions`
+-- 限制表 `Transactions`
 --
 ALTER TABLE `Transactions`
   ADD CONSTRAINT `Transactions_ibfk_1` FOREIGN KEY (`BuyerId`) REFERENCES `Users` (`NetId`) ON DELETE CASCADE ON UPDATE RESTRICT,
