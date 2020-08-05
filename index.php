@@ -49,7 +49,7 @@
 
 </head>
 
-<body onload="load_related('', 'Sales', '','','')">
+<body onload="load_page()">
 
     <div class="top-bar">
 

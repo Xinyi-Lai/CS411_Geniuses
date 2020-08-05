@@ -3,6 +3,7 @@
     $curr_user = $_SESSION['curr_user'];
     $search_item = $_GET['search_item'];
     $choosedb = $_GET['choosedb'];
+    $campus = $_GET['campus'];
 ?>
 
 <!DOCTYPE HTML>
@@ -99,13 +100,13 @@
 
                             <select id="campus" class="form-control">
 
-                                <option selected="selected" value=""> Campus </option>
+                                <option <?php echo $campus=="" ? 'selected':'' ?> value=""> Campus </option>
 
-                                <option value="UIUC">UIUC</option>
+                                <option <?php echo $campus=="UIUC" ? 'selected':'' ?> value="UIUC">UIUC</option>
 
-                                <option value="ZJUIntl">ZJUIntl</option>
+                                <option <?php echo $campus=="ZJUIntl" ? 'selected':'' ?> value="ZJUIntl">ZJUIntl</option>
 
-                                <option value="ZJU">ZJU</option>
+                                <option <?php echo $campus=="ZJU" ? 'selected':'' ?> value="ZJU">ZJU</option>
 
                             </select>
 
@@ -125,7 +126,7 @@
 
                             </div>
 
-                            <button id="search_btn" type="button" class="btn" onclick="load_related(document.getElementById('search_box').value, document.getElementById('choosedb').value,'','','')"><i class="fa fa-search"></i></button>
+                            <button id="search_btn" type="button" class="btn" onclick="ajax_load_related()"><i class="fa fa-search"></i></button>
 
                         </form>
 

@@ -12,6 +12,7 @@
     //connect db
     if (strlen($item_id) > 0) {
         $conn = connectDB();
+        // Get product information
         if ($choosedb == "Sales") {
             $sql = "SELECT * FROM Sales WHERE SaleId = $item_id";
             $result = $conn->query($sql);
@@ -40,6 +41,15 @@
                 $image = $row["Image"];
                 $intendedPrice = $row["IntendedPrice"];
             } 
+        }
+
+        // Get page host information
+
+        $sql = "SELECT * FROM Users WHERE NetId='$host_id'";
+        $result = $conn->query($sql);
+        if ($result && $result->num_rows == 1){
+            $row = $result->fetch_assoc();
+            $host_campus = $row["Campus"];
         }
     
         $conn->close();
@@ -132,7 +142,7 @@
 
 </head>
 
-<body onload="load_related('','<?php echo $choosedb; ?>','','<?php echo $tag; ?>','<?php echo $item_id; ?>')">
+<body>
 
     <div class="top-bar">
 
@@ -377,7 +387,7 @@
                         }
                     ?>
 
-                        
+                        <span class="product-identity"><span class="strong-text">Campus:</span> <?php echo $host_campus; ?></span></br></br>
 
                         <span class="product-identity"><span class="strong-text">Description:</span> <?php echo $description; ?></span><br><br>
 
