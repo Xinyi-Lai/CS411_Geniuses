@@ -49,7 +49,7 @@
 
 </head>
 
-<body onload="load_related('', 'Sales', '','','')">
+<body onload="load_page()">
 
     <div class="top-bar">
 
@@ -101,15 +101,27 @@
 
             <div class="row">
 
-                <div class="col-md-3 col-sm-4">
+                <div class="col-md-2 col-sm-4">
 
                 </div>
 
-                <div class="col-md-7 col-sm-5">
+                <div class="col-md-8 col-sm-5">
 
                     <div class="search-form-main">
 
                         <form class="navbar-form" role="search">
+
+                            <select id="campus" class="form-control">
+
+                                <option selected="selected" value=""> Campus </option>
+
+                                <option value="UIUC">UIUC</option>
+
+                                <option value="ZJUIntl">ZJUIntl</option>
+
+                                <option value="ZJU">ZJU</option>
+
+                            </select>
 
                             <select id="choosedb" class="form-control">
 
@@ -123,7 +135,7 @@
 
                                 <input id="hiddenText" type="text" style="display:none" />
 
-                                <input type="text"  onkeydown="entersearch()" id="search_box" class="form-control" placeholder="What do you need..."/>
+                                <input type="text"  onkeydown="entersearch()" id="search_box" class="form-control" placeholder="What do you need..." style="width:400px"/>
 
                             </div>
 
@@ -181,23 +193,23 @@
 
                   <ul class="dropdown-menu" id="dropdown">
                     <input type="text" placeholder="  Search.." id="tagInput" onkeyup="filterFunction()" style="border-radius:3px;margin-left:20px;margin-top:10px;margin-bottom:5px">
-                    <li><a href="search.php?choosedb=Sales&tag=accessories">accessories</a></li>
-                    <li><a href="search.php?choosedb=Sales&tag=clothing">clothing</a></li>
-                    <li><a href="search.php?choosedb=Sales&tag=daily necessity">daily necessity</a></li>
-                    <li><a href="search.php?choosedb=Sales&tag=electronics">electronics</a></li>
-                    <li><a href="search.php?choosedb=Sales&tag=food">food</a></li>
-                    <li><a href="search.php?choosedb=Sales&tag=furniture">furniture</a></li>
-                    <li><a href="search.php?choosedb=Sales&tag=jewelry">jewelry</a></li>
-                    <li><a href="search.php?choosedb=Sales&tag=makeup/personal care">makeup/personal care</a></li>
-                    <li><a href="search.php?choosedb=Sales&tag=otherbooks">otherbooks</a></li>
-                    <li><a href="search.php?choosedb=Sales&tag=other">other</a></li>
-                    <li><a href="search.php?choosedb=Sales&tag=sports">sports</a></li>
-                    <li><a href="search.php?choosedb=Sales&tag=stationery">stationery</a></li>
-                    <li><a href="search.php?choosedb=Sales&tag=sublease">sublease</a></li>
-                    <li><a href="search.php?choosedb=Sales&tag=textbook">textbook</a></li>
-                    <li><a href="search.php?choosedb=Sales&tag=test prep">test prep</a></li>
-                    <li><a href="search.php?choosedb=Sales&tag=toys/games">toys/games</a></li>
-                    <li><a href="search.php?choosedb=Sales&tag=tools">tools</a></li>
+                    <li><a onclick="jump_to_search('accessories')">accessories</a></li>
+                    <li><a onclick="jump_to_search('clothing')">clothing</a></li>
+                    <li><a onclick="jump_to_search('daily necessity')">daily necessity</a></li>
+                    <li><a onclick="jump_to_search('electronics')">electronics</a></li>
+                    <li><a onclick="jump_to_search('food')">food</a></li>
+                    <li><a onclick="jump_to_search('furniture')">furniture</a></li>
+                    <li><a onclick="jump_to_search('jewelry')">jewelry</a></li>
+                    <li><a onclick="jump_to_search('makeup/personal care')">makeup/personal care</a></li>
+                    <li><a onclick="jump_to_search('otherbooks')">otherbooks</a></li>
+                    <li><a onclick="jump_to_search('other')">other</a></li>
+                    <li><a onclick="jump_to_search('sports')">sports</a></li>
+                    <li><a onclick="jump_to_search('stationery')">stationery</a></li>
+                    <li><a onclick="jump_to_search('sublease')">sublease</a></li>
+                    <li><a onclick="jump_to_search('textbook')">textbook</a></li>
+                    <li><a onclick="jump_to_search('test prep')">test prep</a></li>
+                    <li><a onclick="jump_to_search('toys/games')">toys/games</a></li>
+                    <li><a onclick="jump_to_search('tools')">tools</a></li>
                   </ul>
 
                 </div>
