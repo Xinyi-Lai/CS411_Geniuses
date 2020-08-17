@@ -1,10 +1,13 @@
-top: daily necessity, sports, stationery, 
-daily necessity: stationery, toys/games, electronics, 
-toys/games: electronics, accessories, daily necessity, 
-stationery: sports, daily necessity, 
-sports: stationery, daily necessity, 
-textbook: 
-electronics: toys/games, accessories, daily necessity, 
-tools: 
-accessories: toys/games, electronics, 
+top: textbook, daily necessity, electronics, 
+electronics: daily necessity, accessories, toys/games, 
+daily necessity: electronics, stationery, toys/games, 
+stationery: textbook, otherbooks, daily necessity, 
+textbook: electronics, otherbooks, stationery, 
+toys/games: daily necessity, electronics, accessories, 
+sports: daily necessity, stationery, 
+accessories: daily necessity, electronics, toys/games, 
 furniture: daily necessity, 
+other: textbook, electronics, 
+otherbooks: textbook, stationery, 
+tools: 
+test prep: stationery, 

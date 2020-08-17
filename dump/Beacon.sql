@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： database
--- 生成日期： 2020-08-05 09:12:54
+-- 生成日期： 2020-08-17 15:03:58
 -- 服务器版本： 8.0.20
 -- PHP 版本： 7.4.6
 
@@ -64,7 +64,8 @@ INSERT INTO `Requests` (`RequestId`, `BuyerId`, `ProductName`, `Tag`, `Descripti
 (21, 'zoej', 'Dyson hair dryer', 'electronics', '', '', 200, NULL, '2020-07-30 00:57:58'),
 (22, 'zoej', 'Bookshelf', 'furniture', 'width less than 50cm', '', 20, NULL, '2020-07-30 01:00:16'),
 (23, 'vicky01', 'harry potter', 'otherbooks', 'english', '', 10, NULL, '2020-08-02 16:02:05'),
-(24, 'jiaqil6', 'A shelf', 'furniture', '', '', 25, 174, '2020-08-04 14:46:56');
+(24, 'jiaqil6', 'A shelf', 'furniture', '', '', 25, 174, '2020-08-04 14:46:56'),
+(27, 'jiaqil6', 'ssd', 'accessories', '', '', 50, 190, '2020-08-06 01:31:36');
 
 -- --------------------------------------------------------
 
@@ -182,7 +183,14 @@ INSERT INTO `Sales` (`SaleId`, `SellerId`, `ProductName`, `Tag`, `Description`, 
 (169, 'Garbo', 'Math 221/231 Calculus', 'textbook', 'Textbook for math 221/231/241. There are some notes on it but they are useful!!!', 'images/Garbo/20200803060518.jpg', 30, 45, 7, NULL, '2020-08-03 06:05:18'),
 (174, 'abc001', 'Bookcase', 'furniture', '3 stores', 'images/abc001/20200804035820.png', 6, 29, 6, 'jiaqil6', '2020-08-04 03:58:20'),
 (175, 'abc001', 'Math 221/231 Calculus', 'textbook', 'Textbook for math 221 and 231. Very useful for practice and test preparation.', 'images/abc001/20200804135559.jpg', 30, 60, 7, NULL, '2020-08-04 13:55:59'),
-(176, 'abc001', 'Switch', 'electronics', 'The Switch is an incredibly versatile console, and Nintendo Switch accessories allow you to customize your play even further. You can use two Joy-Con controllers independently in each hand, slip them both into a grip for a conventional controller feel, or connect a strap to one controller.', 'images/abc001/20200804135809.jpg', 200, 299, 7, NULL, '2020-08-04 13:58:09');
+(176, 'abc001', 'Switch', 'electronics', 'The Switch is an incredibly versatile console, and Nintendo Switch accessories allow you to customize your play even further. You can use two Joy-Con controllers independently in each hand, slip them both into a grip for a conventional controller feel, or connect a strap to one controller.', 'images/abc001/20200804135809.jpg', 200, 299, 7, NULL, '2020-08-04 13:58:09'),
+(177, 'lai001', 'Lego Technic 42093', 'toys/games', 'Lego Technic 42093, 578pcs, 2 in 1', 'images/lai001/20200805131411.jpg', 40, 50, 9, NULL, '2020-08-05 13:14:11'),
+(178, 'lai001', 'Earphone', 'accessories', 'Earphone for iPhone', 'images/lai001/20200805131455.jpg', 2, 4, 9, NULL, '2020-08-05 13:14:55'),
+(186, 'lai001', 'Uni-ball Pen 12pcs', 'stationery', 'Uni-ball Pen 12pcs', 'images/lai001/20200805133601.jpg', 5, 7, 9, NULL, '2020-08-05 13:36:01'),
+(187, 'lai001', 'Stapler', 'stationery', 'Stapler', 'images/lai001/20200805133636.jpg', 2, 5, 9, NULL, '2020-08-05 13:36:36'),
+(189, 'sunshine boy', 'medicinal alcohol', 'daily necessity', 'medicinal alcohol, sterilize with alcohol', 'images/sunshine boy/20200805180616.jpg', 3, 5, 7, NULL, '2020-08-05 18:06:16'),
+(190, 'keruiz2', 'solid state disk', 'electronics', '500G ssd', 'images/keruiz2/20200805181532.jpg', 43, 70, 8, 'jiaqil6', '2020-08-05 18:15:32'),
+(191, 'keruiz2', 'coffee', 'food', 'instant coffee', 'images/keruiz2/20200806002058.jpg', 7, 11, 9, NULL, '2020-08-06 00:20:58');
 
 -- --------------------------------------------------------
 
@@ -346,7 +354,16 @@ INSERT INTO `Transactions` (`TransactionId`, `SellerId`, `BuyerId`, `ProductName
 (77, 'zoej', 'Vicky', 'Bose Headphone', 120, 'electronics', 'bought 3 months ago', '2020-08-01 17:24:02'),
 (78, 'vicky01', 'vicky01', 'harry potter', 100, 'toys/games', 'bought from bilibili', '2020-08-02 16:02:39'),
 (79, 'abc001', 'jiaqil6', 'AirPods', 60, 'electronics', 'Apple AirPods 1', '2020-08-04 21:54:12'),
-(80, 'abc001', 'jiaqil6', 'Essentials of Cultural Anthropology', 30, 'textbook', 'ANTH 103 textbook', '2020-08-04 21:54:18');
+(80, 'abc001', 'jiaqil6', 'Essentials of Cultural Anthropology', 30, 'textbook', 'ANTH 103 textbook', '2020-08-04 21:54:18'),
+(81, 'lai001', 'hh', 'Stapler', 3, 'stationery', 'Keep organized', '2020-08-05 13:29:05'),
+(82, 'lai001', 'hh', 'Linear Algebra', 10, 'otherbooks', 'Linear Algebra', '2020-08-05 13:29:09'),
+(83, 'lai001', 'hh', 'University Physics', 10, 'textbook', 'University Physics', '2020-08-05 13:31:32'),
+(84, 'lai001', 'young lady', 'Uni-ball Pen', 5, 'stationery', 'Uni-ball Pen', '2020-08-05 13:34:15'),
+(85, 'lai001', 'young lady', 'Calculus 7 ed', 20, 'textbook', 'Calculus 7 ed', '2020-08-05 13:34:19'),
+(86, 'lai001', 'young lady', 'Foundation of Economics', 10, 'otherbooks', 'Micro and Macro Economics', '2020-08-05 13:34:22'),
+(87, 'sunshine boy', 'keruiz2', 'mouse', 35, 'electronics', 'logi mouse', '2020-08-05 18:22:25'),
+(88, 'lai001', 'haohao', 'Microscope for phone camera', 10, 'accessories', 'Discover the world with your phone!', '2020-08-06 01:12:23'),
+(89, 'keruiz2', 'jiaqil6', 'phone support', 3, 'other', 'I can support phone and pad', '2020-08-06 01:33:22');
 
 -- --------------------------------------------------------
 
@@ -386,6 +403,7 @@ INSERT INTO `Users` (`NetId`, `Password`, `Name`, `Email`, `Campus`, `Major`, `Y
 ('Hxh123', '123456789', 'Hao', 'haoh4@illinois.edu', 'ZJUIntl', 'ME', 'Junior', '2020-07-25 08:21:19'),
 ('jiaqil6', 'jiaqil6', 'jiaqil6', 'jiaqil6@illinois.edu', 'ZJUIntl', 'EE', 'Junior', '2020-07-26 11:21:55'),
 ('keruiz2', 'keruiz2', 'Kerui Zhu', 'keruiz2@illinois.edu', 'UIUC', 'CS', 'Junior', '2020-07-25 09:25:18'),
+('lai001', 'lai001', 'Lai', 'xlai7@illinois.edu', 'ZJUIntl', 'EE', 'Senior', '2020-08-05 13:12:28'),
 ('LittleBiscuit', 'fecbi5-kosrYz-focwyc', 'Yulin Li', 'yulin.17@intl.zju.edu.cn', 'UIUC', 'EE', 'Senior', '2020-07-25 21:27:42'),
 ('Lynne', 'dihpot-sawcYh-3xodxe', 'Yulin Li', 'yulin.17@intl.zju.edu.cn', 'ZJUIntl', 'EE', 'Senior', '2020-07-27 22:13:33'),
 ('sunshine boy', 'sb', 'Kerui Zhu', 'kerui.17@intl.zju.edu.cn', 'ZJUIntl', 'CompE', 'Junior', '2020-07-25 09:46:40'),
@@ -496,19 +514,19 @@ ALTER TABLE `Users`
 -- 使用表AUTO_INCREMENT `Requests`
 --
 ALTER TABLE `Requests`
-  MODIFY `RequestId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `RequestId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- 使用表AUTO_INCREMENT `Sales`
 --
 ALTER TABLE `Sales`
-  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=177;
+  MODIFY `SaleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=196;
 
 --
 -- 使用表AUTO_INCREMENT `Transactions`
 --
 ALTER TABLE `Transactions`
-  MODIFY `TransactionId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `TransactionId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- 限制导出的表
